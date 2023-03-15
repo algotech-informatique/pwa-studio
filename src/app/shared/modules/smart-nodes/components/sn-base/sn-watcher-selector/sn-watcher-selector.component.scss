@@ -1,0 +1,35 @@
+@import '../../../theme/mixins';
+
+.debug {
+    position: relative;
+
+    .icons {
+        .icon {
+            padding: 5px;
+            border-radius: 5px;
+            color: var(--SN-FLOW-COLOR-DISCONNECT);
+            cursor: pointer;
+            opacity: 0.3;
+        }
+    }
+
+    .indice {
+        @include indice();
+    }
+
+
+    &:not(.watch) {
+        .indice {
+            display: none;
+        }
+    }
+
+    &.watch {
+        .icons {
+            .icon {
+                opacity: 1;
+                color: var(--SN-COLOR-WATCHER);
+            }
+        }
+    }
+}

@@ -1,0 +1,20 @@
+@import "../../../../../../../styles";
+
+:host {
+    --SNMODAL-MAX-HEIGHT: inherit;
+    --SNMODAL-MAX-WIDTH: calc(var(--SN-NODE-WIDTH) - 20px);
+    --SNMODAL-LEFT: 10px;
+    --SNMODAL-BACKGROUND: #{$COLOR-BG-POPUP-DARK};
+}
+
+.modal {
+    background-color: var(--SNMODAL-BACKGROUND);
+    position: absolute;
+    max-height: var(--SNMODAL-MAX-HEIGHT);
+    width: var(--SNMODAL-MAX-WIDTH);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    left: var(--SNMODAL-LEFT);
+}

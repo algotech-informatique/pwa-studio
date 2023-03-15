@@ -1,0 +1,16 @@
+<ui-tree-line
+    [ngClass]="{'hidden': item.element.custom.hidden}"
+    [item]="item"
+    [name]="name"
+    [icon]="icon"
+    [draghook]="false"
+    [selected]="canSelectItem && (appSelection.selections.sharedWidgets | elementSelected:item.element) === 'selected'"
+    [snApp]="snApp"
+    [settings]="settings"
+    [editionMode]="item.editMode"
+    (editing)="handleEditing($event)"
+    (selectLine)="onWidgetSelected($event)"
+    (toggleLine)="onToggleLine($event)"
+    (nameChanged)="onNameChanged($event)"
+    [sharedItems]="true">
+</ui-tree-line>

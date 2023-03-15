@@ -1,0 +1,39 @@
+<sn-select-modal [(top)]="top" [snView]="snView" class="modal">
+
+    <div class="header">
+        <div class="left-side">
+            <div class="title">{{'INSPECTOR.INPUT.TEXT.TITLE' | translate}}</div>
+        </div>
+        <i class="fa-solid fa-xmark close-icon" (click)="close()"></i>
+    </div>
+
+    <div class="content">
+        <div *ngIf="input" class="input" (click)="addInput()">
+            {{ input }}
+        </div>
+
+        <div *ngIf="collectionItem" class="current-collection">
+            {{ collectionItem }}
+        </div>
+        <sn-select-properties
+            *ngIf="top && collectionItem && collectionItem.type === 'so'"
+            [(top)]="top"
+            [type]="collectionItem.type"
+            [selectedProperties]="[]">
+        </sn-select-properties>
+
+        <textarea #textarea
+            name="textarea"
+            cols="40"
+            rows="10"
+            [(ngModel)]="textShowed">
+        </textarea>
+
+        <div class="lang-selector">
+            <div *ngFor="let lang of languages" class="button" (click)="selectLang(lang)" [ngClass]="{'selected' : lang.lang === selectedLang.lang}">
+                {{lang.lang | slice:0:2 | titlecase}}
+            </div>
+        </div>
+    </div>
+
+</sn-select-modal>

@@ -1,0 +1,17 @@
+<div class="property inside-card"
+    [ngClass]="{'last': (!eventInputs || eventInputs?.length === 0)}">
+    <select-element
+        [title]="'SN-APP.WIDGET.EVENT.TYPE.SMARTFLOW' | translate"
+        [list]="smartflows"
+        [selectedKey]="pipeEvent.action"
+        (selectNewItem)="onSelectSmartflow($event)">
+    </select-element>
+</div>
+
+<div *ngIf="eventInputs?.length > 0" class="property inside-card last">
+    <event-inputs
+        [inputs]="eventInputs"
+        [data]="inputsData"
+        (inputsChanged)="onInputsChanged($event)">
+    </event-inputs>
+</div>

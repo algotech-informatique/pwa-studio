@@ -1,0 +1,14 @@
+<div class="widget-image">
+
+    <img [ngStyle]="widget.css | injectStyle: ['main', 'image']"
+        [src]="srcExists
+            ? widget.custom?.typeSrc === 'file'
+                ? (widget.custom?.imageUuid | uuid2image)
+                : typeSrc === 'uri'
+                    ? widget.custom?.imageUri
+                    : './assets/images/picture.png'
+            : './assets/images/picture.png'"
+        onerror="this.src='./assets/images/loading.gif'"
+    />
+
+</div>

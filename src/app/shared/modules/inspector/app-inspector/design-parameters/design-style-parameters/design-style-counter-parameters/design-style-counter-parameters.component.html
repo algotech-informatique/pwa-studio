@@ -1,0 +1,72 @@
+<div class="property">
+    <display-definition-values
+        [title]="'INSPECTOR.APP.TAB.DESIGN.TEXT.SIZE' | translate"
+        [width]="defaultValue['font-size']"
+        widthLabel=""
+        [roundValue]="true"
+        (changedWidth)="onSizeChanged($event)">
+    </display-definition-values>
+</div>
+
+<div class="property">
+    <select-inline-element
+        [title]="'INSPECTOR.APP.TAB.DESIGN.TEXT.STYLE' | translate"
+        [items]="styleElements"
+        [selectedKeys]="styleSelectedKeys"
+        (selectItem)="onStyleChanged($event)">
+    </select-inline-element>
+</div>
+
+<div class="property">
+    <color-element
+        [showApptheme]="true"
+        [color]="defaultValue.color"
+        (changed)="onColorChanged($event)">
+    </color-element>
+</div>
+
+<div class="property">
+    <color-element
+        [title]="'INSPECTOR.APP.TAB.DESIGN.BACKGROUND' | translate"
+        [showApptheme]="true"
+        [color]="defaultValue['background-color']"
+        (changed)="onBackColorChanged($event)">
+    </color-element>
+</div>
+
+<div class="property">
+    <display-definition-values
+        [title]="'INSPECTOR.APP.TAB.DESIGN.COUNTER-SIZE' | translate"
+        [width]="defaultValue['width']"
+        [height]="defaultValue['height']"
+        widthLabel=""
+        heightLabel=""
+        [roundValue]="true"
+        (changedWidth)="onSizeCounterChanged($event, 'width')"
+        (changedHeight)="onSizeCounterChanged($event, 'height')">
+    </display-definition-values>
+</div>
+
+<div class="property">
+    <design-style-radius-parameters
+        [radiusValue]="defaultValue['border-radius']"
+        (changed)="onChangedRadius($event)">
+    </design-style-radius-parameters>
+</div>
+
+<div class="property">
+    <design-style-margin-parameters
+        [title]="'INSPECTOR.APP.TAB.DESIGN.ICON.PADDING' | translate"
+        [marginValue]="defaultValue.padding"
+        (changed)="onPaddingChanged($event)">
+    </design-style-margin-parameters>
+</div>
+
+<div class="property last">
+    <design-style-absposition-parameters
+        [position]="absolutePosition"
+        (changePosition)="onChangedAbsPosition($event)"
+        (changePositionValue)="onChangedAbsPositionValue($event)"
+    >
+    </design-style-absposition-parameters>
+</div>

@@ -1,0 +1,52 @@
+@import '../../../../styles.scss';
+
+.graph {
+    position: relative;
+
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; 
+
+    .debugger {
+        --DESKTOP-SIZE-WIDTH: 500px;
+    }
+
+    .layout {
+        height: 100%;
+        width: 100%;
+    
+        .toolbox {
+            position: absolute;
+            display: block;
+            width: 100%;
+            z-index: 2;
+        }
+
+        .toolbox-drawing {
+            @include drawing();
+        }
+    
+        .main-layout {
+            display: block;
+            height: 100%;
+            width: 100%;
+        }
+
+        .work-layout {
+            display: flex;
+            height: 100%;
+            width: 100%;
+        }
+    }
+}
+
+at-workflow-debugger-layout {
+    --DESKTOP-SIZE-WIDTH: 500px;
+}
+
+sn-smart-flow-inspector {
+    margin-top: #{$TOP-BAR-HEIGHT};
+    z-index: 1;
+}

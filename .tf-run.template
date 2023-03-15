@@ -1,0 +1,22 @@
+{
+  "data": {
+    "attributes": {
+      "message": "Deploy from CI $CI_PROJECT_NAME"
+    },
+    "type":"runs",
+    "relationships": {
+      "workspace": {
+        "data": {
+          "type": "workspaces",
+          "id": "$TF_WORKSPACE_ID"
+        }
+      },
+      "configuration-version": {
+        "data": {
+          "type": "configuration-versions",
+          "id": "$TF_CONFIG_ID"
+        }
+      }
+    }
+  }
+}

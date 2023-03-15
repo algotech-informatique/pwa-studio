@@ -1,0 +1,34 @@
+<div class="section-container" [ngClass]="{'card': display === 'card'}">
+    <div class="section-title" (click)="openSection()" [ngClass]="{'card': display === 'card', 'open': isOpen}"
+        [ngStyle]="color && {'background-color': color}">
+        <div *ngIf="button" class="right-pos" [ngClass]="{'selected': button.selected}" (click)="onClickButton($event)"
+            [title]="button.title">
+            <i [class]="'button ' + button.icon"></i>
+        </div>
+        <div class="left-pos">
+            <div class="titles">
+                <div *ngIf="subTitle" class="subtitle" [ngClass]="{'with-icon': subTitleIcon}">
+                    <i *ngIf="subTitleIcon" [class]="subTitleIcon + ' icon'"></i>
+                    <p>{{ subTitle }}</p>
+                </div>
+                <div class="title" [ngClass]="{'with-icon': titleIcon}">
+                    <i *ngIf="titleIcon" [class]="titleIcon + ' icon'"></i>
+                    <p>{{ title }}</p>
+                </div>
+            </div>
+        </div>
+        <lock-inspector-section class="lock" 
+            [showLock]="showLock" 
+            [locked]="locked" 
+            [section]="section"
+            (lockChange)="onLockChange($event)">
+        </lock-inspector-section>
+        <div *ngIf="display === 'card'" class="right-icons">
+            <ng-content select="[goto]"></ng-content>
+            <i [class]="'card-chevron fa-solid fa-chevron-' + (isOpen ? 'up' : 'down')"></i>
+        </div>
+    </div>
+    <div class="section-content" [ngClass]="{'content-opened': isOpen, 'card': display === 'card'}">
+        <ng-content></ng-content>
+    </div>
+</div>

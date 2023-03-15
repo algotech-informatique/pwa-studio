@@ -1,0 +1,19 @@
+<div class="content">
+
+    <options-search
+        class="search"
+        [(search)]="search"
+        (searchValue)="onSearch($event)">
+    </options-search>
+
+    <div class="groups">
+
+        <options-object-list
+            class="group"
+            [selectId]="selectedUuid"
+            [optionObjects]="optionListFiltered"
+            (selectedObject)="onSelectedObject($event)">
+        </options-object-list>
+
+    </div>
+</div>

@@ -1,0 +1,19 @@
+<sn-select-modal [(top)]="top" [snView]="snView" class="modal">
+
+    <div class="header">
+        <div class="left-side">
+            <div class="title">{{'INSPECTOR.SMART_FLOW.PROPERTIES_NAME_TITRE' | translate}}</div>
+        </div>
+        <i class="fa-solid fa-xmark close-icon" (click)="close()"></i>
+    </div>
+
+    <div class="content">
+        <textarea
+            name="textarea"
+            cols="40"
+            rows="10"
+            [(ngModel)]="value">
+        </textarea>
+    </div>
+
+</sn-select-modal>

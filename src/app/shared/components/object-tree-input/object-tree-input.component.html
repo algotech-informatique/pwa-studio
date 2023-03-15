@@ -1,0 +1,8 @@
+<input #inputName
+    type="text"
+    class="input name"
+    [value]="line.name"
+    (keydown)="cancel($event)"
+    (keydown.enter)="saveName($event)"
+    [ngClass]="{'error': error}"
+>

@@ -1,0 +1,29 @@
+<div class="flows" *ngIf="flows?.length > 0">
+    <div class="flow-in" [ngClass]="{'absolute': node.flowsEditable || flows.length > 1}">
+        <span *ngFor="let flow of flows">
+            <div *ngIf="flow.direction === 'in' && !flow.displayState.hidden" class="flow">
+                <sn-flow [flow]="flow" [snView]="snView" [node]="node">
+                </sn-flow>
+            </div>
+        </span>
+    </div>
+
+    <div class="flow-out">
+        <span *ngFor="let flow of flows">
+            <div *ngIf="flow.direction === 'out' && !flow.displayState.hidden" class="flow">
+                <sn-flow [flow]="flow" [snView]="snView" [node]="node">
+                </sn-flow>
+            </div>
+        </span>
+
+        <!-- ADD -->
+        <div class="flow-add" *ngIf="node.flowsEditable" (click)="addFlow($event)">
+            <svg width="19" height="15" viewBox="0 0 19 15">
+                <path d="M0.5 5.5C0.5 2.73858 2.73858 0.5 5.5 0.5H14.5L19 7.5L14.5
+                    14.5H5.5C2.73858 14.5 0.5 12.2614 0.5 9.5V5.5Z" />
+            </svg>
+
+            <i class="fa-solid fa-plus"></i>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+@import '../../theme/mixins';
+
+
+.property {
+    @include property();
+
+    &.first {
+        padding-top: 15px;
+    }
+}
+
+.responses {
+    @include card-element();
+}
+
+.card {
+    margin-bottom: 10px;
+    display: block;
+}
+
+.actions {
+    @include card-element-actions;
+}

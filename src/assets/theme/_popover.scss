@@ -1,0 +1,53 @@
+@import './../../app/shared/modules/smart-nodes/theme/_dark.scss';
+
+.workflow-launcher::part(content) {
+    border: 1px solid #828282;
+
+    @media only screen and (min-width: 600px) {
+        width: 350px;
+    }
+}
+
+.workflow::part(content) {
+    height: 70%;
+    width: 600px;
+}
+
+.workflow-mobile::part(content) {
+    height: 100%;
+    width: 100%;
+}
+
+.popover_class_text_formatting::part(content) {
+    --width: 500px;
+    width: 500px;
+}
+
+.popover_class_choix_parameter::part(content) {
+    --width: 200px;
+    width: 200px;
+}
+
+.popover-base::part(content) {
+    min-width: 350px;
+    border-radius: 5px;
+    background: transparent;
+}
+
+.popover-display-name::part(content) {
+    width: 500px;
+}
+
+.popover-color::part(content) {
+    background: transparent;
+    --width: 250px;
+    width: 250px;
+}
+
+.backdrop-no-scroll ion-content {
+    //  --overflow: hidden;
+}
+
+.backdrop-no-scroll ion-backdrop+* ion-content {
+    --overflow: visible;
+}

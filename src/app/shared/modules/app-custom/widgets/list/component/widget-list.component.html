@@ -1,0 +1,64 @@
+<div *ngIf="widget.group?.widgets?.length === 0"
+    [ngStyle]="widget?.css?.main"
+    class="no-group"
+>
+    <i class="fa-solid fa-list icon"></i>
+</div>
+
+<div class="content" *ngIf="widget.group?.widgets?.length > 0" [ngStyle]="widget?.css?.main" [ngClass]="{
+    'selected': isSelect,
+    'search': widget.custom.search
+}">
+    <div class="at-list-search" *ngIf="widget.custom.search">
+        <at-so-input class="search-input" type="search">
+        </at-so-input>
+    </div>
+    <ion-content scrollbar *ngIf="widget.custom?.scrollbar">
+        <ng-container *ngTemplateOutlet="listTemplate"></ng-container>
+    </ion-content>
+
+    <div class="overflow" *ngIf="!widget.custom?.scrollbar">
+        <ng-container *ngTemplateOutlet="listTemplate"></ng-container>
+    </div>
+</div>
+
+<ng-template #listTemplate>
+    <div
+        *ngIf="widget.group"
+        class="widget-list"
+        [ngStyle]="widget?.css?.layout"
+        [style.flex-wrap]="widget?.custom?.direction === 'row' ? 'wrap' : 'nowrap'"
+        [style.flex-direction]="widget?.custom?.direction">
+
+        <div *ngFor="let index of [0, 1, 2]"
+            class="widget-list-item-content">
+            
+            <div class="widget-list-item"
+                [style.height.px]="isSelect ? height : _height"
+                [style.width.px]="isSelect ? width : _width">
+                <div   
+                    [ngClass]="{'disabled': index > 0}"
+                    class="widget-child"
+                    *ngFor="let child of widget.group.widgets"
+                    [id]="child.id"
+                    [style.left.px]="child.box.x"
+                    [style.top.px]="child.box.y"
+                    [style.height.px]="child.box.height"
+                    [style.width.px]="child.box.width">
+        
+                    <widget
+                        [snApp]="snApp"
+                        [widget]="child.displayState?.rule | resolveRule: child"
+                        [css]="(child.displayState?.rule | resolveRule: child).css"
+                        [custom]="(child.displayState?.rule | resolveRule: child).custom"></widget>
+                </div>
+            </div>
+        </div>
+
+        <div class="at-button-container" *ngIf="!!widget?.custom?.paginate?.limit && widget?.custom?.paginate?.mode === 'button'">
+            <button class="at-button outline" size="small">
+                {{ 'LIST.LOAD_MORE'| translate }}
+            </button>
+        </div>
+    </div>
+</ng-template>

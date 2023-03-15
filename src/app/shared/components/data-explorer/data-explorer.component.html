@@ -1,0 +1,42 @@
+<div *ngFor="let node of tree">
+    <li>
+        <div class="item" [ngClass]="{'selected': node.select, 'error': node.error}" (click)="clickNode(node)" [ngStyle]="{
+                'font-size': node.style?.fontSize ? node.style.fontSize + 'px' : 'var(--ITEM-FONT-SIZE)',
+                'color': node.style?.color ? node.style.color : 'var(--ITEM-COLOR)'
+            }">
+            <div class="icons">
+                <i *ngIf="actions | includes: 'clipboard'" class="fa-solid fa-clipboard onhover action" (click)="clickClipboard($event, node)"></i>
+                <i *ngIf="(actions | includes: 'watcher') && !(watcherService.watchers | getWatcher: node.path: workflow.viewId)" class="fa-solid fa-video onhover action" (click)="addFavorite($event, node)"></i>
+                
+                <div class="watchers" *ngIf="workflow && (watcherService.watchers | getWatcher: node.path: workflow.viewId)" (click)="removeFavorite($event, node)">
+                    <i class="fa-solid fa-video action watcher"></i>    
+                    <span class="indice" *ngIf="(watcherService.watchers | getWatcher: node.path: workflow.viewId).indice != null">
+                        {{(watcherService.watchers | getWatcher: node.path: workflow.viewId).indice}}
+                    </span>
+                </div>
+
+                <i class="fa-solid fa-caret-down carret" *ngIf="node.hasChilds && node.open"></i>
+                <i class="fa-solid fa-caret-right carret" *ngIf="node.hasChilds && !node.open"></i>
+                <i [class]="icon" *ngFor="let icon of node.icons"></i>
+            </div>
+
+            <div class="caption" [ngClass]="{
+                'bold': node.style?.bold === true
+            }">
+                {{node.caption}}<span *ngIf="node.information" class="value information"> ({{node.information}}) </span>
+                                <span *ngIf="node.value !== '' &&
+                                    node.value !== null &&
+                                    node.value !== undefined" class="value"> : {{node.value}}</span>                                    
+                                <a *ngIf="node.link !== '' &&
+                                node.link != null" href="{{node.link}}" target="_blank">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+
+            <i class="fa-solid fa-circle-check done" *ngIf="node.done"></i>
+        </div>
+        <ul>
+            <app-data-explorer [tree]="node.childs" *ngIf="node.open" (selected)="onSelect($event)" [workflow]="workflow"
+                [actions]="actions" (deleted)="onDelete($event)" (clicked)="onClick($event)"></app-data-explorer>
+        </ul>
+    </li>
+</div>

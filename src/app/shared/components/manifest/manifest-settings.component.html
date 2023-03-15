@@ -1,0 +1,64 @@
+<div class="content">
+    <div class="options">
+
+        <!-- IDENTITY -->
+        <div class="section">
+            <p class="title">{{'SETTINGS-MANIFEST-IDENTITY' | translate}} </p>
+
+            <display-name-element [title]="'SETTINGS-MANIFEST-NAME' | translate" [name]="manifest?.name"
+                (changed)="onChange('name', $event)">
+            </display-name-element>
+
+            <display-name-element [title]="'SETTINGS-MANIFEST-SHORT-NAME' | translate" [name]="manifest?.short_name"
+                (changed)="onChange('short_name', $event)">
+            </display-name-element>
+
+            <display-name-element class="disabled" [title]="'SETTINGS-MANIFEST-ID' | translate" [name]="manifest?.id">
+            </display-name-element>
+        </div>
+
+        <!-- PRESENTATION -->
+        <div class="section line">
+            <p class="title">{{'SETTINGS-MANIFEST-PRESENTATION' | translate}} </p>
+
+            <display-name-element class="disabled" [title]="'SETTINGS-MANIFEST-START-URL' | translate" [name]="manifest?.start_url">
+            </display-name-element>
+
+            <display-name-element class="disabled" [title]="'SETTINGS-MANIFEST-SCOPE' | translate" [name]="manifest?.scope">
+            </display-name-element>
+
+            <color-element [title]="'SETTINGS-MANIFEST-THEME-COLOR' | translate"
+                [color]="manifest?.theme_color" (changed)="onChange('theme_color', $event)">
+            </color-element>
+
+            <color-element [title]="'SETTINGS-MANIFEST-BG-COLOR' | translate" [color]="manifest?.background_color"
+                (changed)="onChange('background_color', $event)">
+            </color-element>
+
+            <select-element [showSearch]="false" [title]="'SETTINGS-MANIFEST-ORIENTATION' | translate"
+                [list]="orientationList" [selectedKey]="manifest?.orientation"
+                (selectNewItem)="onChange('orientation', $event)">
+            </select-element>
+
+            <select-element class="disabled"[showSearch]="false" [title]="'SETTINGS-MANIFEST-DISPLAY' | translate" [list]="displayList"
+                [selectedKey]="manifest?.display">
+            </select-element>
+        </div>
+
+        <!-- Icons -->
+        <div class="section line">
+            <p class="title">{{'SETTINGS-MANIFEST-ICONES' | translate}} </p>
+
+            <ngx-dropzone
+                class="dropzone"
+                [multiple]="false"
+                [accept]="'image/*'"
+                (change)="onChangeFile($event)">
+                <ngx-dropzone-label>{{'SETTINGS.LAYER.DROP_FILE' | translate}}</ngx-dropzone-label>
+                <ngx-dropzone-image-preview *ngIf="file" [file]="file" [removable]="false" (removed)="onRemoveFile()">
+                </ngx-dropzone-image-preview>
+            </ngx-dropzone>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="key-element">
+    <span *ngIf="title" class="title">{{ title }}</span>
+    
+    <div #container class="text-input" [ngClass]="{'error': error, 'disabled': disabled}">
+        <div class="selected-item" (click)="onInputClicked($event)">
+            <i *ngIf="showIcon" class="fa-solid fa-key icon"></i>
+            <input type="text"
+                [placeholder]="placeholder || 'SN-SELECT-PARAM-KEY-REQUIRED' | translate"
+                [(ngModel)]="key"
+                [title]="key"
+                (change)="onKeyChanged()"
+                (ngModelChange)="onKeyChanging()">
+        </div>
+    </div>
+
+    <popup-element
+        [show]="showList"
+        [container]="keyContainer"
+        [popupMargin]="popupMargin"
+        (closePopup)="clickOutsideList()">
+        <div class="list">
+            <div class="list-items select-item-list">
+                <div *ngFor="let suggestion of suggestionsList" class="item select-item-list" (click)="selectSuggestion(suggestion)">
+                    <p class="select-item-list">{{ suggestion.value }}</p>
+                </div>
+            </div>
+        </div>
+    </popup-element>
+</div>

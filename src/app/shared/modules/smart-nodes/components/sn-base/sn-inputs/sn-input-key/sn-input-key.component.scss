@@ -1,0 +1,97 @@
+@import '../../../../theme/mixins';
+
+.select {
+    display: flex;
+    flex-direction: column;
+    float: right;
+
+    .input-key {
+        background-color: var(--SN-NODE-PARAM-COLOR-KEY-EDIT);
+        border-radius: var(--SN-ELEMENT-BORDER-RADIUS);
+        height: var(--SN-NODE-PARAM-INPUT-LINE-HEIGHT);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        float: right;
+        width: var(--SN-NODE-PARAM-KEY-EDIT-WIDTH);
+
+        .input {
+            background-color: transparent;
+            border: 0;
+            width: 100%;
+            height: var(--SN-NODE-PARAM-INPUT-LINE-HEIGHT);
+            margin: 0 5px;
+            font-size: var(--SN-NODE-PARAM-SIZE);
+            @include text-ellipsis;   
+        }
+
+        .input:focus {
+            outline:none;
+        }
+        .input::placeholder {
+            color: var(--SN-COLOR-FONT);
+            opacity: 0.7;
+        }
+
+        .input:focus {
+            outline: none;
+        }
+
+        .fa-solid {
+            margin-right: 5px;
+            font-size: var(--SN-NODE-PARAM-SIZE);
+        }
+    }
+
+    .list {
+        background-color: var(--SN-COLOR-SECONDARY);
+        max-height: var(--SN-NODE-PARAM-INPUT-SELECT-LIST-HEIGHT);
+        flex-direction: column;
+        margin-top: 25px;
+        border-radius: var(--SN-NODE-PARAM-INPUT-SELECT-BORDER-RADIUS);
+        color: white;
+        width: var(--SN-NODE-PARAM-INPUT-LINE-WIDTH);
+        z-index: 1;
+        display: flex;
+        position: absolute;
+        min-height: 40px;
+        
+        .items {
+            @include custom-scrollbar;
+
+            .item {
+                min-height: var(--SN-NODE-PARAM-INPUT-SELECT-LIST-ITEM-HEIGHT);
+                line-height: var(--SN-NODE-PARAM-INPUT-SELECT-LIST-ITEM-LINE-HEIGHT);
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                padding: 5px;
+                font-size: var(--SN-NODE-PARAM-SIZE);
+                justify-content: space-between;
+                word-break: break-word;
+
+                .item-value {
+                    width: 100%;
+                    @include text-ellipsis;
+                    display: flex;
+                    justify-content: space-between;
+                }
+
+                &.item-selected {
+                    background-color: var(--SN-COLOR-TERTIARY);
+                }
+
+                &:hover {
+                    background-color: var(--SN-COLOR-SECONDARY-TINT);
+                }
+
+                .icon {
+                    padding: 2px;
+                    width: 28px;
+                }
+
+            }
+        }
+    }
+
+}

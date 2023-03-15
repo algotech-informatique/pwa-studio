@@ -1,0 +1,165 @@
+@import "../../../../styles.scss";
+
+:host {
+    --INSPECTOR-TYPE-PADDING: 5px;
+    --INSPECTOR-DISPLAY-HEIGHT: 30px;
+    --INSPECTOR-DISPLAY-PADDING: 5px;
+    --INSPECTOR-FONT-SIZE: 16px;
+    --INSPECTOR-TYPE-POSITION: inherit;
+    --DISABLED-CURSOR: auto;
+    --INSPECTOR-TYPE-WIDTH: 100%;
+}
+
+.type {
+    flex: 1;
+    position: var(--INSPECTOR-TYPE-POSITION);
+
+    p {
+        font-size: 12px;
+        margin: 5px 0;
+    }
+
+    .display-name {
+
+        i {
+            font-size: var(--INSPECTOR-FONT-SIZE);
+            padding: 0 2px;
+            width: 30px;
+        }
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        height: var(--INSPECTOR-DISPLAY-HEIGHT);
+        padding: var(--INSPECTOR-DISPLAY-PADDING);
+
+        border-radius: 2px;
+
+        cursor: pointer;
+
+        .type-text {
+            @include text-ellipsis;
+            margin: 0;
+            width: calc(100% - 20px);
+            font-size: 14px;
+        }
+
+        &.disabled {
+            cursor: var(--DISABLED-CURSOR);
+        }
+    }
+
+    .so-icon {
+        margin-right: 8px;
+    }
+
+    .icon {
+        width: 20px;
+        font-size: var(--INSPECTOR-FONT-SIZE);
+        color: var(--SN-NODE-PARAM-COLOR);
+    }
+
+    .string {
+        color: var(--SN-NODE-PARAM-COLOR-STRING);
+    }
+
+    .boolean {
+        color: var(--SN-NODE-PARAM-COLOR-BOOLEAN);
+    }
+
+    .number {
+        color: var(--SN-NODE-PARAM-COLOR-NUMBER);
+    }
+
+    .datetime {
+        color: var(--SN-NODE-PARAM-COLOR-DATETIME);
+    }
+
+    .date {
+        color: var(--SN-NODE-PARAM-COLOR-DATE);
+    }
+
+    .sys {
+        color: var(--SN-NODE-PARAM-COLOR-SYS);
+    }
+
+    .sk {
+        color: var(--SN-NODE-PARAM-COLOR-SK);
+    }
+
+    .type-dropdown {
+        @include custom-scrollbar;
+
+        max-height: 150px;
+        position: absolute;
+        cursor: pointer;
+
+        z-index: 1000;
+
+        color: var(--INSPECTOR-SECTION-CONTENT-COLOR);
+        background: var(--INSPECTOR-SECTION-CONTENT-BACKGROUND);
+
+        width: var(--INSPECTOR-TYPE-WIDTH);
+
+        padding: 2px 0px;
+        border-radius: 5px;
+        box-shadow: var(--INSPECTOR-CONTAINER-BOX-SHADOW);
+
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        white-space: nowrap;
+
+        .dropdown-container {
+            position: relative;
+            padding: 0 0 10px 0;
+
+            .type-input {
+                width: 100%;
+                border-bottom: var(--INPUT-BORDER);
+                padding: 2px 7px;
+                background-size: auto;
+
+                input {
+                    width: 100%;
+
+                    border: none;
+                    background: transparent;
+                    outline: none;
+
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    white-space: nowrap;
+                }
+            }
+
+            .type-element {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: center;
+                cursor: pointer;
+
+                height: 25px;
+
+                i {
+                    font-size: 14px;
+                    margin: 5px;
+                }
+
+                .title-text {
+                    @include text-ellipsis;
+                    padding: unset;
+                    margin: 0;
+                }
+
+                &:hover {
+                    background: var(--INPUT-BACKGROUND-COLOR);
+                }
+            }
+        }
+
+    }
+}

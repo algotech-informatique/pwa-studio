@@ -1,0 +1,46 @@
+@import '../../../../../inspector/theme/mixins';
+
+.property {
+    @include property();
+}
+
+ngx-dropzone {
+    @include dropzone;
+}
+
+.filter-card {
+    @include card-element;
+    @include app-errors;
+    padding-bottom: 5px;
+
+    .section {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    p {
+        margin: 5px 0 5px 0;
+        text-align: left !important;
+    }
+
+    .no-element p {
+        text-align: center !important;
+    }
+
+    .actions {
+        margin: 15px 10px 8px 10px;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: flex-end;
+        font-size: 15px;
+
+        .button {
+            cursor: pointer;
+        }
+    }
+}
+
+.last {
+    padding-bottom: 20px;
+}

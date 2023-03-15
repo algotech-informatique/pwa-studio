@@ -1,0 +1,46 @@
+<div class="events-cards">
+    <div *ngIf="event?.pipe.length > 0" class="section-content">
+
+        <event-card *ngFor="let pipeEvent of event?.pipe; index as i; last as isLast"
+            [pipeEvent]="pipeEvent"
+            [event]="event"
+            [page]="page"
+            [widget]="widget"
+            [app]="app"
+            [defaultOpen]="addedIndex === i || (!widget && page.displayState?.activeZone === 'datasource.' + pipeEvent.key)"
+            [isLastPipeEvent]="isLast"
+            [error]="widget ?  
+                ( widget.displayState?.errors | showAppErrors: 'event.' + event.eventKey + '.' + i: widget ) :
+                ( 
+                    (page.displayState?.errors | showAppErrors: 'datasource.' + pipeEvent.id + '.' + i: widget) ||
+                    (page.displayState?.errors | showAppErrors: 'page.event.' + pipeEvent.id + '.' + i: widget)
+                ) "
+            [hasKey]="hasKey"
+            (eventPipeChanged)="onEventPipeChanged($event, i)"
+            (removeEventPipe)="onRemoveEventPipe(i)"
+            (moveEvent)="onMoveEventPipe($event, pipeEvent, i)">
+        </event-card>
+    </div>
+
+    <div *ngIf="event?.pipe?.length === 0" class="no-element section-content">
+        <p>
+            {{ (!widget && hasKey) ?
+                ('INSPECTOR.PAGE.DATASOURCE.NO-DATA' | translate) :
+                ('INSPECTOR.WIDGET.EVENT.NO-EVENT' | translate)
+            }}
+        </p>
+    </div>
+
+    <div class="button-container">
+        <div class="add-button section-content" (click)="addEvent()">
+            <i class="fa-solid fa-plus"></i>
+            <p>
+                {{ (!widget && hasKey) ?
+                    ('INSPECTOR.PAGE.DATASOURCE.ADD' | translate) :
+                    ('INSPECTOR.WIDGET.EVENT.ADD-EVENT' | translate)
+                }}
+            </p>
+        </div>
+    </div>
+
+</div>

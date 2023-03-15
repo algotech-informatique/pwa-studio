@@ -1,0 +1,88 @@
+@import '../../../../../../styles.scss';
+@import "../../theme/mixins";
+
+:host {
+    --INPUT-WIDTH: 100%;
+    --TITLE-WIDTH: 70px;
+}
+
+:host-context(.inline-first) {
+    .item {
+        border-right: none;
+        border-radius: var(--INSPECTOR-CONTAINER-BORDER-RADIUS) 0 0 var(--INSPECTOR-CONTAINER-BORDER-RADIUS);
+    }
+}
+
+:host-context(.inline-inside) {
+    .item {
+        border-right: none;
+        border-radius: 0;
+    }
+}
+
+:host-context(.inline-last) {
+    .item {
+        border-radius: 0 var(--INSPECTOR-CONTAINER-BORDER-RADIUS) var(--INSPECTOR-CONTAINER-BORDER-RADIUS) 0;
+    }
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.title {
+    @include title(var(--TITLE-WIDTH));
+}
+
+.item {
+    @include input-box;
+    width: var(--INPUT-WIDTH);
+    align-items: center;
+    cursor: auto;
+    
+    &.second {
+        margin-left: 10px;
+    }         
+
+    .selected-item {
+        @include input-element;
+    }
+
+    .unit {
+        font-size: 10px;
+        user-select: none;
+        opacity: 0.5;
+    }
+}
+
+.label {
+    margin-right: 10px;
+    opacity: 0.5;
+    user-select: none;
+}
+
+.without-unit {
+    .selected-item {
+        width: 100%;            
+    }
+}
+
+input {
+    margin-right: 0px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number]{
+    -moz-appearance: textfield;
+}
+
+input:disabled {
+    opacity: 0.3;
+}

@@ -1,0 +1,56 @@
+<app-inspector-section 
+    [snApp]="snApp"
+    [title]="'INSPECTOR.WIDGET.PARAMETERS' | translate" display="section"
+    [section]="'customParams.image'">
+
+    <div class="property">
+        <select-element [ngClass]="{'last': !widget?.custom?.typeSrc}"
+            [title]="'INSPECTOR.WIDGET.SOURCE' | translate"
+            [list]="typesSrc"
+            [selectedKey]="widget?.custom?.typeSrc"
+            [showSearch]="false"
+            (selectNewItem)="onSelectType($event)">
+        </select-element>
+    </div>
+
+    <div class="property last" [hidden]="widget?.custom?.typeSrc !== 'uri'">
+        <display-input-element
+            class="display-element"
+            [title]="'URL'"
+            [ngClass]="{'app-errors': widget?.displayState?.errors | showAppErrors: 'custom.imageUri': widget}"
+            [items]="items"
+            [value]="widget?.custom?.imageUri"
+            (changed)="onChangeUri($event)">
+        </display-input-element>
+    </div>
+
+    <div class="property last" [hidden]="widget?.custom?.typeSrc !== 'file'">
+        <ngx-dropzone
+            [multiple]="false"
+            [accept]="'image/*'"
+            (change)="onChangeFile($event)">
+            <ngx-dropzone-label>{{'SETTINGS.LAYER.DROP_FILE' | translate}}</ngx-dropzone-label>
+            <ngx-dropzone-image-preview *ngIf="file" [file]="file" [removable]="true" (removed)="onRemoveFile()"></ngx-dropzone-image-preview>
+        </ngx-dropzone>
+    </div>
+
+    <div [hidden]="widget?.custom?.typeSrc !== 'datasource'" class="property" [ngClass]="{'last': !isSmartModel}">
+        <input-element
+            [title]="'INSPECTOR.WIDGET.DATA-SOURCE' | translate"
+            [input]="input"
+            [dataItems]="items"
+            (inputChanged)="onSourceChanged($event)">
+        </input-element>
+    </div>
+
+    <div *ngIf="isSmartModel && widget?.custom?.typeSrc === 'datasource'" class="property last">
+        <select-element
+            [title]="'INSPECTOR.WIDGET.IMAGE-SELECT-TAG-DISPLAY' | translate"
+            [subTitle]="'INSPECTOR.WIDGET.IMAGE-SELECT-TAGS' | translate"
+            [list]="tagsList"
+            [selectedKey]="widget?.custom?.tag"
+            [showSearch]="true"
+            (selectNewItem)="updateTag($event)">
+        </select-element>
+    </div>
+</app-inspector-section>

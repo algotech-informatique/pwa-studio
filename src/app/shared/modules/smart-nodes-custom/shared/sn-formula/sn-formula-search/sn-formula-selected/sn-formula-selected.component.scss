@@ -1,0 +1,122 @@
+@import '../../../../../smart-nodes/theme/mixins';
+@import "../../../../../../../../styles.scss";
+
+:host {
+    --BORDER-COLOR: #{$COLOR-FG};
+    --EXPECTED-COLOR: #{$COLOR-BG-LIGHT};
+    --USAGE-BACK-COLOR: #505C6B;
+    --OPTIONAL-COLOR: #{$COLOR-CTO};
+    --ARRAY-COLOR: #{$COLOR-VALID};
+    --DISABLED-BUTTON: #{$EXPLORER-BG-MODULE-SELECTED};
+}
+
+.selected-formula {
+
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 14px;
+
+    .code-element {
+        font-size: 14px;
+        border-bottom: var(--BORDER-COLOR) solid 0.5px;
+        @include text-ellipsis;
+        overflow-wrap: break-word
+    }
+
+    .description {
+        overflow: hidden;
+        margin-top: -5px;
+        margin-left: 10px;
+        width: 375px;
+        line-height: 16px;
+        overflow-wrap: break-word;
+        font-size: 12px;
+    }
+
+    .fields {
+
+        display: flex;
+        flex-direction: row;
+        margin: 5px;
+        font-size: 14px;
+
+        button {
+            border: 0px;
+            font-size: 16px;
+            border-radius: 5px;
+            background: var(--SN-COLOR-ACTIVE);
+            color: var(--SN-COLOR-FONT);
+            margin: 6px;
+            width: 20px;
+            height: 20px;
+            margin-top: 8px;
+            margin-right: 5px;
+
+            &:not([disabled]):hover {
+                cursor: pointer;
+                opacity: 0.5;
+            }
+
+            &:disabled, button[disabled] {
+                background: var(--DISABLED-BUTTON);
+            }
+        }
+
+        .field {
+            font-size: 14px;
+        }
+
+        .format {
+            font-size: 12px;
+        }
+
+        .optional {
+            padding-top: 3px;
+            padding-left: 3px;
+            font-size: 24px;
+            color: var(--OPTIONAL-COLOR);
+        }
+
+        .array {
+            padding-left: 3px;
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--ARRAY-COLOR)
+        }
+
+        .field-desc {
+            margin-left: 10px;
+            font-size: 11px;
+            line-height: 14px;
+            overflow-wrap: break-word;
+            padding-top: 10px;
+        }
+    }
+
+    .formula-usage {
+        background-color: var(--USAGE-BACK-COLOR);
+        margin-left: -10px;
+        margin-right: -10px;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+
+        .usage-title {
+            font-size: 12px;
+            border-bottom: var(--BORDER-COLOR) solid 0.5px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        .usage-example {
+            padding-left: 20px;
+            font-size: 14px;
+        }
+
+        .usage-expectedresult {
+            font-size: 16px;
+            padding-left: 20px;
+            margin-top: -10px;
+            color: var(--EXPECTED-COLOR);
+        }
+    }  
+}

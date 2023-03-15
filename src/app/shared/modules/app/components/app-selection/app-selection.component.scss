@@ -1,0 +1,29 @@
+svg {
+    overflow: visible;
+
+    .selection {
+        shape-rendering: auto;
+        pointer-events: none;
+        fill: none;
+    }
+
+    .border {
+        >.selection {
+            stroke: var(--SN-COLOR-SELECTION);
+            stroke-dasharray: 5, 5;
+        }
+        >.resize {
+            display: none;
+        }
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    foreignObject {
+        overflow: visible;
+        pointer-events: none;
+        shape-rendering: auto;
+    }
+}

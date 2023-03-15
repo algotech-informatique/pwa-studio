@@ -1,0 +1,13 @@
+
+.widget-group {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    .widget-child {
+        position: absolute;
+    }
+    .widget-locked {
+        cursor: auto;
+    }
+}

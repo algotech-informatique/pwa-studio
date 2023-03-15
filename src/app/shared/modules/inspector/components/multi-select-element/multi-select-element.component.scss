@@ -1,0 +1,91 @@
+@import "../../../smart-nodes/theme/mixins";
+@import "../../theme/mixins";
+
+.multi-select {
+    display: flex;
+    flex-direction: row;
+}
+
+.title {
+    margin-top: 7px;
+    @include title;
+}
+
+.select {
+    @include input-box;
+    transition: 0.1s ease-in;
+    height: auto;
+    min-height: 40px;
+    align-items: center;
+    padding-left: 3px;
+
+    .chips {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: 5px 0;
+
+        p {
+            margin: 0;
+        }
+
+        .chip-item {
+            background-color: var(--INSPECTOR-SECTION-CONTENT-BACKGROUND-TINT);
+            display: flex;
+            align-items: center;
+            border-radius: 10px;
+            margin: 3px 0 3px 5px;
+
+            p {
+                padding: 3px 8px;
+            }
+        }
+
+        .more-chips {
+            display: flex;
+            flex-direction: row;
+            margin-left: 5px;
+            align-items: flex-end;
+            height: 100%;
+        }
+    }
+
+    &:hover, &.selected {
+        background-color: var(--INSPECTOR-INPUT-TINT);
+    }
+
+    &.no-selected-item {
+        justify-content: flex-end;
+    }
+}
+
+.list {
+    @include modal;
+
+    .list-items {
+        @include list();
+
+        p {
+            margin: 0 0 0 5px;
+            @include text-ellipsis;
+        }
+
+        .item {
+            .selected, .noselected {
+                margin-left: 8px;
+            }
+
+            .selected {
+                color: var(--INSPECTOR-SELECTED);
+            }
+
+            .noselected {
+                color: var(--INSPECTOR-NOSELECT);
+            }
+        }
+    }
+
+    .search {
+        @include list-search();
+    }
+}

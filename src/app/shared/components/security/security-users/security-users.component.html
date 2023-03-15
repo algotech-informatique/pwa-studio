@@ -1,0 +1,36 @@
+<div class="content">
+
+    <div class="security">
+        <security-user-main class="list"
+            [users]="securityUsers"
+            [(activeSelected)]="activeSelected"
+            [selectedId]="selectedUuid"
+            (selectedUser)="onSelectedUser($event)"
+            (createNewUser)="onCreateNewUser()"
+            [(search)]="search"
+        >
+        </security-user-main>
+    </div>
+    
+    <div class="security" *ngIf="selectedUuid">
+        <security-user-detail
+            [user]="selectedUser"
+            [groups]="groups"
+            [isSuperAdmin]="userSAdmin"
+            [isNewUser]="isNewUser"
+            [isCurrentUser]="isCurrentUser"
+            (changePassword)="onChangePassword()"
+            (addUser)="onAddUser($event)"
+            (updateUser)="onUpdateUser($event)"
+            (removeUser)="onRemoveUser($event)"
+        >
+        </security-user-detail>
+    </div>
+</div>
+
+<security-user-password 
+    *ngIf="generatePassword"
+    [user]="selectedUser"
+    (close)="onCloseGeneratePassword($event)"
+>
+</security-user-password>

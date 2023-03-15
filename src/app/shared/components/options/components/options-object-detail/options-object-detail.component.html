@@ -1,0 +1,37 @@
+<div class="item">
+
+    <div class="item-detail">
+        <div class="status-icon" *ngIf=object.statusIcon>
+            <i [class]="object.statusIcon.icon" [ngStyle]="{'color': object.statusIcon.color }"></i>
+        </div>
+
+
+        <div class="label-initial" *ngIf="object.labelIcon" [style.background]="object.labelIcon.color">
+            {{ object.labelIcon.text | reduceText }}
+        </div>
+
+        <div class="object">
+            <div class="title">
+                {{ object.title }}
+            </div>
+
+            <div class="line">
+                <div class="icon" *ngIf="object.mainIcon">
+                    <i [class]="object.mainIcon"></i>
+                </div>
+                <div class="text">
+                    {{ object.mainLine }}
+                </div>
+            </div>
+
+            <div class="line">
+                <div class="icon" *ngIf="object.detailIcon">
+                    <i [class]="object.detailIcon"></i>
+                </div>
+                <div class="text">
+                    {{ object.detailLine }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

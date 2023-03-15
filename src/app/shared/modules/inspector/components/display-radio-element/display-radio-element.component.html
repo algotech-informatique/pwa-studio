@@ -1,0 +1,16 @@
+<div class="display-radio">
+    <span class="title" *ngIf="title" [title]="subTitle ? subTitle : ''">{{ title }}</span>
+    <div class="elements">
+        <div class="element" *ngFor="let radio of radioList" (click)="onElementClick(radio)">
+            <div *ngIf="selected | includes: radio.key" [class]="mode === 'checkbox' ? 'square selected' : 'circle selected'">
+                <i class="fa-solid fa-check"></i>
+            </div>     
+            <div *ngIf="!(selected | includes: radio.key)" [class]="mode === 'checkbox' ? 'square noselected' : 'circle noselected'"></div>
+            
+            <i *ngIf="radio.icon" class="{{ radio.icon }} icon"></i>
+            <div class="text" [ngClass]="{'overflow-hidden': hideOverflow}" [title]="radio.value | translate">
+                {{ radio.value | translate }}
+            </div>
+        </div>
+    </div>
+</div>

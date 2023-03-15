@@ -1,0 +1,36 @@
+@import '../theme/variables';
+
+.modal {
+    --MAX-HEIGHT: 300px;
+    z-index: 1;
+
+    .header {
+        padding: 6px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        background: var(--INSPECTOR-SELECTED);
+        border-radius: 4px;
+        color: var(--INSPECTOR-HEADER-COLOR);
+
+        .left-side {
+
+            .title {
+                padding: 5px;
+                color: var(--POP-UP-HEADER-COLOR);
+            }
+        }
+
+        .close-icon {
+            cursor: pointer;
+            margin: 5px 0;
+            color: var(--POP-UP-HEADER-COLOR);
+        }
+    }
+
+    .color-element {
+        display: flex;
+        flex-direction: column;
+        margin-top: 5px;
+    }
+}

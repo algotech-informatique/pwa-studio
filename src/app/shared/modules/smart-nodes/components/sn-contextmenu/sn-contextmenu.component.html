@@ -1,0 +1,10 @@
+<div class="sn-contextmenu">
+    <sn-contextmenu-menu *ngFor="let cMenu of contextMenu"
+        class="cm-menu"
+        [ngStyle]="{'left.px': cMenu.x, 'top.px': cMenu.y, 'position': position}"
+        [menu]="cMenu.menu"
+        (actionClicked)="playAction($event)"
+        (actionSelected)="hideMenu($event)"
+        (subMenuSelected)="showSubMenu($event)">
+    </sn-contextmenu-menu>
+</div>

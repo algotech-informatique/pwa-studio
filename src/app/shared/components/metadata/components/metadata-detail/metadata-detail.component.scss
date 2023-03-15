@@ -1,0 +1,87 @@
+@import '../../../../../../styles.scss';
+
+:host {
+    --LABEL-COLOR: #2D9CDB;
+    --TITLE-COLOR-SELECTED: #ffffff;
+    --TITLE-COLOR-NO-SELECTED: #A0A7B4;
+    --BUTTON-ADD-COLOR: #27AE60;
+    --BUTTON-REMOVE-COLOR: #FF6473;
+    --SHOW-LANGS-COLOR: #2D9CDB;
+    --METADATA-WIDTH: 350px;
+    --TITLE-MARGIN-BOTTOM: 20px;
+    --METADATA-MARGIN: 10px;
+}
+
+.content {
+    width: var(--METADATA-WIDTH);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    @include scrollbar-hidden();
+
+    .title {
+        display: flex;  
+        flex-direction: row;
+        justify-content: flex-end;
+        height: 50px;
+        padding: 10px;
+        margin-bottom: var(--TITLE-MARGIN-BOTTOM);
+    } 
+
+    .metadata {
+        display: flex;
+        flex-direction: column;
+        height: calc(100% - 50px);
+
+        .elements-list {
+            height: calc(100% - 40px);
+
+            .elements {
+                margin: 10px 10px 20px 10px;
+        
+                label {    
+                    @include option-label(var(--LABEL-COLOR));
+                }
+    
+                .element {
+                    margin-left: 5px;
+                }
+        
+                .border-bottom {
+                    width: 100%;
+                    margin-top: 5px;
+                    border-bottom: 2px solid var(--LABEL-COLOR);
+                }
+            }    
+        }
+
+        .footer {
+            display: flex;
+            height: 40px;
+            flex-direction: row;
+            justify-content: space-around;
+            width: 100%;
+            margin-bottom: 15px;
+
+            .delete-metadata {
+                @include button();
+                background-color: var(--BUTTON-REMOVE-COLOR) !important;
+
+                span {
+                    padding: 0px 10px 0px 10px;
+                    @include option-title-selected(var(--TITLE-COLOR));
+                }
+            }
+
+            .delete-metadata:hover {
+                cursor: pointer;
+                opacity: 0.5;
+            }
+        }
+    }
+}
+
+.new-metadata {
+    pointer-events: none;
+    opacity: 0.5;
+}

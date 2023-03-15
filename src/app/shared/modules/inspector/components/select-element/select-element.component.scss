@@ -1,0 +1,52 @@
+@import "../../../smart-nodes/theme/mixins";
+@import "../../theme/mixins";
+
+.select-element {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.title {
+    @include title;
+}
+
+.placeholder {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    font-style: italic;
+    opacity: .5;
+}
+
+.select {
+    transition: 0.1s ease-in;
+    @include input-box;
+
+    &:hover, &.selected {
+        background-color: var(--INSPECTOR-INPUT-TINT);
+    }
+
+    &.no-selected-item {
+        justify-content: flex-end;
+    }
+}
+
+.list {
+    @include modal;
+
+    .list-items {
+        @include list();
+
+        .item-value {
+            margin-left: 5px;
+            user-select: none;
+            @include text-ellipsis;
+        }
+    }
+
+    .search {
+        @include list-search();
+    }
+}

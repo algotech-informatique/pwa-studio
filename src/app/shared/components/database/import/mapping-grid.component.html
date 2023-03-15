@@ -1,0 +1,58 @@
+<div class="mapping-title"> {{ 'INSPECTOR.DATABASE.PROPERTIES.MAPPING' | translate }}</div>
+<div class="seperators">
+  <div class="section">
+    <label for="replaceExisting"> {{ 'INSPECTOR.DATABASE.IMPORT.COLBREAKER' | translate }}</label>
+    <input id="replaceExisting" type="text" [(ngModel)]="columnBreaker">
+  </div>
+</div>
+<at-grid *ngIf="configuration" [configuration]="configuration" class="grid" [empty]="empty" [paginate]="paginate"
+  [currentQuery]="query" [moreDataToLoad]="moreDataToLoad" [loading]="loading" [forceOverscroll]="true"
+  [currentQuery]="query" (queryChanged)="onQueryChanged($event)" (actionClick)="onActionClick($event, false)"
+  [saveConfiguration]="true" [saveQuery]="true">
+  <at-grid-row class="row" *ngFor="let row of data" [clickable]="false" [id]="row.id" [configuration]="configuration"
+    (actionClick)="onActionClick($event, row.id)">
+    <at-grid-cell *ngFor="let column of configuration.columns" [editable]="false" [clickable]="column.custom.clickable"
+      [width]="column.width" [hide]="column.hide">
+      <at-grid-cell-value [key]="column.key" [editable]="(row.properties | find: 'key': column.key).editable"
+        [type]="column.type" [multiple]="column.custom.multiple" [showMultipleValues]="false"
+        [value]="(row.properties | find: 'key': column.key).value" [items]="column.custom.items"
+        (changed)="onCellValueChanged($event, row, column.key)">
+      </at-grid-cell-value>
+    </at-grid-cell>
+  </at-grid-row>
+</at-grid>
+<div class="importActions">
+  <div class="section">
+    <input id="replaceExisting" type="checkbox" [(ngModel)]="replaceExisting">
+    <label for="replaceExisting"> {{ 'INSPECTOR.DATABASE.IMPORT.REPLACEEXISTING' | translate }}</label>
+  </div>
+  <div class="section">
+    <div class="item action valide" [title]="'INSPECTOR.DATABASE.OK.ACTION' | translate" (click)="onValidate(true)">
+      <i class="fa-solid fa-circle-check style-icon"></i>
+      <div class="title">
+        {{ 'INSPECTOR.DATABASE.OK.ACTION' | translate }}
+      </div>
+    </div>
+    <div class="item action" [title]="'INSPECTOR.DATABASE.CANCEL.ACTION' | translate" (click)="onValidate(false)">
+      <i class="fa-solid fa-xmark style-icon"></i>
+      <div class="title">
+        {{ 'INSPECTOR.DATABASE.CANCEL.ACTION' | translate }}
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="processState !== 'notStarted'" class="import-message">
+  <div class="msg">
+    {{ message | translate }}
+    <div class="at-spinner-container" *ngIf="processState === 'inProgress'" [style.width.px]="20">
+      <ion-spinner class="spinner" name="bubbles"></ion-spinner>
+    </div>
+    <i *ngIf="processState === 'succeeded'" class="fa-solid fa-check"></i>
+    <i *ngIf="processState === 'canceled'" class="fa-solid fa-xmark"></i>
+    <i *ngIf="processState === 'error'" class="fa-solid fa-bug"></i>
+  </div>
+
+  <ion-progress-bar *ngIf="processState === 'inProgress'" color="primary" [value]="0.5"></ion-progress-bar>
+  <ion-progress-bar *ngIf="processState === 'succeeded'" color="success" [value]="1"></ion-progress-bar>
+  <ion-progress-bar *ngIf="processState === 'error'" color="danger" [value]="0.5"></ion-progress-bar>
+</div>

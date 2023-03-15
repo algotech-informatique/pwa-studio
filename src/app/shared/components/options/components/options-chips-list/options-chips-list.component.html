@@ -1,0 +1,35 @@
+<div class="input-chip">
+    <div class="label" *ngIf="label">
+        {{ label }}
+    </div>
+
+    <div class="chips">
+
+        <div #chipList class="list-chips">
+            <div class="chip" *ngFor="let item of items; let i = index;">
+                <i *ngIf="item.icon" [class]="item.icon + ' icon'"></i>
+                <div class="chip-label">{{ item.value }}</div>
+                <i *ngIf="!item.disabled" class="fa-solid fa-xmark chip-close" (click)="removeItem(i)"></i>
+            </div>
+
+            <div class="button-popover" #addButton>
+                <div class="chip add-button" (click)="togglePopover($event)">
+                    <i class="fa-solid fa-plus chip-plus"></i>
+                </div>
+
+                <options-popover class="options-popover" *ngIf="showPopover"
+                    [inputList]="filteredInputList"
+                    [clickPosition]="clickPosition"
+                    [containerWidth]="popoverContainerWidth"
+                    [scrollRealPosition]="scrollRealPosition"
+                    [withArrow]="true"
+                    (selectedInput)="onInputSelected($event)">
+                </options-popover>
+            </div>
+        </div>
+        
+        <div class="bottom-border" *ngIf="includeBottomBorder"></div>
+    </div>
+
+</div>
+

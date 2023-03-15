@@ -1,0 +1,50 @@
+@import "../../../../styles.scss";
+
+:host {
+    --EDITOR-FORM-REPORT-TOP: 100px;
+    --EDITOR-FORM-REPORT-MIN-HEIGHT: 530px;
+    --EDITOR-FORM-TITLE-MARGIN-BOTTOM: 20px;
+    --TITLE-COLOR: #ffffff;
+    --CHECKED-COLOR: #27AE60;
+}
+
+.report {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    background: $CHECKBORD-BG;
+    padding-top: var(--EDITOR-FORM-REPORT-TOP);
+    @include scrollbar();
+
+
+    .title {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        height: 50px;
+        padding: 10px;
+        margin: 20px;
+        margin-bottom: var(EDITOR-FORM-TITLE-MARGIN-BOTTOM);
+
+        span {
+            padding: 0px 10px 0px 10px;
+            @include option-title-selected(var(--TITLE-COLOR));
+        }
+
+        .toggle {
+            --OPTION-CHECKED-COLOR: var(--CHECKED-COLOR);
+        }
+    }
+
+    .editor {
+        position: relative;
+        width: 540px;
+        height: fit-content;
+        min-height: var(--EDITOR-FORM-REPORT-MIN-HEIGHT);
+        background-color: $EDITOR-COLOR-BG;
+        border-radius: 10px;
+    }
+}

@@ -1,0 +1,158 @@
+@import '../../theme/mixins';
+
+.inner-custom, ng-component  {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.node {
+    width: 100%;
+    min-width: var(--SN-NODE-WIDTH);
+    border-radius: var(--SN-ELEMENT-BORDER-RADIUS);
+    line-height: var(--SN-NODE-LINE-HEIGHT);
+
+
+    &.warning {
+        box-shadow: 0 0 0 var(--SN-SELECTION-BORDER) var(--SN-COLOR-WARNING);
+        .header {
+            color: var(--SN-COLOR-WARNING-SHADE) !important;
+        }
+    }
+    &.error {
+        box-shadow: 0 0 0 var(--SN-SELECTION-BORDER) var(--SN-COLOR-ERROR);
+        .header {
+            color: var(--SN-COLOR-ERROR-SHADE) !important;
+        }
+    }
+    &.selected {
+        box-shadow: 0 0 0 var(--SN-SELECTION-BORDER) var(--SN-COLOR-SELECTION);
+    }
+    &.active {
+        box-shadow: 0 0 0 var(--SN-ACTIVE-BORDER) var(--SN-COLOR-SUCCESS);
+    }
+    &.bringToFront {
+        .header {
+            opacity: 0.5 !important;
+        }
+        .node-content {
+            background: var(--SN-COLOR-PRIMARY) !important;
+        }
+        .node-layout {
+            opacity: 0.5 !important;
+        }
+    }
+
+    .header {
+        background: var(--SN-COLOR-PRIMARY);
+        padding: var(--SN-ELEMENT-HEADER-PADDING);
+        border-radius: var(--SN-ELEMENT-BORDER-RADIUS) var(--SN-ELEMENT-BORDER-RADIUS) 0px 0px;
+        height: var(--SN-NODE-HEADER-HEIGHT);
+        color: var(--SN-COLOR-FONT-TINT);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: var(--SN-NODE-HEADER-FONT-SIZE);
+
+        .name {
+            margin: 0px 10px;
+            font-weight: bold;
+            width: 100%;
+            text-align: center;
+            @include text-ellipsis;
+        }
+
+        .edit {
+            @include text-ellipsis;
+            width: auto;
+            height: 19px;
+            padding: 2px;
+            color: var(--SN-NODE-COLOR);
+            background: none;
+            border: none;
+        }
+
+        .edit::placeholder {
+            opacity: 0.6;
+            color: var(--SN-COLOR-FONT);
+            font-weight: 100;
+        }
+
+        .edit:focus {
+            outline:none;
+        }
+
+        .icons {
+            display: flex;
+            width: fit-content;
+            i {
+                margin-right: 5px;
+            }
+        }
+
+        .action {
+            display: flex;
+            i {
+                text-align: center;
+                min-width: 25px;
+            }
+        }
+        .action:hover {
+            cursor: pointer;
+        }
+    }
+
+    .node-content {
+        border-radius:  0px 0px var(--SN-ELEMENT-BORDER-RADIUS) var(--SN-ELEMENT-BORDER-RADIUS);
+        background: var(--SN-COLOR-PRIMARY-TRANSPARENT);
+
+        .node-layout {
+            max-height: var(--SN-NODE-CONTENT-MAX-HEIGHT);
+
+            &:not(.selector) {
+                padding: var(--SN-NODE-CONTENT-PADDING);
+            }
+            overflow: hidden;
+            &.expanded {
+                max-height: none;
+            }
+    
+            color: var(--SN-COLOR-FONT);
+    
+            .choose {
+                width: 100%;
+                color: #424242;
+            }
+        }
+        .action {
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--SN-COLOR-FONT-TINT);
+            i {
+                font-size: 20px;
+                text-align: center;
+                min-width: 25px;
+            }
+        }
+        .action:hover {
+            cursor: pointer;
+        }
+
+        .hidden {
+            display: none;
+        }
+    }
+
+    &.closed {
+        .header {
+            padding: 0px var(--SN-NODE-CLOSE-PADDING) !important;
+        }
+        .node-layout {
+            padding: 0px !important;
+            max-height: 0px !important;
+        }
+    }
+}

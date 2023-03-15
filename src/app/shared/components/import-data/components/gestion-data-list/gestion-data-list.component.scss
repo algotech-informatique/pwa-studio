@@ -1,0 +1,33 @@
+@import "../../../../../../styles.scss";
+
+:host {
+    --LIST-WIDTH: 100%;
+    --BORDER-RADIUS: 0px 0px 5px 5px;
+    --LIST-MARGIN: 0px;
+    --LIST-BACK-COLOR: #5E738D;          
+    --ITEM-HEIGHT: 40px;  
+}
+
+.content {
+    width: var(--LIST-WIDTH);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    @include scrollbar-hidden();
+
+    .search {
+        border-radius: var(--BORDER-RADIUS);
+        margin: 0px;
+    }
+
+    .lists {
+        height: 82%;
+        margin: var(--LIST-MARGIN);
+
+        .list {            
+            --OPTIONS-ITEM-HEIGHT: var(--ITEM-HEIGHT);
+            --OPTIONS-LIST-BORDER-RADIUS: var(--BORDER-RADIUS);
+            --OPTIONS-LIST-BACK-COLOR: var(--LIST-BACK-COLOR);                            
+        }
+    }   
+}

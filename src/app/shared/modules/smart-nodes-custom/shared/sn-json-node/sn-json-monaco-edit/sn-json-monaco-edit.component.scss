@@ -1,0 +1,34 @@
+@import '../../../../smart-nodes/theme/variables';
+@import '../../../../smart-nodes/theme/dark';
+@import '../../../../smart-nodes/theme/mixins';
+
+:host {
+    overflow: hidden;
+    --SN-NODE-HEADER-BACKGROUND-SNJSONNODE: linear-gradient(to right, #BC7826, #bf360c);
+    background: #1E1E1E;
+}
+
+.title{
+    background: var(--SN-COLOR-PRIMARY);
+    padding: var(--SN-ELEMENT-HEADER-PADDING);
+    color: var(--SN-COLOR-FONT-TINT);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: var(--SN-NODE-HEADER-FONT-SIZE);
+
+    .name {
+        margin: 0px 10px;
+        font-weight: bold;
+        width: 100%;
+        text-align: center;
+        @include text-ellipsis;
+    }
+    height: var(--SN-NODE-HEADER-HEIGHT);
+    background-image: var(--SN-NODE-HEADER-BACKGROUND-SNJSONNODE);
+}
+.editorContainer {
+    height: 500px;
+    border-radius: 4px;
+
+}

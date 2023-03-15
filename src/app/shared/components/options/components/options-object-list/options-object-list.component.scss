@@ -1,0 +1,52 @@
+@import "../../../../../../styles.scss";
+
+:host {
+    --SELECT-COLOR: #5E738D;
+    --BORDER-COLOR: #2D9CDB;
+    --BORDER-LINE-COLOR: #455D7A;
+    --OPTIONS-LIST-BACK-COLOR: transparent;
+    --OPTIONS-LIST-OBJECT-MARGIN: 7px 10px 2px 10px;
+    --OPTIONS-LIST-BORDER-RADIUS: 0px;
+    --OPTIONS-ITEM-HEIGHT: 80px;
+    --OPTIONS-TITLE-MAX-WIDTH: 300px;
+    max-width: var(--TITLE-MAX-WIDTH);
+
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--OPTIONS-LIST-BORDER-RADIUS);
+    background-color: var(--OPTIONS-LIST-BACK-COLOR);
+
+    @include custom-scrollbar;
+    overflow: none !important;
+    overflow-y: auto;
+    height: 100%;
+
+    .item {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        --OPTIONS-ITEM-HEIGHT: var(--OPTIONS-ITEM-HEIGHT);
+
+        .detail {
+            --OPTIONS-OBJECT-MARGIN: var(--OPTIONS-LIST-OBJECT-MARGIN);
+            --TITLE-MAX-WIDTH: var(--OPTIONS-TITLE-MAX-WIDTH);
+            width: 98%;
+        }
+
+        .show-line {
+            padding: 0px 5px 0px 5px;
+            width: 100%;
+            border-bottom: 1px solid var(--BORDER-LINE-COLOR);
+        }
+    }
+
+    .selected {
+        height: var(--OPTIONS-ITEM-HEIGHT);
+        background-color: var(--SELECT-COLOR);
+        border-left: 5px solid var(--BORDER-COLOR);
+    }
+
+}

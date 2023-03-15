@@ -1,0 +1,26 @@
+<div class="select-element" *ngIf="history" [ngClass]="{'selected': open}" (click)="openSelect($event)">
+    <div>
+        {{ 'SN-CONTEXTMENU.SCHEMA.CODE-VERSION' | translate:
+        {date: (history | find: 'active': true)?.version.createdDate | localeDate } }}
+    </div>
+    <i [class]="open ? 'fa-solid fa-chevron-up button' : 'fa-solid fa-chevron-down button'"></i>
+</div>
+
+<div class="list" *ngIf="open" (clickOutside)="open = false">
+    <div class="list-items">
+        <div class="item new" (click)="addVersion()">
+            <span class="item-value">{{ 'SN-CONTEXTMENU.SCHEMA.ADD-VERSION' | translate }}</span>
+        </div>
+    </div>
+    <div class="list-items">
+        <div *ngFor="let item of history" class="item" (click)="selectItem(item)" [ngClass]="{'active': item.active}">
+            <span class="item-value">{{ 'SN-CONTEXTMENU.SCHEMA.CODE-VERSION' | translate:
+                {date: item.version.createdDate | localeDate } }}</span>
+            <div class="icon">
+                <i class="published fa-solid fa-link" *ngIf="snModel.publishedVersion === item.version.uuid"></i>
+                <i class="remove fa-solid fa-trash" *ngIf="history.length > 1 && snModel.publishedVersion !== item.version.uuid"
+                    (click)="removeVersion($event, item)"></i>
+            </div>
+        </div>
+    </div>
+</div>

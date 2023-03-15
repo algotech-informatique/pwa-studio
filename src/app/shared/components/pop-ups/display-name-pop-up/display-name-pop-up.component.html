@@ -1,0 +1,17 @@
+<sn-select-modal [(top)]="top" [snView]="snView" class="modal">
+
+    <div class="header">
+        <div class="left-side">
+            <div class="title">{{'INSPECTOR.SMART_FLOW.PROPERTIES_NAME_TITRE' | translate}}</div>
+        </div>
+        <i class="fa-solid fa-xmark close-icon" (click)="close()"></i>
+    </div>
+
+    <div class="list">
+        <div *ngFor="let field of translationFields" class="line">
+            <p>{{field.langName}}</p>
+            <ion-input name="value" ngDefaultControl [(ngModel)]="field.value" #inputs>
+            </ion-input>
+        </div>
+    </div>
+</sn-select-modal>

@@ -1,0 +1,92 @@
+@import "../../../../styles.scss";
+
+:host {
+    --TAB-BACKGROUND-COLOR: #{$COLOR-BG-LIGHT};
+    --TAB-BACKGROUND-COLOR-ACTIVATED: #{$COLOR-BTN-LIGHT};
+    --TAB-FOREGROUND-COLOR-ACTIVATED: white;
+    --TAB-COLOR-SCROLLLBAR:  #90979e;
+    font-size: 13px;
+    color: $COLOR-FG;
+}
+
+.tabs {
+    display: flex;
+    flex-direction: row;
+    height: $TABS-HEIGHT;
+    overflow-x: scroll;
+    @include scrollbar();
+
+    scrollbar-width: thin;
+    &::-webkit-scrollbar {
+        width: 2px;
+        height: 3px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: var(--TAB-COLOR-SCROLLLBAR);
+    }
+
+    .tab {
+        background-color: var(--TAB-BACKGROUND-COLOR);
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        border-right: 1px solid $COLOR-DARK-TINT;
+    
+        .drag-hook {
+            width: calc(50% + 5px);
+            height: 100%;
+            position: absolute;
+            
+            &.left {
+                left: -4.5px;   
+                &.focused {
+                    background: linear-gradient(90deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0) 100%);
+                    border-left: dotted 3px lightgray;
+                }
+            }
+
+            &.right {
+                right: -4.5px;   
+                &.focused {
+                    background: linear-gradient(-90deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0) 100%);
+                    border-right: dotted 3px lightgray;
+                }
+            }
+        }
+
+        span {
+            @include text-ellipsis;
+            user-select: none;
+            padding-right: 5px;
+        }
+
+        &:hover {
+            .tab-close {
+                visibility: visible;
+            }
+        }
+
+        &.selected {
+            background-color: var(--TAB-BACKGROUND-COLOR-ACTIVATED);
+            color: var(--TAB-FOREGROUND-COLOR-ACTIVATED);
+            
+            .tab-close {
+                visibility: visible;
+            }
+        }
+
+        .tab-close {
+            visibility: hidden;
+            font-size: 15px;
+            padding: 0 8px;
+        }
+
+        .tab-type {
+            padding: 0 8px;
+            font-size: 12px;
+        }
+    }
+}

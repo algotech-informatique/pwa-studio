@@ -1,0 +1,50 @@
+<inspector-layout *ngIf="snView"
+    [barButtons]="buttons"
+    [selected]="selected"
+    [opened]="inspectorOpened"
+    (closeInspector)="onCloseInspector()"
+    (selectButton)="onSelectButton($event)">
+
+    <div [style.display]="selected === 'inspector' ? 'block' : 'none'">  
+        <inspector-options
+            [snView]="snView"
+            [sources]="sources"
+            [options]="options"
+            [snModel]="snModel"
+            (changed)="onChanged()">
+        </inspector-options>
+    </div>
+
+    <div [style.display]="selected !== 'param' && selected !== 'inspector' ? 'block' : 'none'">
+        <inspector-section *ngIf="(context && !param) || nodeContextElement"
+            class="first" [title]="'INSPECTOR.SMART_FLOW.PROPERTIES' | translate">
+            <div class="property">
+                <display-translate-element
+                    [title]="'INSPECTOR.SMART_FLOW.PROPERTIES_NAME' | translate"
+                    [displayText]="(selected === 'node'  ? nodeContextElement : context?.element)?.displayName"
+                    (changed)="onChangeElementDisplayName($event)">
+                </display-translate-element>
+            </div>
+
+            <div class="property last"
+                *ngIf="selected === 'group'"
+            >
+                <color-element
+                    [color]="context?.element?.color"
+                    (changed)="onChangeElementColor($event)"
+                >
+                </color-element>
+            </div>
+        </inspector-section>
+    </div>
+
+    <div [style.display]="selected === 'param' && context ? 'block' : 'none'">
+        <sn-param-inspector *ngIf="param"
+            [param]="param"
+            [snView]="snView"
+            [smartmodel]="smartmodel"
+            (changed)="onParamChanged($event)">
+        </sn-param-inspector>
+    </div>
+
+</inspector-layout>

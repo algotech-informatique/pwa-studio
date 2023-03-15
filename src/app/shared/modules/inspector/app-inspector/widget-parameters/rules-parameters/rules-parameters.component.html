@@ -1,0 +1,94 @@
+<app-inspector-section
+    [snApp]="snApp"
+    [ngClass]="{'first': widget?.rules?.length === 0}"
+    [title]="'INSPECTOR.WIDGET.RULES' | translate"
+    [section]="'rules'">
+
+    <div class="cards">
+        <div class="section"
+            *ngFor="let rule of rules; index as i">
+
+            <inspector-section 
+                [ngClass]="{'app-errors': widget?.displayState?.errors | showAppErrorsContains: 'rule.' + rule?.id: widget }"
+                class="rule-card"
+                [color]="rule?.color"
+                [title]="rule?.name"
+                [defaultOpen]="addedIndex === i"
+                [display]="'card'">
+
+                <div class="property inside-card">
+                    <data-inputs
+                        [title]="'INSPECTOR.WIDGET.RULE-NAME' | translate"
+                        typeInput="string"
+                        inputKey="name"
+                        [value]="rule?.name"
+                        [iconVisible]="true"
+                        (changed)="onNameChanged($event, i)">
+                    </data-inputs>
+                </div>
+
+                <div class="property inside-card">
+                    <color-element
+                        [color]="rule?.color"
+                        (changed)="onColorChanged($event, i)">
+                    </color-element>
+                </div>
+
+                <div class="property inside-card">
+                    <sn-display-radio
+                        mode="radio"
+                        [title]="'INSPECTOR.WIDGET.RULE-OPERATOR' | translate"
+                        [selected]="[rule?.operator]"
+                        [radioList]="operatorsList"
+                        (changed)="onOperatorChanged($event, i)">
+                    </sn-display-radio>
+                </div>
+
+                <rule-conditions
+                    [conditions]="rule?.conditions"
+                    [page]="page"
+                    [ruleId]="rule?.id"
+                    [widget]="widget"
+                    (conditionsChanged)="onConditionsChanged($event, i)">
+                </rule-conditions>
+
+                <div class="property with-button">
+                    <div class="button-format" (click)="activeRule(i)">
+                        {{ (widget?.displayState?.rule?.rule?.id === rule.id ?
+                            'INSPECTOR.WIDGET.RULES-DEACTIVATE' :
+                            'INSPECTOR.WIDGET.RULES-ACTIVATE')
+                        | translate }}
+                    </div>
+                </div>
+
+                <div class="actions"
+                    [ngClass]="{'only-delete': rules.length === 1 }">
+
+                    <div class="move-event" *ngIf="rules.length > 1">
+                        <i class="fa-solid fa-arrow-alt-circle-up button" (click)="arrowMoveEvent('up', rule, i)"></i>
+                        <i class="fa-solid fa-arrow-alt-circle-down button" (click)="arrowMoveEvent('down', rule, i)"></i>
+                    </div>
+
+                    <div class="delete-event">
+                        <i class="fa-solid fa-trash button" (click)="removeRule(i, rule.id)"></i>
+                    </div>
+                </div>
+            </inspector-section>
+
+            <div class="event-arrow" *ngIf="rules?.length - 1 !== i">
+                <i class="event-arrow" class="fa-solid fa-arrow-alt-circle-down"></i>
+            </div>    
+        </div>  
+        
+        <div *ngIf="rules?.length === 0" class="no-element section-content">
+            <p> {{ 'INSPECTOR.WIDGET.RULE-NOT-DEFINED' | translate }}</p>
+        </div>
+
+        <div class="button-container">
+            <div class="add-button section-content" (click)="addRule()">
+                <i class="fa-solid fa-plus"></i>
+                <p> {{ 'INSPECTOR.WIDGET.ADD-RULE' | translate }}</p>
+            </div>
+        </div>        
+    </div>
+</app-inspector-section>

@@ -1,0 +1,6 @@
+<sn-section class="query-edit" [section]="section" *ngIf="section">
+    <div class="query-text error" [ngClass]="{'error': error}" >
+        <textarea [(ngModel)]="queryText" (change)="onChangeQuery()">
+        </textarea>
+    </div>
+</sn-section>

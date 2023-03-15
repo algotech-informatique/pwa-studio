@@ -1,0 +1,100 @@
+@import "../../../../../styles.scss";
+
+:host {
+    --BACK-COLOR: #394554;
+    --SECURITY-MARGIN: 25px 0px 25px 25px;
+    --AUDITTRAIL-WIDTH: 350px;
+    --TITLE-MARGIN-BOTTOM: 20px;
+    --LABEL-COLOR: #2D9CDB;
+    --BUTTON-BACK-COLOR: #27AE60;
+    --TITLE-COLOR-SELECTED: #ffffff;
+    --CHECK-MARGIN: 10px 0px 0px 0px;
+    --INPUT-LABEL-WIDTH: 275px;
+    --OPTION-INPUT-MARGIN: 10px 0px 0px 0px;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    height: 100%;
+    width: 100%;
+    
+    .security {
+        width: var(--AUDITTRAIL-WIDTH);
+        margin: var(--SECURITY-MARGIN);
+        box-shadow: grey;
+        border-radius: 5px;
+        background-color: $COLOR-BG-LIGHT;
+        @include scrollbar-hidden();
+
+        .title {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            height: 50px;
+            padding: 10px;
+
+            .audit-trail {
+                @include button();
+                background-color: var(--BUTTON-BACK-COLOR) !important;
+
+                span {
+                    padding: 0px 10px 0px 10px;
+                    @include option-title-selected(var(--TITLE-COLOR-SELECTED));
+                }
+            }
+
+            .audit-trail:hover {
+                cursor: pointer;
+                opacity: 0.5;
+            }   
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            margin: 10px;
+
+            .options-title  {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                height: 50px;
+                padding: 15px 10px;
+                margin-bottom: 20px;
+                position: relative;
+
+                .options-title-text {
+                    @include option-label(var(--TITLE-COLOR-SELECTED));
+                    padding-top: 10px;
+                }
+            }
+
+            .elements {
+                margin: 10px 10px 20px 20px;
+                max-width: 250px;
+
+                .element {
+                    margin-left: 5px;
+                    margin-top: 10px;
+                    --INPUT-START-LABEL-WIDTH: var(--INPUT-LABEL-WIDTH);
+                    --OPTIONS-CHECK-MARGIN: var(--CHECK-MARGIN);
+                    --OPTION-INPUT-MARGIN: var(--OPTION-INPUT-MARGIN);
+                }
+
+                .border-bottom {
+                    width: 100%;
+                    margin-top: 5px;
+                    border-bottom: 2px solid var(--LABEL-COLOR);
+                }
+            }
+        }
+    }
+}
+
+.not-active {
+    opacity: 0.7;
+    --OPTIONS-CHECK-BACKCOLOR: gray;
+    pointer-events: none;
+}

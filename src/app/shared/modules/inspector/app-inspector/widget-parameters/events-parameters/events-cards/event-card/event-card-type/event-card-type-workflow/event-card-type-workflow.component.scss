@@ -1,0 +1,32 @@
+@import "../../../../../../../theme/mixins";
+
+.property {
+    @include property;
+}
+
+.advanced-container {
+    margin-bottom: 10px;
+}
+
+.advanced-button {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px;
+    text-transform: uppercase;
+    background-color: var(--INSPECTOR-CARD-CONTENT-BACKGROUND-TINT);
+
+    i {
+        margin-right: 5px;
+    }
+
+    p {
+        margin: 0;
+        font-size: 11px;
+    }
+}
+
+.advanced {
+    background-color: var(--INSPECTOR-CARD-CONTENT-BACKGROUND-TINT);
+    padding-bottom: 10px;
+}

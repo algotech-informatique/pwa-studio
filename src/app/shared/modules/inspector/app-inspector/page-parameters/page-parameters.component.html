@@ -1,0 +1,53 @@
+<inspector-section
+    class="first"
+    [title]="'INSPECTOR.PAGE.PROPERTIES' | translate">
+    <div class="property">
+        <display-translate-element
+            [title]="'INSPECTOR.PAGE.NAME' | translate"
+            [displayText]="page?.displayName"
+            (changed)="onDisplayTranslateChanged($event)">
+        </display-translate-element>
+    </div>
+    <div class="property">
+        <display-check-element [title]="'INSPECTOR.PAGE.MAIN_PAGE' | translate"
+            [disabled]="page?.main"
+            [value]="page?.main"
+            (changed)="onMainChanged($event)">
+        </display-check-element>
+    </div>
+    <div class="property last" [ngClass]="{'section': page?.custom?.zoom}">
+        <page-zoom-parameters
+            [zoom]="page?.custom?.zoom"
+            (changed)="onZoomChanged($event)">
+        </page-zoom-parameters>
+    </div>
+</inspector-section>
+    
+<inspector-section
+    [title]="'INSPECTOR.APP.DATASOURCE' | translate"
+    [display]="'section'">
+    <events-cards
+        [event]="dataSourceEv"
+        [page]="page"
+        [app]="snApp"
+        hasKey="true"
+        (eventChanged)="onDataSourceChanged($event)">
+    </events-cards>
+</inspector-section>
+
+<inspector-section
+    [title]="'INSPECTOR.APP.VARIABLES' | translate"
+    [display]="'section'">
+    <page-variables-parameters
+        [page]="page"
+        [variables]="page?.variables"
+        (changed)="onChanged()">
+    </page-variables-parameters>
+</inspector-section>
+
+<events-parameters
+    [events]="page?.events"
+    [app]="snApp"
+    [page]="page"
+    (eventsChanged)="onEventsChanged($event)">
+</events-parameters>

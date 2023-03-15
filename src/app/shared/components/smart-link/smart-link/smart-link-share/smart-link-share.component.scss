@@ -1,0 +1,46 @@
+@import "../../../../../../styles.scss";
+
+:host {
+    --BORDER-TOP-WIDTH: 1px;
+}
+
+.contents {
+    max-height: var(--LINK-HEIGHT);
+    @include custom-scrollbar;
+    overflow: none !important;
+    overflow-y: auto;
+
+    .content {
+        width: 100%;
+        padding: 12px 8px;
+        border-top: var(--BORDER-TOP-WIDTH) solid var(--INSPECTOR-VERT-MENU-SECTION-BORDER-COLOR);
+
+        label {
+            color: var(--INSPECTOR-SECTION-TITLE-COLOR);    
+        }
+
+        .item {
+            --OPTIONS-SOURCE-MARGIN: 5px 0px 15px 5px;
+            --OPTIONS-CHECK-MARGIN: 15px 0px 20px 5px;
+            --OPTIONS-RADIO-MARGIN: 15px 0px 15px 0px;
+            --OPTION-COPYTEXT-MARGIN: 5px;
+            --OPTION-COPYTEXT-MAXWIDTH: 445px;
+            --OPTION-INPUT-MARGIN: 10px 0px 10px 0px;
+            --OPTION-INPUT-CHIP-MARGIN: 10px 0px 10px 0px;
+            --OPTION-CHIP-BACKCOLOR: var(--INSPECTOR-VERT-MENU-ITEM-BG-COLOR);
+            --LABEL-COLOR: var(--INSPECTOR-SECTION-TITLE-COLOR);
+            --OPTION-INPUT-CHIP-BACKCOLOR: var(--INSPECTOR-VERT-MENU-ITEM-BG-COLOR);
+        }
+
+        .login {
+            display: flex;
+            flex-direction: column;   
+        }
+
+        .border-bottom {
+            width: 100%;
+            margin-top: 2px;
+            border-bottom: 2px solid var(--LABEL-COLOR);
+        }
+    }
+}

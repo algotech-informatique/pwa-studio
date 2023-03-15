@@ -1,0 +1,60 @@
+<div class="property inside-card">
+    <display-key-element class="element"
+        [title]="'INSPECTOR.SMART_FLOW.API.VARIABLE.NAME' | translate"
+        [showIcon]="false"
+        [key]="variable?.key"
+        (changed)="onChangeName($event)">
+    </display-key-element>
+</div>
+
+<div *ngIf="use !== 'header'" class="property inside-card">
+    <select-element
+        [title]="'INSPECTOR.SMART_FLOW.API.VARIABLE.TYPE' | translate"
+        [list]="types"
+        [selectedKey]="variable?.type"
+        (selectNewItem)="onSelectType($event)">
+    </select-element>
+</div>
+
+<display-check-element *ngIf="use === 'body'" class="property inside-card"
+    [title]="'INSPECTOR.SMART_FLOW.API.VARIABLE.ARRAY' | translate"
+    [value]="variable?.multiple"
+    (changed)="onChangeMultiple($event)">
+</display-check-element>
+
+<div class="property inside-card">
+    <display-input-element
+        [title]="'INSPECTOR.SMART_FLOW.API.VARIABLE.DESCRIPTION' | translate"
+        [rows]="2"
+        [value]="variable?.description"
+        (changed)="onChangeDescription($event)">
+    </display-input-element>
+</div>
+
+<display-check-element *ngIf="use === 'query-parameter' || use === 'header'" class="property inside-card"
+    [title]="'INSPECTOR.SMART_FLOW.API.VARIABLE.REQUIRED' | translate"
+    [value]="variable?.required"
+    (changed)="onChangeRequired($event)">
+</display-check-element>
+
+<display-check-element *ngIf="use === 'query-parameter' || use === 'header'" class="property inside-card"
+    [title]="'INSPECTOR.SMART_FLOW.API.VARIABLE.DEPRECATED' | translate"
+    [value]="variable?.deprecated"
+    (changed)="onChangeDeprecated($event)">
+</display-check-element>
+
+<display-check-element *ngIf="use === 'query-parameter' || use === 'header'" class="property inside-card"
+    [title]="'INSPECTOR.SMART_FLOW.API.VARIABLE.ALLOW_EMPTY' | translate"
+    [value]="variable?.allowEmpty"
+    (changed)="onChangeAllowEmpty($event)">
+</display-check-element>
+
+<div class="actions" [ngClass]="{'only-delete': use !== 'url-segment' || disableMove}">
+    <div class="move-event" *ngIf="use === 'url-segment' && !disableMove">
+        <i class="fa-solid fa-arrow-alt-circle-up button" (click)="arrowMoveEvent('up')"></i>
+        <i class="fa-solid fa-arrow-alt-circle-down button" (click)="arrowMoveEvent('down')"></i>
+    </div>
+    <div class="delete-event">
+        <i class="fa-solid fa-trash button" (click)="deleteVariable()"></i>
+    </div>
+</div>

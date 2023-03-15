@@ -1,0 +1,42 @@
+@import "../../../../../../theme/mixins";
+
+.subcard {
+    background-color: var(--INSPECTOR-CARD-CONTENT-BACKGROUND-TINT);
+    padding: 10px 5px 10px 0;
+    border-radius: 5px;
+    margin-bottom: 10px;
+
+    .subproperty {
+        margin-top: 6px;
+    }
+}
+
+.button-container {
+    @include card-add-button;
+    margin: 0 2px 2px 2px;
+    
+    .add-button:hover {
+        background-color: var(--INSPECTOR-CARD-CONTENT-BACKGROUND-TINT);
+    }
+
+    .add-button {
+        padding: 7px 12px;
+    }
+}
+
+.delete-profile {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 12px;
+    cursor: pointer;
+}
+
+multi-select-element {
+    display: block;
+    padding-left: 5px;
+}
+
+select-element {
+    display: block;
+    padding-left: 5px;
+}

@@ -1,0 +1,29 @@
+<div class="cards">
+    <p *ngIf="title" class="card-title">{{ title }}</p>
+
+    <inspector-section *ngFor="let variable of variables; index as i"
+        class="card"
+        [ngClass]="{'app-errors': errors | showAppErrors: 'variable.' +  variable.uuid }"
+        [title]="variable.key"  
+        [defaultOpen]="addedIndex === i"
+        [display]="'card'">
+        <route-variable-inside-card
+            [variable]="variable"
+            [use]="use"
+            (variableChanged)="onVariableChanged()"
+            (variableMoved)="onVariableMoved($event, i)"
+            (variableDeleted)="onVariableDeleted(i)">
+        </route-variable-inside-card>
+    </inspector-section>
+
+    <div *ngIf="variables?.length === 0" class="no-element section-content">
+        <p>{{ emptyString }}</p>
+    </div>
+
+    <div class="button-container">
+        <div class="add-button section-content" (click)="addVariable()">
+            <i class="fa-solid fa-plus"></i>
+            <p>{{ buttonAdd }}</p>
+        </div>
+    </div>  
+</div>

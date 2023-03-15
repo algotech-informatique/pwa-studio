@@ -1,0 +1,44 @@
+<div class="content">
+
+	<div class="title">
+        <div class="store-title">
+            {{ 'STORE.SELECTED-ELEMENTS' | translate }}
+        </div>
+    </div>
+
+	<div class="info">
+		<div class="lists">
+			<options-object-list class="list"
+				[optionObjects]="listObjects"
+				(selectedObject)="onRemoveObject($event)"
+			>
+			</options-object-list>
+		</div>
+
+		<options-logger
+			class="logger"
+			rows="15"
+			[loadLog]="inputLog"
+			[clearLog]="clearLog"
+		>
+		</options-logger>
+	</div>
+
+    <div class="footer">
+		<options-checkbox
+			[label]="'STORE.FORCED-SEND' | translate"
+			[checkElement]="forceSend"
+			selected="true"
+			(checkedChange)="onChecked($event)"
+		>
+		</options-checkbox>
+        <div
+			[ngClass]="{'inactive': listObjects.length === 0 }"
+            class="send-elements"
+            (click)="onSend()"
+		>
+			<span>{{ 'STORE.SEND-TO-STORE' | translate }}</span>
+		</div>
+    </div>
+
+</div>

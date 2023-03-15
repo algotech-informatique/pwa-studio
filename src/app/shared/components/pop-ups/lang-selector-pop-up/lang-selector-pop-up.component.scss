@@ -1,0 +1,48 @@
+@import '../../../../../styles';
+
+:host {
+    --SELECT-BACKCOLOR: #7C818B;
+}
+
+.modal {
+    background-color: $COLOR-BG-POPUP-DARK;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    max-height: 200px;
+    border-radius: 5px;
+    left: 10px;
+
+    @include custom-scrollbar;
+    overflow: none !important;
+    overflow-y: auto;
+
+    .lang {
+        padding: 2px 5px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        height: 30px;
+
+        .show {
+            width: 100%;
+            @include text-ellipsis;
+            color: var(--INSPECTOR-HEADER-COLOR);
+            line-height: 30px;
+        }
+    }
+
+    .selected {
+        .show {
+            color: var(--INSPECTOR-SELECTED);
+        }
+
+        background-color: var(--SELECT-BACkCOLOR);
+    }
+
+    .lang:hover {
+        cursor: pointer;
+        border-radius: 5px;
+        background: var(--SN-COLOR-SECONDARY-TINT);
+    }
+}

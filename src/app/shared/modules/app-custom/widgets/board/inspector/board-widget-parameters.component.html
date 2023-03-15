@@ -1,0 +1,27 @@
+<app-inspector-section 
+    [snApp]="snApp"
+    [title]="'INSPECTOR.WIDGET.PARAMETERS' | translate"
+    [section]="'customParams.board'"
+    [ngClass]="{'first': widget?.rules?.length === 0}"
+    display="section">
+
+    <div class="property last">
+        <ngx-dropzone
+            class="dropzone"
+            [multiple]="false"
+            [accept]="'image/*'"
+            (change)="onChangeFile($event)">
+            <ngx-dropzone-label>{{'SETTINGS.LAYER.DROP_FILE' | translate}}</ngx-dropzone-label>
+            <ngx-dropzone-image-preview *ngIf="file" [file]="file" [removable]="true" (removed)="onRemoveFile()">
+            </ngx-dropzone-image-preview>
+        </ngx-dropzone>
+
+        <input-element
+            *ngIf="input"
+            [input]="input"
+            [dataItems]="items"
+            (inputChanged)="onInstanceChanged($event)">
+        </input-element>
+    </div>
+
+</app-inspector-section>

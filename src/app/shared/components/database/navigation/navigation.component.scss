@@ -1,0 +1,30 @@
+@import '../../../modules/inspector/theme/_mixins.scss';
+
+:host {
+  height: 100%;
+  font-size: 15px;
+  color: #FFF;
+  display: flex;
+  flex-direction: row;
+}
+
+.link {
+  margin-left: 5px;
+  width: fit-content;
+  opacity: 0.5;
+  color: var(--ALGOTECH-SUCCESS-BORDER);
+  cursor: pointer;
+}
+
+.link:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.active {
+  opacity: 1;
+}
+
+i {
+  font-size: 10px;
+}

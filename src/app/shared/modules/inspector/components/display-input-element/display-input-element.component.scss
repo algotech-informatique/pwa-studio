@@ -1,0 +1,33 @@
+@import '../../../../../../styles';
+@import "../../theme/mixins";
+
+.display-input {
+    display: flex;
+    flex-direction: row;
+}
+    
+.title {
+    @include title;
+    margin-top: 7px;
+}
+
+.display {
+    display: flex;
+    flex-direction: column;
+
+    .area {
+        @include text-area;
+    }
+
+    .bottom {
+        background-color: var(--INSPECTOR-VERT-MENU-ITEM-BG-COLOR);
+        @include box-border;
+        border-top: none;
+        border-radius: 0px 0px 3px 3px;
+
+        .data-selector-button {
+            @include data-selector-button;
+            padding: 0 0 5px 5px;
+        }
+    }
+}

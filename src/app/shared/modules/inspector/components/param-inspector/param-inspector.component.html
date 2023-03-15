@@ -1,0 +1,134 @@
+
+<div *ngIf="param?.type === 'string'">
+    <inspector-section class="first" [title]="'INSPECTOR.PARAM.DISPLAY' | translate">
+        <div class="property last">
+            <sn-display-radio
+                mode="radio"
+                [radioList]="param?.params"
+                [selected]="[param?.value?.type]"
+                (changed)="onChanged({ value: $event, key: 'type' })">
+            </sn-display-radio>
+        </div>
+    </inspector-section>
+
+    <inspector-section [title]="'INSPECTOR.PARAM.CHARACTERS' | translate">
+        <div class="property">
+            <data-inputs
+                [title]="'INSPECTOR.PARAM.MIN-LENGTH-DISPLAY' | translate"
+                [subTitle]="'INSPECTOR.PARAM.MIN-LENGTH' | translate"
+                inputKey="minlen"
+                typeInput="number"
+                [placeholder]="'INSPECTOR.PARAM.MIN-LENGTH' | translate"
+                [value]="param?.value?.minlen"
+                [iconVisible]="true"
+                (changed)="onChanged($event)">
+            </data-inputs>
+        </div>
+        <div class="property last">
+            <data-inputs
+                [title]="'INSPECTOR.PARAM.MAX-LENGTH-DISPLAY' | translate"
+                [subTitle]="'INSPECTOR.PARAM.MAX-LENGTH' | translate"
+                inputKey="maxlen"
+                typeInput="number"
+                [placeholder]="'INSPECTOR.PARAM.MAX-LENGTH' | translate"
+                [value]="param?.value?.maxlen"
+                [iconVisible]="true"
+                (changed)="onChanged($event)">
+            </data-inputs>
+        </div>
+    </inspector-section>
+
+    <inspector-section [title]="'INSPECTOR.MODEL.FIELD-VALUE' | translate">
+        <div class="property last">
+            <data-inputs
+                [typeInput]="param.type"
+                [title]="'SN-DATA-INPUT-DEFAULT-VALUE' | translate"
+                inputKey="defaultValue"
+                [iconVisible]="true"
+                [value]="param?.value?.defaultValue"
+                (changed)="onChanged($event)"
+            ></data-inputs>
+        </div>
+    </inspector-section>
+</div>
+
+<div *ngIf="param?.type === 'boolean'">
+    <inspector-section class="first" [title]="'INSPECTOR.PARAM.DISPLAY' | translate">
+        <div class="property last">
+            <sn-display-radio
+                mode="radio"
+                [radioList]="param?.params"
+                [selected]="[param?.value?.display]"
+                (changed)="onChanged({ value: $event, key: 'display' })">
+            </sn-display-radio>
+        </div>
+    </inspector-section>
+</div>
+
+<div *ngIf="param?.type === 'number'">
+    <inspector-section class="first" [title]="'INSPECTOR.PARAM.DISPLAY' | translate">
+        <div class="property last">
+            <sn-display-radio
+                mode="radio"
+                [radioList]="param?.params"
+                [selected]="[param?.value?.format]"
+                (changed)="onChanged({ value: $event, key: 'format' })">
+            </sn-display-radio>
+        </div>
+    </inspector-section>
+
+    <inspector-section [title]="'INSPECTOR.MODEL.FIELD-VALUE' | translate">
+        <div class="property last">
+            <data-inputs
+                [typeInput]="param?.type"
+                [title]="'SN-DATA-INPUT-DEFAULT-VALUE' | translate"
+                inputKey="defaultValue"
+                [iconVisible]="true"
+                [value]="param?.value?.defaultValue"
+                (changed)="onChanged($event)"
+            ></data-inputs>
+        </div>
+    </inspector-section>
+</div>
+
+<div *ngIf="param?.type === 'list'">
+    <inspector-section class="first" [title]="'INSPECTOR.PARAM.DISPLAY' | translate">
+        <div class="property last">
+            <sn-display-radio
+                mode="radio"
+                [radioList]="param?.params"
+                [selected]="[param?.value?.display]"
+                (changed)="onChanged({ value: $event, key: 'display' })">
+            </sn-display-radio>
+        </div>
+    </inspector-section>
+
+    <inspector-section [title]="'INSPECTOR.PARAM.LIST-TRI' | translate">
+        <div class="property last">
+            <sn-display-radio
+                mode="radio"
+                [radioList]="param?.optParams"
+                [selected]="[param?.value?.sort]"
+                (changed)="onChanged({ value: $event, key: 'sort' })">
+            </sn-display-radio>
+        </div>
+    </inspector-section>
+
+    <inspector-section [title]="'INSPECTOR.PARAM.LIST-OPTIONS' | translate">
+        <div class="property last">
+            <display-check-element
+                [title]="param?.plugged?.value | translate"
+                [value]="param?.value?.pluggable"
+                (changed)="onChangedCheck(param.plugged.key, $event)"
+            ></display-check-element>
+        </div>
+    </inspector-section>
+</div>
+
+<inspector-section [title]="'INSPECTOR.PARAM.CONDITIONS' | translate">
+    <param-condition
+        [smartmodel]="smartmodel"
+        [conditions]="param?.value?.condition"
+        (changed)="onConditionChanged($event)">
+    </param-condition>
+</inspector-section>

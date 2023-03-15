@@ -1,0 +1,38 @@
+<div class="content" *ngIf="groups && groups?.length !== 0">
+
+    <div class="title">
+        <div class="new-group" (click)="onCreateNewGroup()">
+            <span>{{ 'SECURITY-GROUPS.NEW-GROUP' | translate }}</span>
+        </div>
+    </div>
+
+    <div class="options">
+
+        <options-search
+            class="search"
+            [(search)]="search"
+            (searchValue)="onSearch($event)">
+        </options-search>
+
+        <div class="groups">
+            <options-object-list
+                class="group"
+                [selectId]="selectedId"
+                [optionObjects]="optionGroupFiltered"
+                (selectedObject)="onSelectedObject($event)">
+            </options-object-list>
+
+        </div>
+
+        <div class="footer">
+            <div
+                class="extract"
+                (click)="onExtractRights()"
+            >
+                <span>{{ 'SECURITY-GROUPS.EXTRACT-RIGHTS' | translate }}</span>
+            </div>
+        </div>
+
+    </div>
+
+</div>

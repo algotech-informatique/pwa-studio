@@ -1,0 +1,9 @@
+@import "../../../../theme/mixins";
+
+:host {
+    --PADDING-TOP: 10px;
+}
+
+.events-cards {
+    @include card-element(var(--PADDING-TOP));
+}

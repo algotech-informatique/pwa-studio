@@ -1,0 +1,110 @@
+@import "../../../../../../styles.scss";
+
+:host {
+    --LABEL-COLOR: #2D9CDB;
+    --TITLE-COLOR-SELECTED: #ffffff;
+    --DATA-WIDTH: 400px;
+    --ITEM-HEIGHT: 30px;
+    --LOGGER-TOP-HEIGHT: 250px;
+    --LOGGER-BOTTOM-HEIGHT: 400px;
+    --BUTTON-DOWNLOAD-COLOR: #27AE60;
+    --TITLE-MARGIN-BOTTOM: 20px;
+}
+
+.content {
+    width: var(--DATA-WIDTH);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    @include scrollbar-hidden();
+
+    .inactive-content {
+        pointer-events: none;
+        opacity: 0.3;
+    }
+
+    .title {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: 5%;
+        padding: 15px;
+        margin-bottom: 20px;
+        position: relative;
+
+        .gestion-title {
+            @include option-title-selected(var(--TITLE-COLOR-SELECTED));
+            padding-top: 10px;
+        }
+    }
+
+    .options {
+        display: flex;
+        flex-direction: column;
+        height: calc(100% - 50px);
+        margin-bottom: var(--TITLE-MARGIN-BOTTOM);
+
+        .logs {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 250px;
+
+            .logger {
+                margin: 10px;
+                --OPTION-HEIGHT: var(--LOGGER-TOP-HEIGHT);
+            }
+        }
+
+        .launch-import {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            height: 50px;
+            margin: 25px 0px;
+
+            .import {
+                margin-top: 5px;
+                margin-bottom: 10px;
+
+                .import-button {
+                    @include button();
+                    background-color: var(--BUTTON-DOWNLOAD-COLOR) !important;
+                    margin: 10px 30px 10px 30px;
+        
+                    span {
+                        padding: 0px 10px 0px 10px;
+                        @include option-title-selected(var(--TITLE-COLOR-SELECTED));
+                        text-align: center;
+                    }
+                }
+
+                .inactive {
+                    pointer-events: none;
+                    opacity: 0.6;
+                }
+        
+                .import-button:hover {
+                    cursor: pointer;
+                    opacity: 0.5;
+                }
+            }
+
+        }
+
+        .info-logs {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: calc(100% - 120px);
+            margin-bottom: 10px;
+
+            .info-logger {
+                margin: 10px;
+                --OPTION-HEIGHT: var(--LOGGER-BOTTOM-HEIGHT);
+            }
+        }
+    }
+}

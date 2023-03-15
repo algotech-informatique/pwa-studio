@@ -1,0 +1,16 @@
+<app-modal [title]="title" [open]="open" (openChange)="clickClose($event)">
+    <div class="content">
+        <div class="subtitle">
+            <i *ngIf="type === 'warning'" class="fa-solid fa-triangle-exclamation icon"></i>
+            <i *ngIf="type === 'question'" class="fa-solid fa-circle-question icon"></i>
+            <div class="texts">
+                <div class="text">{{ subtitle }}</div>
+                <div class="detail text">{{ text }}</div>
+            </div>
+        </div>
+        <div class="buttons">
+            <div *ngIf="cancel" class="cancel button text" (click)="clickCancel()">{{ cancel }}</div>
+            <div class="confirm button text" (click)="clickConfirm()">{{ confirm }}</div>
+        </div>
+    </div>
+</app-modal>

@@ -1,0 +1,70 @@
+<div class="inner-custom" [id]="node?.id">
+    <div class="node"
+        [id]="'node-' + node?.id"
+        [ngClass]="{
+            'warning': node?.displayState?.warning,
+            'error': node?.displayState?.error,
+            'selected': node?.displayState?.selected,
+            'active': node?.displayState?.active,
+            'bringToFront': node?.displayState?.bringToFront,
+            'closed': !node?.open
+        }"
+        (click)="select($event)"> <!-- id use for link calcul -->
+
+        <div class="header" *ngIf="node && node.type" [ngStyle]="{
+            'background-image': node?.displayState?.headerColor ? 'var(' + node?.displayState?.headerColor + ')' : 'var(' + headerVarName + ')'
+        }">
+
+            <i [class]="node.icon"></i>
+
+            <b class="name" *ngIf="!node.displayState?.edit">
+                {{node.displayName | snlang}}
+            </b>
+            <input *ngIf="node.displayState?.edit"
+                class="name edit"
+                type="text"
+                #nameEdit
+                [value]="node.displayName? (node.displayName | snlang:false) : ''"
+                (blur)="onChangeName(nameEdit.value)"
+                (keyup.enter)="onChangeName(nameEdit.value)"
+                (keyup.escape)="onEscapeEditName()"
+                [placeholder]="node.displayState?.placeHolder? node.displayState?.placeHolder : ''"
+            >
+
+            <span class="icons" *ngIf="node.displayState?.icons">
+                <i *ngFor="let icon of node.displayState?.icons" [class]="icon.icon"
+                    [style.color]="icon.color ? icon.color : 'inherit'"></i>
+            </span>
+
+            <div class="action">
+                <i class="fa-solid fa-chevron-up" *ngIf="node.open" (click)="openClose()"></i>
+            </div>
+        </div>
+
+        <div class="node-content">
+            <div class="node-layout" #layout [ngClass]="{
+                'expanded': node.expanded,
+                'selector': !node.type && snFilterComponents
+            }">
+                <sn-selector *ngIf="!node.type && snFilterComponents"
+                    [node]="node"
+                    [snView]="snView"
+                    [snEntryComponents]="snFilterComponents"
+                    (selectedComponent)="onChangeType($event)">
+                </sn-selector>
+
+                <div  [ngClass]="{'hidden': !node.open}">
+                    <ng-template sn-host></ng-template>
+                </div>
+            </div>
+
+            <div class="action" *ngIf="!node.open" (click)="openClose()">
+                <i class="fa-solid fa-angle-double-down"></i>
+            </div>
+            <div class="action" *ngIf="expandVisible" (click)="expand()">
+                <i class="fa-solid fa-angle-double-down" *ngIf="!node.expanded"></i>
+                <i class="fa-solid fa-angle-double-up" *ngIf="node.expanded"></i>
+            </div>
+        </div>
+    </div>
+</div>

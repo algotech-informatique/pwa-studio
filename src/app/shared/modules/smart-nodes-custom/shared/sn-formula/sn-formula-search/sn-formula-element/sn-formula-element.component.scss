@@ -1,0 +1,34 @@
+@import '../../../../../smart-nodes/theme/mixins';
+@import "../../../../../../../../styles.scss";
+
+:host {
+    --BORDER-COLOR: #{$COLOR-FG};
+}
+
+.element {
+    display: flex;
+    flex-direction: row;    
+    margin-bottom: 10px;
+
+    .element-fields {
+        display: flex;
+        flex-direction: row;
+
+        .fields {
+            color: var(--FIELD-COLOR);
+            @include text-ellipsis;            
+            font-size: 11px;
+        }
+    }
+
+    .element-fields::before {
+        content: ", ";
+        color: white;
+        margin-right: 3px;
+    }
+
+    .element-fields:first-child::before{
+        content: "";
+    }
+
+}

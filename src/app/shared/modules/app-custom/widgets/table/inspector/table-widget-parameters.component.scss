@@ -1,0 +1,19 @@
+@import '../../../../inspector/theme/mixins';
+
+.property {
+    @include property();
+}
+
+.update-columns-button {
+    background-color: $COLOR-WARN-ALT;
+    border-radius: 3px;
+    cursor: pointer;
+    text-align: center;
+    padding: 5px;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+@include app-errors;

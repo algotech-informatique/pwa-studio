@@ -1,0 +1,97 @@
+@import "../../../../../../styles.scss";
+
+:host {
+    --LABEL-COLOR: #2D9CDB;
+    --TEXT-COLOR: #c4c4c4;
+    --OPTION-CHIP-BACKCOLOR: #5E738D;
+    --ADD-CHIP-BACKCOLOR: #45576d;
+    --OPTION-INPUT-CHIP-MARGIN: 0px;
+    --OPTION-CHIP-HEIGHT: 0px;
+    --OPTION-CHIP-MAX-HEIGHT: 200px;
+    --OPTION-CHIP-MARGIN: 0px 2px 0px 2px;
+}
+
+.input-chip {
+    margin: var(--OPTION-INPUT-CHIP-MARGIN);
+    display: flex;
+    flex-direction: row;
+
+    .label {
+        @include option-input-label(var(--TEXT-COLOR));       
+        font-size: 12px;
+        padding-top: 15px;
+        min-width: 90px;
+    }
+        
+    .chips {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        height:  100%;
+    
+        .list-chips {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            margin: var(--OPTION-CHIP-MARGIN);
+            height: var(--OPTION-CHIP-HEIGHT);
+            max-height: var(--OPTION-CHIP-MAX-HEIGHT);
+            @include custom-scrollbar;
+            overflow-y: auto;
+            overflow-x: hidden;
+
+            .chip {
+                display: flex;
+                flex-direction: row;
+                margin: 3px;
+                height: 33px;
+                align-items: center;
+                background-color: var(--OPTION-CHIP-BACKCOLOR);
+                padding: 0px 10px 0px 10px;
+
+                .chip-label {
+                    @include option-input-label(var(--TEXT-COLOR));       
+                    padding: 0px 15px 0px 10px;
+                }
+
+                .chip-close {
+                    color: var(--TEXT-COLOR);
+                    
+                    &:hover {
+                        cursor: pointer;
+                        opacity: 0.5;
+                    }
+                }
+
+                .icon {
+                    color: var(--TEXT-COLOR);
+                }
+            }
+
+            .button-popover {
+
+                .add-button {
+                    color: var(--TEXT-COLOR);
+                    background-color: $EDITOR-COLOR-INPUTS;
+                    font-size: 18px;
+                    
+                    &:hover {
+                        cursor: pointer;
+                        opacity: 0.5;
+                    }
+                }
+
+                .options-popover {
+                    position: absolute;
+                }
+            }
+        }
+
+        .bottom-border {
+            width: 100%;
+            margin-top: 2px;
+            border-bottom: thin solid var(--LABEL-COLOR);
+        }
+    }
+}

@@ -1,0 +1,46 @@
+<div class="content" [ngStyle]="{'flex-direction': direction}">
+    <div class="tools" *ngFor="let tool of tools">
+
+        <div class="tool" [ngStyle]="
+            {
+                'width': displayVisible ? '100%' : '45px',
+                'padding-right': displayVisible ? '15px' : '0px'
+            }"
+            [ngClass]="{'disabled': tool.disabled, 'separator': tool.separator}"
+            (mouseenter)="onItemEnter($event, tool)" (mouseleave)="onItemLeave()">
+
+            <div class="activeItem" (click)="onItemClick($event, tool)">
+                <i class="{{tool.icon}} icon" [ngStyle]="{'color': tool.color ? tool.color : 'var(--SN-COLOR-FONT)'}">
+                    <span *ngIf="!displayVisible" class="tooltiptext" [ngClass]="{'row': direction === 'row'}">{{tool.displayName | snlang }}</span>
+                </i>
+
+                <span *ngIf="tool.item" >
+                    <span *ngFor="let icon of tool.item.icons">
+                        <i
+                            [ngStyle]="{'color': icon.color }"
+                            class="{{icon.iconName}} {{icon.position}} itemsIcon"
+                        >
+                        </i>
+                    </span>
+                </span>
+
+                <div *ngIf="displayVisible" class="display">
+                    <span>{{tool.displayName | snlang}}</span>
+                    <div *ngIf="displayVisible && tool.description" class="description">{{tool.description | snlang}}</div>
+                </div>
+                <i class="fa-solid fa-caret-right more" *ngIf="tool.subItems && direction === 'column'"></i>
+                <i class="fa-solid fa-caret-down more" *ngIf="tool.subItems && direction === 'row'"></i>
+            </div>
+
+            <div class="deleteItem" *ngIf="tool.item && tool.item.deletable" (click)="onDeleteClick($event, tool)">
+                <i class="fa-solid fa-trash-can deleteIcon"></i>
+            </div>
+
+            <sn-toolbox-sub (launchEvent)="onLaunchEvent($event)"  *ngIf="subItemsVisible === tool.id"
+                [ngClass]="{'row-subItems': direction === 'row'}" class="subItems" direction="column"
+                [displayVisible]="true" [tools]="tool.subItems">
+            </sn-toolbox-sub>
+
+        </div>
+    </div>
+</div>

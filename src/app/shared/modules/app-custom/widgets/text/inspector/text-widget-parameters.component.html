@@ -1,0 +1,18 @@
+<app-inspector-section 
+    [snApp]="snApp"
+    [title]="'INSPECTOR.WIDGET.PARAMETERS' | translate" display="section"
+    [section]="'customParams.text'">
+    <div class="text last">
+        <display-text-element
+            class="display-element"
+            [ngClass]="{'app-errors': widget?.displayState?.errors | showAppErrors: 'custom.text': widget}"
+            [title]="'INSPECTOR.WIDGET.TEXT' | translate"
+            [items]="items"
+            [displayText]="widget?.custom?.text"
+            [displayPreview]="widget?.custom?.preview"
+            (changed)="onChangeText($event)"
+            (preview)="onChangePreview($event)"
+        >
+        </display-text-element>
+    </div>
+</app-inspector-section>

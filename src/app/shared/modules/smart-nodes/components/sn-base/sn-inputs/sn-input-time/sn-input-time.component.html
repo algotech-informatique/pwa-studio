@@ -1,0 +1,11 @@
+<div class="input-time">
+    
+    <input #input 
+        type="time"
+        class="input"
+        [value]="value | dateFormat:'HH:mm:ss':'HH:mm:ss'"
+        (focusout)="update(input.value)" />
+
+    <i class="fa-solid fa-clock"></i>
+
+</div>

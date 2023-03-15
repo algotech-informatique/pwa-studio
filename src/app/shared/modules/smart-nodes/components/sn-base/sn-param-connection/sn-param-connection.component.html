@@ -1,0 +1,38 @@
+<svg #content
+    [attr.width]="size * 2 + 9" [attr.height]="size * 2" fill="none" xmlns="http://www.w3.org/2000/svg"
+    *ngIf="param"
+    [attr.id]="param.id"
+    [ngClass]="{
+        'param-in': direction === 'in',
+        'param-out': direction === 'out',
+        'param-disconnect': !connected,
+        'param-connect': connected,
+        'dragHover': param.displayState?.dragHover
+    }">
+
+    <defs *ngIf="gradient.length > 1">
+        <linearGradient [id]="'gr' + param.id" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop *ngFor="let item of gradient"
+                [attr.offset]="item.percent + '%'"
+                [attr.stop-color]="item.color"
+            />
+        </linearGradient>
+    </defs>
+
+    <path d="M24.4651 8.72727L18.1163 12.8212V4.63333L24.4651 8.72727Z"
+        [attr.fill]="gradient.length > 1 ? 'url(#gr' + param.id + ')' : 'var(' + paramVarName + ')'"
+        />
+
+    <circle
+        stroke-width="2"
+        [attr.cx]="size"
+        [attr.cy]="size"
+        [attr.r]="size - 1"
+        [attr.stroke]="gradient.length > 1 ? 'url(#gr' + param.id + ')' : 'var(' + paramVarName + ')'"
+    />
+
+    <rect>
+        <title>{{param.types | json}}</title>
+    </rect>
+
+</svg>

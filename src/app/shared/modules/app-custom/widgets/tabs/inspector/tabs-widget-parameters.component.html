@@ -1,0 +1,16 @@
+<app-inspector-section 
+    [snApp]="snApp"
+    [title]="'INSPECTOR.WIDGET.TAB.SELECTED-TAB' | translate" [ngClass]="{'first': !(widget?.rules?.length > 0)}"   
+    [section]="'selected.tabs'">
+
+    <div class="property">
+        <select-element
+            [title]="'INSPECTOR.WIDGET.TAB' | translate"
+            [list]="tabs"
+            [selectedKey]="selectedTab?.custom?.tabId"
+            [showSearch]="false"
+            (selectNewItem)="onSelectTab($event)">
+        </select-element>
+    </div>
+
+</app-inspector-section>

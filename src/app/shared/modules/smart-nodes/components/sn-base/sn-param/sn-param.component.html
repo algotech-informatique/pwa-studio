@@ -1,0 +1,110 @@
+<div class="param" *ngIf="param"
+    (click)="select($event)"
+    (contextmenu)="select($event, true)"
+    [ngClass]="{ 
+        'warning': param?.displayState?.warning,
+        'error': param?.displayState?.error,
+        'hidden': param?.displayState?.hidden,
+        'selected': param?.displayState?.selected
+    }"> 
+
+    <sn-param-connection
+        [id]="'connector-' + param?.id"
+        *ngIf="param.direction === 'in'" 
+        [ngClass]="{'hidden-connector': !param.pluggable}"
+        direction="in"
+        [param]="param"
+        [types]="param.types"
+        [error]="param.displayState?.error"
+        [connected]="param.displayState?.connected">
+    </sn-param-connection> <!-- id use for link calcul -->
+
+    <sn-watcher-selector
+        [snView]="snView"
+        [node]="node"
+        [key]="param.id"
+        [types]="param.types"
+        class="absolute"
+        *ngIf="param.direction === 'out' && snView.displayState?.debug && node | snIsWatchable: param: 'param.out'">
+    </sn-watcher-selector>
+
+    <div class="label">
+
+        <label *ngIf="param.display !== 'key-edit'" class="name" [ngClass]="{
+            'watchable': param.direction === 'in' && snView.displayState?.debug && node | snIsWatchable: param: 'param.in',
+            'out': param.direction === 'out'
+        }">
+            <span class="name-content">
+                <span class="icons" *ngIf="param.displayState?.icons || (param.direction === 'in' && param.multiple)">
+                    <span *ngFor="let icon of param.displayState?.icons" class="icon">
+                        <i *ngIf="icon.position === 'left'" [class]="icon.icon"
+                            [style.color]="icon.color ? icon.color : 'inherit'"></i>
+                    </span>
+
+                    <span class="icon">
+                        <i *ngIf="param.direction === 'in' && param.multiple" class="fa-solid fa-layer-group"></i>
+                    </span>
+                </span>
+                <span [title]="(!param.displayName || param.displayState.hidden ? param.key : param.displayName | snlang)">
+                    {{ (!param.displayName || param.displayState.hidden ? param.key : param.displayName | snlang) + (param.required ? '*' : '')}}
+                </span>
+            </span>
+
+            <span class="icons" *ngIf="param.displayState?.icons || (param.direction === 'out' && param.multiple)">
+                <span *ngFor="let icon of param.displayState?.icons" class="icon">
+                    <i *ngIf="icon.position === 'right'" [class]="icon.icon"
+                        [style.color]="icon.color ? icon.color : 'inherit'"></i>
+                </span>
+
+                <span class="icon">
+                    <i *ngIf="param.direction === 'out' && param.multiple" class="fa-solid fa-layer-group"></i>
+                </span>
+            </span>
+        </label>
+            
+        <sn-input-key 
+            class="edit"
+            *ngIf="param.display === 'key-edit'"
+            [node]="node"
+            [value]="param.key" 
+            [icon]="param.displayState.icons && param.displayState.icons.length > 0 ? param.displayState.icons[0].icon : ''"
+            [placeholder]="param.displayState.placeHolder ? param.displayState.placeHolder : param.types"
+            [listItems]="param.displayState.listItems"
+            (updateValue)="onUpdateKey($event)"
+        >    
+        </sn-input-key>
+
+        <sn-inputs *ngIf="param.direction === 'in'"
+            class="sn-inputs"
+            [snView]="snView"
+            [node]="node"
+            [types]="param.types"
+            [value]="param.value"
+            [display]="param.display"
+            [items]="param.displayState?.items"
+            [multiple]="param.multiple"
+            (updateValue)="onUpdateValue($event)">
+        </sn-inputs>
+    </div>    
+    
+    <sn-watcher-selector
+        [snView]="snView"
+        [node]="node"
+        [key]="node.id + '.' + param.key"
+        [types]="param.types"
+        *ngIf="param.direction === 'in' && snView.displayState?.debug && node | snIsWatchable: param: 'param.in'">
+    </sn-watcher-selector>
+
+    <i *ngIf="param.direction === 'out' && param.multiple && param.display === 'key-edit'" class="icon-multiple fa-solid fa-layer-group"></i>
+    
+    <sn-param-connection
+        [id]="'connector-' + param?.id"
+        *ngIf="param.direction === 'out'"
+        direction="out"
+        [param]="param"
+        [types]="param.types"
+        [error]="param.displayState?.error"
+        [connected]="param.displayState?.connected">
+    </sn-param-connection> <!-- id use for link calcul -->
+    
+</div>

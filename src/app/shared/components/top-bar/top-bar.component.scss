@@ -1,0 +1,125 @@
+@import "../../../../styles.scss";
+
+.top-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: $TOP-BAR-HEIGHT;
+    background-color: $COLOR-BG-DARK;
+    z-index: 2;
+
+    .top-bar-drag {
+        height: 100%;
+        width: 100%;
+        background-color: transparent;
+        -webkit-app-region: drag;
+    }
+
+    .top-bar-buttons {
+        position: absolute;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        color: lighten($COLOR-BG, 20%);
+        -webkit-app-region: no-drag;
+    }
+
+    .top-bar-button {
+        position: relative;
+        border-radius: 50%;
+        width: $TOP-BAR-HEIGHT - 10px;
+        height: $TOP-BAR-HEIGHT - 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $EDITOR-COLOR-INPUTS;
+            animation: .5s fade-in;
+            color:white;
+        }
+    }
+
+    .connection-active {
+        color: green;
+
+        &:hover {
+            background-color: $COLOR-CTO;
+            animation: .5s fade-in;
+            color:white;
+        }
+    }
+
+    .top-bar-button.minimize {
+        font-size: 15px;
+        &:hover{
+            background-color: $COLOR-CTO;
+            animation: .5s fade-in;
+            color:white;
+        }
+    }
+
+    .top-bar-button.close {
+        font-size: 20px;
+        &:hover{
+            background-color: $COLOR-WARN;
+            animation: .5s fade-in;
+            color:white;
+        }
+    }
+
+    .top-bar-button-mac {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        margin-left: 13px;
+    }
+
+    .top-bar-button-mac.close {
+        background: #ff5c5c;
+        border: 1px solid #e33e41;
+
+        &:hover {
+            background: #c14645;
+            border: 1px solid #b03537;
+        }
+    }
+
+    .top-bar-button-mac.minimize {
+        background: #ffbd4c;
+        border: 1px solid #e09e3e;
+
+        &:hover {
+            background: #c08e38;
+            border: 1px solid #af7c33;
+        }
+    }
+
+    .top-bar-button-mac.maximize {
+        background: #00ca56;
+        border: 1px solid #14ae46;
+
+        &:hover {
+            background: #029740;
+            border: 1px solid #128435;
+        }
+    }
+
+    .top-bar-buttons.mac {
+        left: 20px;
+        top: 14px;
+    }
+
+    .top-bar-buttons.not-mac {
+        right: 5px;
+        top: 5px;
+    }
+
+}
+
+@keyframes fade-in {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}

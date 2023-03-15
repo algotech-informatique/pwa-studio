@@ -1,0 +1,18 @@
+<div #tabsContainer class="tabs">
+    <div
+        class="tab"
+        *ngFor="let t of tabs"
+        (click)="clickSelectTab(t)"
+        (auxclick)="onAuxClickTab($event, t)"
+        (contextmenu)="onRightClickTab($event, t)"
+        [appDragTabSource]="t"
+        [ngClass]="{'selected':t.selected}">
+        <div class="drag-hook left" [appDragTabTarget]="t"></div>
+        <div class="drag-hook right" [appDragTabTarget]="t"></div>
+        <i [class]="t.icon + ' tab-type'"></i>
+        <span>
+            {{ t.title }}
+        </span>
+        <i (click)="clickCloseTab(t)" class="fa-solid fa-xmark tab-close"></i>
+    </div>
+</div>

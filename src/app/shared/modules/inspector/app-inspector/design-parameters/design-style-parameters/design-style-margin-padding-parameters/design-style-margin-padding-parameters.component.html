@@ -1,0 +1,22 @@
+<div class="button-more property" [ngClass]="{'last': !showMore}" (click)="toggleShowMore()">
+    <i [class]="showMore ? 'fa-solid fa-caret-down' : 'fa-solid fa-caret-right'"></i>
+    <span>{{'INSPECTOR.APP.TAB.DESIGN.MORE-MARGIN-PADDING' | translate}}</span>
+</div>
+
+<div *ngIf="showMore">
+    <div class="property">
+        <design-style-margin-parameters
+            [title]="'INSPECTOR.APP.TAB.DESIGN.ICON.MARGIN' | translate"
+            [marginValue]="style?.margin"
+            (changed)="onMarginChanged($event)">
+        </design-style-margin-parameters>
+    </div>
+    
+    <div class="property last">
+        <design-style-margin-parameters
+            [title]="'INSPECTOR.APP.TAB.DESIGN.ICON.PADDING' | translate"
+            [marginValue]="style?.padding"
+            (changed)="onPaddingChanged($event)">
+        </design-style-margin-parameters>
+    </div>
+</div>

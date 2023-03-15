@@ -1,0 +1,22 @@
+<div class="date">
+    <div class="label" *ngIf="label">
+        {{ label }}
+    </div>
+
+    <div class="element">
+        <div class="edit-text">
+            <input #input type="datetime-local" class="input" [value]="duration" [readonly]="readOnly"
+                [ngClass]="{'bottom-border': includeBottomBorder}" (change)="onSelectDate(input.value)" />
+
+            <div class="icon">
+                <i class="fa-solid fa-calendar-days"></i>
+            </div>
+        </div>
+
+        <div class="bottom-border" *ngIf="includeBottomBorder">
+        </div>
+
+    </div>
+
+
+</div>

@@ -1,0 +1,21 @@
+<div class="content">
+    <div class="options">
+        <span class="title">{{'EXPLORER-TRACKING-SETTINGS' | translate}} </span>
+        <span class="subtitle">({{'SETTINGS.SECURITY.AUTH.SESSION_OPTION' | translate}})</span>
+        <div class="inputs">
+            <span class="subtitle">{{'OPEN-DEBUGGER-ONCHECK' | translate}}</span>
+            <div class="option" *ngFor="let option of options">
+                <input type="checkbox" [(ngModel)]="option.openDebug" (change)="updateOptions()"> <span
+                    (click)="updateOpenDebug(option)">{{option.key |
+                    translate}}</span>
+            </div>
+            <span class="subtitle">{{'RUN-CHECK' | translate}}</span>
+            <div class="option" *ngFor="let option of options">
+                <input type="checkbox" [disabled]="option.key !== 'onDesign'" [(ngModel)]="option.check"
+                    (change)="updateOptions()">
+                <span [ngClass]="{'disabled': option.key !== 'onDesign'}"
+                    (click)="updateCheck(option)">{{option.key | translate}}</span>
+            </div>
+        </div>
+    </div>
+</div>

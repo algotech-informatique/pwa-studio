@@ -1,0 +1,6 @@
+<div class="menu">
+  <div class="action" *ngFor="let action of actions" (click)="click(action)">
+    <div class="title">{{ action.title | translate }}</div>
+    <i *ngIf="action.icon" class="icon fas" [class]="action.icon"></i>
+  </div>
+</div>

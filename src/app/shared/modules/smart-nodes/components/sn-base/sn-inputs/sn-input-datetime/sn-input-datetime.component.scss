@@ -1,0 +1,46 @@
+.input-datetime {
+    background-color: var(--SN-NODE-PARAM-COLOR-DATETIME-FADE);
+    border-radius: var(--SN-ELEMENT-BORDER-RADIUS);
+    height: var(--SN-NODE-PARAM-INPUT-LINE-HEIGHT);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+
+    .input {
+        background-color: transparent;
+        border: 0;
+        width: var(--SN-NODE-PARAM-INPUT-LINE-WIDTH);
+        height: var(--SN-NODE-PARAM-INPUT-LINE-HEIGHT);
+        margin: 0 0 0 5px;
+        font-size: var(--SN-NODE-PARAM-SIZE);
+        z-index: 1;
+    }
+    
+    .input[type=datetime-local]::-webkit-calendar-picker-indicator {
+        opacity: 0;
+        cursor: pointer;
+        margin-left: 0px;
+    }
+
+    .input[type=datetime-local]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        display: none;
+    }
+
+    .input[type=datetime-local]::-webkit-clear-button {
+        display: none;
+        -webkit-appearance: none;
+    }
+
+    .input:focus {
+        outline: none;
+    }
+
+    .fa-solid {
+        margin-right: 5px;
+        font-size: var(--SN-NODE-PARAM-SIZE);
+        position: absolute;
+        right: 0;
+    }
+}

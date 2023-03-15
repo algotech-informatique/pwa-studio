@@ -1,0 +1,21 @@
+<design-position-parameters *ngIf="!widget || !(widget | widgetType)?.disabledBox"
+    [snApp]="snApp"
+    [page]="page"
+    [widget]="widget?.displayState?.rule | resolveRule: widget"
+    (positionChanged)="onChanged()">
+</design-position-parameters>
+
+<design-custom-parameters
+    [snApp]="snApp"
+    [page]="page"
+    [widget]="widget?.displayState?.rule | resolveRule: widget"
+    [box]="(widget?.displayState?.rule | resolveRule: widget)?.box"
+    [css]="(widget?.displayState?.rule | resolveRule: widget)?.css"
+    [custom]="(widget?.displayState?.rule | resolveRule: widget)?.custom"
+    (changed)="onChanged()">
+</design-custom-parameters>
+
+<design-style-parameters
+    [snApp]="snApp"
+    (changed)="onChanged()">
+</design-style-parameters>

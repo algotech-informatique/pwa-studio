@@ -1,0 +1,28 @@
+<div class="property inside-card"
+    [ngClass]="{'last': !pipeEvent.action}">
+    <select-element
+        [title]="'INSPECTOR.WIDGET.EVENT.PAGE::NAV' | translate"
+        [list]="apps"
+        [selectedKey]="pipeEvent.action"
+        (selectNewItem)="onSelectApp($event)">
+    </select-element>
+</div>
+
+<div *ngIf="pipeEvent.action" class="property inside-card"
+    [ngClass]="{'last': (!eventInputs || eventInputs?.length === 0)}">
+    <select-element
+        [title]="'SN-APP.WIDGET.EVENT.TYPE.PAGE' | translate"
+        [list]="pages"
+        [selectedKey]="pipeEvent.custom?.page"
+        (selectNewItem)="onSelectPage($event)">
+    </select-element>
+</div>
+
+<div *ngIf="eventInputs?.length > 0"
+    class="property inside-card last">
+    <event-inputs
+        [inputs]="eventInputs"
+        [data]="inputsData"
+        (inputsChanged)="onInputsChanged($event)">
+    </event-inputs>
+</div>

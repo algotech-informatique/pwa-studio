@@ -1,0 +1,45 @@
+<div class="content">
+
+	<div class="title">
+
+		<div class="options">
+			<div class="task-title"
+				[ngClass]="{'task-title-selected': activeSelected}"
+				(click)="onSelectedOption(true)"
+			>
+				{{ 'SMART-TASKS.LIST-ACTIVE' | translate:{ total: smartTaskActive.length } }}
+			</div>
+			
+			<div class="task-title"
+				[ngClass]="{'task-title-selected': !activeSelected}"
+				(click)="onSelectedOption(false)"
+			>
+				{{ 'SMART-TASKS.LIST-INACTIVE' | translate:{ total: smartTaskInActive.length } }}
+			</div>
+		</div>
+		
+		<div
+            class="new-task"
+            (click)="createNewTask()"
+		>
+			<span>{{ 'SMART-TASKS.NEW-TASK' | translate }}</span>
+		</div>
+	</div>
+
+	<div class="lists">
+		<options-object-list class="list" *ngIf="activeSelected"
+			[selectId]="selectedId"
+			[optionObjects]="smartTaskActive"
+			(selectedObject)="onSelectedObject($event)"
+		>
+		</options-object-list>
+
+		<options-object-list class="list" *ngIf="!activeSelected"
+			[selectId]="selectedId"
+			[optionObjects]="smartTaskInActive"
+			(selectedObject)="onSelectedObject($event)"
+		>
+		</options-object-list>
+	</div>
+
+</div>

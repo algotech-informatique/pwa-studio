@@ -1,0 +1,13 @@
+@import '../../../../theme/mixins';
+
+.property {
+    @include property;
+}
+
+.select-inline-justify {
+    @include align-items-inputs;
+
+    .justify-icon {
+        height: 15px;
+    }
+}

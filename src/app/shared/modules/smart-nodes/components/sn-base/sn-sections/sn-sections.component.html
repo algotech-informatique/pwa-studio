@@ -1,0 +1,12 @@
+<div class="sections" *ngIf="sections">
+    <div class="section"  *ngFor="let section of sections">
+        <sn-section
+            *ngIf="!section.hidden"
+            [section]="section"
+            [settings]="settings"
+            [snView]="snView"
+            [node]="node"
+            (sectionClicked)="onSectionClicked($event)"
+        ></sn-section>
+    </div>
+</div>

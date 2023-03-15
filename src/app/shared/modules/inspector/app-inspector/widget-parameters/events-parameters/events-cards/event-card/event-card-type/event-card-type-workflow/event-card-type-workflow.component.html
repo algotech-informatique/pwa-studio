@@ -1,0 +1,54 @@
+<div class="property inside-card"
+    [ngClass]="{'last': (!eventInputs || eventInputs?.length === 0) && (!eventProfiles || eventProfiles?.length === 0)}">
+    <select-element
+        [title]="'SN-APP.WIDGET.EVENT.TYPE.WORKFLOW' | translate"
+        [list]="workflows"
+        [selectedKey]="pipeEvent.action"
+        (selectNewItem)="onSelectWorkflow($event)">
+    </select-element>
+</div>
+
+<div *ngIf="eventInputs?.length > 0" class="property inside-card"
+    [ngClass]="{'last': !eventProfiles || eventProfiles?.length === 0}">
+    <event-inputs
+        [inputs]="eventInputs"
+        [data]="inputsData"
+        (inputsChanged)="onInputsChanged($event)">
+    </event-inputs>
+</div>
+
+<div *ngIf="eventProfiles?.length > 0" class="property inside-card last">
+    <span class="title">{{ 'SETTINGS.WORKFLOWS.PROFILS' | translate }}</span>
+    <event-profiles
+        [pair]="pipeEvent.custom?.pair"
+        [eventProfiles]="eventProfiles"
+        (profilesChanged)="onProfilesChanged($event)">
+    </event-profiles>
+</div>
+
+<div class="advanced-container">
+    <div *ngIf="pipeEvent.action"
+        class="advanced-button"
+        [ngClass]="{'subcard': eventProfiles?.length > 1}"
+        (click)="toggleShowAdvanced()">
+        <i [class]="showAdvanced ? 'fa-solid fa-caret-down' : 'fa-solid fa-caret-right'"></i>
+        <p>{{ 'SETTINGS.WORKFLOWS.ADVANCED-PARAMS' | translate }}</p>
+    </div>
+    
+    <div *ngIf="showAdvanced" class="advanced">
+        <div class="property inside-card">
+            <select-element
+                [title]="'SETTINGS.WORKFLOWS.SAVINGMODE' | translate"
+                [list]="saveModesList"
+                [selectedKey]="pipeEvent?.custom?.savingMode"
+                [showSearch]="false"
+                (selectNewItem)="onSelectSaveMode($event)">
+            </select-element>
+        </div>
+        <display-check-element class="property inside-card"
+            [title]="'SETTINGS.WORKFLOWS.UNIQUE' | translate"
+            [value]="pipeEvent?.custom?.unique"
+            (changed)="onUniqueChanged($event)">
+        </display-check-element>
+    </div>
+</div>

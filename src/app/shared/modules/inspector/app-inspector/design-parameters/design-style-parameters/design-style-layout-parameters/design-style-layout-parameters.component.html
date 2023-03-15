@@ -1,0 +1,40 @@
+<div *ngIf="showDirection" class="property">
+    <select-inline-element
+        [title]="'INSPECTOR.APP.TAB.DESIGN.LAYOUT.DIRECTION' | translate"
+        [items]="directionList"
+        [selectedKeys]="[layoutStyle?.['flex-direction']]"
+        (selectItem)="onChangedDirection($event)">
+    </select-inline-element>
+</div> 
+
+<div *ngIf="showJustify" class="property" [ngClass]="{'last': layoutStyle?.gap === undefined && layoutStyle?.['align-items'] === undefined}">
+    <select-inline-element
+        [title]="'INSPECTOR.APP.TAB.DESIGN.LAYOUT.JUSTIFY' | translate "
+        [items]="justifyList"
+        [withImages]="true"
+        [iconRotation]="justifyIconRotation"
+        [selectedKeys]="[layoutStyle?.['justify-content']]"
+        (selectItem)="onChangedJustify($event)">
+    </select-inline-element>
+</div>
+
+<div *ngIf="layoutStyle?.['align-items'] !== undefined" class="property" [ngClass]="{'last': layoutStyle?.gap === undefined}">
+    <select-inline-element
+        [title]="'INSPECTOR.APP.TAB.DESIGN.LAYOUT.ALIGN' | translate "
+        [items]="alignList"
+        [withImages]="true"
+        [iconRotation]="alignIconRotation"
+        [selectedKeys]="[layoutStyle?.['align-items']]"
+        (selectItem)="onChangedAlign($event)">
+    </select-inline-element>
+</div>
+
+<div *ngIf="layoutStyle?.gap !== undefined" class="property last">
+    <display-definition-values
+        [width]="layoutStyle?.gap"
+        widthLabel=""
+        [title]="'INSPECTOR.APP.TAB.DESIGN.LAYOUT.GAP' | translate"
+        [roundValue]="true"
+        (changedWidth)="onChangedGap($event)">
+    </display-definition-values>
+</div>

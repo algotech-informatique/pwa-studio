@@ -1,0 +1,16 @@
+<div class="element">
+    <div class="label" *ngIf="label">
+        {{ label }}
+    </div>
+
+    <div class="link" [ngClass]="{'multiline': multiline}">
+        <div class="link-text">
+            <div class="copy" [ngClass]="{'multiline': multiline}" [appCopyClipBoard]="copyText" (copied)="notify($event)">
+                {{ copyText }}
+            </div>
+            <i class="fa fa-clipboard icon"></i>   
+        </div>
+        <div class="border-bottom" *ngIf="includeBottomBorder"></div>
+    </div>
+    
+</div>

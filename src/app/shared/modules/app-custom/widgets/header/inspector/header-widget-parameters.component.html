@@ -1,0 +1,14 @@
+<app-inspector-section
+    [snApp]="snApp"
+    [title]="'Propriétés' | translate"
+    [ngClass]="{'first': !(widget?.rules?.length > 0)}">
+
+    <div class="property last">
+        <display-check-element
+            [title]="'INSPECTOR.WIDGET.HEADER.SHOW-HIDE-EFFECT' | translate"
+            [value]="widget?.custom?.hideRevealEffect"
+            (changed)="onHideRevealEffectChanged($event)">
+        </display-check-element>
+    </div>
+
+</app-inspector-section>

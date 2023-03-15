@@ -1,0 +1,19 @@
+<div class="message">
+  <div class="title">{{ action | translate }} {{ message | translate }}</div>
+  <div class="toolbar">
+    <div class="section">
+      <div class="item action valide" [title]="'SO-FORM-PROPERTY-BOOL-YES' | translate" (click)="onValidate(true)">
+        <i class="fa-solid fa-circle-check style-icon"></i>
+        <div class="title">
+          {{ 'SO-FORM-PROPERTY-BOOL-YES' | translate }}
+        </div>
+      </div>
+      <div class="item action" [title]="'SO-FORM-PROPERTY-BOOL-NO' | translate" (click)="onValidate(false)">
+        <i class="fa-solid fa-xmark style-icon"></i>
+        <div class="title">
+          {{ 'SO-FORM-PROPERTY-BOOL-NO' | translate }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

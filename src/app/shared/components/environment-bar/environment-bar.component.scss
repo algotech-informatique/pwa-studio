@@ -1,0 +1,73 @@
+@import "../../../../styles.scss";
+
+.bar {
+    display: flex;
+    width: 100%;
+    height: $BAR-HEIGHT;
+    margin: 0;
+    padding: 0;
+    background-color: $COLOR-WARN-ACTIVE;
+    justify-content: space-between;
+    
+    .bar-section {
+        display: flex;
+        color: $COLOR-FG;
+        align-items: center;
+
+        .bar-button {
+            position: relative;
+            height: $BAR-HEIGHT;
+            padding: 0 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+
+            .bar-button-text {
+                font-size: 14px;
+                margin-left: 5px;
+            }
+
+            .bar-text {
+                width: 70px;
+            }
+        }
+        
+        .bar-button:hover {
+            background-color: $COLOR-CTO-LIGHT;
+        }
+    }
+
+    .start {
+        padding-left: 15px;
+        justify-content: flex-start;
+    }
+
+    .end {
+        padding-right: 15px;
+        justify-content: flex-end;
+        width: 100%;
+    }
+
+    .bar-popup-languages {
+        position:absolute;
+        bottom : $BAR-HEIGHT;
+        background-color: $COLOR-WARN-ACTIVE;
+        color:$COLOR-FG;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border-top-left-radius: $GLOBAL-RADIUS;
+        border-top-right-radius: $GLOBAL-RADIUS;
+
+        .bar-popup-lang {
+            text-align: center;
+            padding: 3px;
+
+            &:hover{
+                font-weight: bold;
+            }
+        }
+    }
+}

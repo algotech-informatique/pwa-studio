@@ -1,0 +1,17 @@
+@import '../../../../theme/mixins';
+
+.property {
+    @include property;
+}
+
+.button-more {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    margin-top: 8px;
+    user-select: none;
+
+    i {
+        margin-right: 5px;
+    }
+}

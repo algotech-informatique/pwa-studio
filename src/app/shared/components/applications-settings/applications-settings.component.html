@@ -1,0 +1,23 @@
+<div class="content">
+
+    <div class="applications-settings">
+        <applications-settings-main
+            [groups]="groups"
+            [selectedUuid]="selectedUuid"
+            [(search)]="search"
+            (selectedGroup)="onSelectedGroup($event)">
+        </applications-settings-main>
+    </div>
+    
+    <div class="applications-settings" *ngIf="selectedUuid">
+        <applications-settings-detail
+            [groups]="groups"
+            [group]="selectedGroup"
+            [customerKey]="customerKey"
+            [host]="host"
+            (updateGroup)="onUpdateGroup($event)"
+            (updateAllGroups)="onUpdateAllGroups($event)">
+        </applications-settings-detail>
+    </div>
+
+</div>

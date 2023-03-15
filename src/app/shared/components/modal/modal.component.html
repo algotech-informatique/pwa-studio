@@ -1,0 +1,14 @@
+<div class="modal" *ngIf="_open">
+    <div class="modal-mask"></div>
+    <div class="modal-window">
+        <div class="modal-window-title">
+            <i *ngIf="iconTitle" [class]="iconTitle + ' modal-window-title-icon'"></i>
+            <span>{{ title }}</span>
+            <i *ngIf="closable" (click)="close()" class="fa-solid fa-xmark modal-window-title-close">
+            </i>
+        </div>
+        <div class="modal-window-content w3-container">
+            <ng-content></ng-content>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="options-popover" #popover
+    [ngStyle]="{'top': top ? top + 'px' : 'auto', 'left': left + 'px', 'width': withArrow ? '200px' : containerWidth + 'px'}">
+    <div *ngIf="withArrow && yPosition === 'bottom'"
+        class="arrow bottom"
+        [ngStyle]="{'margin-left': arrowLeftMargin + 'px'}">
+    </div>
+    <div class="content">
+        <options-search
+            class="search"
+            [autofocus]="true"
+            [(search)]="search"
+            (searchValue)="onSearch($event)">
+        </options-search>
+
+        <div *ngIf="filteredInputList?.length > 0" class="list">
+            <div *ngFor="let input of filteredInputList" class="element" (click)="selectInput(input)">
+                <i *ngIf="input.icon" [class]="input.icon + ' icon'"></i>
+                <div class="value" [title]="input.value">{{ input.value }}</div>
+            </div>
+        </div>
+        <i *ngIf="filteredInputList?.length === 0" class="fa-solid fa-ban empty-icon"></i>
+    </div>
+    <div *ngIf="withArrow && yPosition === 'top'"
+        class="arrow top"
+        [ngClass]="[yPosition]"
+        [ngStyle]="{'margin-left': arrowLeftMargin + 'px'}">
+    </div>
+</div>

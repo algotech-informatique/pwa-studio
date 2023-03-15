@@ -1,0 +1,111 @@
+@import "../../../../../../styles.scss";
+
+:host {
+    --LABEL-COLOR: #2D9CDB;
+    --TITLE-COLOR-SELECTED: #ffffff;
+    --TITLE-COLOR-NO-SELECTED: #A0A7B4;
+    --BUTTON-ADD-COLOR: #27AE60;
+    --BUTTON-REMOVE-COLOR: #FF6473;
+    --SHOW-LANGS-COLOR: #2D9CDB;
+    --LIST-WIDTH: 350px;
+    --TITLE-MARGIN-BOTTOM: 20px;
+    --LIST-MARGIN: 10px;
+}
+
+.content {
+    width: var(--LIST-WIDTH);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 100%;
+    @include scrollbar-hidden();
+
+    .title {
+        display: flex;  
+        flex-direction: row;
+        justify-content: flex-end;
+        height: 50px;
+        padding: 10px;
+        margin-bottom: var(--TITLE-MARGIN-BOTTOM);
+    } 
+
+    .glist {
+        height: 150px;
+
+        .elements {
+            margin: 10px 10px 20px 10px;
+            max-width: 250px;
+    
+            label {    
+                @include option-label(var(--LABEL-COLOR));
+            }
+
+            .element {
+                margin-left: 5px;
+            }
+    
+            .element-end {
+                display: flex;
+                flex-direction: row;
+                
+                .subElement {
+                    --OPTIONS-CHECK-MARGIN: var(--CHECK-MARGIN);
+                    padding-top: 10px;
+                }
+
+                .element-date {
+                    margin-top: 8px;
+                }
+            }
+     
+            .border-bottom {
+                width: 100%;
+                margin-top: 5px;
+                border-bottom: 2px solid var(--LABEL-COLOR);
+            }
+        }
+    }   
+
+    .details {
+        margin: var(--LIST-MARGIN);
+        display: flex;
+        flex-direction: column;
+        height: calc(100% - 275px);
+
+        .detail {
+            height: 100%;
+        }
+    }
+
+    .footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100%;
+        padding: 10px 0 15px 0;
+
+        .delete-list {
+            @include button();
+            background-color: var(--BUTTON-REMOVE-COLOR) !important;
+
+            span {
+                padding: 0px 10px 0px 10px;
+                @include option-title-selected(var(--TITLE-COLOR));
+            }
+        }
+
+        .delete-list:hover {
+            cursor: pointer;
+            opacity: 0.5;
+        }
+    }
+}
+
+.all-langs {
+    width: 650px;           
+}
+
+.new-list {
+    pointer-events: none;
+    opacity: 0.5;
+}

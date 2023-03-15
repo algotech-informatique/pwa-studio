@@ -1,0 +1,36 @@
+<div class="content">
+
+    <div class="title">
+        <div class="task-title">
+            {{ 'SMART-TASKS.TASK-LOG' | translate }}
+        </div>
+
+        <div class="buttons">
+            <div
+                class="reload"
+                (click)="onReloadLog()"
+            >
+                <i class="fa-solid fa-rotate"></i>
+            </div>
+
+            <div
+                class="export-csv"
+                (click)="exportCSV()"
+		    >
+			    <span>{{ 'SMART-TASKS.TASK-LOG.EXPORT-CSV' | translate }}</span>
+		    </div>
+        </div>
+        
+    </div>
+
+    <div class="logs">
+        <options-object-list
+            class="list"
+            *ngIf="smartLogs"
+            showLine="false"
+			[optionObjects]="smartLogs"
+		>
+		</options-object-list>
+    </div>
+
+</div>

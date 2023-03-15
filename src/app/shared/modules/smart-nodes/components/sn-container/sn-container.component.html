@@ -1,0 +1,41 @@
+<div class="container" *ngIf="container" 
+    [id]="container.id"
+    [ngClass]="{
+        'group': type === 'group',
+        'box': type === 'box',
+        'dragHover': container.displayState?.dragHover,
+        'bringToFront': container.displayState?.bringToFront, 
+        'selected': container.displayState?.selected }"
+    >
+
+    <div class="header" [ngStyle]="{'background': container.color}">
+        <span class="name">
+            {{container.displayName | snlang}}
+        </span>
+
+        <i class="fa-solid fa-comment-medical comment" (click)="openComment()"></i>
+    </div>
+
+    <div class="content" 
+        (click)="select($event)"
+        [ngStyle]="{'background': container.color ? container.color : 'inherit'}">
+
+        <div class="container-icon container-open" (click)="onContainerClose()" *ngIf="!container.open">
+            <div class="icon-style">
+                <div>
+                    <i class="fa-solid fa-arrow-up"></i>    
+                </div>
+                <i class="fa-solid fa-box-open"></i>            
+            </div>  
+        </div> 
+    </div>    
+
+    <div class="container-icon container-close" (click)="onContainerClose()" *ngIf="container.open" >
+        <div class="icon-style">
+            <div>
+                <i class="fa-solid fa-arrow-down"></i>    
+            </div>
+            <i class="fa-solid fa-box-open"></i>            
+        </div>        
+    </div>
+</div>

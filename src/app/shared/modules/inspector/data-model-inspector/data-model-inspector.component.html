@@ -1,0 +1,98 @@
+<inspector-layout *ngIf="buttons?.length > 0 && snView"
+    [barButtons]="buttons"
+    [selected]="selected"
+    [opened]="inspectorOpened"
+    (closeInspector)="onCloseInspector()"
+    (selectButton)="onSelectButton($event)">
+
+    <div *ngIf="selected === 'param'">
+        <field-inspector *ngIf="fieldOptions && context?.element?.direction === 'in'"
+            [fieldOptions]="fieldOptions"
+            [snModel]="snModel"
+            [snView]="snView"
+            (changed)="onFieldsOptionChanged()">
+        </field-inspector>
+    </div>
+
+    <div *ngIf="selected === 'node'">
+        <div *ngIf="nodeContextElement">
+            <inspector-section [title]="'INSPECTOR.SMART_FLOW.PROPERTIES' | translate" class="first">
+                <div class="property">
+                    <display-key-element
+                        [title]="'INSPECTOR.SMART_FLOW.PROPERTIES_KEY' | translate"
+                        [key]="nodeContextElement.custom?.key"
+                        [snModel]="snModel"
+                        [disabled]="enabledDisplayKey"
+                        case="lowercase"
+                        (changed)="onChangeElementDisplayKey($event)">
+                    </display-key-element>
+                </div>
+                <div class="property">
+                    <display-translate-element
+                        [title]="'INSPECTOR.SMART_FLOW.PROPERTIES_NAME' | translate"
+                        [displayText]="nodeContextElement.displayName"
+                        (changed)="onChangeElementDisplayName($event)">
+                    </display-translate-element>
+                </div>
+                <div class="property">
+                    <multi-select-element
+                        [title]="'INSPECTOR.DATA-MODEL.UNIQUEKEYS' | translate"
+                        [list]="propertiesList"
+                        [selectedKeys]="nodeContextElement.custom?.uniqueKeys"
+                        [showSearch]="false"
+                        (selectNewItems)="updateUniqueKeys($event)">
+                    </multi-select-element>
+                </div>
+                <div class="property last">
+                    <display-name-element
+                        [title]="'Description' | translate"
+                        [name]="nodeContextElement.custom?.description"
+                        (changed)="onChangeDescription($event)">
+                    </display-name-element>
+                </div>
+            </inspector-section>
+
+            <inspector-section [title]="'INSPECTOR.DATA-MODEL.SKILLS' | translate">
+                <div class="property last">
+                    <sn-display-radio
+                        [radioList]="skillsItems?.radioList"
+                        [selected]="skillsItems?.selected"
+                        (changed)="onSkillsChanged($event)">
+                    </sn-display-radio>
+                </div>
+            </inspector-section>
+
+            <inspector-section [title]="'INSPECTOR.MODEL.PERMISSIONS' | translate">
+                <permissions
+                    [custom]="custom"
+                    [permissions]="nodeContextElement.custom?.permissions"
+                    (changed)="onPermissionsChanged($event)"
+                    (applyAll)="onPermissionsApplyAll($event)">
+                </permissions>
+            </inspector-section>
+        </div>
+    </div>
+
+    <div *ngIf="selected !== 'node' && selected !== 'param'">
+        <inspector-section [title]="'INSPECTOR.SMART_FLOW.PROPERTIES' | translate" class="first">
+            <div class="property">
+                <display-translate-element
+                    [title]="'INSPECTOR.SMART_FLOW.PROPERTIES_NAME' | translate"
+                    [displayText]="context?.element?.displayName"
+                    (changed)="onChangeElementDisplayName($event)">
+                </display-translate-element>
+            </div>
+
+            <div class="property last"
+                *ngIf="selected === 'group'"
+            >
+                <color-element
+                    [color]="context?.element?.color"
+                    (changed)="onChangeElementColor($event)"
+                >
+                </color-element>
+            </div>
+        </inspector-section>
+    </div>
+
+</inspector-layout>

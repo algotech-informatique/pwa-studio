@@ -1,0 +1,41 @@
+@import "../../../../../theme/mixins";
+
+@include app-errors;
+.event {
+    @include card-element(10px);
+    padding: 0;
+    margin: 0;
+}
+  
+.event-arrow {
+    display: flex;
+    justify-content: center;
+    height: 16px;
+}
+
+.property {
+    @include property;
+}
+
+.advanced {
+    background-color: var(--INSPECTOR-CARD-CONTENT-BACKGROUND-TINT);
+    padding-bottom: 10px;
+}
+
+.advanced-button {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px;
+    text-transform: uppercase;
+    background-color: var(--INSPECTOR-CARD-CONTENT-BACKGROUND-TINT);
+
+    i {
+        margin-right: 5px;
+    }
+
+    p {
+        margin: 0;
+        font-size: 11px;
+    }
+}

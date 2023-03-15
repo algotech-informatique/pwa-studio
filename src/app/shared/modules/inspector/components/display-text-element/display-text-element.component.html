@@ -1,0 +1,69 @@
+<div class="display-text">
+
+    <span *ngIf="title" class="title">{{ title }}</span>
+    
+    <div class="text-element">
+        <div class="area with-buttons">
+            <div class="options">
+                <div class="icon"
+                    (click)="selectMode('edition')"
+                    [ngClass]="{'selected': mode === 'edition' }">
+                    <i class="fa-solid fa-pen"></i>
+                </div>
+                <div class="icon"
+                    (click)="selectMode('preview')"
+                    [ngClass]="{'selected': mode === 'preview' }">
+                    <i class="fa-solid fa-eye"></i>
+                </div>
+            </div>
+    
+            <textarea
+                #textarea
+                name="textarea"
+                cols="40"
+                spellcheck="false"
+                [rows]="rows"
+                (keyup)="changeValue(false)"
+                (change)="changeValue(true)"
+                [(ngModel)]="textShowed">
+            </textarea>
+        </div>
+    
+        <div #container class="bottom" [ngStyle]="{'justify-content': showDataSelector ? 'space-between' : 'flex-end'}">
+            <i *ngIf="items && showDataSelector"
+                [ngClass]="{'selected': dataSelectorShowed}"
+                class="fa-solid fa-bullseye data-selector-button"
+                (click)="openDataSelector($event)">
+            </i>
+    
+            <div class="lang-selector" *ngIf="languages.length > 0">
+                <div class="selected-lang" (click)="openChooseLanguage()">
+                    {{selectedLang.lang | slice:0:2 | titlecase}}
+                    <i class="fa-solid fa-caret-down"></i>
+                </div>
+                <lang-selector-pop-up
+                    snView="null"
+                    [(top)]="top"
+                    [langs]="languages"
+                    short="false"
+                    [selected]="selectedLang"
+                    (changed)="onLangChanged($event)">
+                </lang-selector-pop-up>
+            </div>
+        </div>
+    
+        <popup-element *ngIf="items"
+            [show]="dataSelectorShowed"
+            [container]="textContainer"
+            [popupMargin]="popupMargin"
+            (closePopup)="closeDataSelector()">
+            <data-selector
+                [show]="dataSelectorShowed"
+                [items]="items"
+                [expectedTypes]="['string']"
+                (selectedData)="addInput($event)">
+            </data-selector>
+        </popup-element>    
+    </div>
+
+</div>

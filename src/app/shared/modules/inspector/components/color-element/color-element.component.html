@@ -1,0 +1,53 @@
+<div class="color-element">
+    <span class="title">{{ title | translate }}</span>
+    
+    <div #container class="select">
+        <div class="color-block" (click)="colorPopUp($event)">
+            <div class="color-plain" [ngStyle]="{'background-color': plainColor}"></div>
+            <div class="color-real" [ngStyle]="{'background-color': realColor}"></div>
+            <div class="transparency-background"></div>
+        </div>
+        <div class="color-input">
+            <input
+                type="text"
+                class="input"
+                (change)="onColorChange($event?.target?.value)"
+                [value]="realColor" />
+        </div>
+    </div>
+</div>
+
+
+<popup-element
+    [show]="showColorPicker"
+    [container]="colorContainer"
+    [popupMargin]="popupMargin"
+    [containerWidth]="false"
+    (closePopup)="showColorPicker = false">
+    <div class="color-picker">
+        <div class="color-element"
+            [cpToggle]="true"
+            [cpDialogDisplay]="'inline'"
+            [cpOutputFormat]="outputFormat"
+            [cpAlphaChannel]="showApptheme ? 'always' : 'disabled'"
+            [(colorPicker)]="realColor"
+            (colorPickerChange)="onColorChange($event)">
+        </div>
+
+        <div *ngIf="showApptheme" class="algotechColors">
+            <span class="theme-title">
+                {{"SN-TOOLBAR-APP-THEME" | translate}}
+            </span>
+            <div *ngFor="let group of themeColors" class="group">
+                <span class="theme-group title">{{ group?.display | translate }}</span>
+                <div *ngFor="let item of group?.colors"
+                    [title]="item?.hint | translate"
+                    [ngClass]="{'active': item?.color === color}"
+                    [style.background]="item?.color"
+                    class="color"
+                    (click)="onColorChange(item?.color)">
+                </div>
+            </div>
+        </div>
+    </div>
+</popup-element>

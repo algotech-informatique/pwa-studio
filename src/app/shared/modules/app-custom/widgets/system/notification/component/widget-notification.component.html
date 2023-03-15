@@ -1,0 +1,13 @@
+<div class="main" [ngStyle]="widget?.css?.main">
+    <div class="layout" [ngStyle]="widget?.css?.layout">
+        <i *ngIf="widget?.custom?.icon" [class]="widget?.custom?.icon"
+            [ngStyle]="widget?.css?.icon"
+        ></i>
+    </div>
+    
+    <div class="widget-counter" [ngStyle]="widget?.css?.counter">
+        <div class="counter">
+            {{ counterValue }}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+<div class="element">
+    {{ codeFormula }}(
+    <div class="element-fields" *ngFor="let field of fields">
+        <div class="fields" [ngStyle]="{'color': field.color}" [ngClass]="{'array': field.isArray, optional: field.isOptional}">
+            {{ field.code }}
+        </div>
+        <div [ngStyle]="{'color': field.color}" *ngIf="!field.isOptional">*</div>
+        <div [ngStyle]="{'color': field.color}"  *ngIf="field.isArray">[]</div>
+    </div>
+    )
+</div>

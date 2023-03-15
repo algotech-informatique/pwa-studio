@@ -1,0 +1,53 @@
+@import '../../../../smart-nodes/theme/mixins';
+
+.json-edit {
+    @mixin scrollbar {
+        overflow-y: auto;
+        @include custom-scrollbar;
+        overflow: none !important;
+        overflow-y: auto;
+    }
+    .json-text {
+        cursor: pointer;
+        background: var(--SN-COLOR-INPUT);
+        border-radius: 4px;
+        display: flex;
+        flex-direction: column;
+        height: 220px;
+        
+        margin-top: 5px;
+        margin-bottom: 5px;
+        padding-left: 10px;
+
+        .editorIcon {
+            position: relative;
+            top: 5px;
+        }
+
+        textarea {
+            pointer-events: none;
+            @include scrollbar;
+            padding: 4px;
+            margin: 5px;
+            border-radius: 0.2em;
+            background-color: var(--SN-COLOR-INPUT);
+            color: var(--SN-COLOR-FONT);
+            width: calc(100% - 10px);
+            height: calc(100% - 10px);
+            resize: none;
+            border: none;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            line-height: 15px;
+            font-size: 10px;
+            font-family: "Ubuntu Mono";
+        }
+    }
+
+    .error {
+        border: 0.5px solid var(--SN-COLOR-ERROR-SHADE);
+        textarea {
+            color: var(--SN-COLOR-ERROR-SHADE);
+        }
+    }
+}

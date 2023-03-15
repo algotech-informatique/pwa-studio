@@ -1,0 +1,53 @@
+@import '../../../../smart-nodes/theme/variables';
+@import '../../../../smart-nodes/theme/mixins';
+
+:host {
+    --SN-COLOR-SCROLLBAR: var(--SN-COLOR-PRIMARY);
+}
+
+.preview-content {
+    background: var(--SN-COLOR-INPUT);
+    padding: 2px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+        
+    .preview-text {        
+        color: var(--BACKGROUND-COLOR);  
+        margin: 10px 0px 10px 10px;
+        min-height: 80px;
+        max-height: 150px;
+        line-height: 90%;
+        white-space: pre-line;
+        @include custom-scrollbar;
+        overflow: none !important;
+        overflow-y: auto;
+    }
+
+    .footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+
+        .languages {
+            display: flex;
+            flex-direction: row;            
+
+            .language {
+                background-color: var(--SN-COLOR-SECONDARY);   
+                color : var(--SN-COLOR-FONT);
+                border-radius: 4px;
+                padding: 1px 5px 1px 5px;
+                margin: 7px 3px 7px 3px;
+
+                &:hover {
+                    cursor: pointer;
+                    opacity: 0.5;
+                }
+            }
+            .selected {
+                background-color: var(--SN-COLOR-ACTIVE);
+            }
+        }
+    }
+}

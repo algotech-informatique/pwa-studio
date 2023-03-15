@@ -1,0 +1,34 @@
+<div class="inspector">
+
+    <div [style.display]="opened ? 'block' : 'none'" class="opened">
+        <div class="header">
+            <div class="title">
+                <i *ngIf="selectedButton?.icon" class="icon" [ngStyle]="selectedButton.color && {'color': selectedButton.color}"
+                    [class]="selectedButton.icon"></i>
+                <img *ngIf="selectedButton?.img" class="image" [src]="'./assets/images/' + selectedButton.img + '.svg'">
+                <div class="name" [title]="selectedButton?.title">
+                    {{ selectedButton?.title }}
+                </div>
+            </div>
+            <i class="fa-solid fa-arrow-circle-right close" (click)="closeContent()"></i>
+        </div>
+        <div class="content" #container>
+            <ng-content></ng-content>
+        </div>
+    </div>
+
+    <div class="vert-bar">
+        <div *ngFor="let button of barButtons"
+            class="button"
+            [ngClass]="{'inactive': !opened || selectedButton?.key !== button.key}"
+            (click)="clickButton(button.key)">
+            
+            <i *ngIf="button.icon" class="icon" [ngStyle]="button.color && {'color': button.color}" [class]="button.icon"></i>
+            <img *ngIf="button.img" class="image" [src]="'./assets/images/' + button.img + '.svg'">
+            <div class="title" [title]="button.title">
+                {{ button.title }}
+            </div>
+        </div>
+    </div>
+
+</div>

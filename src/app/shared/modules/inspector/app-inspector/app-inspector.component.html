@@ -1,0 +1,57 @@
+<div class="content">
+    
+    <div *ngIf="widget || page" class="tabs">
+        <div class="tab" *ngFor="let tab of tabs"
+            [ngClass]="{
+                'selected-tab': tab?.tab?.key === selectedTab,
+                'locked': tab?.active === false
+            }"
+            (click)="onOpenTab(tab?.tab?.key)">
+            <span>{{ tab?.tab?.value | translate }}</span>
+        </div>
+        <lock-inspector-section class="lock"
+        [showLock]="appActions.update | isShared:snApp"
+        [locked]="appActions.update | isLocked:'widget'"
+        [section]="'widget'"
+        (lockChange)="handleChange($event)">
+        </lock-inspector-section>
+    </div>
+
+    <div *ngIf="widget?.rules?.length > 0" class="property last rules" [ngStyle]="widget?.displayState?.rule?.rule?.color &&
+        {'background-color': widget.displayState.rule.rule.color}">
+        <select-element
+            [title]="'INSPECTOR.WIDGET.RULE-STATUS-DISPLAY' | translate"
+            [subTitle]="'INSPECTOR.WIDGET.RULE-STATUS' | translate"
+            [list]="widgetStateList"
+            [selectedKey]="widget?.displayState?.rule?.rule?.id || 'default'"
+            (selectNewItem)="onSelectState($event)">
+        </select-element>    
+    </div>
+
+    <div #content class="parameters">
+        <design-parameters *ngIf="(widget || page) && selectedTab === 'design'"
+            [snApp]="snApp"
+            [page]="page"
+            [widget]="widget"
+            (changed)="onChanged()">
+        </design-parameters>
+    
+        <page-parameters *ngIf="!widget && page && selectedTab === 'behavior'"
+            [snApp]="snApp"
+            [page]="page"
+            (changed)="onChanged()"
+            (changedMain)="onChangedMain($event)">
+        </page-parameters>
+    
+        <widget-parameters *ngIf="widget && selectedTab !== 'design'"
+            [settings]="settings"
+            [page]="page"
+            [widget]="widget"
+            [snApp]="snApp"
+            [selectedTab]="selectedTab"
+            (changed)="onChanged()"
+            (rulesChanged)="onRulesChanged($event)">
+        </widget-parameters>
+    </div>
+
+</div>

@@ -1,0 +1,28 @@
+<div class="content scrollable">
+    
+    <div class="search">
+        <input 
+            #search
+            class="searchBox"
+            type="search"
+            [placeholder]="placeHolder"
+            (keyup)="filterElements()"
+            [(ngModel)]="searchValue"
+        >
+        <i class="fa-solid fa-xmark icon" (click)="clearSearchBar()" *ngIf="searchValue"></i>      
+      </div>
+  
+    <div *ngIf="snEntryComponentsFiltered" class="listGroups">
+        <div class="entry-group" *ngFor="let group of snEntryComponentsFiltered.groups">
+            <div class="item-group">
+                <span>{{ group.displayName | snlang }}</span>
+            </div>
+            <div class="element" *ngFor="let item of group.components" (click)="onClicked(item)">
+                <div class="icon">
+                    <i [class]="item.schema.icon"></i>
+                </div>                
+                <span class="name">{{item.displayName | snlang }}</span>                                        
+            </div>            
+        </div>
+    </div>
+  </div>

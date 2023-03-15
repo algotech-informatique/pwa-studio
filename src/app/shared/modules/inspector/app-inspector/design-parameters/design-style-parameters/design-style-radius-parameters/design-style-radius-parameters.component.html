@@ -1,0 +1,53 @@
+<div class="style-radius">
+    <span class="title">Radius</span>
+    
+    <div class="parameters">
+        <div class="line">
+            <img [ngClass]="{'selected': !showRadiusCorners}" class="radius-icon" (click)="cornersButtonClicked(true)" src="./assets/images/radius-all.svg" />
+            <img [ngClass]="{'selected': showRadiusCorners}" class="radius-icon" (click)="cornersButtonClicked(false)" src="./assets/images/radius-corner.svg" />
+            <display-definition-values
+                [width]="same ? radiusValues?.[0] : null"
+                widthLabel=""
+                [roundValue]="true"
+                (changedWidth)="onChanged($event)">
+            </display-definition-values>
+        </div>
+    
+        <div *ngIf="showRadiusCorners" class="line">
+            <div class="radius-corners">
+                <div class="input" class="inline-first" [title]="'SN-TOOLBOX-RADIUS.TOP-LEFT' | translate">
+                    <display-definition-values
+                        [width]="radiusValues?.[0]"
+                        widthLabel=""
+                        [roundValue]="true"
+                        (changedWidth)="onCornerChanged($event, 0)">
+                    </display-definition-values>
+                </div>
+                <div class="input" class="inline-inside" [title]="'SN-TOOLBOX-RADIUS.TOP-RIGHT' | translate">
+                    <display-definition-values
+                        [width]="radiusValues?.[1]"
+                        widthLabel=""
+                        [roundValue]="true"
+                        (changedWidth)="onCornerChanged($event, 1)">
+                    </display-definition-values>
+                </div>
+                <div class="input" class="inline-inside" [title]="'SN-TOOLBOX-RADIUS.BOTTOM-RIGHT' | translate">
+                    <display-definition-values
+                        [width]="radiusValues?.[2]"
+                        widthLabel=""
+                        [roundValue]="true"
+                        (changedWidth)="onCornerChanged($event, 2)">
+                    </display-definition-values>
+                </div>
+                <div class="input" class="inline-last" [title]="'SN-TOOLBOX-RADIUS.BOTTOM-LEFT' | translate">
+                    <display-definition-values
+                        [width]="radiusValues?.[3]"
+                        widthLabel=""
+                        [roundValue]="true"
+                        (changedWidth)="onCornerChanged($event, 3)">
+                    </display-definition-values>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

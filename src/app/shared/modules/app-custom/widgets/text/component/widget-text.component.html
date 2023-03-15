@@ -1,0 +1,9 @@
+<div class="main" [ngStyle]="widget.css | injectStyle: ['main', 'layout']">
+    <div class="widget-text" [ngStyle]="widget?.css?.text">
+        <div class="text" [ngStyle]="widget.box.height | whiteSpace: widget.css">
+            <p [style.display]="'none'"></p><!-- discard space of pre-wrap -->{{ (widget.custom.preview && (widget.custom.preview | snlang: false)) ?
+                (widget.custom.preview | snlang) : (widget.custom.text | snlang  | inputTransform: snApp: widget )
+            }}
+        </div>
+    </div>
+</div>

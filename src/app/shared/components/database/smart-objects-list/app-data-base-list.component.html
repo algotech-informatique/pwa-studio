@@ -1,0 +1,34 @@
+<div class="content" id="left-inspector" (clickOutside)="onClickOutside()">
+    <div class="tabs">
+        <div class="tab" *ngFor="let tab of tabs" [ngClass]="{'selected-tab': tab?.key === selectedTab }"
+            (click)="onOpenTab(tab?.key)">
+            <span *ngIf="!tab.hidden">{{ tab.display | translate }}</span>
+        </div>
+        <div class="tab monitoring" (click)="onOpenTab('monitoring')" [ngClass]="{'selected-tab': selectedTab === 'monitoring' }">
+        <i class="fa-solid fa-file-waveform"></i>
+        </div>
+    </div>
+    <div class="layout" *ngIf="selectedTab !== 'assets'">
+        <div class="text-input" [ngClass]="{'error': error}">
+            <div class="input-container">
+                <i class="fa-solid fa-filter icon"></i>
+                <input class="input" type="text" [(ngModel)]="filter" (ngModelChange)="onfilterChanging()"
+                    [placeholder]="'DATABASE-FILTER-SMARTMODELS' | translate">
+            </div>
+        </div>
+        <div class="models">
+            <div *ngFor="let sm of smartModels" [ngClass]="{selected: sm.selected}" class="model"
+                (click)="selectModel(sm)">
+
+                <div class="caption">
+                    <i class="fa-solid fa-cube icon"></i>
+                    <span>{{sm.display}}</span>    
+                </div>
+                
+                <i class="action fa-solid fa-ellipsis-vertical" (click)="openPopup($event,sm)"></i>
+
+            </div>
+        </div>
+    </div>
+    <popover [showPopup]="showPopup" [dismissPopup]="dismissPopup"></popover>
+</div>

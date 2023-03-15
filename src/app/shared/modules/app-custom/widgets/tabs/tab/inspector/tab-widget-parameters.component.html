@@ -1,0 +1,25 @@
+<app-inspector-section 
+    [snApp]="snApp"
+    [title]="'INSPECTOR.WIDGET.DISPLAY' | translate"
+    [section]="'display.tab'">
+    <div class="property">
+        <display-text-element
+            class="display-element"
+            [title]="'INSPECTOR.WIDGET.TEXT' | translate"
+            [ngClass]="{'app-errors': widget?.displayState?.errors | showAppErrors: 'custom.text': widget}"
+            [items]="items"
+            [displayText]="widget?.custom?.text"
+            [displayPreview]="widget?.custom?.preview"
+            [rows]="3"
+            (changed)="onChangeTitle($event)"
+            (preview)="onChangePreview($event)">
+        </display-text-element>
+    </div>
+
+    <div class="property last">
+        <select-icon
+            [icon]="widget?.custom?.icon"
+            (changed)="onIconChanged($event)">
+        </select-icon>
+    </div>
+</app-inspector-section>

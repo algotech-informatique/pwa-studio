@@ -1,0 +1,62 @@
+@import "../../../../styles.scss";
+
+:host {
+    --OPTIONS-MARGIN: 25px 0px 25px 25px;
+    --OPTIONS-WIDTH: 450px;
+    --OPTIONS-PADDING: 10px;
+    --OPTIONS-RADIUS: 5px;
+    --TAB-SPACE: 15px;
+    --TAB-SPACE: 15px;
+    --BORDER-COLOR: #5d627b;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    height: 100%;
+    width: 100%;
+    color: $COLOR-FG;
+
+    span {
+        margin-left: 15px;
+    }
+
+    input {
+        cursor: pointer;
+    }
+
+    .disabled {
+        opacity: 0.7;
+        cursor: default;
+    }
+
+    .options {
+        margin: var(--OPTIONS-MARGIN);
+        border-radius: var(--OPTIONS-RADIUS);
+        background-color: $COLOR-BG-LIGHT;
+        width: var(--OPTIONS-WIDTH);
+        padding: var(--OPTIONS-PADDING);
+
+        .title {
+            margin: 10px;
+            font-size: 14px;
+        }
+
+        .subtitle {
+            margin: 5px;
+            font-size: 13px;
+        }
+
+        .inputs {
+            margin: 20px;
+
+            .option {
+                cursor: pointer;
+                margin: 30px;
+                font-size: 12px;
+            }
+        }
+    }
+
+}

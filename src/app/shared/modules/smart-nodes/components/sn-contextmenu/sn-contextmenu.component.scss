@@ -1,0 +1,15 @@
+:host {
+    font-size: 11px;
+}
+
+.sn-contextmenu {
+    cursor: default;
+
+    sn-contextmenu-menu {
+        cursor: pointer;
+    }
+}
+
+.cm-menu {
+    z-index: 100;
+}

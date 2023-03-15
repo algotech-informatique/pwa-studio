@@ -1,0 +1,16 @@
+<sn-section [section]="section" *ngIf="section">
+    <div class="preview-content">
+        <div class="preview-text">  <!-- [innerHTML]="showText"> -->
+            {{ showText }}
+        </div>
+
+        <div class="footer">
+            <div class="languages" *ngIf="activeLangs.length !== 0">
+                <div class="language" *ngFor="let lang of activeLangs"
+                    (click)="selectedLang(lang.lang)" [ngClass]="{'selected':lang.lang === selectedKey }">
+                    {{lang.value}}
+                </div>
+            </div>
+        </div>
+    </div>
+</sn-section>

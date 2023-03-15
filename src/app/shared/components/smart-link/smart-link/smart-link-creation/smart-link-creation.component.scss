@@ -1,0 +1,49 @@
+@import '../../../../../../styles.scss';
+@import '../../../../modules/inspector/theme/variables';
+@import '../../../../modules/inspector/theme/mixins';
+
+:host {
+    --BORDER-TOP-WIDTH: 1px;
+}
+
+.contents {
+    @include custom-scrollbar;
+    overflow: none !important;
+    overflow-y: auto;
+
+    .content {
+        width: 100%;
+        padding: 12px 8px;
+        border-top: var(--BORDER-TOP-WIDTH) solid var(--INSPECTOR-VERT-MENU-SECTION-BORDER-COLOR);
+
+        label {
+            padding: 10px;
+            color: var(--INSPECTOR-SECTION-TITLE-COLOR);    
+        }
+
+        .sources {
+            --ALGOTECH-SECONDARY:  #{$COLOR-FG};
+            --ALGOTECH-SECONDARY-BORDER: #{$COLOR-FG};
+            --ALGOTECH-TERTIARY: #{$COLOR-FG};
+            --ALGOTECH-PRIMARY-HOVER: #{$COLOR-BG-POPUP-DARK};
+            --ALGOTECH-SUCCESS: var(--LABEL-COLOR);
+            --ALGOTECH-SUCCESS-BORDER: var(--LABEL-COLOR);                        
+        }
+
+        .item {
+            @include property(); 
+            color: var(--LABEL-COLOR);
+            --OPTIONS-SOURCE-MARGIN: 5px 0px 15px 5px;
+            --OPTIONS-CHECK-MARGIN: 15px 0px 20px 5px;
+            --OPTIONS-RADIO-MARGIN: 15px 0px 15px 0px;
+            --OPTION-COPYTEXT-MARGIN: 5px;
+            --OPTION-COPYTEXT-MAXWIDTH: 445px;
+            margin: 10px;
+        }
+
+        .login {
+            display: flex;
+            flex-direction: column;   
+        }
+    }
+}

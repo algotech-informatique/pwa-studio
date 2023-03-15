@@ -1,0 +1,20 @@
+<div class="profil">
+
+    <div class="image">
+        <span class="fa-stack fa-2x">
+            <i class="fa-solid fa-circle fa-stack-2x"
+                [ngStyle]="{'color': (activeProfil && activeProfil.color) ? activeProfil.color : '#394554' }" ></i>
+            <i class="fa-solid fa-user fa-stack-1x fa-inverse"></i>
+        </span>    
+    </div>
+    
+    <sn-input-select class="list"
+        [snView]="snView"
+        [value]="(activeProfil) ? activeProfil.uuid : ''"
+        [list]="profiles"
+        [node]="node"
+        (updateValue)="onProfileChanged($event)"
+    >
+    </sn-input-select>
+
+</div>

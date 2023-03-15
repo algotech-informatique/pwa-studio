@@ -1,0 +1,100 @@
+@import "../../../../styles.scss";
+
+:host {
+    --OPTIONS-MARGIN: 25px 0px 25px 25px;
+    --OPTIONS-WIDTH: 450px;
+    --OPTIONS-PADDING: 10px;
+    --OPTIONS-RADIUS: 5px;
+    --TAB-SPACE: 15px;
+    --TAB-SPACE: 15px;
+    --BORDER-COLOR: #5d627b;
+
+    font-size: 14px;
+}
+
+::ng-deep .key-element {
+    justify-content: space-between !important;
+    .title { width: 40% !important }
+    .display { width: 60% !important }
+}
+
+::ng-deep .color-element {
+    justify-content: space-between !important;
+    .title { width: 40% !important }
+    .select { width: 60% !important }
+}
+
+::ng-deep .select-element {
+    justify-content: space-between !important;
+    .title { width: 40% !important }
+    .select { width: 60% !important }
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    height: 100%;
+    width: 100%;
+    color: $COLOR-FG;
+
+    input {
+        cursor: pointer;
+    }
+
+    .disabled {
+        opacity: 0.7;
+        cursor: default;
+        pointer-events:none;
+    }
+
+    .options {
+        margin: var(--OPTIONS-MARGIN);
+        border-radius: var(--OPTIONS-RADIUS);
+        background-color: $COLOR-BG-LIGHT;
+        width: var(--OPTIONS-WIDTH);
+        padding: var(--OPTIONS-PADDING);
+
+        display: flex;
+        flex-direction: column;
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        p {
+            font-size: 18px !important;
+            font-weight: bold;
+        }
+
+        .line {
+            border-top: 1px solid var(--BORDER-COLOR);
+        }
+
+
+        .title {
+            margin: 10px;
+            font-size: 24px;
+        }
+
+        .subtitle {
+            margin: 5px;
+            font-size: 13px;
+        }
+
+        .inputs {
+            margin: 20px;
+
+            .option {
+                cursor: pointer;
+                margin: 30px;
+                font-size: 12px;
+            }
+        }
+
+        .dropzone {
+            justify-content: center;
+            background: transparent;
+        }
+    }
+}

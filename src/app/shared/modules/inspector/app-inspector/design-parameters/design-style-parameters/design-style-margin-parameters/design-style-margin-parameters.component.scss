@@ -1,0 +1,57 @@
+@import '../../../../theme/mixins';
+
+.style-margin {
+    display: flex;
+    flex-direction: row;
+}
+
+.title {
+    @include title;
+    margin-top: 4px;
+}
+
+.parameters {
+    display: flex;
+    flex-direction: column;
+}
+
+.line {
+    display: flex;
+    flex-direction: row;
+}
+
+.margin-icon {
+    user-select: none;
+    border-radius: 3px;
+    margin-right: 5px;
+    width: 25px;
+    cursor: pointer;
+    padding: 7px;
+
+    &.selected {
+        background-color: var(--INSPECTOR-BG-COLOR-SELECTED-ITEM);;
+    }
+}
+
+.margin-corners {
+    margin: 6px 0 3px 0;
+    display: flex;
+    flex-direction: row;
+}
+
+.item {
+    @include input-box;
+    width: var(--INPUT-WIDTH);
+    align-items: center;
+    cursor: auto;   
+
+    .selected-item {
+        @include input-element;
+    }
+
+    .unit {
+        font-size: 10px;
+        user-select: none;
+        opacity: 0.5;
+    }
+}

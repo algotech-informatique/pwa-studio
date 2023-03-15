@@ -1,0 +1,51 @@
+<div class="explorer" [ngClass]="{'reduce': !_expand}" (click)="onCloseContextmenu()" (contextmenu)="onCloseContextmenu()"
+    (mousedown)="mousedown()">
+    
+    <div class="header">
+        <div class="logo-name">
+            <img src="./assets/images/logo.png" alt="Studio" />
+        </div>
+        <i *ngIf="!_expand" (click)="retractorClicked()" class="fa-solid fa-angle-double-right retractor"></i>
+        <i *ngIf="_expand" (click)="retractorClicked()" class="fa-solid fa-angles-left retractor"></i>
+    </div>
+
+    <div class="explorer-sections">
+        <div *ngFor="let session of sessions; index as i" (contextmenu)="showExpanderContextmenu($event, i)">
+            <div *ngIf="session.environment" class="session">
+                <div class="customer" (click)="expandCustomer(session.environment)">
+                    <span class="code" [style.background]="session.connection.color">
+                        {{ session.connection.name | customerCode }}
+                    </span>
+                    <span class="name">
+                        {{ session.connection.name }}
+                    </span>
+                    <i class="fa-solid fa-plug connection-icon" *ngIf="session.datas.status !== undefined && _expand"
+                        [ngClass]="{
+                            'status-active': session.datas.status === 1,
+                            'status-inactive': session.datas.status === -1
+                        }">
+                    </i>
+                </div>
+                <div class="modules" [ngClass]="{'reduce': !session.environment.state}">
+                    <app-module-tree-line
+                        *ngFor="let module of session.environment.modules"
+                        [expand]="_expand"
+                        [module]="module"
+                        (select)="selectModule($event)">
+                    </app-module-tree-line>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <app-explorer-profile-section *ngIf="sessions?.[0].environment"
+        [expand]="_expand"
+        [session]="sessions[0]">
+    </app-explorer-profile-section>
+</div>
+
+<sn-contextmenu *ngIf="showContextmenu && menu"
+    [mouse]="mouse"
+    [menu]="menu"
+    (close)="onCloseContextmenu()">
+</sn-contextmenu>

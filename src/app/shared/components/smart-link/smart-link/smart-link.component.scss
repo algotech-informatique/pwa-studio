@@ -1,0 +1,149 @@
+@import "../../../../../styles.scss";
+
+:host {
+    --LABEL-COLOR: var(--INSPECTOR-SECTION-TITLE-COLOR);
+    --BUTTON-DELETE-COLOR: #FF6473;
+    --BUTTON-BACK-COLOR: #27AE60;
+    --TITLE-COLOR: #ffffff;
+    --LINK-HEIGHT: 500px;
+    --BUTTON-BORDER-HEIGHT: 1px;
+}
+
+.form {
+    margin: 15px;
+
+    .smartlink {
+        display: flex;
+        flex-direction: column;
+        
+        .title {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 15px 14px;
+
+            .left-side {
+                line-height: 30px;
+                display: flex;
+                align-items: center;
+                flex-direction: row;
+                justify-content: flex-start;
+    
+                .link-title {    
+                    letter-spacing: 1px;
+                    text-transform: uppercase;
+                    @include text-ellipsis;
+                    color: var(--INSPECTOR-SECTION-TITLE-COLOR);
+                }
+
+                .icon {
+                    color: rgb(45, 156, 219);
+                    margin-right: 5px;
+                }
+            }
+
+            .close {
+                line-height: 30px;
+                color: var(--INSPECTOR-SECTION-TITLE-COLOR);                  
+                cursor: pointer;
+                font-size: 20px;
+
+                &:hover {
+                    font-size: 22px;
+                }
+            }
+        }
+
+        .contents {
+            max-height: var(--LINK-HEIGHT);
+            @include custom-scrollbar;
+            overflow: none !important;
+            overflow-y: auto;
+
+            .content {
+                width: 100%;
+                padding: 12px 8px;
+
+                label {
+                    padding: 10px;
+                    color: var(--INSPECTOR-SECTION-TITLE-COLOR);    
+                }
+
+                .item {
+                    --OPTIONS-SOURCE-MARGIN: 5px 0px 15px 5px;
+                    --OPTIONS-CHECK-MARGIN: 15px 0px 20px 5px;
+                    --OPTIONS-RADIO-MARGIN: 15px 0px 15px 0px;
+                    --OPTION-COPYTEXT-MARGIN: 5px;
+                    --OPTION-COPYTEXT-MAXWIDTH: 445px;
+                    --OPTION-COPYTEXT-PADDING: 10px;
+                    --OPTION-COPYTEXT-LINK-BACKOLOR: var(--INSPECTOR-VERT-MENU-ITEM-BG-COLOR);
+                    --OPTION-COPYTEXT-BACKGROUND: transparent;
+                    --OPTION-COPYTEXT-BORDER-MARGINTOP: 8px;
+                    --OPTION-COPYTEXT-LINK-HEIGHT: 0px;
+                }
+
+                .login {
+                    display: flex;
+                    flex-direction: column;   
+                }
+
+                .border-bottom {
+                    width: 100%;
+                    margin-top: 2px;
+                    border-bottom: 2px solid var(--LABEL-COLOR);
+                }
+            }
+        }
+       
+        .footer {
+
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            padding: 15px 14px;
+
+            .button {
+                width: 100px;
+                height: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                font-size: 14px;
+                border: var(--BUTTON-BORDER-HEIGHT) solid var(--INSPECTOR-TOOLS-BORDER-COLOR);
+                border-radius: 5px;
+                margin-right: 10px;
+                color: var(--TOOLBAR-COLOR);
+
+                .style-icon {
+                    padding-right: 5px;
+                    font-size: 14px;
+                }
+    
+                &:hover {
+                    .style-icon {
+                        font-size: 16px;
+                    }
+                }
+
+                .title {
+                    padding: 2px;
+                    font-size: 14px;
+                }
+                &.disabled {
+                    pointer-events: none;
+                    opacity: 0.2 !important;
+    
+                    * {
+                        pointer-events: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.mail-pop-up {
+    --MAIL-HEIGHT: var(--LINK-HEIGHT);   
+    --TITLE-MARGIN: var(--TITLE-MARGIN);
+}

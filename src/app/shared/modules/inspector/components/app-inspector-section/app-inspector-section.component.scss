@@ -1,0 +1,7 @@
+:host {    
+    &.first {
+        inspector-section {
+            --BORDER-TOP-WIDTH: 0;
+        }
+    }
+}

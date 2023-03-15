@@ -1,0 +1,47 @@
+<div class="variables-cards">
+    <div class="section-content">
+        <inspector-section
+            class="section"
+            *ngFor="let profile of profiles, let i = index"
+            [title]="profile?.name || 'INSPECTOR.PROFILES.NEW' | translate"
+            [defaultOpen]="addedIndex === i"
+            [display]="'card'"
+            [color]="profile?.color"
+            [titleIcon]="'fa-solid fa-users'">
+
+            <div class="property inside-card">
+                <display-key-element class="element"
+                    [title]="'INSPECTOR.PROFILES.PROFIL_NAME' | translate"
+                    [showIcon]="false"
+                    [key]="profile?.name"
+                    [placeholder]="' '"
+                    (changed)="onChange($event, i)">
+                </display-key-element>
+            </div>
+
+            <div class="property inside-card last">
+                <color-element
+                    [color]="profile?.color"
+                    (changed)="onColorChange($event, i)">
+                </color-element>
+            </div>
+
+            <div class="actions only-delete">
+                <div class="delete-event">
+                    <i class="fa-solid fa-trash button" (click)="deleteElement(i)"></i>
+                </div>
+            </div>
+
+        </inspector-section>
+
+        <div *ngIf="profiles?.length === 0" class="no-element section-content">
+            <p>{{ 'INSPECTOR.PROFILES.EMPTY' | translate }}</p>
+        </div>
+        <div class="button-container">
+            <div class="add-button section-content" (click)="addProfile()">
+                <i class="fa-solid fa-plus"></i>
+                <p>{{ 'INSPECTOR.PROFILES.ADD_PROFILES' | translate }}</p>
+            </div>
+        </div>
+    </div>
+</div>

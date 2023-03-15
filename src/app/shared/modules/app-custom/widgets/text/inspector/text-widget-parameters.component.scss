@@ -1,0 +1,7 @@
+@import '../../../../inspector/theme/mixins';
+
+.text {
+    @include property();
+}
+
+

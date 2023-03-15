@@ -1,0 +1,115 @@
+<options-container class="form">
+    <div class="smartlink">
+
+        <div class="title">
+            <div class="left-side">
+                <i class="fa-solid fa-share-alt icon"></i>
+                <div class="link-title" *ngIf="situationLink === 'SHARE'">
+                    {{ 'SMARTLINK-LINK-APP.SHARE-USERS' | translate }}
+                </div>
+                <div class="link-title" *ngIf="situationLink === 'CREATION'">
+                    {{ 'SMARTLINK-LINK-APP.TITLE' | translate }}
+                </div>
+            </div>
+
+            <i class="fa-solid fa-xmark close"
+                (click)="onClose($event)"
+                [title]="'SMARTLINK-LINK.CLOSE' | translate"
+            ></i>
+        </div>
+
+        <div class="contents">
+            <div class="content" *ngIf="link">
+                <div class="page" *ngIf="listPages.length > 1">
+                    <label>{{ 'PAGE.PAGE' | translate }}</label>
+                    <options-list
+                        class="item"
+                        [inputList]="listPages"
+                        [selected]="selectedPage"
+                        (selectValue)="onSelectPage($event)">
+                    </options-list>
+                </div>
+
+                <div *ngIf="pageVariables?.length > 0" class="variables">
+                    <label>{{ 'INSPECTOR.APP.VARIABLES' | translate }}</label>
+                    <options-checkbox *ngFor="let variable of pageVariables; index as i"
+                        class="item"
+                        [checkElement]=""
+                        [label]="variable?.key"
+                        (checkedChange)="onChangeVariable($event, i)">
+                    </options-checkbox>
+                </div>
+
+                <label> {{ 'SMARTLINK-LINK.SHARE-MAIL-LINK' | translate }} </label>
+                <options-copytext
+                    includeBottomBorder="false"
+                    class="item"
+                    [multiline]="true"
+                    [copyText]="link"
+                ></options-copytext>
+            </div>            
+
+            <app-smart-link-app-share
+                class="content"
+                *ngIf="eMail"
+                [ngStyle]="{'display': situationLink === 'SHARE' ? 'block' : 'none'}"
+                [eMail]="eMail"
+                (updateMail)="onUpdateMail($event)"
+            >
+            </app-smart-link-app-share>
+
+        </div>
+
+        <div class="footer">
+
+            <div class="button"
+                *ngIf="situationLink === 'SHARE'"
+                [title]="'SMARTLINK-LINK.RETURN-TEXT' | translate"
+                (click)="onBackEvent()">
+
+                <i class="fa-solid fa-arrow-alt-circle-left style-icon"></i>
+
+                <div class="title">
+                    {{ 'SMARTLINK-LINK.RETURN' | translate}}
+                </div>
+            </div>
+
+            <div class="button"
+                [ngClass]="{'disabled': link === '' }"
+                *ngIf="situationLink === 'CREATION'"
+                [title]="'SMARTLINK-LINK.CREATE-MAIL-TEXT' | translate"
+                (click)="openMail()">
+
+                <i class="fa-solid fa-at style-icon"></i>
+
+                <div class="title">
+                    {{ 'SMARTLINK-LINK.CREATE-MAIL' | translate}}
+                </div>
+            </div>
+
+            <div class="button" 
+                [ngClass]="{'disabled': eMail.to.length === 0 }"
+                *ngIf="situationLink === 'SHARE'"
+                [title]="'SMARTLINK-LINK.MAIL-SEND-TEXT' | translate"
+                (click)="onSendMail()">
+
+                <i class="fa-solid fa-upload style-icon"></i>
+                
+                <div class="title">
+                    {{ 'SMARTLINK-LINK.MAIL-SEND' | translate}}
+                </div>
+            </div>
+
+            <div class="button"
+                [title]="'SMARTLINK-LINK.CLOSE-TEXT' | translate"
+                (click)="onClose($event)">
+                <i class="fa-solid fa-xmark style-icon"></i>
+                
+                <div class="title">
+                    {{ 'SMARTLINK-LINK.CLOSE' | translate}}
+                </div>
+            </div>
+        </div>
+
+    </div>
+</options-container>

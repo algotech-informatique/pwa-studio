@@ -1,0 +1,168 @@
+@import "../../../../styles.scss";
+
+:host {
+    --BG-SELECTED: #{$EXPLORER-BG-SELECTED};
+    --BG-MODULE-SELECTED: #1e2a33;
+    --BG-SUBMODULE-SELECTED: #{$EXPLORER-BG-SUBMODULE-SELECTED};
+    --COLOR-SELECTED: #{$EXPLORER-FG-SELECTED};
+    --COLOR-BORDER: #{$EXPLORER-BORDER};
+    --FG-COLOR: #{$EXPLORER-FG-COLOR};
+    --BG-DRAG-HOVER: #{$EXPLORER-BG-DRAG-HOVER};
+    --BG-ACTIVE: #{$EXPLORER-BG-ACTIVE};
+
+    --FLOATING-MENU-WIDTH: 250px;
+    --FLOATING-MENU-MAX-HEIGHT: 400px;
+
+    --ITEM-HEIGHT: 40px;
+    --BORDER-SIZE: 5px;
+    --PADDING-SIZE: 9px;
+    --PADDING-LABEL: 30px;
+}
+
+.module {
+    color: var(--FG-COLOR);
+    display: flex;
+    flex-direction: column;
+
+    .name {
+        user-select: none;
+        display: flex;
+        height: var(--ITEM-HEIGHT);
+        width: 100%;
+        align-items: center;
+        padding-left: var(--PADDING-SIZE);
+        font-weight: normal;
+        @include text-ellipsis();
+
+        .icon {
+            text-align: center;
+            min-width: var(--PADDING-LABEL);
+            font-size: 15px;
+        }
+
+        &.bold {
+            font-weight: bold;
+        }
+    }
+
+    &.root {
+        >.childs-content>.childs-layout>.childs-scroll>.objects {
+            padding-left: var(--PADDING-SIZE);
+        }
+        >.childs-content>.childs-layout>.childs-scroll>.childs {
+            border-top: 1px solid var(--BG-SELECTED);
+        }
+    }
+
+    &:not(.root) {
+        >.childs-content>.childs-layout>.childs-scroll>.objects {
+            padding-left: var(--PADDING-LABEL);
+            border-bottom: 1px solid var(--BG-SELECTED);
+        }
+    }
+
+    .childs-content { 
+        overflow: hidden;
+        transition: transform .2s ease-out;
+    }
+
+    &:not(.state) {
+        &:not(.selected) {
+            .name:hover {
+                cursor: pointer;
+                background: var(--BG-ACTIVE);
+            }
+
+            &.active {
+                background: var(--BG-ACTIVE);
+            }
+        }
+    }
+
+    &.state {
+        .name {
+            padding-left: calc(var(--PADDING-SIZE) - var(--BORDER-SIZE));
+        }
+
+        color: var(--COLOR-SELECTED);
+        
+        &.root {
+            border-left: var(--BORDER-SIZE) solid var(--COLOR-BORDER);
+            background: var(--BG-MODULE-SELECTED);
+        }
+        &:not(.root) {
+            background: #{$COLOR-BG-LIGHT};
+        }
+    }
+
+    &.selected {
+        color: var(--COLOR-SELECTED);
+
+        .name {
+            font-weight: bold;
+            background: var(--BG-SELECTED);
+        }
+    }
+
+    &.draghover {
+        background: var(--BG-DRAG-HOVER) !important;
+    }
+
+    &.module.reduce {
+        >.name>.label {
+            display: none;
+        }
+        >.childs-content {
+            display: none;
+        }
+
+        &:hover {
+            .objects {
+                padding-left: 0px !important;
+            }
+
+            &:not(.state) {
+                >.name {
+                    background: var(--BG-ACTIVE);
+                }
+            }
+            >.name {
+                cursor: pointer;
+            }
+
+            >.childs-content {
+                position: absolute;
+                left: var(--EXPLORER-REDUCE-SIZE);
+                display: flex !important;
+
+                >.childs-layout {
+                    margin: 0 5px 5px 5px;
+                    border-radius: 0px $GLOBAL-RADIUS $GLOBAL-RADIUS 0px;
+                    width: var(--FLOATING-MENU-WIDTH);
+
+                    
+                    background: var(--BG-ACTIVE);
+
+                    >.name {
+                        color: var(--COLOR-SELECTED);
+                    }
+                    .name {
+                        padding-left: var(--PADDING-SIZE);
+                    }
+                    >.childs-scroll {
+                        @include scrollbar-hidden();
+                        max-height: var(--FLOATING-MENU-MAX-HEIGHT);
+                        border-radius: 0px 0px $GLOBAL-RADIUS 0px;
+                        >.childs {
+                            .icon {
+                                display: none;
+                                max-width: 0px;
+                            }
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,23 @@
+<div class="content">
+
+    <div class="metadata">
+        <metadata-main class="list"
+            [metadataList]="metadataList"
+            [selectedId]="selectedId"
+            (selectedMetadata)="onSelectedMetadata($event)"
+            (createNewMetadata)="onCreateNewMetadata()"
+            [(search)]="search"
+        >
+        </metadata-main>
+    </div>
+    
+    <div class="metadata" *ngIf="selectedId">
+        <metadata-detail
+            [metadata]="selectedMetadata"
+            (updateMetadata)="onUpdateMetadata($event)"
+            (removeMetadata)="onRemoveMetadata($event)"
+        >
+        </metadata-detail>
+    </div>
+
+</div>

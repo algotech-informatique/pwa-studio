@@ -1,0 +1,120 @@
+<sn-spinner *ngIf="!display"></sn-spinner>
+
+<div class="sn-layout" [ngClass]="{'backdrop': actionView, 'drawing': drawing, 'display': display }">
+    <div class="toolbox">
+        <sn-toolbox
+            *ngIf="settings.toolBox"
+            [tools]="settings.toolBox"
+            (launchEvent)="onLaunchEvent($event)"
+        >
+        </sn-toolbox>
+    
+    </div>
+
+    <svg id="svg" #svg>
+        <g id="container">
+            <g *ngIf="snView && loaded">
+                <g id="container-layer" *ngFor="let bringToFront of [false, true]">
+                    <g id="container-groups">
+                        <g *ngFor="let group of snView.groups; trackBy: trackById">
+                            <foreignObject
+                                *ngIf="!bringToFront || group.displayState?.bringToFront"
+                                [attr.x]="group.canvas.x"
+                                [attr.y]="group.canvas.y"
+                                [attr.width]="group.canvas.width"
+                                [attr.height]="group.canvas.height">
+    
+                                <xhtml:div [id]="group.id" class="draggable-group" [style.width.px]="group.canvas.width">
+                                </xhtml:div>
+    
+                                <xhtml:sn-container
+                                    type="group"
+                                    [snView]="snView"
+                                    [container]="group">
+                                </xhtml:sn-container>
+                            </foreignObject>
+                        </g>
+                    </g>
+        
+                    <g id="container-box">
+                        <g *ngFor="let box of snView.box; trackBy: trackById">
+                            <foreignObject
+                                *ngIf="!box.displayState?.hidden && (!bringToFront || box.displayState?.bringToFront)"
+                                [attr.x]="box.canvas.x"
+                                [attr.y]="box.canvas.y"
+                                [attr.width]="box.canvas.width"
+                                [attr.height]="box.canvas.height">
+    
+                                <xhtml:div [id]="box.id" class="draggable-box" [style.width.px]="box.canvas.width">
+                                </xhtml:div>
+    
+                                <xhtml:sn-container
+                                    type="box"
+                                    [snView]="snView"
+                                    [container]="box">
+                                </xhtml:sn-container>
+                            </foreignObject>
+                        </g>
+                    </g>
+            
+                    <g id="container-links" *ngIf="!bringToFront">
+                        <!-- cf. d3.transitions.ts!-->
+                    </g>
+            
+                    <g id="container-nodes" *ngIf="!bringToFront">
+                        <g *ngFor="let node of snView.nodes; trackBy: trackById"> 
+                            <foreignObject 
+                                [attr.x]="node.canvas.x"
+                                [attr.y]="node.canvas.y"
+                                [attr.width]="1"
+                                [attr.height]="1"
+                                [ngClass]="{'hidden': node.displayState?.hidden}"
+                                > <!-- id use for find node svg element -->
+        
+                                <xhtml:div [id]="node.id" class="draggable-node" [ngClass]="{
+                                    'draggable-node': !node.displayState?.edit,
+                                    'draggable-new-node': !node.type
+                                }">
+                                </xhtml:div>
+                                <xhtml:sn-node
+                                    [settings]="settings"
+                                    [snView]="snView"
+                                    [node]="node"
+                                    [type]="node.type"
+                                >
+                                </xhtml:sn-node>
+                            </foreignObject>
+                        </g>
+                    </g>
+                    
+                    <g id="container-comments">
+                        <g *ngFor="let comment of snView.comments; trackBy: trackById"> 
+                            <foreignObject 
+                                *ngIf="comment.open && !bringToFront"
+                                [attr.x]="comment.canvas.x"
+                                [attr.y]="comment.canvas.y"
+                                [attr.width]="1"
+                                [attr.height]="1">
+                                
+                                <xhtml:sn-comment
+                                    [snView]="snView"
+                                    [comment]="comment"
+                                >
+                                </xhtml:sn-comment>
+                            </foreignObject>
+                        </g>
+                    </g>
+                </g>
+                <g id="container-selector"></g>
+            </g>
+        </g>
+    </svg>
+        
+    <sn-contextmenu *ngIf="showContextmenu && menu && !actionView && !drawing"
+        [mouse]="mouse"
+        [menu]="menu"
+        [container]="svgElementContainer"
+        [snView]="snView"
+        (close)="onCloseContextmenu()">
+    </sn-contextmenu>
+</div>

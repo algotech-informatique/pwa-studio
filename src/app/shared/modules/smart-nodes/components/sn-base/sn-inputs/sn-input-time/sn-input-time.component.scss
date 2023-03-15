@@ -1,0 +1,45 @@
+.input-time {
+    background-color: var(--SN-NODE-PARAM-COLOR-DATE-FADE);
+    border-radius: var(--SN-ELEMENT-BORDER-RADIUS);
+    height: var(--SN-NODE-PARAM-INPUT-LINE-HEIGHT);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+
+    .input {
+        background-color: transparent;
+        border: 0;
+        width: var(--SN-NODE-PARAM-INPUT-LINE-WIDTH);
+        height: var(--SN-NODE-PARAM-INPUT-LINE-HEIGHT);
+        margin: 0 0 0 5px;
+        font-size: var(--SN-NODE-PARAM-SIZE);
+        z-index: 1;
+    }
+    
+    .input[type=time]::-webkit-calendar-picker-indicator {
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .input[type=time]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        display: none;
+    }
+
+    .input[type=time]::-webkit-clear-button {
+        display: none;
+        -webkit-appearance: none;
+    }
+
+    .input:focus {
+        outline: none;
+    }
+
+    .fa-solid {
+        margin-right: 5px;
+        font-size: var(--SN-NODE-PARAM-SIZE);
+        position: absolute;
+        right: 0;
+    }
+}

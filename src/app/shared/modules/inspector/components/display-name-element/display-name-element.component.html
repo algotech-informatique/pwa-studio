@@ -1,0 +1,12 @@
+<div class="key-element">
+    <span *ngIf="title" class="title">{{ title }}</span>
+    <div class="display">
+        <div class="name">
+            <input
+                type="text"
+                class="input"
+                (change)="changeValue()"
+                [(ngModel)]="name" />
+        </div>
+    </div>
+</div>

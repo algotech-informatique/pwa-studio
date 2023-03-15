@@ -1,0 +1,14 @@
+<sn-select-modal [(top)]="top" [snView]="snView" class="modal">
+
+    <div class="buttons">
+        <div class="button" (click)="createCloud($event)">
+            <i class="fa-solid fa-cloud icon"></i>
+            {{ 'SERVER-CLOUD' | translate }}
+        </div>
+        <div class="button" (click)="createServer($event)">
+            <i class="fa-solid fa-server icon"></i>
+            {{ 'SERVER-CUSTOM' | translate }}
+        </div>
+    </div>
+
+</sn-select-modal>

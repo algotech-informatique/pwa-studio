@@ -1,0 +1,11 @@
+<div class="text-input">
+    <div class="selected-item">
+        <input type="text"
+            [placeholder]="placeholder ? placeholder : 'SETTINGS.PARAM-CONDITION.SET-VALUE' | translate"
+            [(ngModel)]="value"
+            [title]="value"
+            (change)="onChangeValue()">
+    
+        <i *ngIf="iconVisible" class="fa-solid fa-font coloured-icon"></i>
+    </div>
+</div>

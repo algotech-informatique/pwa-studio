@@ -1,0 +1,53 @@
+<div class="bar">
+    <div class="bar-section start" *ngIf="activeSession" >
+        <div class="bar-button">
+            <i class="fa-solid fa-square-full bar-button-icon"></i>
+            <div class="bar-button-text bar-text">
+                {{ environment }}
+            </div>
+        </div>
+        <div class="bar-button">
+            <i class="fa-solid fa-file-lines bar-button-icon"></i>
+            <div class="bar-button-text">
+                {{ reports }}
+            </div>
+        </div>
+        <div class="bar-button">
+            <i class="fa-solid fa-diagram-project bar-button-icon"></i>
+            <div class="bar-button-text">
+                {{ workflows }}
+            </div>
+        </div>
+        <div class="bar-button">
+            <i class="fa-solid fa-cubes bar-button-icon"></i>
+            <div class="bar-button-text">
+                {{ smartmodels }}
+            </div>
+        </div>
+        <div class="bar-button">
+            <i class="fa-solid fa-atom bar-button-icon"></i>
+            <div class="bar-button-text">
+                {{ smartflows }}
+            </div>
+        </div>
+        <div class="bar-button">
+            <i class="fa-solid fa-window-maximize bar-button-icon"></i>
+            <div class="bar-button-text">
+                {{ apps }}
+            </div>
+        </div>
+    </div>
+    <div class="bar-section end">
+        <div class="bar-button">
+            <div (click)="openChooseLanguage()">{{currentLang}}</div>
+            <div *ngIf="showLanguages" class="bar-popup-languages">
+                <div *ngFor="let lang of proposedLanguages" (click)="chooseLang(lang);showLanguages=false;currentLang=lang" class="bar-popup-lang">
+                    {{lang}}
+                </div>
+            </div>
+        </div>
+        <div class="bar-button" (click)="openConnection()">
+            <i class="fa-solid fa-database bar-button-icon"></i>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+.modal {
+    .header {
+        padding: 6px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        background: var(--INSPECTOR-SELECTED);
+        border-radius: 4px;
+        color: var(--INSPECTOR-HEADER-COLOR);
+
+        .left-side {
+
+            .title {
+                padding: 5px;
+            }
+        }
+
+        .close-icon {
+            cursor: pointer;
+            margin: 5px 0;
+        }
+    }
+
+
+    .content {
+        padding: 10px;
+
+        textarea[name=textarea] {
+            resize: none;
+            width: 100%;
+            border: var(--POPUP-INPUT-BORDER);
+            background: var(--POPUP-INPUT-BACKGROUND);
+            border-radius: 3px;
+            outline: none;
+        }
+    }
+}

@@ -1,0 +1,150 @@
+@import "../../../../../../styles.scss";
+
+:host {
+    --LABEL-COLOR: #2D9CDB;
+    --TITLE-COLOR-SELECTED: #ffffff;
+    --TITLE-COLOR-NO-SELECTED: #A0A7B4;
+    --LABEL-NO-ACTIVE: #9D9D9D;
+    --BUTTON-ADD-COLOR: #27AE60;
+    --BUTTON-REMOVE-COLOR: #FF6473;
+    --SHOW-LANGS-COLOR: #2D9CDB;
+    --TITLE-MARGIN-BOTTOM: 20px;
+    --LIST-MARGIN: 8px 10px 10px 25px;
+    --LIST-BACK-COLOR: #5E738D;
+    --LIST-BORDER-RADIUS: 5px;
+    --LIST-DETAIL-PADDING: 10px 0px 5px 0px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .options  {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    
+        .open {
+            margin: 10px;
+            @include option-select-line(var(--SHOW-LANGS-COLOR));
+            width: 100%;
+        }
+
+        .inactive {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        .open:hover {
+            cursor: pointer;
+            opacity: 0.7;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            margin: 5px;
+            width: 100%;
+    
+            .button {
+                padding: 5px;
+                margin: 5px;
+                border-radius: 5px;
+                color: var(--TITLE-COLOR-SELECTED);
+            }
+    
+            .add {
+                background-color: var(--BUTTON-ADD-COLOR);
+            }
+    
+            .remove {
+                background-color: var(--BUTTON-REMOVE-COLOR);
+            }
+
+            .inactive {
+                pointer-events: none;
+                opacity: 0.5;
+            }
+
+            .button:hover {
+                cursor: pointer;
+                opacity: 0.7;
+            }
+        }
+    }
+
+    .display-lines {
+        background-color: var(--LIST-BACK-COLOR);                            
+        border-radius: var(--LIST-BORDER-RADIUS);
+        @include custom-scrollbar;
+        overflow: none !important;
+        overflow-y: auto;
+        height: 400px;
+
+        .lines {
+            display: flex;
+            flex-direction: column;
+            
+            .line {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                margin: 0px 15px 5px 15px;
+    
+                .label {
+                    @include option-input-label-selected(var(--TITLE-COLOR-SELECTED));
+                    padding: var(--LIST-DETAIL-PADDING);
+                }
+
+                .label-key {
+                    @include option-input-label-selected(var(--LABEL-NO-ACTIVE));
+                    padding: var(--LIST-DETAIL-PADDING);
+                }
+
+                .input-check {
+                    width: 50px;
+                    --OPTIONS-CHECK-MARGIN: 0px;
+                }
+    
+                .input-key {
+                    width: 100px;
+                }
+
+                .detail-key {
+                    --INPUT-COLOR: var(--LABEL-NO-ACTIVE);
+                }
+
+                .detail-input {
+                    --INPUT-COLOR: var(--TITLE-COLOR-SELECTED);
+                }
+    
+                .input-label {
+                    --TEXT-BACK-COLOR: var(--LIST-BACK-COLOR);
+                    width: 110px;
+                }
+    
+                .sub-lines {
+                    display: flex;
+                    flex-direction: row;
+                }
+
+                .color {
+                    padding-left: 10px;
+                }
+
+                .color:hover {
+                    cursor: pointer;
+                }
+            }
+
+            .line-header {
+                border-bottom: 1px solid var(--LABEL-COLOR);
+            }
+        }
+    }
+
+}

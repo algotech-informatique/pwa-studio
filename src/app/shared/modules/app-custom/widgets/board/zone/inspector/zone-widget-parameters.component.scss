@@ -1,0 +1,28 @@
+@import '../../../../../inspector/theme/mixins';
+
+.property {
+    @include property();
+}
+
+.key-input {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.title {
+    @include title;
+}
+
+.text-input {
+    @include input-box;
+    cursor: auto;
+
+    &.error {
+        color: var(--SN-COLOR-ERROR) !important;
+    }
+
+    .selected-item {
+        @include input-element();
+    }
+}

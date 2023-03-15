@@ -1,0 +1,9 @@
+@import "../../theme/mixins";
+
+.select-inline {
+    @include align-items-inputs;
+}
+
+img {
+    height: 15px;
+}

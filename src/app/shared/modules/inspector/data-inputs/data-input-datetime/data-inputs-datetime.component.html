@@ -1,0 +1,9 @@
+<div class="text-input">
+    <div class="selected-item">
+        <input class="date-input" 
+            type="datetime-local"
+            [(ngModel)]="value"
+            (change)="onChangeValue()">
+        <i *ngIf="iconVisible" class="fa-solid fa-calendar-days coloured-icon"></i>   
+    </div>
+</div>

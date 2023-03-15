@@ -1,0 +1,132 @@
+<span class="error" *ngIf="sessionsService.active?.datas.status === -1">
+    <span class="error-snackbar">
+        {{'SOCKET-ERROR' | translate}}
+    </span>
+</span>
+<span *ngIf="loaded" [ngClass]="{'disabled': sessionsService.active?.datas.status === -1}">
+    <app-editor
+        *ngIf="type === 'app'"
+        [snModelUuid]="refUuid"
+        [customerKey]="customerKey"
+        [host]="host">
+    </app-editor>
+
+    <report-templates-editor
+        *ngIf="type === 'report'"
+        [snModelUuid]="refUuid"
+        [customerKey]="customerKey"
+        [host]="host">
+    </report-templates-editor>
+
+    <app-workflow-editor
+        class="flow-editor"
+        *ngIf="type === 'workflow'"
+        [snModelUuid]="refUuid"
+        [customerKey]="customerKey"
+        [host]="host">
+    </app-workflow-editor>
+
+    <app-scheduled-task
+        *ngIf="type === 'task'"
+        [customerKey]="customerKey"
+        [host]="host"
+    >
+    </app-scheduled-task>
+
+    <app-store
+        *ngIf="type === 'store'"
+        [customerKey]="customerKey"
+        [host]="host"
+    >
+    </app-store>
+
+    <app-generic-lists
+        *ngIf="type === 'listgen'"
+        [customerKey]="customerKey"
+        [host]="host"
+    >
+    </app-generic-lists>
+
+    <app-metadata
+        *ngIf="type === 'metadata'"
+        [customerKey]="customerKey"
+        [host]="host"
+    >
+    </app-metadata>
+
+    <app-tags-lists
+        *ngIf="type === 'tags'"
+        [customerKey]="customerKey"
+        [host]="host"
+    >
+    </app-tags-lists>
+
+    <app-import-data
+        *ngIf="type === 'import'"
+        [customerKey]="customerKey"
+        [host]="host"
+    >
+    </app-import-data>
+
+    <app-model-editor
+        *ngIf="type === 'smartmodel'"
+        [snModelUuid]="refUuid"
+        [customerKey]="customerKey"
+        [host]="host">
+    </app-model-editor>
+
+    <app-flow-editor
+        class="flow-editor"
+        *ngIf="type === 'smartflow'"
+        [snModelUuid]="refUuid"
+        [customerKey]="customerKey"
+        [host]="host">
+    </app-flow-editor>
+
+    <app-security-groups
+        *ngIf="type === 'groups'"
+        [customerKey]="customerKey"
+        [host]="host"
+    >
+    </app-security-groups>
+
+    <app-security-users
+        *ngIf="type === 'users'"
+        [customerKey]="customerKey"
+        [host]="host"
+    >
+    </app-security-users>
+
+    <app-security-audit-trail
+        *ngIf="type === 'audit-trail'"
+        [customerKey]="customerKey"
+        [host]="host"
+    >
+    </app-security-audit-trail>
+
+    <app-applications-settings
+        class="flow-editor"
+        *ngIf="type === 'appSettings'"
+        [customerKey]="customerKey"
+        [host]="host">
+    </app-applications-settings>
+
+    <app-theme-editor *ngIf="type === 'theme'">
+    </app-theme-editor>
+
+    <app-check-settings *ngIf="type === 'check'"
+    [checkOnDesign]="checkOnDesign"
+    [openDebug]="openDebug"
+    (updated)="onSettingUpdated($event)">
+    </app-check-settings>
+
+    <app-data-base *ngIf="type === 'database'">
+    </app-data-base>
+
+    <app-manifest *ngIf="type === 'manifest'">
+    </app-manifest>
+
+    <app-i18n-editor *ngIf="type === 'i18n'">
+    </app-i18n-editor>
+
+</span>

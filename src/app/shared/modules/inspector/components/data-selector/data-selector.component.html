@@ -1,0 +1,45 @@
+<div class="data-selector data-selector-item">
+    <div *ngIf="propertiesShowed?.parent" class="header data-selector-item">
+        <i class="fa-solid fa-angle-left back-icon data-selector-item" (click)="back()"></i>
+        <div class="title data-selector-item" [title]="propertiesShowed.parent.property.name">
+            {{ propertiesShowed.parent.property.name }}
+        </div>
+    </div>
+    <div class="search data-selector-item">
+        <i class="fa-solid fa-magnifying-glass data-selector-item"></i>
+        <input #searchInput
+            [placeholder]="'SEARCHBOX.PLACEHOLDER' | translate"
+            type="search"
+            class="data-selector-item"
+            (keyup)="onSearch()"
+            [(ngModel)]="search">
+        <i *ngIf="search?.length > 0" class="fa-solid fa-xmark reset data-selector-item" (click)="resetSearch()"></i>
+    </div>
+    <div class="list data-selector-item" *ngIf="propertiesShowed?.group" #list>
+        <div *ngFor="let item of propertiesShowed.group">
+            <div *ngIf="!item.hidden">
+                <span class="group" *ngIf="item.key">{{ ('DATA-SELECTOR-' + (item.key | uppercase)) | translate }}</span>
+                <div *ngFor="let property of item.properties" class="properties">
+                    <div *ngIf="!property.hidden"
+                        class="item data-selector-item"
+                        [ngClass]="{'disabled': property?.disabled}"
+                        (click)="clickItem(item.key, property)"
+                        (mouseover)="onMouseOver(item.key, property)"
+                        (mouseout)="onMouseOut(item.key, property)"
+                    >
+                        <i *ngIf="property?.icon" [class]="property?.icon + ' icon data-selector-item'"></i>
+                        <i *ngIf="property?.property?.multiple" [class]="'fa-solid fa-layer-group data-selector-item icon-multi'"></i>
+                        <div class="display data-selector-item" [title]="property?.property?.name">{{ property?.property?.name }}</div>
+                        <div *ngIf="property?.children && !property?.property?.multiple" class="sub-icon data-selector-item"
+                            (click)="clickSubItem(item.key, property)">
+                            <i class="fa-solid fa-chevron-right data-selector-item"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!propertiesShowed || !propertiesShowed.group || propertiesShowed.group.length === 0" class="empty">
+            <i class="fa-solid fa-ban"></i>
+        </div>
+    </div>
+</div>

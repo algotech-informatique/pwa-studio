@@ -1,0 +1,18 @@
+<inspector-section [title]="'SN-TOOLBAR-APP-THEME' | translate">
+    <div class="property">
+        <select-element
+            [title]="'INSPECTOR.APP.THEME.SELECTOR' | translate"
+            [list]="themes"
+            [selectedKey]="snApp?.theme?.themeKey"
+            (selectNewItem)="onSelectTheme($event)">
+        </select-element>
+    </div>
+
+    <div class="property" *ngFor="let key of keyProperties" [ngClass]="{'disabled': snApp?.theme?.themeKey !== 'custom'}">
+        <color-element
+            [title]="'COLOR-' + key"
+            [color]="snApp?.theme | themeColor: key"
+            (changed)="onColorChanged(key, $event)">
+        </color-element>
+    </div>
+</inspector-section>

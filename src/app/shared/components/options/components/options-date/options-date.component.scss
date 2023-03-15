@@ -1,0 +1,83 @@
+@import "../../../../../../styles.scss";
+
+:Host {
+    --LABEL-COLOR: #2D9CDB;
+    --INPUT-COLOR: #F9F9F9;
+    --TEXT-COLOR: #c4c4c4;
+}
+
+.date {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    position: relative;
+
+    .label {
+        @include option-input-label(var(--TEXT-COLOR));       
+        padding-top:  10px;
+        margin-right: 2px;
+        min-width: 75px;
+    }
+    
+    .element {
+        display: flex;
+        flex-direction: column;
+
+        .edit-text {
+            display: flex;
+            flex-direction: row;
+
+            .input {
+                margin-top: 0px;
+                @include option-line(var(--INPUT-COLOR));
+                border: none;
+                max-width: 125px;
+                padding-top: 11px;
+                background-color: $COLOR-BG-LIGHT;
+                outline: none;
+            }
+
+            .input[type=datetime-local]::-webkit-calendar-picker-indicator {
+                opacity: 0;
+                cursor: pointer;
+        
+                background: transparent;
+                bottom: 0;
+                color: transparent;
+                cursor: pointer;
+                height: auto;
+                left: 0;
+                position: absolute;
+                right: 0;
+                top: 0;
+                width: auto;
+            }
+        
+            .input[type=datetime-local]::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                display: none;
+            }
+        
+            .input[type=datetime-local]::-webkit-clear-button {
+                display: none;
+                -webkit-appearance: none;
+            }
+        
+            .input:focus {
+                outline: none;
+            }
+        
+            .icon {
+                padding-left: 5px;
+                padding-top: 8px;
+                color: var(--INPUT-COLOR);
+            }
+        }
+
+        .bottom-border {
+            width: 100%;
+            margin-top: 2px;
+            border-bottom: thin solid var(--LABEL-COLOR);
+        }
+    }
+}

@@ -1,0 +1,25 @@
+<div class="property inside-card">
+    <span class="title"> {{ 'INSPECTOR.WIDGET.RULE-CONDITION' | translate }}</span>
+    <rule-condition *ngFor="let condition of conditions; index as i"
+        [ngClass]="{'app-errors': widget.displayState?.errors | showAppErrors: 'rule.' + ruleId + '.condition.' + i: widget }"
+        [condition]="condition"
+        [conditions]="conditions"
+        [inputsData]="inputsData"
+        [page]="page"
+        [widget]="widget"
+        (conditionChanged)="onConditionChanged($event, i)"
+        (conditionRemoved)="onConditionRemoved(i)"
+        (moveEvent)="arrowMoveEvent($event, condition, i)">
+    </rule-condition>
+    
+    <div *ngIf="conditions?.length === 0" class="no-element section-content">
+        <p> {{ 'INSPECTOR.WIDGET.RULE-CONDITION-NOT-DEFINED' | translate }}</p>
+    </div>
+    
+    <div class="button-container">
+        <div class="add-button section-content" (click)="addCondition()">
+            <i class="fa-solid fa-plus"></i>
+            <p> {{ 'INSPECTOR.WIDGET.ADD-RULE-CONDITION' | translate }}</p>
+        </div>
+    </div>
+</div>

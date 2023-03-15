@@ -1,0 +1,10 @@
+<div class="text-input">
+    <div class="selected-item">
+        <input type="number"
+            [placeholder]="placeholder"
+            [(ngModel)]="value"
+            [title]="value"
+            (change)="onChangeValue()">
+        <i *ngIf="iconVisible" class="fa-solid fa-arrow-up-9-1 coloured-icon"></i>
+    </div>
+</div>

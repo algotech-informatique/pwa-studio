@@ -1,0 +1,69 @@
+<app-inspector-section 
+    [snApp]="snApp"
+    [title]="'INSPECTOR.WIDGET.LIST' | translate" display="section"
+    [section]="'collection.list'">
+    <div class="property last">
+        <input-element
+            [ngClass]="{ 'app-errors': widget?.displayState?.errors | showAppErrors: 'custom.list': widget }"
+            [title]="'INSPECTOR.WIDGET.LIST.COLLECTION' | translate"
+            [input]="inputCollection"
+            [dataItems]="items"
+            (inputChanged)="onCollectionChanged($event)">
+        </input-element>
+    </div>
+</app-inspector-section>
+
+<app-inspector-section 
+    [snApp]="snApp"
+    [title]="'INSPECTOR.WIDGET.DISPLAY' | translate"
+    [section]="'display.list'">
+    <div class="property">
+        <display-check-element
+            [title]="'INSPECTOR.WIDGET.LIST.SCROLLBAR' | translate" [value]="widget?.custom?.scrollbar"
+            (changed)="clickScrollbarList($event)">
+        </display-check-element>
+    </div>
+
+    <div class="property" *ngIf="widget.custom?.paginate.limit && (inputCollection?.value | paginable: page: ['page', 'limit'])">
+        <select-element [ngClass]="{'disabled': !widget?.custom?.scrollbar}"
+            [title]="'INSPECTOR.WIDGET.LIST.PAGINATION' | translate"
+            [list]="paginationLimit"
+            [selectedKey]="widget?.custom?.paginate.mode"
+            [showSearch]="false"
+            (selectNewItem)="onSelectModePagination($event)">
+        </select-element>
+    </div>
+    
+    <div class="property last">
+        <select-element
+            [title]="'INSPECTOR.WIDGET.LIST.FLEXDIRECTION-DISPLAY' | translate"
+            [subTitle]="'INSPECTOR.WIDGET.LIST.FLEXDIRECTION' | translate"
+            [list]="typesFlex"
+            [selectedKey]="widget?.custom?.direction"
+            [showSearch]="false"
+            (selectNewItem)="onSelectFlexDirection($event)">
+        </select-element>
+    </div>
+</app-inspector-section>
+
+<app-inspector-section
+    *ngIf="(inputCollection?.value | paginable: page: ['page', 'limit']) || (inputCollection?.value | paginable: page: ['filter'])"
+    [snApp]="snApp"
+    [title]="'INSPECTOR.WIDGET.FILTERS' | translate"
+    [section]="'pagination.list'">
+    <div class="property" *ngIf="inputCollection?.value | paginable: page: ['page', 'limit']">
+        <input-element
+            [title]="'INSPECTOR.WIDGET.LIST.RESULT-NUMBER-DISPLAY' | translate"
+            [subTitle]="'INSPECTOR.WIDGET.LIST.RESULT-NUMBER' | translate"
+            [input]="inputResultNumber"
+            (inputChanged)="onListResultNumberChanged($event)">
+        </input-element>
+    </div>
+
+    <div class="property last" *ngIf="inputCollection?.value | paginable: page: ['filter']">
+        <display-check-element
+            [title]="'INSPECTOR.WIDGET.LIST.SEARCH' | translate" [value]="widget?.custom?.search"
+            (changed)="clickSearchList($event)">
+        </display-check-element>
+    </div>
+</app-inspector-section>

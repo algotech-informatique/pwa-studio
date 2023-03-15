@@ -1,0 +1,30 @@
+<div *ngFor="let p of pair; index as indexPair;"
+    [ngClass]="{'subcard': p?.profiles?.length > 1}">
+    <multi-select-element
+        [ngStyle]="{'border-left': '3px solid ' + eventProfiles[0]?.color}"
+        [title]="eventProfiles[0]?.name"
+        [list]="listsGroups"
+        [selectedKeys]="p.profiles[0]?.groups"
+        (selectNewItems)="onSelectProfiles($event, indexPair, 0)">
+    </multi-select-element>
+    <div *ngIf="p?.profiles?.length > 1">
+        <div *ngFor="let profile of p?.profiles | slice:1; index as indexProfile;" class="subproperty">
+            <select-element *ngIf="listsGroups"
+                [ngStyle]="{'border-left': '3px solid ' + eventProfiles[indexProfile + 1]?.color}"
+                [title]="eventProfiles[indexProfile + 1]?.name"
+                [list]="listsGroups"
+                [selectedKey]="profile?.groups[0]"
+                (selectNewItem)="onSelectProfiles([$event], indexPair, indexProfile + 1)">
+            </select-element>
+        </div>
+    </div>
+    <div class="delete-profile" *ngIf="indexPair > 0">
+        <i class="fa-solid fa-trash button" (click)="removeProfile(indexPair)"></i>
+    </div>
+</div>
+<div *ngIf="eventProfiles?.length > 1" class="button-container">
+    <div class="add-button section-content" (click)="addProfilePair()">
+        <i class="fa-solid fa-plus"></i>
+        <p>{{ 'SETTINGS.WORKFLOWS.PROFILS.ADD' | translate }}</p>
+    </div>
+</div>

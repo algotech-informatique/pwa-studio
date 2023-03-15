@@ -1,0 +1,61 @@
+@import '../../../../../styles.scss';
+@import '../../../modules/inspector/theme/_mixins.scss';
+
+:host {
+    color: var(--INSPECTOR-SECTION-CONTENT-COLOR);
+    --DB-BACKGROUD-COLOR: #08090dd6;
+    --ion-color-primary: var(--ALGOTECH-PRIMARY);
+    
+    as-split-area {
+        @include custom-scrollbar(var(--INSPECTOR-VERT-MENU-LIGHT-COLOR), #ffffff00, 5px);
+    }
+
+    ::ng-deep .as-split-gutter {
+        background-color: var(--DB-BACKGROUD-COLOR) !important;
+        align-items: flex-end !important;
+        pointer-events: none;
+        width: 0% !important;
+        height: 0% !important;
+
+        &>.as-split-gutter-icon {
+            background-color: var(--DB-BACKGROUD-COLOR) !important;
+            pointer-events: all;
+            transition: all 0.3s;
+            opacity: 0;
+        }
+    }
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    font-size: 20px;
+    justify-content: space-around;
+    height: 45px;
+
+    .title {
+        padding: 15px;
+    }
+}
+
+
+.content {
+
+    height: calc(100% - 45px);
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 60px 15px 0px 15px;
+        color: #FFF;
+        background-color: #13141C;
+        border-radius: 5px;
+        padding: 10px;
+        min-height: calc(100% - 120px);
+
+        .card {
+            width: 90%;
+        }
+    }
+}

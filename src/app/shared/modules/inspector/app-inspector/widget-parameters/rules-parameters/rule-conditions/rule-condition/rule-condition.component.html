@@ -1,0 +1,50 @@
+<div class="sub-card">
+    <input-element
+        [title]="'INSPECTOR.WIDGET.RULE-CONDITION-PATH' | translate"
+        [input]="inputPath"
+        [dataItems]="inputsData"
+        (inputChanged)="onInputPathChanged($event)">
+    </input-element>
+    
+    <div *ngIf="condition.input" class="subproperty">
+        <select-element
+            [title]="'INSPECTOR.WIDGET.RULE-CONDITION-CRITERIA' | translate"
+            [list]="criteriasList"
+            [selectedKey]="condition?.criteria"
+            [showSearch]="true"
+            (selectNewItem)="onSelectCriteria($event)">
+        </select-element>
+    </div>
+    
+    <div *ngIf="displayFirstValue" class="subproperty"> 
+        <input-element
+            [title]="'INSPECTOR.WIDGET.RULE-CONDITION-VALUE' | translate"
+            [dataItems]="inputsData"
+            [input]="firstInputValue"
+            (inputChanged)="onInputFirstValueChanged($event)">
+        </input-element>
+    </div>
+
+    <div *ngIf="displaySecondValue" class="subproperty"> 
+        <input-element
+            [title]="'INSPECTOR.WIDGET.RULE-CONDITION-VALUE' | translate"
+            [dataItems]="inputsData"
+            [input]="secondInputValue"
+            (inputChanged)="onInputSecondValueChanged($event)">
+        </input-element>
+    </div>
+    
+    <div class="actions">
+
+        <!-- TODO -->
+        <!-- [ngClass]="{'only-delete': conditions.length === 1 }" -->
+        <!-- <div class="move-event" *ngIf="conditions.length > 1">
+            <i class="fa-solid fa-arrow-alt-circle-up button" (click)="arrowMoveEvent('up')"></i>
+            <i class="fa-solid fa-arrow-alt-circle-down button" (click)="arrowMoveEvent('down')"></i>
+        </div> -->
+
+        <div>
+            <i class="fa-solid fa-trash button" (click)="removeCondition()"></i>
+        </div>
+    </div>
+</div>

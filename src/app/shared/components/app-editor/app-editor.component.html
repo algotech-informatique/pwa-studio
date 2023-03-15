@@ -1,0 +1,45 @@
+<as-split direction="vertical" unit="pixel">
+    <as-split-area size="*">
+        <div class="content">
+            <div class="graph" #editor>
+                <cursors class="cursors" *ngIf="snApp" [editor]="editor" [customerKey]="customerKey" [host]="host"
+                    [viewId]="snApp.id" [zoomService]="appZoom">
+                </cursors>
+
+                <div class="layout">
+                    <app-toolbox class="toolbox" [snModel]="snModel" [snApp]="snApp" [host]="host"
+                        [customerKey]="customerKey" (appChanged)="onAppChanged($event)" (shared)="onShared($event)">
+                    </app-toolbox>
+
+                    <!-- <toolbox-drawing *ngIf="snApp && snApp.drawing" class="toolbox-drawing" [svgID]="'svg'"
+                        [containerID]="'container'" [data]="snApp.drawing" (dataChanged)="changed()"
+                        (activated)="onDrawingActivate($event)">
+                    </toolbox-drawing> -->
+
+                    <div class="work-layout">
+                        <app-left-inspector class="inspector" [snApp]="snApp" [settings]="settings" [snModel]="snModel" [forceOpenTab]="openInspector">
+                        </app-left-inspector>
+
+                        <app-layout class="app-layout" *ngIf="snApp" [snApp]="snApp" [settings]="settings"
+                            (changed)="changed($event)">
+                        </app-layout>
+
+                        <sn-app-inspector class="inspector" *ngIf="snApp && (selectedPage || selectedWidget)"
+                            [settings]="settings" [snApp]="snApp" [page]="selectedPage" [widget]="selectedWidget"
+                            [snModel]="snModel" [forceOpenTab]="openInspector">
+                        </sn-app-inspector>
+                    </div>
+                </div>
+
+                <smart-link-app class="smartLink" *ngIf="openSmartLink" [snApp]="snApp" [snModel]="snModel"
+                    [customerKey]="customerKey" [host]="host" (endSmartLink)="onCloseSmartLink($event)">
+                </smart-link-app>
+            </div>
+
+        </div>
+    </as-split-area>
+    <as-split-area [size]="treeDebugSize" *ngIf="!treeDebugCLosed && openDebug">
+        <app-tree-debug [report]="report" (closeTab)="handCloseTabs()">
+        </app-tree-debug>
+    </as-split-area>
+</as-split>

@@ -1,0 +1,4 @@
+<div *ngIf="showLock" [ngClass]="{'unlocked': !locked, 'locked': locked}" (click)=change(!locked)>
+    <i *ngIf="!locked" class="fa-solid fa-lock-open"></i>
+    <i *ngIf="locked" class="fa-solid fa-lock"></i>
+</div>  

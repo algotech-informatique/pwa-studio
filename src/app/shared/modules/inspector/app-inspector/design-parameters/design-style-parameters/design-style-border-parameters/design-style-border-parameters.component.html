@@ -1,0 +1,74 @@
+<div class="border-parameters">
+    <div class="border-buttons">
+        <div class="line-border">
+            <div class="border-button top" [ngClass]="{'highlight': !same, 'selected': selected === 'top'}" (click)="selectBorder('top')"
+                [title]="'SN-TOOLBOX-BORDER.TOP' | translate">
+                <i class="fa-solid fa-grip-lines"></i>
+            </div>
+        </div>
+        <div class="line-border">
+            <div class="border-button left" [ngClass]="{'highlight': !same, 'selected': selected === 'left'}" (click)="selectBorder('left')"
+                [title]="'SN-TOOLBOX-BORDER.LEFT' | translate">
+                <i class="fa-solid fa-grip-lines-vertical"></i>
+            </div>
+            <div class="border-button" [ngClass]="{'highlight': same, 'selected': selected === 'all'}" (click)="selectBorder('all')"
+                [title]="'SN-TOOLBOX-BORDER.ALL' | translate">
+                <i class="fa-solid fa-border-all"></i>
+            </div>
+            <div class="border-button right" [ngClass]="{'highlight': !same, 'selected': selected === 'right'}" (click)="selectBorder('right')"
+                [title]="'SN-TOOLBOX-BORDER.RIGHT' | translate">
+                <i class="fa-solid fa-grip-lines-vertical"></i>
+            </div>
+        </div>
+        <div class="line-border">
+            <div class="border-button bottom" [ngClass]="{'highlight': !same, 'selected': selected === 'bottom'}" (click)="selectBorder('bottom')"
+                [title]="'SN-TOOLBOX-BORDER.BOTTOM' | translate">
+                <i class="fa-solid fa-grip-lines"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="properties">
+        <div class="line">
+            <display-definition-values
+                [width]="thicknessSelected"
+                [title]="'SN-TOOLBOX-BORDER.WIDTH' | translate"
+                widthLabel=""
+                [roundValue]="true"
+                (changedWidth)="updateThickness($event)">
+            </display-definition-values>
+        </div>
+
+        <div class="select-inline-type line">
+            <span class="select-title">{{ 'SN-TOOLBOX-BORDER.STYLE' | translate }}</span>
+        
+            <div class="inline-select">
+                <div class="item" [ngClass]="{'selected': !typeSelected}" (click)="selectType(null)"
+                    [title]="'SN-TOOLBOX-BORDER.STYLE.NONE' | translate">
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
+                <div class="item" [ngClass]="{'selected': typeSelected === 'solid'}" (click)="selectType('solid')"
+                    [title]="'SN-TOOLBOX-BORDER.STYLE.SOLID' | translate">
+                    <div class="type solid"></div>
+                </div>
+                <div class="item" [ngClass]="{'selected': typeSelected === 'dashed'}" (click)="selectType('dashed')"
+                    [title]="'SN-TOOLBOX-BORDER.STYLE.DASHED' | translate">
+                    <div class="type dashed"></div>
+                </div>
+                <div class="item" [ngClass]="{'selected': typeSelected === 'dotted'}" (click)="selectType('dotted')"
+                    [title]="'SN-TOOLBOX-BORDER.STYLE.DOTTED' | translate">
+                    <div class="type dotted"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="line">
+            <color-element
+                [showApptheme]="true"
+                [color]="colorSelected"
+                (changed)="selectColor($event)">
+            </color-element>
+        </div>
+    </div>
+</div>
+    

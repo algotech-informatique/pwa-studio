@@ -1,0 +1,93 @@
+@import "../../../../../../styles.scss";
+
+:Host {
+    --LABEL-COLOR: #2D9CDB;
+    --INPUT-COLOR: #27AE60;
+    --ERROR-COLOR: #FF6473;
+    --WARNING-COLOR:#ef7426;
+    --TEXT-COLOR: #c4c4c4;
+    --OPTION-INPUT-MARGIN: 0px;
+    --LOGGER-BACK-COLOR: #1C232D;
+    --OPTION-HEIGHT: 300px;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    margin: var(--OPTION-INPUT-MARGIN);
+
+    .input-text {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        width: 100%;
+
+        .element {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            width: 100%;
+
+            .export-log {
+                position: absolute;
+                top: 8px;
+                right: 8px;
+
+                .icon {
+                    font-size: 16px;
+                    color: var(--TEXT-COLOR);
+                }
+            }
+
+            .export-log:hover {
+                top: 4px;
+                right: 4px;
+                opacity: 0.7;
+                padding: 7px;
+                background-color: var(--TEXT-COLOR);
+                border-radius: 14px;
+                cursor: pointer;
+
+                .icon {
+                    color: var(--LABEL-COLOR);
+                }
+            }
+    
+            .text {
+                display: flex;
+                flex-direction: row;
+
+                .edit-text-area {
+                    @include text-ellipsis();
+                    width: 100%;
+                    border-radius: 4px;
+                    border: thin solid var(--LABEL-COLOR);
+                    padding: 8px 5px;                       
+                    height: var(--OPTION-HEIGHT);
+                    background-color: var(--LOGGER-BACK-COLOR);
+                    outline: none;
+                    
+                    @include custom-scrollbar;
+                    overflow: none !important;
+                    overflow-y: auto;
+
+                    .message {
+                        @include option-title(var(--INPUT-COLOR));
+                        margin: 0px;
+                        padding: 2px;
+                        white-space: pre-wrap;
+                    }
+
+                    .message-error {
+                        @include option-title(var(--ERROR-COLOR));
+                    }
+
+                    .message-warning {
+                        @include option-title(var(--WARNING-COLOR));
+                    }
+                }     
+            }
+        }
+    }
+}

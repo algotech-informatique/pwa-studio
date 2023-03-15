@@ -1,0 +1,11 @@
+<div class="input-datetime">
+    
+    <input #input 
+        type="datetime-local"
+        class="input"
+        [value]="value | dateFormat:'YYYY-MM-DDTHH:mm'"
+        (focusout)="update(input.value)" />
+
+    <i class="fa-solid fa-calendar-days"></i>
+
+</div>

@@ -1,0 +1,35 @@
+@import '../../../inspector/theme/variables';
+@import '../../../inspector/theme/mixins';
+
+.text-input {
+    @include input-box;
+    cursor: auto;
+
+    &.error {
+        color: var(--SN-COLOR-ERROR) !important;
+    }
+    .selected-item {
+        @include input-element();
+        position: relative;
+
+        .date-input {
+            margin-right: 0;
+            z-index: 1;
+        }
+
+        input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+            color: transparent;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .coloured-icon {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--SN-NODE-PARAM-COLOR-DATE);
+            cursor: pointer;
+        }
+    }
+}

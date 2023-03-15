@@ -1,0 +1,136 @@
+@import '../../../../../../styles.scss';
+@import '../../../../modules/inspector/theme/_mixins.scss';
+
+:host {
+    color: var(--INSPECTOR-SECTION-CONTENT-COLOR);
+
+    --ALGOTECH-DANGER: #f72222;
+    --ALGOTECH-SUCCESS: #49bb32;
+    --ALGOTECH-WARNING: #e17a40;
+    --ALGOTECH-PRIMARY: rgba(106, 106, 228, 0.815);
+    --DB-BACKGROUD-COLOR: #08090dd6;
+
+    --ion-color-primary: var(--ALGOTECH-PRIMARY);
+    --ion-color-success: var(--ALGOTECH-SUCCESS);
+    --ion-color-warning: var(--ALGOTECH-WARNING);
+    --ion-color-danger: var(--ALGOTECH-DANGER);
+
+    as-split-area {
+        @include custom-scrollbar(var(--INSPECTOR-VERT-MENU-LIGHT-COLOR), #ffffff00, 5px);
+    }
+
+    ::ng-deep .as-split-gutter {
+        background-color: var(--DB-BACKGROUD-COLOR) !important;
+        align-items: flex-end !important;
+        pointer-events: none;
+        width: 0% !important;
+        height: 0% !important;
+
+        &>.as-split-gutter-icon {
+            background-color: var(--DB-BACKGROUD-COLOR) !important;
+            pointer-events: all;
+            transition: all 0.3s;
+            opacity: 0;
+        }
+    }
+}
+
+.card {
+    margin: 7px 6px;
+    // width: 90%;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    opacity: 0.8;
+    background-color: #1B1C26;
+    border: 1px solid #1B1C26;
+    padding: 12px;
+    border-radius: 10px;
+
+    label {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin: 5px;
+        pointer-events: none;
+
+        .date {
+            width: 200px;
+            display: flex;
+            justify-content: flex-start;
+            pointer-events: none;
+        }
+
+        .value {
+            width: 75px;
+            display: flex;
+            justify-content: space-between;
+            pointer-events: none;
+
+            &.error {
+                color: var(--ALGOTECH-DANGER);
+            }
+
+            &.error::-moz-progress-bar {
+                background: var(--ALGOTECH-DANGER);
+            }
+
+            &.succeeded {
+                color: var(--ALGOTECH-SUCCESS);
+
+            }
+
+            &.canceled {
+                color: var(--ALGOTECH-WARNING);
+            }
+
+            .spinner {
+                --color: var(--GRID-CELL-COLOR);
+                height: 10px
+            }
+
+            .at-spinner-container {
+                position: sticky;
+                left: 0px;
+            }
+        }
+    }
+
+    .progressBar {
+        width: 100%;
+    }
+
+}
+
+.empty {
+    align-items: center;
+    position: absolute;
+    top: 50%;
+}
+
+.selected {
+    opacity: 1;
+}
+
+.card:hover {
+    opacity: 1;
+}
+
+label {
+    padding-right: 10px;
+    font-size: 12px;
+}
+
+.console {
+    background-color: #262732;
+    display: flex;
+    flex-direction: column;
+    margin: 4px;
+    padding: 4px;
+    border: 1px solid #262732;
+    border-radius: 3px;
+    align-items: flex-start;
+    width: calc(100% - 15px);
+    font-size: 12px;
+}

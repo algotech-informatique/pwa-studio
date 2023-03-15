@@ -1,0 +1,96 @@
+@import "../../../../../../styles.scss";
+
+:host {
+    --LABEL-COLOR: #2D9CDB;
+    --TITLE-COLOR-SELECTED: #ffffff;
+    --TITLE-COLOR-NO-SELECTED: #A0A7B4;
+    --BUTTON-BACK-COLOR: #27AE60;
+    --STORE-WIDTH: 450px;
+    --TITLE-MARGIN-BOTTOM: 20px;
+    --LIST-MARGIN: 8px 10px 10px 25px;
+    --LIST-BACK-COLOR: #5E738D;
+    --OBJECT-MARGIN: 4px 5px 4px 5px;
+    --BORDER-RADIUS: 5px;
+    --ITEM-HEIGHT: 50px;
+    --BUTTON-SEND-COLOR: #27AE60;
+    --LOGGER-HEIGHT: 250px;
+}
+
+.content {
+    width: var(--STORE-WIDTH);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    @include scrollbar(transparent, 0px);
+
+    .title {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: 50px;
+        padding: 15px;
+        margin-bottom: 20px;
+
+        .store-title {
+            @include option-title-selected(var(--TITLE-COLOR-SELECTED));
+            padding-top: 10px;
+        }
+    }
+
+    .info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .lists {
+            margin: 10px;
+            height: 300px;
+            max-height: 52%;
+
+            .list {
+                --OPTIONS-ITEM-HEIGHT: var(--ITEM-HEIGHT);
+                --OPTIONS-LIST-BORDER-RADIUS: var(--BORDER-RADIUS);
+                --OPTIONS-LIST-BACK-COLOR: var(--LIST-BACK-COLOR);
+                --OPTIONS-LIST-OBJECT-MARGIN: var(--OBJECT-MARGIN);
+            }
+        }
+
+        .logger {
+            margin: 10px;
+            --OPTION-HEIGHT: var(--LOGGER-HEIGHT);
+        }
+    }
+
+    .footer {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        height: 80px;
+        margin: 20px 0px;
+
+        .send-elements {
+            flex: none;
+            @include button();
+            background-color: var(--BUTTON-SEND-COLOR) !important;
+            margin: 20px;
+
+            span {
+                padding: 0px 10px 0px 10px;
+                @include option-title-selected(var(--TITLE-COLOR-SELECTED));
+            }
+        }
+
+        .inactive {
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        .send-elements:hover {
+            cursor: pointer;
+            opacity: 0.5;
+        }
+
+    }
+}

@@ -1,0 +1,52 @@
+<div class="home" (click)="closeContextmenu()" (contextmenu)="closeContextmenu()">
+
+    <div class="container" [ngClass]="{'loading' : sessionsService.active?.datas.status === 0 }">
+
+        <div class="studio-content" *ngIf="display" [ngClass]="{'with-tabs': selectedTab}">
+            <app-explorer class="explorer" [(expand)]="expand">
+            </app-explorer>
+
+            <app-tabs 
+                [ngClass]="{'disabled': modalOpen, 'expanded': expand}" 
+                [tabs]="tabs"
+                (selectTab)="selectTab($event)" 
+                (rightClickTab)="openTabContextualMenu($event)"
+                (closeTab)="closeTab($event)">
+            </app-tabs>
+
+            <div class="view" [ngClass]="{'with-tabs': selectedTab}" (contextmenu)="$event.stopPropagation()">
+                <ion-progress-bar class="progress" color="secondary" type="indeterminate"
+                    *ngIf="sessionsService.active?.datas.status === 0"></ion-progress-bar>
+
+                <div class="view-content" *ngIf="selectedTab">
+                    <editor-content [type]="selectedTab.type" [refUuid]="selectedTab.refUuid"
+                        [customerKey]="selectedTab.customerKey" [host]="selectedTab.host">
+                    </editor-content>
+                </div>
+                <div class="view-empty" *ngIf="!selectedTab">
+                    <!-- <svg class="empty-logo">       
+                        <image xlink:href="./assets/logo.svg" src="./assets/logo.png" width="90" height="90"/>    
+                    </svg> -->
+                    <img class="empty-logo" src="./assets/logo.svg" />
+                </div>
+            </div>
+        </div>
+
+        <!-- <app-environment-bar></app-environment-bar> -->
+    </div>
+
+    <app-modal title="{{ 'SN-CONNECTOR-PARAMETERS' | translate }}" [(open)]="parametersOpen">
+        <app-connector-parameters *ngIf="parametersOpen" [line]="connectorLine"></app-connector-parameters>
+    </app-modal>
+
+    <app-dialog-message></app-dialog-message>
+
+    <div class="toasts-container">
+        <div #toasts></div>
+    </div>
+
+    <div class="preload-fa">
+        <i class="fa-solid fa-file"></i>
+        <i class="fa-brands fa-wpforms"></i>
+    </div>
+</div>

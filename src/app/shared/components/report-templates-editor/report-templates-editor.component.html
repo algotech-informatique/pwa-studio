@@ -1,0 +1,68 @@
+<editor-form class="editor-form" [enabled]="enabled" (toggleChange)="toggleChange($event)">
+    <div class="form">
+        <div class="content">
+            <label> {{ "EDITOR_NAME" | translate }} </label>
+            <input class="name" [(ngModel)]="key" [disabled]="!fileUploaded || uploadError">
+        </div>
+        <div class="content">
+            <label> {{ "EDITOR_TEMPLATE_FILE" | translate }} </label>
+            <span>
+                <button (click)="openFile()"> {{ "EDITOR_BROWSE" | translate }}</button>
+                <input type="file" class="file" accept=".docx, .xlsx, .xlsm, .pptx" [(ngModel)]="inputValue" #file
+                    (change)="inputFile($event.target.files)">
+            </span>
+            <span>
+                <label *ngIf="fileLoaded" class="info"> {{ fileName }}</label>
+                <label *ngIf="fileLoaded" class="info"> {{ fileSize }}</label>
+                <label *ngIf="fileLoaded && fileUploaded" class="success">
+                    {{ "EDITOR_FILE_LOADED" | translate }}</label>
+                <span *ngIf="uploadError">
+                    <label class="error"> {{ "EDITOR_FILE_LOAD_ERROR" | translate }}</label>
+                    <label *ngIf="errors.length > 0" class="error">
+                        {{ "TEMPLATER_FILE_LOAD_ERROR" | translate }}</label>
+                    <label *ngFor="let error of errors" class="error"> {{ error }} </label>
+                </span>
+            </span>
+        </div>
+        <div class="content">
+            <label> {{ "EDITOR_INPUT_VARIABLES" | translate }}</label>
+            <div class="grid">
+                <div *ngFor="let tag of tags, let i = index" class="row"
+                    [ngClass]="{first: i===0}">
+                    <div class="column size0">
+                        <label class="header" *ngIf="i === 0">{{ "EDITOR_GRID_VARIABLES" | translate }}</label>
+                        <label class="info" *ngIf="i > 0"> {{ tag.key }} </label>
+                    </div>
+                    <div class="column size1">
+                        <label class="header" *ngIf="i === 0">{{ "EDITOR_GRID_TYPE" | translate }}</label>
+                        <div *ngIf="i > 0" class="type-container">
+                            <select-types class="display-element" 
+                                [visibleTitle]="false" 
+                                [variableType]="tag.type"
+                                [types]="tag.eligibleTypes" 
+                                [sources]="[]"
+                                (typeChange)="onChange($event, tag)">
+                            </select-types>
+                        </div>
+                    </div>
+                    <div class="column size1">
+                        <label class="header" *ngIf="i === 0">{{ "EDITOR_GRID_MULTIPLE" | translate }}</label>
+                        <label *ngIf="i > 0" class="container">
+                            <input type="checkbox" checked="checked" [(ngModel)]="tag.multiple"
+                                (change)="updateSnModel()">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div class="column size1">
+                        <label class="header" *ngIf="i === 0">{{ "EDITOR_GRID_REQUIERED" | translate }}</label>
+                        <label *ngIf="i > 0" class="container">
+                            <input type="checkbox" checked="checked" [(ngModel)]="tag.required"
+                                (change)="updateSnModel()">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</editor-form>

@@ -1,0 +1,9 @@
+@import "../../../theme/mixins";
+
+events-cards.with-inherit-cards {
+    --PADDING-TOP: 0;
+}
+
+.property {
+    @include property;
+}

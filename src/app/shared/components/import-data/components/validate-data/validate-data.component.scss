@@ -1,0 +1,126 @@
+@import "../../../../../../styles.scss";
+
+:host {
+    --TITLE-COLOR-SELECTED: #ffffff;
+    --DATA-WIDTH: 400px;
+    --ITEM-HEIGHT: 30px;
+    --LOGGER-HEIGHT: 450px;
+    --BUTTON-DOWNLOAD-COLOR: #27AE60;
+    --LABEL-COLOR: #2D9CDB;
+    --TITLE-MARGIN-BOTTOM: 20px;
+    --CHECK-MARGIN: 0px 20px 20px 20px;
+}  
+
+.content {
+    width: var(--DATA-WIDTH);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    @include scrollbar-hidden();
+
+    .inactive-content {
+        pointer-events: none;
+        opacity: 0.3;
+    }
+
+    .title {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: 5%;
+        padding: 15px;
+        margin-bottom: 20px;
+        position: relative;
+
+        .gestion-title {
+            @include option-title-selected(var(--TITLE-COLOR-SELECTED));
+            padding-top: 10px;
+        }
+    }
+
+    .options {
+        height: calc(100% - 50px);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        margin-bottom: var(--TITLE-MARGIN-BOTTOM);
+
+        .imports {
+            height: 85px;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+
+            .buttons {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+                
+                .import {
+    
+                    .import-button {
+                        @include button();
+                        background-color: var(--BUTTON-DOWNLOAD-COLOR) !important;
+                        margin: 10px;
+            
+                        span {
+                            padding: 0px 10px 0px 10px;
+                            @include option-title-selected(var(--TITLE-COLOR-SELECTED));
+                            text-align: center;
+                        }
+                    }
+    
+                    .inactive {
+                        pointer-events: none;
+                        --OPTIONS-CHECK-BACKCOLOR: gray;
+                        opacity: 0.6;
+                    }
+            
+                    .import-button:hover {
+                        cursor: pointer;
+                        opacity: 0.5;
+                    }
+    
+                    .check {
+                        --OPTIONS-CHECK-MARGIN: var(--CHECK-MARGIN);
+                    }
+    
+                    .label {
+                        @include option-label-detail(var(--TITLE-COLOR-SELECTED));
+                        text-align: center;
+                    }
+                }
+            }
+
+            .buttons-down {
+                display: flex;
+                flex-direction: column;
+                margin: 0px 10px;
+            }
+
+            .border-bottom {
+                margin: 0px 10px;
+                height: 10px;
+                width: 95%;
+                border-bottom: 2px solid var(--LABEL-COLOR);
+                margin-bottom: var(--TITLE-MARGIN-BOTTOM);
+            }
+        }
+    
+        .logs {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: calc(100% - 250px);
+            margin-bottom: 10px;
+
+            .logger {
+                height: 100%;
+                margin: 10px;
+                --OPTION-HEIGHT: var(--LOGGER-HEIGHT);
+            }
+        }
+    }
+}

@@ -1,0 +1,55 @@
+
+<div class="variables-cards">
+    <div class="section-content">
+
+        <inspector-section
+            class="section"
+            [ngClass]="{'app-errors': page?.displayState?.errors | showAppErrors: 'page.variables.' +  i }"
+            *ngFor="let variable of variables, let i = index"
+            [title]="variable?.key || 'INSPECTOR.VARIABLES.NEW' | translate"
+            [defaultOpen]="addedIndex === i || page?.displayState?.activeZone === 'variable.' + variable?.key"
+            [display]="'card'">
+
+            <div class="property inside-card">
+                <display-key-element
+                    [title]="'INSPECTOR.VARIABLES.VARIABLE_KEY' | translate"
+                    [key]="variable?.key"
+                    (changed)="onKeyChanged($event, i)">
+                </display-key-element>
+            </div>
+
+            <div class="property inside-card">
+                <select-element
+                    [title]="'INSPECTOR.VARIABLES.VARIABLE_TYPE' | translate"
+                    [list]="listTypes"
+                    [selectedKey]="variable?.type"
+                    (selectNewItem)="onSelectType(variable, $event)">
+                </select-element>
+            </div>
+
+            <div class="property inside-card">
+                <display-check-element class="multiple" [title]="'INSPECTOR.VARIABLES.VARIABLE_MULTIPLE' | translate"
+                    [value]="variable?.multiple"
+                    (changed)="onMultipleChanged(variable, $event)">
+                </display-check-element>
+            </div>
+
+            <div class="actions">
+                <div class="delete-event">
+                    <i class="fa-solid fa-trash button" (click)="removeVariable(variable)"></i>
+                </div>
+            </div>
+
+        </inspector-section>
+
+        <div *ngIf="variables?.length === 0" class="no-element section-content">
+            <p>{{ 'INSPECTOR.WIDGET.VARIABLE.NO-VARIABLE' | translate }}</p>
+        </div>
+        <div class="button-container">
+            <div class="add-button section-content" (click)="addVariable()">
+                <i class="fa-solid fa-plus"></i>
+                <p>{{ 'INSPECTOR.WIDGET.VARIABLE.ADD-VARIABLE' | translate }}</p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+@import '../../../../../../styles';
+@import '../../theme/mixins';
+
+.translate-element {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.title {
+    @include title;
+}
+
+.display {
+    @include input-box;
+    cursor: auto;
+    align-items: center;
+
+    .text {
+        @include input-element;
+        min-width: 0;
+        display: flex;
+    }
+
+    .lang-selector {
+        position: relative;
+
+        .selected-lang {
+            display: flex;
+            flex-direction: row;
+            border-radius: 3px;
+            background-color: var(--INSPECTOR-TOOLS-BG);
+            padding: 2px;
+            align-items: center;
+
+            i {
+                color: var(--SN-COLOR-FONT);
+                font-size: 10px;
+                padding: 0px 5px;
+            }
+        }
+
+        .selected-lang:hover {
+            cursor: pointer;
+            opacity: 0.5;
+        }
+
+        lang-selector-pop-up {
+            position: absolute;
+            width: 100%;
+            z-index: 1;
+        }
+    }
+}

@@ -1,0 +1,13 @@
+@import '../../../../theme/mixins';
+
+.property {
+    @include property;
+}
+
+.select-inline-cap {
+    @include align-items-inputs;
+
+    .cap-icon {
+        height: 13px;
+    }
+}

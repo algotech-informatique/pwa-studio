@@ -1,0 +1,125 @@
+@import "../../../../../styles.scss";
+
+:host {
+    width: 100%;
+    color: $COLOR-FG;
+    --COLOR-CURRENT-USER: #495199;
+}
+
+.profile-section {
+    .section-head {
+        height: 70px;
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        flex-direction: row;
+        cursor: pointer;
+    
+        .avatar {
+            min-width: 30px;
+            width: 30px;
+            height: 30px;
+            border-radius: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--COLOR-CURRENT-USER);
+            color: white;
+        }
+    
+        .info {
+            display: flex;
+            flex-direction: column;
+            margin-left: 10px;
+            min-width: 0;
+            max-width: 200px;
+    
+            .name, .email {
+                @include text-ellipsis;
+            }
+
+            .email {
+                font-size: 9pt;
+            }
+        }
+    
+        .toggle-button {
+            overflow: hidden;
+            margin-left: auto;
+
+            i {
+                margin-left: 10px;
+            }
+        }
+    }
+    
+    .section-detail {
+        &.popup {
+            position: absolute;
+            padding: 5px;
+            bottom: 0;
+            left: $EXPLORER-REDUCE-SIZE;
+            width: 250px;
+            border-radius: 0px $GLOBAL-RADIUS $GLOBAL-RADIUS 0px;
+            
+            .button {
+                &:not(.lang, .selected, :hover) {
+                    background-color: $EXPLORER-BG-ACTIVE;
+                }
+
+                &:first-child:not(.lang) {
+                    border-radius: 0px $GLOBAL-RADIUS 0px 0px;
+                }
+
+                &:last-child:not(.lang) {
+                    border-radius: 0px 0px $GLOBAL-RADIUS 0px;
+                }
+            }
+        }
+
+        &:not(.displayed) {
+            display: none;
+        }
+
+        .langs {
+            background-color: $EXPLORER-BG-SELECTED;
+        }
+
+        .button {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 10px 20px;
+            cursor: pointer;
+
+            &.selected {
+                background-color: $EXPLORER-BG-SELECTED;
+            }
+    
+            &:hover:not(.selected) {
+                background-color: $EXPLORER-BG-ACTIVE;
+            }
+    
+            i {
+                margin-right: 10px;
+            }
+    
+            &.lang {
+                padding-left: 40px;
+    
+                &.selected {
+                    background-color: $EXPLORER-BG-SUBMODULE-SELECTED;
+                    cursor: default;
+                }
+            }
+        }
+    }
+
+    &.reduced {
+        &:hover {
+            .section-detail {
+                display: block;
+            }
+        }
+    }
+}

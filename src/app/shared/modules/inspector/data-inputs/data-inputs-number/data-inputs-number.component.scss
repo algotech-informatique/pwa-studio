@@ -1,0 +1,18 @@
+@import '../../../inspector/theme/variables';
+@import '../../../inspector/theme/mixins';
+
+.text-input {
+    @include input-box;
+    cursor: auto;
+
+    &.error {
+        color: var(--SN-COLOR-ERROR) !important;
+    }
+    .selected-item {
+        @include input-element();
+
+        .coloured-icon {
+            color: var(--SN-NODE-PARAM-COLOR-NUMBER);
+        }
+    }
+}

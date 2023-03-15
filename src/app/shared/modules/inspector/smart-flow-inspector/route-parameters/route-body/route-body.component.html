@@ -1,0 +1,65 @@
+<div class="property">
+    <sn-display-radio
+        mode="radio"
+        [radioList]="modes"
+        [selected]="selectedMode"
+        (changed)="onModeChanged($event)">
+    </sn-display-radio>
+</div>
+
+<div *ngIf="selectedMode === 'uniqueBody'">
+    <div class="property">
+        <div class="property-items" [ngClass]="{'app-errors': errors | showAppErrors: 'variable.' +  body?.uuid }">
+            <div class="property-item">
+                <display-key-element class="element"
+                    [title]="'INSPECTOR.SMART_FLOW.API.VARIABLE.KEY' | translate"
+                    [showIcon]="false"
+                    [key]="body?.key"
+                    (changed)="onChangeBodyKey($event)">
+                </display-key-element>
+            </div>
+    
+            <div class="property-item">
+                <select-element
+                    [title]="'INSPECTOR.SMART_FLOW.API.VARIABLE.TYPE' | translate"
+                    [list]="smartModels"
+                    [selectedKey]="body?.type"
+                    (selectNewItem)="onChangeBodyType($event)">
+                </select-element>
+            </div>
+    
+            <div class="property-item">
+                <display-check-element
+                    [title]="'INSPECTOR.SMART_FLOW.API.VARIABLE.ARRAY' | translate"
+                    [value]="body?.multiple"
+                    (changed)="onChangeBodyMultiple($event)">
+                </display-check-element>
+            </div>
+    
+            <div class="property-item last">
+                <display-input-element
+                    [title]="'INSPECTOR.SMART_FLOW.API.VARIABLE.DESCRIPTION' | translate"
+                    [rows]="2"
+                    [value]="body?.description"
+                    (changed)="onChangeBodyDescription($event)">
+                </display-input-element>
+            </div>
+        </div>
+    </div>
+</div>
+
+<variables *ngIf="selectedMode === 'composedBodies' "
+    [types] = "[]"
+    [sources]="sources"
+    [variables]="bodies"
+    [errors]="errors"
+    (changed)="onVariablesChanged()">
+</variables>
+
+<variables *ngIf="selectedMode === 'formData'"
+    [types] = "formDataTypes"
+    [sources]="[]"
+    [variables]="formDataKeys"
+    [errors]="errors"
+    (changed)="onVariablesChanged()">
+</variables>

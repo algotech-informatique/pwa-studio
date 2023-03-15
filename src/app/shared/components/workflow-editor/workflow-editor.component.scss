@@ -1,0 +1,59 @@
+@import '../../../../styles.scss';
+
+.debugger {
+    height: 100%;
+    width: 700px;
+}
+
+.graph {
+    position: relative;
+
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.layout {
+    height: 100%;
+    width: 100%;
+
+    .toolbox {
+        position: absolute;
+        display: block;
+        width: 100%;
+        z-index: 2;
+    }
+
+    .toolbox-drawing {
+        @include drawing();
+    }
+
+    .main-layout {
+        display: block;
+        height: 100%;
+        width: 100%;
+    }
+
+    .work-layout {
+        display: flex;
+        height: 100%;
+        width: 100%;
+    }
+}
+
+.smartLink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+}
+
+sn-work-flow-inspector {
+    margin-top: #{$TOP-BAR-HEIGHT};
+    z-index: 1;
+}

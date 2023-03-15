@@ -1,0 +1,32 @@
+<div class="primitive-input">
+    <div class="selected-item">
+        <i *ngIf="icon" [class]="icon + ' icon'"></i>
+        <i *ngIf="input.multiple" class="fa-solid fa-layer-group icon"></i>
+
+
+        <input *ngIf="valueIsPath" [value]="input.value" [readonly]="true" [title]="input.value">
+
+        <input
+            #cmp
+            *ngIf="!valueIsPath && inputType !== 'checkbox'"
+            [value]="dateFormat ? (input.value | dateFormat:dateFormat[0]:dateFormat[1]) : input.value"
+            [placeholder]="input.key"
+            [type]="inputType"
+            [readonly]="(input.multiple && !input.multiNoStrict)"
+            [title]="input.value"
+            (focusout)="onInputChanged(cmp.value)"
+        >
+        
+        <div class="checkbox" *ngIf="inputType === 'checkbox' && !valueIsPath"
+            (click)="onCheck()">
+                <i *ngIf="value" class="fa-solid fa-check"></i>        
+        </div>
+
+    </div>
+    <i *ngIf="input.value" class="fa-solid fa-xmark close" (click)="resetInput()"></i>
+    <i *ngIf="dataItems"
+        [ngClass]="{'selected': dataSelectorShowed}"
+        class="fa-solid fa-bullseye button"
+        (click)="openDataSelector($event)">
+    </i>
+</div>

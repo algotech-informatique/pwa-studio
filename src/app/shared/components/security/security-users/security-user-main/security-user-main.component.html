@@ -1,0 +1,47 @@
+<div class="content" *ngIf="users && users?.length !== 0">
+
+    <div class="title">
+
+        <div class="options">
+			<div class="option"
+				[ngClass]="{'option-selected': activeSelected}"
+				(click)="onSelectedOption(true)"
+			>
+				{{ 'SECURITY-USERS.USER-ACTIVE' | translate: { total: optionActiveUser.length } }}
+			</div>
+			
+			<div class="option"
+				[ngClass]="{'option-selected': !activeSelected}"
+				(click)="onSelectedOption(false)"
+			>
+				{{ 'SECURITY-USERS.USER-INACTIVE' | translate: { total: optionInActiveUser.length } }}
+			</div>
+		</div>           
+
+        <div class="new-user" (click)="onCreateNewUser()">
+            <span>{{ 'SECURITY-USERS.NEW-USER' | translate }}</span>
+        </div>
+    </div>
+
+    <options-search class="search" [(search)]="search" (searchValue)="onSearch($event)">
+    </options-search>
+
+    <div class="users">
+        <options-object-list *ngIf="activeSelected"
+            class="user"
+            [selectId]="selectedId"
+            [optionObjects]="optionUserFiltered"
+            (selectedObject)="onSelectedObject($event)"
+        >
+        </options-object-list>
+
+        <options-object-list *ngIf="!activeSelected"
+            class="user"
+            [selectId]="selectedId"
+            [optionObjects]="optionUserFiltered"
+            (selectedObject)="onSelectedObject($event)"
+        >
+        </options-object-list>
+    </div>
+
+</div>

@@ -1,0 +1,110 @@
+@import "../../../../../../styles.scss";
+
+:Host {
+    --LABEL-COLOR: #2D9CDB;
+    --INPUT-COLOR: #F9F9F9;
+    --TEXT-COLOR: #c4c4c4;
+    --OPTION-INPUT-MARGIN: 0px;
+    --INPUT-LIST-BACK: #1C232D;
+}
+
+.input {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: var(--OPTION-INPUT-MARGIN);
+
+    .input-text {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        width: 100%;
+    
+        label {
+            @include option-input-label(var(--TEXT-COLOR));       
+            padding-top: 10px;
+            margin-right: 2px;
+            min-width: 110px;
+        }
+    
+        .element {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+    
+            .text {
+                display: flex;
+                flex-direction: row;
+                position: relative;
+                
+                .area {
+                    @include option-title(var(--INPUT-COLOR));
+                    @include text-ellipsis();
+                    @include custom-scrollbar;
+
+                    border: none;
+                    background-color: $COLOR-BG-LIGHT;
+                    outline: none;
+                    min-width: 40px;
+                    width: 100%;
+                    padding-top: 8px;   
+                    height: 100px;
+                }
+
+                .lang-selector {
+                    position: absolute;
+                    top: 0px;
+                    right: 15px;
+                    width: fit-content;
+
+                    .selected-lang {
+
+                        display: flex;
+                        flex-direction: row;
+                        border-radius: 3px;
+                        min-width: 40px;
+                        background-color: var(--INPUT-LIST-BACK);
+                        color: var(--SN-COLOR-FONT);
+                        padding: 5px;
+            
+                        i {
+                            color: var(--SN-COLOR-FONT);
+                            line-height: 16px;
+                            font-size: 10px;
+                            padding: 0px 5px;
+                        }
+                    }
+            
+                    .selected-lang:hover {
+                        cursor: pointer;
+                        opacity: 0.5;
+                    }
+            
+                    option-multilang-pop-up {
+                        z-index: 1;
+                        position: absolute;
+                        width: 100%;
+                    }
+                }
+                
+            }
+
+            .bottom-border {
+                width: 100%;
+                margin-top: 2px;
+                border-bottom: thin solid var(--LABEL-COLOR);
+            }
+        }
+    
+        .endLabel {
+            @include option-input-label(var(--TEXT-COLOR));       
+            padding-top: 10px;
+            margin-right: 2px;
+            min-width: 75px;
+            width: 100%;
+        }
+    }
+
+    
+}

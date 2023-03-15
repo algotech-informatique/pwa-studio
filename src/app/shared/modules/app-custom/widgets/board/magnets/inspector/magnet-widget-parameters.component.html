@@ -1,0 +1,91 @@
+<app-inspector-section 
+    [snApp]="snApp"
+    [title]="'INSPECTOR.WIDGET.PARAMETERS' | translate" display="section" 
+    [section]="'customParams.magnet'"
+    [ngClass]="{'first': widget?.rules?.length === 0}">
+
+    <div class="property">
+        <ngx-dropzone
+            [multiple]="false"
+            [accept]="'image/*'"
+            (change)="onChangeFile($event)">
+            <ngx-dropzone-label>{{'SETTINGS.LAYER.DROP_FILE' | translate}}</ngx-dropzone-label>
+            <ngx-dropzone-image-preview *ngIf="file" [file]="file" [removable]="true" (removed)="onRemoveFile()">
+            </ngx-dropzone-image-preview>
+        </ngx-dropzone>
+    </div>
+
+    <div class="property" [ngClass]="{'last': !selectedSmartModel}">
+        <select-element
+            [title]="'SMARTMODEL' | translate"
+            [list]="smartmodels"
+            [selectedKey]="widget?.custom?.modelKey"
+            (selectNewItem)="onSelectSmartmodel($event)">
+        </select-element>
+    </div>
+
+    <div class="filter-card last" *ngIf="selectedSmartModel">
+        <div class="section-content">
+            <inspector-section 
+                *ngIf="widget?.custom?.filter"
+                class="section"
+                [title]="'INSPECTOR.WIDGET.FILTER' | translate"
+                [titleIcon]="'fa-solid fa-filter'"
+                [display]="'card'">
+    
+                <div class="property inside-card">
+                    <select-element
+                        [title]="'INSPECTOR.PARAM.CONDITION.PROPERTY' | translate"
+                        [list]="properties"
+                        [selectedKey]="widget.custom.filter?.property"
+                        [showSearch]="true"
+                        (selectNewItem)="onSelectFilterProperty($event)">
+                    </select-element>
+                </div>
+    
+                <div *ngIf="widget.custom.filter.property" class="property inside-card">
+                    <data-inputs
+                        [title]="'INSPECTOR.PARAM.CONDITION.VALUE' | translate"
+                        inputKey="defaultValue"
+                        [typeInput]="propertyType"
+                        [value]="widget.custom.filter?.value"
+                        [iconVisible]="true"
+                        (changed)="onChangeFilterValue($event)">
+                    </data-inputs>
+                </div>
+    
+                <div class="actions">
+                    <div class="delete-event">
+                        <i class="fa-solid fa-trash button" (click)="eraseFilter()"></i>
+                    </div>
+                </div>
+            </inspector-section>
+    
+            <div *ngIf="!widget?.custom?.filter" class="no-element section-content">
+                <p>{{ 'INSPECTOR.WIDGET.FILTER.NO-FILTER' | translate }}</p>
+            </div>
+            <div *ngIf="!widget?.custom?.filter" class="button-container">
+                <div class="add-button section-content" (click)="addFilter()">
+                    <i class="fa-solid fa-plus"></i>
+                    <p>{{ 'INSPECTOR.WIDGET.FILTER.ADD-FILTER' | translate }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</app-inspector-section>
+
+<app-inspector-section 
+    [snApp]="snApp"
+    [title]="'INSPECTOR.WIDGET.PERMISSIONS' | translate"
+    [section]="'permissions.magnet'">    
+    <div class="property last">
+        <multi-select-element
+            [title]="'INSPECTOR.WIDGET.SECURITY.MOVE-DISPLAY' | translate"
+            [subTitle]="'INSPECTOR.WIDGET.SECURITY.MOVE' | translate"
+            [list]="securityList"
+            [selectedKeys]="widget?.custom?.permissions"
+            (selectNewItems)="onChangePermissions($event)">
+        </multi-select-element>
+    </div>
+</app-inspector-section>

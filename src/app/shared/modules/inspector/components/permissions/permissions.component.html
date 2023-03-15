@@ -1,0 +1,40 @@
+<div class="content">
+    <div class="row">
+        <span class="column-permission letter">
+            R
+        </span> 
+        <span class="column-permission letter">
+            W
+        </span>
+        <span class="column-apply" (click)="onApplyAll()">
+            {{'SMART_MODEL.PERMISSIONS.APPLY_ALL' | translate}}
+        </span>
+    </div>
+    
+    <div *ngFor="let permission of permissionsDisplay; let first = first" class="row">
+        <span class="column-permission check" (click)="onChangePermission(permission, 'R')">
+            <div class="option" [ngClass]="{'selected': permission?.R}"
+                [title]="first ? ('SMART_MODEL.PERMISSIONS.' + (permission?.R ? 'UN' : '') + 'SELECT_ALL' | translate) : ''">
+                <i *ngIf="first && permission?.R" class="fa-solid fa-minus"></i>
+                <i *ngIf="first && !permission?.R" class="fa-solid fa-plus"></i>
+                <i *ngIf="!first && permission?.R" class="fa-solid fa-check"></i>
+            </div>
+        </span> 
+        <span class="column-permission check" (click)="onChangePermission(permission, 'W')">
+            <div class="option" [ngClass]="{'selected': permission?.W}"
+                [title]="first ? ('SMART_MODEL.PERMISSIONS.' + (permission?.W ? 'UN' : '') + 'SELECT_ALL' | translate) : ''">
+                <i *ngIf="first && permission?.W" class="fa-solid fa-minus"></i>
+                <i *ngIf="first && !permission?.W" class="fa-solid fa-plus"></i>
+                <i *ngIf="!first && permission?.W" class="fa-solid fa-check"></i>
+            </div>
+        </span>
+        <span class="column-group" [title]="permission?.name">
+            {{permission?.name}}
+        </span>
+    </div>
+
+    <div class="information">
+        <span>{{'SMART_MODEL.PERMISSIONS.INFORMATION.R' | translate}}</span>
+        <span>{{'SMART_MODEL.PERMISSIONS.INFORMATION.W' | translate}}</span>
+    </div>
+</div>

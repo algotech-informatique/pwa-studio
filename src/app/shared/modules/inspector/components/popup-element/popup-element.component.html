@@ -1,0 +1,12 @@
+<div #background *ngIf="show" class="background" (contextmenu)="outsideClicked($event)">
+    <div #popup *ngIf="show" class="popup" (clickOutside)="outsideClicked()"
+        [style.bottom.px]="showToTop ? bottom : null"
+        [style.top.px]="showToTop ? null : top"
+        [style.width.px]="containerWidth ? width : null"
+        [style.margin]="margin"
+        [style.left.px]="rightPos ? null : container.left"
+        [style.right]="rightPos ? 'var(--INSPECTOR-PROPERTY-PADDING-RIGHT-LEFT)' : null"
+        (click)='$event.stopPropagation()'>
+        <ng-content></ng-content>
+    </div>
+</div>

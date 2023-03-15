@@ -1,0 +1,29 @@
+@import '../../styles.scss';
+@import '../shared/modules/smart-nodes/theme/mixins';
+@import '../shared/modules/smart-nodes/theme/dark';
+
+$TAB-HEIGHT: 50px;
+
+.notauthorized {
+    background: linear-gradient(180deg, #475c7b 28.71%, #131a24 106.3%);
+    height: 100%;
+    width: 100%;
+}
+
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: #1c232d;
+    color: #FFFFFF;
+    left: 50%;
+    top: 35%;
+    border-radius: 10px;
+    transform: translate(-50%, -50%);
+
+    span {
+        padding: 50px;
+        text-align: center;
+    }
+}

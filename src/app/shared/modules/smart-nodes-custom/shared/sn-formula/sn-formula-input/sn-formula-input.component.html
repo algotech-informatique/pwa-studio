@@ -1,0 +1,24 @@
+<div class="input-container">
+    <input #input
+        type="text"
+        class="formula-input"
+        [ngClass]="{'error': formulaHasError}"
+        [value]="formula"
+        [title]="formula"
+        (change)="update(input.value)"
+        (keyup)="onkeyup(input.value)"
+    >
+    <i class="fa-solid fa-f formula-icon"
+       (click)="onFormulaclick($event)"></i>
+</div>
+
+<sn-formula-search
+    [(top)]="top"
+    [formulaFilter]="formulaFilter"
+    [currentPage]="currentPage"
+    [formulaValue]="formula"
+    [sources]="sources"
+    [snView]="snView"
+    (formulaSelect)="onFormulaSelect($event)"
+    (createSource)="onCreateSource($event)">
+</sn-formula-search>

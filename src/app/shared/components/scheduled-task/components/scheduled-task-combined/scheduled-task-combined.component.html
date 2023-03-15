@@ -1,0 +1,47 @@
+<div class="elements">
+
+    <div class="radio" *ngFor="let radio of listRadio; let i = index">
+        <label class="container">
+            <input type="radio"
+                [checked]="radio.key === data.repeatType"
+                [name]="name"
+                (change)="updateRadio($event, radio.key)">
+            <span class="checkmark"></span>
+        </label>
+
+        <options-input *ngIf="radio.key === 'every'"
+            class="element"
+            [label]="'SMART-TASKS.TASK-PROPERTY-REPEAT' | translate"
+            [endLabel]="'SMART-TASKS.TASK-PROPERTY-REPEAT-DAY' | translate"
+            type="number"
+            [readOnly]="radio.key !== data.repeatType"
+            [inputText]="data.repeat"
+            includeBottomBorder="true"
+            (updateText)="updateRepeat($event)"
+        ></options-input>    
+
+        <scheduled-task-combined-list *ngIf="radio.key === 'week'"
+            class="element"
+            [label]="'SMART-TASKS.TASK-PROPERTY-REPEAT' | translate"
+            [items]="listWeek"
+            [selected]="radio.key === data.repeatType"
+            [selectedItems]="data.repeatWeek"
+            [popupTitle]="'SMART-TASKS.TASK-PROPERTY-LIST-WEEK' | translate"
+            (listChanged)="updateWeek($event)"
+        >
+        </scheduled-task-combined-list>
+
+        <scheduled-task-combined-list *ngIf="radio.key === 'day'"
+            class="element"
+            [label]="'SMART-TASKS.TASK-PROPERTY-REPEAT' | translate"
+            [endLabel]="'SMART-TASKS.TASK-PROPERTY-REPEAT-MONTH' | translate"
+            [items]="listDays"
+            [selected]="radio.key === data.repeatType"
+            [selectedItems]="data.repeatDays"
+            [popupTitle]="'SMART-TASKS.TASK-PROPERTY-LIST-DAYS' | translate"
+            (listChanged)="updateDays($event)"
+        >
+        </scheduled-task-combined-list>
+
+    </div>
+</div>

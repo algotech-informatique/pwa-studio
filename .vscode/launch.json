@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "pwa-chrome",
+            "name": "Debug Vision Studio",
+            "request": "launch",
+            "url": "http://localhost:8100/studio/#/home"
+        }
+    ]
+}

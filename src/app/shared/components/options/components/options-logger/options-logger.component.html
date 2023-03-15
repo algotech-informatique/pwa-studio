@@ -1,0 +1,22 @@
+<div class="input">
+    <div class="input-text">
+
+        <div class="element">
+            <div class="export-log" *ngIf="exportLog" (click)="onExportLog()">
+                <i class="fa-solid fa-file-arrow-down icon"></i>
+            </div>
+
+            <div class="text">
+                <div class="edit-text-area">
+                    <div *ngFor="let mess of listMessage"
+                        class="message"
+                        [ngClass]="{'message-error': mess.isError, 'message-warning': mess.isWarning }"
+                        [innerHTML]="mess.message"
+                    >
+                    </div>
+                </div>
+            </div>
+        </div>
+  
+    </div>
+</div>

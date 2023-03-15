@@ -1,0 +1,53 @@
+<sn-select-modal [(top)]="top" [snView]="snView" class="modal">
+
+    <div class="header" *ngIf="!hideHeader">
+        <div class="left-side">
+            <div class="title">{{ 'SETTINGS.POI.POPOVER-ICON.SELECT-ICON' | translate }}</div>
+        </div>
+        <i class="fa-solid fa-xmark close-icon" (click)="close()"></i>
+    </div>
+
+    <div class="search">
+        <div class="search-input">
+            <i class="fa-solid fa-magnifying-glass select-item-list"></i>
+            <input
+                #search
+                type="search"
+                [placeholder]="'SEARCHBOX.PLACEHOLDER' | translate"
+                (keyup)="filterElements()"
+                [(ngModel)]="searchValue"
+            >
+        </div>
+        <i class="fa-solid fa-xmark" (click)="clearSearchBar()" *ngIf="searchValue"></i>
+    </div>
+
+    <div class="container" *ngIf="displayTabIcons">
+        <div class="loading" *ngIf="isLoading">
+            <div class="loader"></div>
+        </div>
+
+        <div class="item" *ngIf="searchValue === '' && tabIcons.length > 0">
+            <div class="moreicon" (click)="sendIcon('')">
+                <i></i>
+            </div>
+        </div>
+        <div class="item" *ngFor="let iconName of tabIcons">
+            <div class="moreicon" (click)="sendIcon(iconName.key)">
+                <i [class]="iconName.key"></i>
+            </div>
+            <span class="tooltip-icon">{{iconName.popup}}</span>
+        </div>
+
+        <div class="more" *ngIf="moreDataToLoad" (click)="onLoadMore()">
+            <div class="load-more">
+                {{ 'SETTINGS.POI.POPOVER-ICON.MORE-ICON' | translate }}
+            </div>
+        </div>
+
+    </div>
+
+    <div class="no-icon" *ngIf="!displayTabIcons">
+        <p>{{ 'SETTINGS.POI.POPOVER-ICON.NO-ICON' | translate }}</p>
+    </div>
+
+</sn-select-modal>

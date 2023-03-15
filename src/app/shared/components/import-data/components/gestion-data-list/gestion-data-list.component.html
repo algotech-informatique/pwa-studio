@@ -1,0 +1,19 @@
+<div class="content">
+
+	<options-search
+		class="search"
+        [placeHolder]="searchPlaceHolder"
+		(searchValue)="onSearch($event)"
+	>
+	</options-search>
+
+    <div class="lists">
+
+		<options-object-list class="list"
+			[optionObjects]="optionListFiltered"
+			(selectedObject)="onSelected($event)"
+		>
+		</options-object-list>
+
+	</div>
+</div>

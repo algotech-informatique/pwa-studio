@@ -1,0 +1,56 @@
+<sn-select-modal class="content" [snView]="snView" [(top)]="top" (click)="closePredictiveList()">
+    <div *ngIf="predefined && predefinedListDisplay" class="predictive-list">
+        <div *ngFor="let item of predefinedListDisplay" class="item" (click)="selectPredictiveItem(item)">
+            {{ item }}
+        </div>
+    </div>
+
+    <form [formGroup]="reactiveForm">
+        <div class="item"
+            [ngClass]="{'error': errorMessage }"
+        >
+            <i class="fa-solid fa-key icon"></i>
+            
+            <input id="key" type="text"
+                [placeholder]=" placeHolder | translate"
+                min="3"
+                required
+                (keyup.enter)="onKeyEnter()"
+                formControlName="key"
+            >
+            <span class="display" *ngIf="errorMessage">{{errorMessage}}</span>
+        </div>
+
+        <div class="item-select" *ngIf="showTypes">
+            <span> {{'SN-NEW-PARAMETER-TYPE' | translate }}</span>
+
+            <select class="select" formControlName="selectedType" required>
+                <option class="option" *ngFor="let type of listTypes" [value]="type.key">
+                    {{type.value}}
+                </option>
+            </select>
+        </div>
+
+        <div class="input-boolean" *ngIf="showMultiple">
+            <span>{{ 'SN-NEW-PARAMETER-MULTIPLE' | translate }}</span> 
+            <label class="switch">
+                <input
+                    type="checkbox"
+                    class="input"
+                    formControlName="multiple"
+                >
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <div class="item-button">
+            <div class="button"
+                [ngClass]="{'disabled': disabled }"
+                (click)="validate()"
+            >
+                {{ 'SN-NEW-PARAMETER-VALIDATE' | translate }}
+            </div>
+        </div>
+
+    </form>
+</sn-select-modal>

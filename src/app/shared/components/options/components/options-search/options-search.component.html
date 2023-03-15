@@ -1,0 +1,16 @@
+<div class="input">
+    <div class="input-text">
+
+        <div class="element">
+            <div class="text">
+
+                <i *ngIf="search?.length === 0" class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input #searchInput [placeholder]="placeHolder | translate" type="search" class="edit-text"
+                    (keyup)="onSearch()" [(ngModel)]="search">
+                <i *ngIf="search?.length > 0" class="fa-solid fa-xmark search-icon" (click)="resetSearch($event)"></i>
+
+            </div>
+        </div>
+
+    </div>
+</div>

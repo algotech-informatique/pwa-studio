@@ -1,0 +1,83 @@
+<div class="toolbox" *ngIf="loaded">
+    <div class="section">
+        
+        <i class="fa-solid fa-square item button"
+            (click)="onAddNode()"
+            [title]="(snModel.type === 'smartmodel' ? 'SN-CONTEXTMENU.SCHEMA.ADD-SMARTMODEL' : 'SN-CONTEXTMENU.SCHEMA.ADD-NODE') | translate">
+        </i>
+        <i class="fa-solid fa-box item button"
+            (click)="onAddBox()"
+            [title]="'SN-CONTEXTMENU.SCHEMA.ADD-BOX' | translate"></i>
+        <i class="fa-solid fa-boxes-stacked item button"
+            (click)="onAddGroup()"
+            [title]="'SN-CONTEXTMENU.SCHEMA.ADD-GROUP' | translate"></i>        
+        <i [class]="(collapse ? 'fa-solid fa-arrow-up-short-wide' : 'fa-solid fa-arrow-down-short-wide') + ' item button'"
+            (click)="onCollapse()"
+            [title]="'SN-TOOLBAR-COLLAPSE' | translate"></i>
+
+        <i class="fa-solid fa-share-alt item button"
+            *ngIf="snModel.type === 'workflow'"
+            [ngClass]="{'disabled': !snModel.publishedVersion }"
+            (click)="onShare($event)"
+            [title]="'SMARTLINK-LINK.APP.TOOLBAR-LINK' | translate"
+        ></i>
+    </div>
+
+    <div class="section">
+        <i class="fa-solid fa-rotate-left item button"
+            [ngClass]="{'disabled': !canUndo}"
+            (click)="onUndo()"
+            [title]="'SN-TOOLBAR-UNDO' | translate"></i>
+        <i class="fa-solid fa-redo-alt item button"
+            [ngClass]="{'disabled': !canRedo}"
+            (click)="onRedo()"
+            [title]="'SN-TOOLBAR-REDO' | translate"></i>
+        <select-versions *ngIf="snModel.type !== 'smartmodel'"
+            [snView]="snView" [snModel]="snModel" (viewChanged)="onViewChanged($event)">
+        </select-versions>
+    </div>
+
+    <div class="section">
+
+        <div class="item action"
+            [title]="'SN-TOOLBAR-CHECK' | translate"
+            (click)="onCheck()"
+            >
+            <i class="fa-solid fa-check style-icon"></i>
+            <div class="title">
+                {{ 'SN-TOOLBAR-CHECK' | translate }}
+            </div>
+        </div>
+        <div class="item action"
+            *ngIf="snModel.type !== 'smartmodel' && !debug"
+            [title]="'SN-DEBUG' | translate"
+            (click)="onRunDebug()"
+            >
+            <i class="fa-solid fa-play style-icon"></i>
+            <div class="title">
+                {{ 'SN-TOOLBAR-PLAYER' | translate }}
+            </div>
+        </div>
+        <div class="item action stop"
+            *ngIf="snModel.type !== 'smartmodel' && debug"
+            [title]="'SN-STOP-DEBUG' | translate"
+            (click)="onStopDebug()"
+            >
+            <i class="fa-solid fa-square-full style-icon"></i>
+            <div class="title">
+                {{ 'SN-TOOLBAR-STOP' | translate }}
+            </div>
+        </div>
+
+        <div class="item action valide"
+            [ngClass]="{'disabled': !canPublish }"
+            [title]="'SN-PUBLISH-APP' | translate"
+            (click)="onPublish()"
+            >
+            <i class="fa-solid fa-rocket style-icon"></i>
+            <div class="title">
+                {{ 'SN-PUBLISH' | translate }}
+            </div>
+        </div>
+    </div>
+</div>

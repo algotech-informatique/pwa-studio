@@ -1,0 +1,8 @@
+<div class="options-popover" #popover
+    [ngStyle]="{'top': top ? top + 'px' : 'auto', 'left': left + 'px', 'width': containerWidth + 'px'}">
+
+    <div class="content">
+        <ng-content></ng-content>
+    </div>
+
+</div>

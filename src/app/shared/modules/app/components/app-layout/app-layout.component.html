@@ -1,0 +1,165 @@
+<sn-spinner *ngIf="!display"></sn-spinner>
+<div class="pages-layout" [ngClass]="{'backdrop': actionView || showBackdrop, 'drawing': drawing, 'display': display }">
+    <svg id="svg" #svg>
+        <g id="container">
+            <g *ngIf="snApp && loaded">
+
+                <!-- pages -->
+
+                <svg class="page-layout"
+                    *ngFor="let page of snApp.pages"
+                    [id]="page.id"
+                    [attr.x]="page.canvas.x"
+                    [attr.y]="page.canvas.y">
+
+                    <filter id="dropshadow" height="130%">
+                        <feGaussianBlur in="SourceAlpha" stdDeviation="3" /> <!-- stdDeviation is how much to blur -->
+                        <feOffset dx="5" dy="5" result="offsetblur" /> <!-- how much to offset -->
+                        <feComponentTransfer>
+                            <feFuncA type="linear" slope="0.6" /> <!-- slope is the opacity of the shadow -->
+                        </feComponentTransfer>
+                        <feMerge>
+                            <feMergeNode /> <!-- this contains the offset blurred image -->
+                            <feMergeNode in="SourceGraphic" /> <!-- this contains the element that the filter is applied to -->
+                        </feMerge>
+                    </filter>
+                    <defs>
+                        <pattern [id]="'smallGrid-' + page.id"
+                            [attr.fill]="page?.css['background-color']"
+                            [attr.width]="pageUtils.GRID_SIZE"
+                            [attr.height]="pageUtils.GRID_SIZE" patternUnits="userSpaceOnUse">
+                            <path
+                                [attr.d]="'M ' + pageUtils.GRID_SIZE + pageUtils.GRID_SIZE + pageUtils.GRID_SIZE + ' 0 L 0 0 0 ' + pageUtils.GRID_SIZE"
+                                stroke="#999999" [attr.stroke-width]="0.2* (appZoom.transform.k | scaleZoom)" />
+                        </pattern>
+                        <pattern [id]="'grid-' + page.id" [attr.width]="pageUtils.GRID_BLOCK_SIZE"
+                            [attr.height]="pageUtils.GRID_BLOCK_SIZE" patternUnits="userSpaceOnUse">
+                            <rect [attr.width]="pageUtils.GRID_BLOCK_SIZE" [attr.height]="pageUtils.GRID_BLOCK_SIZE"
+                                [attr.fill]="'url(#smallGrid-' + page.id + ')'" />
+                            <path [attr.d]="'M ' + pageUtils.GRID_BLOCK_SIZE + ' 0 L 0 0 0 ' + pageUtils.GRID_BLOCK_SIZE"
+                                fill="none" stroke="#999999" [attr.stroke-width]="0.4* (appZoom.transform.k | scaleZoom)" />
+                        </pattern>
+                    </defs>
+
+                    <g id="grid-layout"
+                        [ngClass]="{
+                            'highlight': page.displayState?.highlight,
+                            'app-errors': page.displayState?.errors | showAppErrors
+                        }"
+                    >
+                        <foreignObject
+                            class="page-selector"
+                            [id]="page.id"
+                            [attr.x]="0"
+                            [attr.transform]="'scale(' + (appZoom.transform.k | scaleZoom:'-': 0.3) + ')'"
+                            [attr.y]="-(25 + (page.variables.length > 0 ? 25 : 0) + (page.dataSources.length > 0 ? 25 : 0))"
+                            [attr.height]="25 + (page.variables.length > 0 ? 25 : 0) + (page.dataSources.length > 0 ? 25 : 0)"
+                            [attr.width]="page.pageWidth / (appZoom.transform.k | scaleZoom:'-': 0.3)">
+                            <xhtml:app-title [snApp]="snApp" [page]="page" [error]="page.displayState?.errors | showAppErrors"></xhtml:app-title>
+                        </foreignObject>
+                        <rect
+                            class="page"
+                            [id]="page.id"
+                            [attr.height]="page.pageHeight" [attr.width]="page.pageWidth"
+                            [attr.fill]="'url(#grid-' + page.id + ')'"
+                            [class]="appSelection.selections.pages | elementSelected:page"
+                            [ngClass]="{
+                                'draghover': page.displayState?.draghover
+                            }"
+                            [attr.stroke-width]="3 * (appZoom.transform.k | scaleZoom) + 'px'"
+                            style="filter:url(#dropshadow)"></rect>
+                    </g>
+
+                    <g class="widgets" [id]="widget.id" *ngFor="let widget of page.widgets">
+                        <foreignObject class="widget" [id]="widget.id"
+                            [ngClass]="{'locked': widget.custom.locked}"
+                            [attr.x]="widget.box.x"
+                            [attr.y]="widget.box.y"
+                            [attr.height]="widget.box.height"
+                            [attr.width]="widget.box.width">
+        
+                            <xhtml:widget
+                                [snApp]="snApp"
+                                [widget]="widget.displayState?.rule | resolveRule: widget"
+                                [css]="(widget.displayState?.rule | resolveRule: widget).css"
+                                [custom]="(widget.displayState?.rule | resolveRule: widget).custom">
+                            </xhtml:widget>
+                        </foreignObject>
+                    </g>
+
+                    <g class="page-resize">
+                        <rect
+                            class="app-size-phantom"
+                            [id]="'app-size-phantom.' + page.id"
+                            [ngClass]="page.displayState?.hovered ? '' : 'hide'"
+                            x=0
+                            y=0
+                            [attr.width]="snApp.pageWidth"
+                            [attr.height]="snApp.pageHeight"
+                        ></rect>
+                        <line
+                            class="page-size-helper"
+                            [ngClass]="page.displayState?.showHelper?.horizontal ? '' : 'hide'"
+                            x1=0
+                            [attr.y1]="page.pageHeight"
+                            [attr.x2]="page.pageWidth"
+                            [attr.y2]="page.pageHeight"
+                        ></line>
+                        <line
+                            class="page-size-helper"
+                            [ngClass]="page.displayState?.showHelper?.vertical ? '' : 'hide'"
+                            [attr.x1]="page.pageWidth"
+                            y1=0
+                            [attr.x2]="page.pageWidth"
+                            [attr.y2]="page.pageHeight"
+                        ></line>
+                        <rect 
+                            [id]="page | buildPageHandlerId: orientations.horizontal"
+                            class="page-size-handler horizontal"
+                            [attr.width]="page.pageWidth - handlerWidth/2" 
+                            [attr.height]="handlerWidth"
+                            x=0
+                            [attr.y]="page.pageHeight - handlerWidth/2"
+                        ></rect>
+                        <rect 
+                            [id]="page | buildPageHandlerId: orientations.vertical"
+                            class="page-size-handler vertical"
+                            [attr.width]="handlerWidth" 
+                            [attr.height]="page.pageHeight - handlerWidth/2"
+                            [attr.x]="page.pageWidth - handlerWidth/2"
+                            y=0
+                        ></rect>
+                        <rect 
+                            [id]="page | buildPageHandlerId: orientations.diagonal"
+                            class="page-size-handler diagonal"
+                            [attr.width]="handlerWidth"
+                            [attr.height]="handlerWidth"
+                            [attr.x]="page.pageWidth - handlerWidth/2"
+                            [attr.y]="page.pageHeight - handlerWidth/2"
+                        ></rect>
+                    </g>
+                    
+                    <!-- selection-->
+                    <foreignObject class="selections" [attr.x]="0" [attr.y]="0" [attr.width]="1" [attr.height]="1">
+                        <xhtml:app-selection [widgets]="page.widgets"></xhtml:app-selection>
+                    </foreignObject>
+                    <g class="container-landmarks" [id]="page.id"></g>
+                </svg>
+            </g>
+            <g id="container-links">
+                <!-- cf. app.links.service.ts!-->
+            </g>
+            <g id="container-selector">
+                <!-- cf. app.selector.service.ts!-->
+            </g>
+        </g>
+    </svg>
+        
+    <sn-contextmenu *ngIf="showContextmenu && menu && !actionView && !drawing"
+        [container]="svgElementContainer"
+        [mouse]="mouse"
+        [menu]="menu"
+        (close)="onCloseContextmenu()">
+    </sn-contextmenu>
+
+</div>

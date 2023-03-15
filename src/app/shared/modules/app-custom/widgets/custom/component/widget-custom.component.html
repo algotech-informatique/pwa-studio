@@ -1,0 +1,19 @@
+ <!-- groups -->
+ <div class="widget-group" [ngStyle]="widget?.css?.main" *ngIf="widget.group">
+    <div
+        class="widget-child"
+        [ngClass]="{ 'widget-locked': (appSelection.selections.widgets | elementSelected:widget) !== 'selected' && child.custom.locked }"
+        *ngFor="let child of widget.group.widgets"
+        [id]="child.id"
+        [style.left]="child.box.x + 'px'"
+        [style.top]="child.box.y + 'px'"
+        [style.height]="child.box.height + 'px'"
+        [style.width]="child.box.width + 'px'">
+
+        <widget
+            [snApp]="snApp"
+            [widget]="child.displayState?.rule | resolveRule: child"
+            [css]="(child.displayState?.rule | resolveRule: child).css"
+            [custom]="(child.displayState?.rule | resolveRule: child).custom"></widget>
+    </div>
+ </div>

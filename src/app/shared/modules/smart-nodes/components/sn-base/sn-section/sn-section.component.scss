@@ -1,0 +1,44 @@
+@import '../../../theme/mixins';
+
+.header {
+    display: flex;
+    align-items: center;
+
+    .collapse {
+        display: flex;
+        align-items: center;
+        max-width: calc(100% - 20px);
+    }
+    .collapse:hover {
+        cursor: pointer;
+    }
+
+    .fa-solid {
+        margin-right: 10px;
+    }
+
+    .name {
+        font-size: var(--SN-NODE-SECTION-SIZE);
+        margin-right: 10px;
+        @include text-ellipsis;
+    }
+
+    .selector {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    button {
+        border: 0px;
+        font-size: 16px;
+        padding: 0px 5px;
+        border-radius: 5px;
+        background: var(--SN-COLOR-ACTIVE);
+        color: var(--SN-COLOR-FONT);
+    }
+    button:hover {
+        cursor: pointer;
+        opacity: 0.5;
+    }
+}

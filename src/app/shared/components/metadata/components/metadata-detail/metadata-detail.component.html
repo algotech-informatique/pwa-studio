@@ -1,0 +1,51 @@
+<div class="content">
+    
+    <div class="title">
+    </div>
+
+    <div class="metadata">
+
+        <div class="elements-list">
+
+            <div class="elements">
+                <label> {{ 'SETTINGS.DOCUMENTS.META_KEY' | translate }} </label>
+                <options-input
+                    [readOnly]="metadata.key !== 'new-metadata'"
+                    class="element"
+                    [inputText]="metadata.key"
+                    (updateText)="updateKey($event)"
+                    
+                ></options-input>    
+        
+                <div class="border-bottom"></div>
+            </div>
+    
+            <div class="elements">
+                <label> {{ 'SETTINGS.DOCUMENTS.META_DISPLAYNAME' | translate }} </label>
+                <options-input-multilang
+                    class="element"
+                    [readOnly]="metadata.key === 'new-metadata'"
+                    [inputText]="metadata.displayName"
+                    (updateText)="updateName($event)"
+                    
+                ></options-input-multilang>    
+        
+                <div class="border-bottom"></div>
+            </div>
+        
+        </div>
+
+        <div class="footer"
+            [ngClass]="{'new-meta': metadata.key === 'new-metadata'}"
+        >
+            <div
+                class="delete-metadata"
+                (click)="onDeleteMetadata()"
+            >
+                <span>{{ 'SETTINGS.DOCUMENTS.METADATA.DELETE' | translate }}</span>
+            </div>
+        </div>
+        
+    </div>
+
+</div>

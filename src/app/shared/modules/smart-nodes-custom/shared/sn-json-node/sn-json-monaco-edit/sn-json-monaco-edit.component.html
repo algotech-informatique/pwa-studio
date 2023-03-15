@@ -1,0 +1,9 @@
+<div class="title">
+    <b class="name">
+        {{ 'SN-JSON-NODE' | snlang }}
+    </b>
+</div>
+<div class="editorContainer">
+    <ngx-monaco-editor [options]="editorOptions" [(ngModel)]="json" (ngModelChange)="onChange(json)">
+    </ngx-monaco-editor>
+</div>

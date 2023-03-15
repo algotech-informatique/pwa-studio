@@ -1,0 +1,108 @@
+<app-inspector-section 
+    [snApp]="snApp"
+    [title]="'INSPECTOR.WIDGET.DATA' | translate"
+    [ngClass]="{'first': !(widget?.rules?.length > 0)}" 
+    [section]="'input.document'">
+
+    <div class="property last">
+        <input-element
+            [title]="'INSPECTOR.WIDGET.DATA-SOURCE' | translate"
+            [input]="input"
+            [dataItems]="items"
+            (inputChanged)="onSourceChanged($event)">
+        </input-element>
+    </div>
+
+</app-inspector-section>
+
+<app-inspector-section 
+    [snApp]="snApp"
+    [title]="'INSPECTOR.WIDGET.DISPLAY' | translate"
+    [section]="'pagination.document'">
+
+    <div class="property" [ngClass]="{'last': widget?.custom?.mode === 'carousel'}">
+        <select-element
+            [title]="'INSPECTOR.WIDGET.DISPLAY-MODE' | translate"
+            [showSearch]="false"
+            [list]="modes"
+            [selectedKey]="widget?.custom?.mode"
+            (selectNewItem)="onModeChanged($event)">
+        </select-element>
+    </div>
+
+    <div class="property last" *ngIf="widget?.custom?.mode !== 'carousel'" [ngClass]="{'section': widget?.custom?.pagination > 0}">
+        <display-check-element [title]="'INSPECTOR.WIDGET.ACTIVATE-PAGINATION' | translate"
+            [value]="widget?.custom?.pagination > 0"
+            (changed)="onPaginationChanged($event)">
+        </display-check-element>
+        
+        <input-element *ngIf="widget?.custom?.mode !== 'carousel' && widget?.custom?.pagination > 0"
+            class="inside-section"
+            [title]="'INSPECTOR.WIDGET.DOCUMENTS.NUMBER-PAGE' | translate"
+            [input]="pagination"
+            (inputChanged)="onPaginationNumberChanged($event)">
+        </input-element>
+    </div>
+
+</app-inspector-section>
+
+<app-inspector-section 
+    [snApp]="snApp"
+    [title]="'INSPECTOR.WIDGET.FILTERS' | translate"
+    [section]="'filters.document'">
+    <div class="property">
+        <sn-display-radio
+            [title]="'INSPECTOR.WIDGET.DATA-TYPE-DISPLAY' | translate"
+            [subTitle]="'INSPECTOR.WIDGET.DATA-TYPE' | translate"
+            [radioList]="types"
+            [selected]="widget?.custom?.type"
+            (changed)="onTypeChanged($event)">
+        </sn-display-radio>
+    </div>
+
+    <div class="property" *ngIf="widget?.custom?.mode !== 'carousel'">
+        <display-check-element [title]="'INSPECTOR.WIDGET.ACTIVATE-SEARCH' | translate"
+            [value]="widget.custom?.search"
+            (changed)="onSearchChanged($event)">
+        </display-check-element>
+    </div>
+
+    <div class="property last" *ngIf="widget?.custom?.mode !== 'carousel'">
+        <display-check-element [title]="'INSPECTOR.WIDGET.ACTIVATE-FILTER-TAGS' | translate"
+            [value]="widget?.custom?.tagFilter"
+            (changed)="onTagFilterChanged($event)">
+        </display-check-element>
+    </div>
+
+</app-inspector-section>
+
+
+<app-inspector-section 
+    [snApp]="snApp"
+    *ngIf="widget?.custom?.mode !== 'carousel'"
+    [title]="'INSPECTOR.WIDGET.DOCUMENTS.INFO-BUTTON' | translate"
+    [section]="'carousel.document'">
+
+    <div class="property">
+        <display-check-element [title]="'INSPECTOR.WIDGET.DOCUMENTS.METADATAS' | translate"
+            [value]="widget?.custom?.metadatas"
+            (changed)="onMetadatasChanged($event)">
+        </display-check-element>
+    </div>
+
+    <div class="property last" [ngClass]="{'section': widget?.custom?.oldVersions?.active}">
+        <display-check-element [title]="'INSPECTOR.WIDGET.DOCUMENTS.OLD-VERSIONS' | translate"
+            [value]="widget?.custom?.oldVersions?.active"
+            (changed)="onOldVersionsActiveChanged($event)">
+        </display-check-element>
+
+        <multi-select-element *ngIf="widget?.custom?.oldVersions?.active"
+            class="inside-section"
+            [title]="'INSPECTOR.APP.SECURITY.ASSIGN' | translate"
+            [list]="groupsList"
+            [selectedKeys]="widget?.custom?.oldVersions?.groups"
+            (selectNewItems)="onOldVersionsGroupsChanged($event)">
+        </multi-select-element>
+    </div>
+
+</app-inspector-section>

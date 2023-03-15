@@ -1,0 +1,63 @@
+$text-color: #ffffff;
+
+@import "../../../../styles.scss";
+
+app-modal {
+    --MODAL-MIN-HEIGHT: 50px;
+    --MODAL-MIN-WIDTH: 500px;
+}
+
+.content {
+    padding: 15px;
+
+    .subtitle {
+        display: flex;
+        flex-direction: row;
+        max-width: 500px;
+
+        .icon {
+            color: $text-color;
+            font-size: 45px;
+        }
+
+        .texts {
+            margin-left: 15px;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+
+            .detail {
+                font-size: 15px;
+                margin-top: 15px;
+            }
+        }
+    }
+
+    .text {
+        color: $text-color;
+    }
+
+    .buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+
+        .button {
+            padding: 8px;
+            min-width: 100px;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 15px;
+        }
+
+        .confirm {
+            background-color: $EDITOR-COLOR-INPUTS;
+        }
+
+        .cancel {
+            background-color: $COLOR-BG-LIGHT;
+        }
+    }
+}
+

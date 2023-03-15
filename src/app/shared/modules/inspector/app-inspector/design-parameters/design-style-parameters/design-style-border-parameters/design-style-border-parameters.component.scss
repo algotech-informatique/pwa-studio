@@ -1,0 +1,86 @@
+@import '../../../../theme/mixins';
+
+.border-parameters {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.line-border {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    .border-button {
+        cursor: pointer;
+        display: flex;
+        padding: 4px;
+        font-size: 15px;
+
+        &.left {
+            margin-left: 0;
+        }
+
+        &.right {
+            margin-right: 0;
+        }
+
+        &:hover:not(.selected) {
+            background-color: var(--TOOLBAR-ITEM-HOVER);
+        }
+
+        &.highlight {
+            background-color: var(--TOOLBAR-ITEM-ACTIVE-TINT);
+
+            &:hover {
+                background-color: var(--TOOLBAR-ITEM-ACTIVE-TINT-HOVER);
+            }
+        }
+
+        &.selected {
+            background-color: var(--INSPECTOR-BG-COLOR-SELECTED-ITEM);;
+        }
+
+        &.hidden {
+            visibility: hidden;
+        }
+    }
+}
+
+.properties {
+    margin-left: 8px;
+    width: 100%;
+
+    .line {
+        padding: 3px 0;
+    }
+
+    .select-inline-type {
+        @include align-items-inputs(60px);
+        
+        i {
+            font-size: 15px;
+        }
+
+        .type {
+            width: 16px;
+            border-top-width: 2px;
+        
+            &.solid {
+                border-top-style: solid;
+            }
+        
+            &.dashed {
+                border-top-style: dashed;
+            }
+        
+            &.dotted {
+                border-top-style: dotted;
+            }
+        }
+    }
+}
+
+color-element, display-definition-values {
+    --TITLE-WIDTH: 60px
+}

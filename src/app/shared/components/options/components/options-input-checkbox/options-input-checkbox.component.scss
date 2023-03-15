@@ -1,0 +1,142 @@
+@import "../../../../../../styles.scss";
+
+:host {
+    --LABEL-COLOR: #2D9CDB;
+    --INPUT-COLOR: #F9F9F9;
+    --TEXT-COLOR: #C4C4C4;
+    --DISABLED-COLOR: #8a8a8a;
+    --OPTIONS-CHECK-BACKCOLOR: #eee;
+    --OPTION-INPUT-MARGIN: 0px;
+    --TEXT-BACK-COLOR: $COLOR-BG-LIGHT;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    margin: var(--OPTION-INPUT-MARGIN);
+
+    .input-text {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+
+        .label {
+            @include option-input-label(var(--TEXT-COLOR));       
+            padding-top: 10px;
+            margin-right: 2px;
+            min-width: 110px;
+        }
+
+        .element {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+
+            .selected {
+                @include option-input-label-selected(var(--LABEL-COLOR));
+            }
+
+            .container {
+                display: block;
+                position: relative;
+                padding-left: 25px;
+                margin-bottom: 10px;
+                cursor: pointer;
+                font-size: 22px;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+
+                .check-input {
+                    position: absolute;
+                    opacity: 0;
+                    cursor: pointer;
+                    height: 0;
+                    width: 0;
+                }
+
+                .checkmark {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    height: 20px;
+                    width: 20px;
+                    border-radius: 3px;
+                    background-color: var(--OPTIONS-CHECK-BACKCOLOR);
+                }
+            }
+
+            .container:hover input~.checkmark {
+                background-color: #ccc;
+                border: thin solid var(--TEXT-COLOR);
+            }
+
+            .container input:checked~.checkmark {
+                background-color: var(--LABEL-COLOR);
+            }
+
+            .checkmark:after {
+                content: "";
+                position: absolute;
+                display: none;
+            }
+
+            .container input:checked~.checkmark:after {
+                display: block;
+            }
+
+            /* Style the checkmark/indicator */
+            .container .checkmark:after {
+                left: 7px;
+                top: 1px;
+                width: 7px;
+                height: 13px;
+                border: solid var(--INPUT-COLOR);
+                border-width: 0 2px 2px 0;
+                -webkit-transform: rotate(45deg);
+                -ms-transform: rotate(45deg);
+                transform: rotate(45deg);
+            }
+
+            .text {
+                display: flex;
+                flex-direction: column;
+
+                .edit-text {
+                    @include option-title(var(--INPUT-COLOR));
+                    @include text-ellipsis();
+                    border: none;
+                    background-color: var(--TEXT-BACK-COLOR);
+                    outline: none;
+                    min-width: 40px;
+                    width: 100%;
+                    padding-top: 8px;
+                }
+
+                .readOnly {
+                    @include option-title(var(--DISABLED-COLOR));
+                    pointer-events: none;
+                }
+            }
+
+            .bottom-border {
+                width: 100%;
+                margin-top: 2px;
+                border-bottom: thin solid var(--LABEL-COLOR);
+            }
+        }
+
+        .endLabel {
+            @include option-input-label(var(--TEXT-COLOR));
+            padding-top: 10px;
+            margin-right: 2px;
+            margin-left: 5px;
+            min-width: 75px;
+            width: 100%;
+        }
+    }
+}

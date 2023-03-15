@@ -1,0 +1,35 @@
+<div class="widget-group" [ngClass]="{
+    'drawingZone': widget.displayState?.drawingZone
+}">
+
+    <img class="svg" *ngIf="widget.custom?.imageUuid" [ngStyle]="widget.css | injectStyle: ['main', 'image']"
+        [src]="(widget.custom?.imageUuid | uuid2image)"
+        onerror="this.src='./assets/images/loading.gif'"
+    />
+
+    <div *ngIf="!widget.custom?.imageUuid" class="empty">
+        <i class="fa-solid fa-chalkboard"></i>
+    </div>
+
+    <!-- zone -->
+    <div *ngIf="widget.group">
+        <div
+            class="widget-child"
+            *ngFor="let child of widget.group.widgets"
+            [id]="child.id"
+            [style.left]="child.box.x + 'px'"
+            [style.top]="child.box.y + 'px'"
+            [style.height]="child.box.height + 'px'"
+            [style.width]="child.box.width + 'px'">
+    
+            <widget
+                [snApp]="snApp"
+                [widget]="child.displayState?.rule | resolveRule: child"
+                [css]="(child.displayState?.rule | resolveRule: child).css"
+                [custom]="(child.displayState?.rule | resolveRule: child).custom"
+                [ngClass]="{
+                'hidden': child.typeKey === 'magnet' && widget.displayState?.hideMagnets
+            }"></widget>
+        </div>
+    </div>
+</div>

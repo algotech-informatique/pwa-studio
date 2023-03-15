@@ -1,0 +1,48 @@
+<div class="input">
+    <div class="input-text">
+
+        <label *ngIf="label"> {{ label }} </label>
+
+        <div class="element" *ngIf="!multiline">
+            <div class="text">
+                <input
+                    #input
+                    [type]="(isPassword && !showPassword) ? 'password' : (isPassword && showPassword) ? 'text' : type"
+                    [ngClass]="{'edit-text-password': isPassword}"
+                    class="edit-text"
+                    [(ngModel)]="inputText"
+                    [readonly]="readOnly"
+                    (keypress)="onKeyPress()"
+                    (change)="onInputChange()" />
+
+                <div class="form-input-eye" *ngIf="isPassword">
+                    <i (click)="showPassword=true" *ngIf="!showPassword" class="fa-solid fa-eye"></i>
+                    <i (click)="showPassword=false" *ngIf="showPassword" class="fa-solid fa-eye-slash"></i>
+                </div>
+            </div>
+
+            <div class="bottom-border" *ngIf="includeBottomBorder">
+            </div>
+
+        </div>
+
+        <div class="element" *ngIf="multiline">
+            <div class="text">
+                <textarea 
+                    [ngClass]="{'edit-text-area': includeBottomBorder}"
+                    class="edit-text edit-text-area"
+                    name="area" rows="6"
+                    cols="40"
+                    [(ngModel)]="inputText"
+                    [readonly]="readOnly"
+                    (keyup)="onInputChange()"
+                >
+                </textarea>
+            </div>
+        </div>
+
+        <label class="endLabel" *ngIf="endLabel"> {{ endLabel }} </label>
+
+    </div>
+
+</div>

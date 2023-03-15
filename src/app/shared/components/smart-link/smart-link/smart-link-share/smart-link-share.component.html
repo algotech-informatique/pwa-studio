@@ -1,0 +1,15 @@
+<div class="contents">
+
+    <div class="content">
+        <label> {{ 'SMARTLINK-LINK.SHARE-MAIL-LIST' | translate }} </label>
+        <options-chips class="item" [label]="" [items]="eMail.to" type="mail" (changeValue)="onChangeChips($event)">
+        </options-chips>
+    </div>
+
+    <div class="content">
+        <label> {{ 'SMARTLINK-LINK.SHARE-MAIL-CONTENT' | translate }} </label>
+        <options-input class="item" type='text' multiline="true" includeBottomBorder="true" [inputText]="eMail.content"
+            (updateText)="onUpdateContent($event)"></options-input>
+    </div>
+
+</div>

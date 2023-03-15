@@ -1,0 +1,62 @@
+<div class="ui-tree-line">
+    <div #line
+        class="ui-tree-line-item"
+        [appUITreeDragSource]="item"
+        (dragstart)="select($event)"
+        [ngClass]="{'selected': selected, 'highlight': item.element.displayState?.highlight}"
+        (click)="select($event)"
+        (mouseenter)="setHighlight(true)"
+        (mouseleave)="setHighlight(false)"
+        (contextmenu)="showContextMenu($event)">
+    
+        <div class="content">
+            <i class="arrow-icon fa-solid fa-caret-down"
+                [ngClass]="{'closed': !item.open}"
+                [style.visibility]="item.children?.length > 0 ? 'visible' : 'hidden'"
+                (click)="onArrowClick()"></i>
+    
+            <i class="icon" [class]="icon" [ngClass]="{'hidden': item.element.custom?.hidden}"></i>
+    
+            <span *ngIf="!editionMode" class="name" (dblclick)="editName()">{{ name }}</span>
+    
+            <input #inputName
+                *ngIf="editionMode"
+                type="text"
+                class="name-input"
+                spellcheck="false"
+                [value]="name"
+                (focusout)="saveName(inputName.value)"
+                (keyup.escape)="closeInput()"
+                (keyup.enter)="saveName(inputName.value)" />
+    
+            <ng-content *ngIf="!editionMode"></ng-content>
+        </div>  
+    </div>
+        
+    <div class="ui-tree-line-item-drag-hook" [ngClass]="{'root': item.parent?.type === 'page'}" *ngIf="draghook">
+        
+        <div class="top" [appUITreeDragTarget]="item" *ngIf="draghook" >
+            <span class="line"></span>
+        </div>
+        <div class="center" *ngIf="!!item.children && !selected" [appUITreeDragTarget]="item"></div>
+        <div class="bottom" [appUITreeDragTarget]="item" *ngIf="draghook" >
+            <span class="line"></span>
+        </div>
+    </div>
+    
+    <div *ngIf="!sharedItems" [style.display]="item.open ? 'block' : 'none'" class="children" [ngClass]="{'selected': selected}">
+        <ui-tree-widget *ngFor="let child of item.children ? item.children : []; trackBy: trackById"
+            [snApp]="snApp"
+            [item]="child"
+            [settings]="settings">
+        </ui-tree-widget>
+    </div>
+    <div *ngIf="sharedItems" [style.display]="item.open ? 'block' : 'none'" class="children" [ngClass]="{'selected': selected}">
+        <ui-tree-shared-widget *ngFor="let child of item.children ? item.children : []; trackBy: trackBysharedId"
+            [snApp]="snApp"
+            [item]="child"
+            [settings]="settings"
+            [canSelectItem]= "false">
+        </ui-tree-shared-widget>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+<app-tabs-material [tabs]="tabs" (closeTab)="handleClose($event)" [(selectedKey)]="selectedKey">
+    <div *at-form-tab-content class="tab">
+        <app-data-explorer
+            *ngIf="reportStack"
+            class="explorer"
+            [tree]="reportStack"
+            (clicked)="expandNode($event)"
+        ></app-data-explorer>
+    </div>
+    <div *at-form-tab-content class="tab">
+        <app-data-explorer
+            *ngIf="stackVariables"
+            class="explorer"
+            [tree]="stackVariables"
+            [workflow]="workflow"
+            [actions]="['clipboard', 'watcher']"
+            (clicked)="expandNode($event)"
+        ></app-data-explorer>
+    </div>
+    <div *at-form-tab-content class="tab">
+        <app-data-explorer
+            *ngIf="watchers"
+            class="explorer"
+            [tree]="watchers"
+            [workflow]="workflow"
+            [actions]="['clipboard']"
+            (clicked)="expandNode($event)"
+        ></app-data-explorer>
+    </div>
+    <div *at-form-tab-content class="tab">
+        <app-data-explorer
+            *ngIf="metrics"
+            class="explorer"
+            [tree]="metrics"
+            (clicked)="expandNode($event)"
+        ></app-data-explorer>
+    </div>
+    <div *at-form-tab-content class="tab">
+        <app-data-explorer
+            *ngIf="transactions"
+            class="explorer"
+            [tree]="transactions"
+            (clicked)="expandNode($event)"
+        ></app-data-explorer>
+    </div>
+</app-tabs-material>

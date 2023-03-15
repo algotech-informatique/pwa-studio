@@ -1,0 +1,145 @@
+@import '../../../../styles.scss';
+@import '../../modules/inspector/theme/_mixins.scss';
+
+:host {
+  --DB-BACKGROUD-COLOR:#0D1013;
+  --ICON-COLOR: var(--INSPECTOR-VERT-MENU-LIGHT-COLOR);
+  --INPUT-TEXT: var(--INSPECTOR-VERT-MENU-LIGHT-COLOR);
+  --ALGOTECH-DANGER: #ff7576;
+  --ALGOTECH-BACKGROUND: var(--DB-BACKGROUD-COLOR);
+  --ALGOTECH-BACKGROUND-BORDER: #4e5053;
+  --ALGOTECH-SUCCESS: var(--INSPECTOR-TOOLS-ACTIVE-BG);
+  --ALGOTECH-SUCCESS-SHADE: #var(--INSPECTOR-TOOLS-ACTIVE-BG);
+  --ALGOTECH-SECONDARY: #C0C0C0;
+  --ALGOTECH-SECONDARY-SHADE: #9a9a9a;
+  --ALGOTECH-SECONDARY-BORDER: #9a9a9a;
+  --ALGOTECH-SUCCESS-HOVER: #13141C;
+  --ALGOTECH-SUCCESS-BORDER: var(--INSPECTOR-TOOLS-ACTIVE-BG);
+  --ALGOTECH-PRIMARY: #C0C0C0;
+  --ALGOTECH-TERTIARY: #C0C0C0;
+  --ALGOTECH-PRIMARY-HOVER: #13141C;
+  --ALGOTECH-BACKGROUND-HOVER: #13141C;
+
+  --SCROLLBAR-BG-TRACK: #2d2f33;
+
+  as-split-area {
+    overflow: hidden !important;
+  }
+
+  ::ng-deep .as-split-gutter {
+    background-color: var(--DB-BACKGROUD-COLOR) !important;
+    align-items: flex-end !important;
+    pointer-events: none;
+
+    &>.as-split-gutter-icon {
+      pointer-events: none;
+      transition: all 0.3s;
+      opacity: 0
+    }
+  }
+}
+
+
+
+.db-background {
+  background-color: var(--DB-BACKGROUD-COLOR);
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  @include tabs();
+
+  .tabs {
+    border-bottom: none;
+  }
+
+  .breadCrumb {
+    height: 20px;
+  }
+
+  .tab {
+    font-size: 15px;
+    color: #FFF;
+    width: 100px;
+  }
+
+  .actions {
+    display: flex
+  }
+
+  .text-input {
+    @include input-box(35px);
+    width: 400px;
+    cursor: auto;
+
+    .input-container {
+      @include input-element();
+
+      .input {
+        .disabled {
+          pointer-events: none;
+        }
+
+        width: calc(100% - 35px);
+        height: 100%;
+        color: var(--INPUT-TEXT);
+        margin-left: 5px;
+      }
+    }
+
+  }
+
+  .left-buttons {
+    height: 35px;
+    display: flex;
+    align-items: center;
+  }
+
+  .right-buttons {
+    justify-content: flex-end;
+    color: var(--INPUT-TEXT);
+    height: 35px;
+    display: flex;
+    align-items: center;
+    width: 71%;
+    margin-right: 20px;
+
+    .button-container {
+      margin: 5px;
+      padding: 5px;
+      border: 1px solid var(--INSPECTOR-TOOLS-BORDER-COLOR);
+      border-radius: 5px;
+      font-size: 13px;
+    }
+  }
+
+  .button-container:hover {
+    background-color: var(--INSPECTOR-TOOLS-ACTIVE-BG);
+    color: var(--ALGOTECH-BACKGROUND);
+    cursor: pointer;
+
+    .icon {
+      color: var(--ALGOTECH-BACKGROUND);
+    }
+
+    span {
+      cursor: pointer;
+    }
+  }
+
+  .grid {
+    height: 100%;
+  }
+}
+
+.icon {
+  color: var(--ICON-COLOR);
+  width: 25px;
+  text-align: center;
+  cursor: pointer;
+
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.3;
+}

@@ -1,0 +1,26 @@
+<app-inspector-section 
+    [snApp]="snApp"
+    [title]="'INSPECTOR.WIDGET.DISPLAY' | translate"
+    [section]="'box'"
+    [ngClass]="{'first': !(widget?.rules?.length > 0)}">
+    <div class="property last">
+        <display-definition-values class="widget"
+            [width]="tabWidth"
+            [height]="tabHeight"
+            [title]="'INSPECTOR.PAGE.SIZE-DISPLAY' | translate"
+            [roundValue]="true"
+            [minWidth]="1"
+            [minHeight]="1"
+            [widthDisabled]="widthDisabled"
+            [heightDisabled]="heightDisabled"
+            (changedWidth)="onWidgetWidthChanged($event)"
+            (changedHeight)="onWidgetHeightChanged($event)">
+        </display-definition-values>    
+    </div>
+</app-inspector-section>
+
+<design-style-parameters
+    [snApp]="snApp"
+    [widgets]="appActions.update | getTabModels: snApp: page: widget"
+    (changed)="onChanged()">
+</design-style-parameters>

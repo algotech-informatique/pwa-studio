@@ -1,0 +1,36 @@
+@import '../theme/variables';
+
+.modal {
+    --MAX-HEIGHT: 300px;
+    
+    .buttons {
+        display: flex;
+        flex-direction: column;
+        background-color: var(--POP-UP-HEADER-COLOR) !important;
+        padding: 10px;
+        border-radius: 5px;
+
+        .button {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            padding: 10px;
+            color: var(--POP-UP-HEADER-BACKGROUND);
+            -webkit-transition: color ease-in-out 1s;
+            -moz-transition: color ease-in-out 1s;
+            -o-transition: color ease-in-out 1s;
+            transition: color ease-in-out 1s;
+            
+            .icon {
+                font-size: 20px;
+                color: var(--POP-UP-HEADER-BACKGROUND);
+                margin-right: 15px;
+            }
+        }
+
+        .button:hover {
+            cursor: pointer;
+            color: var(--POP-UP-SELECTED);
+        }
+    }
+}

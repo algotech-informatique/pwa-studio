@@ -1,0 +1,86 @@
+import { SnNodeSchema } from '../../../smart-nodes/dto';
+
+export const SN_OBJECT_FUNCTION_NODE_SCHEMA: SnNodeSchema = {
+    type: 'SnObjectFunctionNode' ,
+    displayName: 'SN-OBJECT-FUNCTION',
+    icon: 'fa-solid fa-f',
+    flows: [],
+    params: [{
+        direction: 'out',
+        key: 'result',
+        types: ['string', 'number', 'date', 'time', 'datetime', 'boolean', 'so:', 'object', 'sys:'],
+        dynamic: true,
+        multiple: true,
+        pluggable: true,
+        master: true,
+        displayName: 'SN-OBJECT-FUNCTION-RESULT',
+    }, {
+        direction: 'in',
+        key: 'array',
+        types: 'object',
+        dynamic: true,
+        multiple: false,
+        pluggable: true,
+        required: true,
+        displayName: 'SN-OBJECT-FUNCTION-ENTRY-ARRAY',
+    }, {
+        key: 'function',
+        direction: 'in',
+        types: 'string',
+        multiple: false,
+        displayName: 'SN-OBJECT-FUNCTION-FUNCTION',
+        pluggable: false,
+        display: 'select',
+        required: true,
+    }],
+    sections: [{
+        key: 'parameters',
+        displayName: 'SN-OBJECT-FUNCTION-PARAMETERS',
+        open: true,
+        editable: false,
+        hidden: true,
+        params: [{
+            key: 'propPathArray',
+            direction: 'in',
+            types: 'string',
+            multiple: true,
+            displayName: 'SN-OBJECT-FUNCTION-PROP-PATH-ARRAY',
+            pluggable: true,
+            required: false,
+        }, {
+            key: 'propPath',
+            direction: 'in',
+            types: 'string',
+            multiple: false,
+            displayName: 'SN-OBJECT-FUNCTION-PROP-PATH',
+            pluggable: true,
+            display: 'input',
+            required: false,
+        }, {
+            key: 'sources',
+            direction: 'in',
+            types: 'object',
+            displayName: 'SN-OBJECT-FUNCTION-SOURCES',
+            pluggable: true,
+            required: false,
+        }, {
+            key: 'compare',
+            direction: 'in',
+            types: 'string',
+            displayName: 'SN-OBJECT-FUNCTION-COMPARE',
+            pluggable: true,
+            display: 'input',
+            required: false,
+        }, {
+            key: 'value',
+            direction: 'in',
+            types: 'any',
+            multiple: false,
+            displayName: 'SN-OBJECT-FUNCTION-VALUE',
+            pluggable: true,
+            display: 'input',
+            required: false,
+            default: 0
+        }]
+    }]
+};

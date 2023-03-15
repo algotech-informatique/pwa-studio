@@ -1,0 +1,25 @@
+@import '../../../modules/inspector/theme/_mixins.scss';
+@import '../../../../../styles';
+:host{
+    --BAKCGROUD: #1B1C26
+}
+.message {
+    background-color: var(--BAKCGROUD);
+    color: var(--SN-COLOR-FONT);
+    box-shadow: 1px 1px 5px var(--TOOLBAR-BACKGROUND);
+    padding: 15px 10px;
+    border-radius: 3px;
+
+    .title {
+        @include text-ellipsis;
+        margin: 5px;
+        word-wrap: break-word;
+        white-space: unset;
+    }
+
+    .toolbar {
+        @include toolbox();
+        justify-content: center;
+        background-color: var(--BAKCGROUD);
+    }
+}

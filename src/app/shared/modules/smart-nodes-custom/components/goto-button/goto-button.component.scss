@@ -1,0 +1,31 @@
+@import '../../../../../../styles';
+
+.open-button {
+    position: absolute;
+    width:  var(--SN-NODE-WIDTH);
+    top: var(--SN-NODE-HEADER-HEIGHT);
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    pointer-events: none;
+
+    .button {
+        pointer-events: all;
+        border-radius: 50%;
+        width: 25px;
+        height: 25px;
+        background-color: $COLOR-BTN;
+        color: var(--SN-COLOR-FONT);
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1;
+    }
+
+    .icon {
+        font-size: 16px;
+    }
+}

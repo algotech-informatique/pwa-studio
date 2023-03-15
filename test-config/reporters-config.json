@@ -1,0 +1,10 @@
+{
+    "reporterEnabled": "spec, mocha-junit-reporter",
+    "mochaJunitReporterReporterOptions": {
+        "mochaFile": "test-reports/junit.xml",
+        "testCaseSwitchClassnameAndName": true,
+        "useFullSuiteTitle": true,
+        "rootSuiteTitle": "PWA_Studio",
+        "suiteTitleSeparatedBy": "."
+    }
+}

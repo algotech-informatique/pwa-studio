@@ -1,0 +1,191 @@
+@import "../../../../styles.scss";
+
+.editor-form {
+    .form {
+        margin: 5px 50px;
+        @include scrollbar(transparent, 0px);
+
+        button {
+            @include normal-text($EDITOR-COLOR-TXT);
+            background-color: $EDITOR-COLOR-INPUTS;
+            width: 133px;
+            height: 30px;
+            border-radius: 3px;
+            text-align: center;
+            line-height: 30px;
+        }
+    
+        .content {
+            display: flex;
+            flex-direction: column;
+            min-height: 80px;
+            justify-content: space-around;
+    
+            .name {
+                @include normal-text($EDITOR-COLOR-TXT);
+                border: none;
+                background-color: $EDITOR-COLOR-BG;
+                border-bottom: thin solid $EDITOR-COLOR-INPUTS;
+                outline: none;
+            }
+    
+            .file {
+                border: none;
+                visibility: hidden;
+                outline: none;
+                box-shadow: none;
+            }
+    
+            span {
+                border-bottom: thin solid $COLOR-BG-LIGHT;
+                display: flex;
+                flex-direction: column;
+            }
+    
+            .grid {
+                height: 400px;
+                @include scrollbar(transparent, 0px);
+            }
+
+            .row {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+            }
+
+            label {
+                margin: 5px 0px;
+                @include title($EDITOR-COLOR-INPUTS)
+            }
+    
+            .info {
+                @include normal-sub-text($EDITOR-COLOR-TXT)
+            }
+    
+            .success {
+                @include normal-sub-text($EDITOR-COLOR-INPUTS)
+            }
+    
+            .error {
+                @include normal-sub-text($COLOR-WARN)
+            }
+    
+            .column {
+                @include normal-text($EDITOR-COLOR-TXT);
+                width: fit-content;
+                display: flex;
+                justify-content: center;
+                margin: 3px 0px;
+                .type-container{
+                    width: 85%;
+                .display-element {
+                    width: 100%;
+                    --INSPECTOR-TYPE-PADDING: 0px;
+                    --INSPECTOR-DISPLAY-HEIGHT: 35px;
+                    --INSPECTOR-FONT-SIZE: 16px;
+                    --INSPECTOR-DISPLAY-PADDING: 0px;
+                    // --INSPECTOR-TYPE-POSITION: relative;
+                    --INSPECTOR-SECTION-CONTENT-BACKGROUND:  #1C232D;
+                    --INSPECTOR-TYPE-WIDTH: 150px;
+                }}
+    
+                .container {
+                    display: block;
+                    position: relative;
+                    padding-left: 35px;
+                    margin-bottom: 12px;
+                    cursor: pointer;
+                    font-size: 22px;
+                    -webkit-user-select: none;
+                    -moz-user-select: none;
+                    -ms-user-select: none;
+                    user-select: none;
+                }
+    
+                .container input {
+                    position: absolute;
+                    opacity: 0;
+                    cursor: pointer;
+                    height: 0;
+                    width: 0;
+                }
+    
+                .checkmark {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    height: 20px;
+                    width: 20px;
+                    border-radius: 3px;
+                    background-color: #eee;
+                }
+    
+                .container:hover input~.checkmark {
+                    background-color: #ccc;
+                    border: thin solid $COLOR-BG-LIGHT;
+                }
+    
+                .container input:checked~.checkmark {
+                    background-color: $EDITOR-COLOR-INPUTS;
+                }
+    
+                .checkmark:after {
+                    content: "";
+                    position: absolute;
+                    display: none;
+                }
+    
+                .container input:checked~.checkmark:after {
+                    display: block;
+                }
+    
+                /* Style the checkmark/indicator */
+                .container .checkmark:after {
+                    left: 7px;
+                    top: 1px;
+                    width: 7px;
+                    height: 13px;
+                    border: solid $EDITOR-COLOR-TXT;
+                    border-width: 0 2px 2px 0;
+                    -webkit-transform: rotate(45deg);
+                    -ms-transform: rotate(45deg);
+                    transform: rotate(45deg);
+                }
+            }
+
+            .size0 {
+                width: 40%;
+            }
+
+            .size1 {
+                width: 20%;
+            }
+
+            .first {
+                border-bottom: thin solid $COLOR-BG-LIGHT;
+            }
+    
+            .header {
+                @include normal-text($EDITOR-COLOR-TXT);
+            }
+    
+        }
+    
+        select {
+            width: 80px;
+            border: none;
+            border-bottom: 1px var(--INSPECTOR-SECTION-TITLE-COLOR) solid;
+            color: var(--INSPECTOR-SECTION-TITLE-COLOR);
+            background: transparent;
+    
+            option {
+                padding: 5px;
+                background: #1C232D;
+                ;
+            }
+    
+        }
+    }
+
+}
+

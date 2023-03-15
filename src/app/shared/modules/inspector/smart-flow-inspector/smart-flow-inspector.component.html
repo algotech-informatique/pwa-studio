@@ -1,0 +1,65 @@
+<inspector-layout *ngIf="snView"
+    [barButtons]="buttons"
+    [selected]="selected"
+    [opened]="inspectorOpened"
+    (closeInspector)="onCloseInspector()"
+    (selectButton)="onSelectButton($event)">
+
+    <div [style.display]="selected === 'inspector' ? 'block' : 'none'">
+        <div class="preview-url" *ngIf="snView?.options?.api">
+            <div class="type" [ngStyle]="{'background-color': previewUrlColor + '4d', 'border-color': previewUrlColor}">
+                {{ options?.api?.type }}
+            </div>
+            <div class="url">{{ previewUrl }}</div>
+        </div>
+
+        <inspector-options 
+            [snView]="snView"
+            [sources]="sources"
+            [options]="options"
+            [snModel]="snModel"
+            (changed)="onChanged()">
+        </inspector-options>
+
+        <route-parameters
+            [api]="options?.api"
+            [variables]="options?.variables"
+            [errors]="snView?.displayState?.errors"
+            [sources]="sources"
+            [verbs]="verbs"
+            (variablesChanged)="onVariablesChanged($event)"
+            (apiChanged)="onApiChanged($event)">
+        </route-parameters>
+    </div>
+
+    <div [style.display]="selected === 'openapi' && snView?.options?.api ? 'block' : 'none'">
+        <open-api-parameters *ngIf="snView?.options?.api"
+            [api]="options?.api"
+            (apiChanged)="onApiChanged($event, false)">
+        </open-api-parameters>
+    </div>
+
+    <div [style.display]="selected !== 'openapi' && selected !== 'inspector' ? 'block' : 'none'">
+        <inspector-section *ngIf="nodeContextElement || context" class="first"
+            [title]="'INSPECTOR.SMART_FLOW.PROPERTIES' | translate">
+            <div class="property">
+                <display-translate-element
+                    [title]="'INSPECTOR.SMART_FLOW.PROPERTIES_NAME' | translate"
+                    [displayText]="(selected === 'node'  ? nodeContextElement : context?.element)?.displayName"
+                    (changed)="onChangeElementDisplayName($event)">
+                </display-translate-element>
+            </div>
+
+            <div class="property last"
+                *ngIf="selected === 'group'"
+            >
+                <color-element
+                    [color]="context?.element?.color"
+                    (changed)="onChangeElementColor($event)"
+                >
+                </color-element>
+            </div>
+        </inspector-section>
+    </div>
+
+</inspector-layout>

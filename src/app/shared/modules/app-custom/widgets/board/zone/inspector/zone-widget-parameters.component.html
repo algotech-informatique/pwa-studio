@@ -1,0 +1,48 @@
+<app-inspector-section 
+    [snApp]="snApp"
+    [title]="'INSPECTOR.WIDGET.PARAMETERS' | translate" 
+    [section]="'customParams.zone'"
+    display="section" [ngClass]="{'first': widget?.rules?.length === 0}">
+    <div class="property last">
+        <div class="key-input">
+            <span class="title">{{'INSPECTOR.VARIABLES.VARIABLE_KEY' | translate}}</span>
+            <div class="text-input" [ngClass]="{'error': error}">
+                <div class="selected-item">
+                    <i class="fa-solid fa-key icon"></i>
+                    <input type="text" [(ngModel)]="key" (change)="onKeyChanged()" (ngModelChange)="onKeyChanging()">
+                </div>
+            </div>
+        </div> 
+    </div>
+</app-inspector-section>
+
+<app-inspector-section
+    [snApp]="snApp"
+    [title]="'INSPECTOR.WIDGET.ZONE.DISPLAY_TYPE' | translate"
+    [section]="'display.zone'">
+    
+    <div class="property">
+        <div class="check">
+            <display-check-element [title]="'INSPECTOR.WIDGET.ZONE.OVERLAY' | translate"
+                [value]="widget?.custom?.overlay"
+                (changed)="onOverlayChanged($event)">
+            </display-check-element>
+        </div>
+    </div>
+
+    <div class="property last" [ngClass]="{'section': widget?.custom?.grid}">
+        <div class="check">
+            <display-check-element [title]="'INSPECTOR.WIDGET.ZONE.GRID' | translate"
+                [value]="widget?.custom?.grid"
+                (changed)="onGridChanged($event)">
+            </display-check-element>
+        </div>
+        <display-definition-values *ngIf="widget?.custom?.grid"
+            class="inside-section"
+            [width]="widget.custom.grid?.width"
+            [height]="widget.custom.grid?.height"
+            (changedWidth)="onGridWidthChanged($event)"
+            (changedHeight)="onGridHeightChanged($event)">
+        </display-definition-values>
+    </div>
+</app-inspector-section>

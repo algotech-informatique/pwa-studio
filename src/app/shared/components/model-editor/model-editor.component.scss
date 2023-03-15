@@ -1,0 +1,45 @@
+@import '../../../../styles.scss';
+
+.graph {
+    position: relative;
+
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    .layout {
+        height: 100%;
+        width: 100%;
+        --SN-NODE-HEADER-BACKGROUND-SNMODELNODE: linear-gradient(to right, #EB6317, #F8C8AD);
+        --SN-NODE-PARAM-COLOR-SMARTOBJECT: #EB6317;
+    
+        .toolbox {
+            position: absolute;
+            display: block;
+            width: 100%;
+            z-index: 1;
+        }
+
+        .toolbox-drawing {
+            @include drawing();
+        }
+    
+        .layout {
+            display: block;
+            height: 100%;
+        }
+
+        .work-layout {
+            display: flex;
+            height: 100%;
+            width: 100%;
+        }
+    }
+
+    sn-data-model-inspector {
+        margin-top: #{$TOP-BAR-HEIGHT};
+        z-index: 1;
+    }
+}

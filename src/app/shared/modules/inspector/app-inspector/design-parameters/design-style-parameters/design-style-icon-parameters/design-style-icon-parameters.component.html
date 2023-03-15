@@ -1,0 +1,19 @@
+<div class="property">
+    <display-definition-values
+        [title]="'INSPECTOR.APP.TAB.DESIGN.TEXT.SIZE' | translate"
+        [width]="iconStyle?.['font-size']"
+        widthLabel=""
+        [roundValue]="true"
+        (changedWidth)="onSizeChanged($event)">
+    </display-definition-values>
+</div>
+
+<div class="property">
+    <color-element
+        [showApptheme]="true"
+        [color]="iconStyle?.color"
+        (changed)="onColorChanged($event)">
+    </color-element>
+</div>
+
+<design-style-margin-padding-parameters [style]="iconStyle" (changed)="onMarginPaddingChanged($event)"></design-style-margin-padding-parameters>

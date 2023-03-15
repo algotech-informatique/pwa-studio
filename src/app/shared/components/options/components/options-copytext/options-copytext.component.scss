@@ -1,0 +1,77 @@
+@import "../../../../../../styles.scss";
+
+:Host {
+    --LABEL-COLOR: #2D9CDB;
+    --INPUT-COLOR: #F9F9F9;
+    --TEXT-COLOR: #c4c4c4;
+    --OPTION-COPYTEXT-MARGIN: 5px;
+    --OPTION-COPYTEXT-PADDING: 0px;
+    --OPTION-COPYTEXT-MAXWIDTH: 100px;
+    --OPTION-COPYTEXT-BACKGROUND: $COLOR-BG-LIGHT;
+    --OPTION-COPYTEXT-BORDER-MARGINTOP: 2px;
+    --OPTION-COPYTEXT-LINK-HEIGHT: 15px;
+    --OPTION-COPYTEXT-LINK-BACKOLOR: transparent;
+}
+
+.element {   
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin: var(--OPTION-COPYTEXT-MARGIN);
+    position: relative;
+
+    .label {
+        @include option-input-label(var(--LABEL-COLOR));       
+        padding-top:  10px;
+        margin-right: 2px;
+        min-width: 75px;
+    }
+
+    .link {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        .link-text {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            min-height: 15px;
+            position: relative;
+
+            .copy {
+                margin-top: 0px;
+                @include option-line(var(--INPUT-COLOR));
+                border: none;
+                max-width: var(--OPTION-COPYTEXT-MAXWIDTH);
+                background-color: $COLOR-BG-LIGHT;
+                outline: none;
+                
+                &:not(.multiline) {
+                    @include text-ellipsis();
+                }
+            }
+        
+            .copy:hover {
+                cursor: pointer;   
+            }
+        
+            .icon {
+                // margin-left: 10px;
+                color: var(--INPUT-COLOR);
+                font-size: 15px;
+                line-height: 10px;
+                position: absolute;
+                right: 10px;
+            }
+        }
+
+        .border-bottom {
+            width: 100%;
+            margin-top: var(--OPTION-COPYTEXT-BORDER-MARGINTOP);
+            border-bottom: thin solid var(--LABEL-COLOR);
+        }
+    }
+
+    
+}

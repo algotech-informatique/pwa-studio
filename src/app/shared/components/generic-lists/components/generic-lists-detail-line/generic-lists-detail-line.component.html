@@ -1,0 +1,86 @@
+<div class="content">
+    <div class="options">
+        <div class="open" *ngIf="nextLangs.length !== 0"
+            (click)="onActiveAllLangs()">
+            <span *ngIf="!showAllLangs">{{ 'GENERIC-LIST.SHOW-ALL-LANGUAGES' | translate }}</span>
+            <span *ngIf="showAllLangs">{{ 'GENERIC-LIST.HIDE-ALL-LANGUAGES' | translate }}</span>
+        </div>
+
+        <div class="buttons">
+            <div class="button add"
+                [ngClass]="{'inactive': !activeButton }"
+                (click)="onAddLine()"
+            >
+                <i class="fa-solid fa-plus"></i>
+            </div>
+
+            <div class="button remove"
+                [ngClass]="{'inactive': removeItems.length === 0}"
+                (click)="onRemoveLine()"
+            >
+                <i class="fa-solid fa-trash-can"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="display-lines">
+        <div class="lines">
+            <div class="line line-header">
+                <div class="label input-check">
+                </div>
+                <div class="label-key input-key">
+                    {{ 'GENERIC-LIST.LIST-KEY' | translate }}
+                </div>
+                <div class="label input-label">
+                    {{ 'LANGUAGES.KEY_' + (mainLang | customerCode) | translate }}
+                </div>
+                <div class="sub-lines" *ngIf="showAllLangs">
+                    <div class="label input-label" *ngFor="let lang of nextLangs">                    
+                        {{ 'LANGUAGES.KEY_' + (lang | customerCode) | translate }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="lines" *ngFor="let line of formatedDetailLines"
+            (click)="onSelectedline(line)"
+            [ngClass]="{'selected': line.key === activeLine?.key }"
+        >
+            <div class="line">
+                <options-checkbox
+                    class="input-check"
+                    [checkElement]="line.checked"
+                    (checkedChange)="onChecked(line)"
+                >
+                </options-checkbox>
+    
+                <options-input 
+                    class="detail-key input-key"
+                    readOnly="true"
+                    [inputText]="line.key"
+                ></options-input>
+    
+                <options-input
+                    #mainInput
+                    [id]="line.defaultLang.lang"
+                    class="detail-input input-label"
+                    [inputText]="line.defaultLang.value"
+                    (updateText)="onUpdateText($event, line.defaultLang.lang)"
+                >
+                </options-input>
+                
+                <div class="sub-lines" *ngIf="showAllLangs">
+                    <options-input *ngFor="let lang of line.nextLangs"
+                        class="detail-input input-label"
+                        [id]="lang.lang"
+                        [inputText]="lang.value"
+                        (updateText)="onUpdateText($event, lang.lang)"
+                    >
+                    </options-input>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

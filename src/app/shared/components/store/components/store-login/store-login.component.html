@@ -1,0 +1,63 @@
+<div class="content" *ngIf="data">
+
+    <div class="options">
+        <div class="elements">
+            <label> {{ 'STORE.LOGIN-CHANGE.LOGIN' | translate }} </label>
+            <options-input 
+                class="element"
+                [readOnly]="readOnly"
+                [inputText]="data.login"
+                includeBottomBorder="true"
+                (updateText)="updateLogin($event)"
+            ></options-input>    
+        </div>
+
+        <div class="elements">
+            <label> {{ 'STORE.LOGIN-CHANGE.PASSWORD' | translate }} </label>
+            <options-input 
+                type="text"
+                isPassword="true"
+                class="element"
+                [readOnly]="readOnly"
+                [inputText]="data.password"
+                includeBottomBorder="true"
+                (updateText)="updatePassword($event)"
+            ></options-input>    
+        </div>
+
+        <div class="elements">
+            <label> {{ 'STORE.LOGIN-CUSTOMER' | translate }} </label>
+            <options-input 
+                class="element"
+                [readOnly]="readOnly"
+                [inputText]="data.customer"
+                includeBottomBorder="true"
+                (updateText)="updateCustomer($event)"
+            ></options-input>
+        </div>
+
+        <div class="elements">
+            <label> {{ 'STORE.LOGIN-CHANGE.URL' | translate }} </label>
+            <options-input 
+                class="element"
+                [readOnly]="readOnly"
+                [inputText]="data.serverUrl"
+                includeBottomBorder="true"
+                (updateText)="updateUrl($event)"
+            ></options-input>    
+        </div>
+
+        <div class="elements">
+            <label> {{ 'STORE.LOGIN-CHANGE.SERVER-API' | translate }} </label>
+            <options-input 
+                class="element"
+                [readOnly]="readOnly"
+                [inputText]="data.serverApi"
+                includeBottomBorder="true"
+                (updateText)="updateApi($event)"
+            ></options-input>    
+        </div>
+
+    </div>
+</div>
+    

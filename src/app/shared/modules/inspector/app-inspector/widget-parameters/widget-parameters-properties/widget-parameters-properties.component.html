@@ -1,0 +1,14 @@
+<app-inspector-section 
+    *ngIf="widget.custom?.disabled !== undefined"
+    [snApp]="snApp"
+    [title]="'INSPECTOR.WIDGET.DISPLAY-OPTIONS' | translate"
+    [section]="'disabled'"
+    [ngClass]="{'first': widget.rules?.length === 0}">
+    <div class="property last">
+        <display-check-element [value]="widget.custom?.disabled"
+            [title]="'INSPECTOR.WIDGET.CUSTOM-DISABLED' | translate" (changed)="onDisabledChanged($event)">
+        </display-check-element>
+    </div>
+</app-inspector-section>
+
+<ng-template inspectorWidgetHost></ng-template>

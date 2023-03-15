@@ -1,0 +1,22 @@
+@import '../theme/mixins';
+
+.data-inputs {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.title {
+    @include title;
+}
+
+data-inputs-text,
+data-inputs-number,
+data-inputs-boolean,
+data-inputs-date,
+data-inputs-datetime,
+data-inputs-time {
+    display: block;
+    width: 100%;
+    min-width: 0;
+}

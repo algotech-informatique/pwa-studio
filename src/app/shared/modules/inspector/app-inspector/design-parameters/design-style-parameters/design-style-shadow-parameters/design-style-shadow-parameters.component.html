@@ -1,0 +1,46 @@
+<div class="property" [ngClass]="{'section': defaultValue !== 'unset', 'last': defaultValue === 'unset'}">
+    <display-check-element
+        [title]="'Ombre externe'" 
+        [value]="defaultValue !== 'unset'"
+        (changed)="onShowShadowChanged($event)">
+    </display-check-element>
+
+    <display-definition-values *ngIf="defaultValue !== 'unset'"
+        class="inside-section"
+        [width]="shadowValues[0]"
+        [height]="shadowValues[1]"
+        widthLabel="X"
+        heightLabel="Y"
+        [minWidth]="-200"
+        [minHeight]="-200"
+        [title]="'INSPECTOR.WIDGET.POSITION' | translate"
+        [roundValue]="true"
+        (changedWidth)="onChanged(0, $event)"
+        (changedHeight)="onChanged(1, $event)">
+    </display-definition-values>
+
+    <display-definition-values *ngIf="defaultValue !== 'unset'"
+        class="inside-section"
+        [width]="shadowValues[2]"
+        widthLabel=""
+        [title]="'SN-TOOLBOX-SHADOW-BLUR' | translate"
+        [roundValue]="true"
+        (changedWidth)="onChanged(2, $event)">
+    </display-definition-values>
+
+    <display-definition-values *ngIf="defaultValue !== 'unset'"
+        class="inside-section"
+        [width]="shadowValues[3]"
+        widthLabel=""
+        [title]="'SN-TOOLBOX-SHADOW-SPREAD' | translate"
+        [roundValue]="true"
+        (changedWidth)="onChanged(3, $event)">
+    </display-definition-values>
+ 
+    <color-element *ngIf="defaultValue !== 'unset'"
+        class="inside-section"
+        [showApptheme]="true"
+        [color]="shadowValues[4]"
+        (changed)="onChanged(4, $event)">
+    </color-element>
+</div>

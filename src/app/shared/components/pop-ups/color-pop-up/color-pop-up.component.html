@@ -1,0 +1,19 @@
+<sn-select-modal [(top)]="top" [snView]="snView" class="modal">
+
+    <div class="header" *ngIf="withHeader">
+        <div class="left-side">
+            <div class="title">{{'INSPECTOR.SMART_FLOW.SELECT_COLOR' | translate}}</div>
+        </div>
+        <i class="fa-solid fa-xmark close-icon" (click)="close()"></i>
+    </div>
+
+    <div
+        class="color-element"
+        [style.background]="color"
+        [cpToggle]="true"
+        [cpDialogDisplay]="'inline'"
+        [cpOutputFormat]="outputFormat"
+        [(colorPicker)]="color"
+        (colorPickerChange)="onColorChange($event)">
+    </div>
+</sn-select-modal>

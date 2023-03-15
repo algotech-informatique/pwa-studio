@@ -1,0 +1,54 @@
+@import "../../../../../../styles.scss";
+
+:host {
+    --LABEL-COLOR: #2D9CDB;
+    --LIST-WIDTH: 350px;
+}
+
+.content {
+    width: var(--LIST-WIDTH);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    @include scrollbar-hidden();
+
+    .group {
+        height: 150px;
+
+        .elements {
+            margin: 10px 10px 30px 10px;
+            max-width: 350px;
+            
+            label {    
+                @include option-label(var(--LABEL-COLOR));
+                margin-bottom: 3px;
+                display: block;
+            }
+
+            .apply-all {
+                margin: 10px;
+                @include option-select-line(var(--LABEL-COLOR));
+                width: fit-content;
+
+                &:hover {
+                    cursor: pointer;
+                    opacity: 0.7;
+                }        
+            }
+
+            .chips {
+                --OPTION-CHIP-HEIGHT: 350px;
+                --OPTION-CHIP-MAX-HEIGHT: 350px;
+            }
+
+            &.authorized {
+                max-width: none;
+                
+                label {
+                    margin-bottom: 8px;
+                }
+            }
+        }
+    }   
+
+}

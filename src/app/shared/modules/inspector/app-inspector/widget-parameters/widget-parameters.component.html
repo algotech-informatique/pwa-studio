@@ -1,0 +1,29 @@
+<widget-parameters-properties *ngIf="selectedTab === 'behavior'"
+    [page]="page"
+    [widget]="widget.displayState?.rule | resolveRule: selectedWidget"
+    [custom]="(widget.displayState?.rule | resolveRule: selectedWidget).custom"
+    [events]="(widget.displayState?.rule | resolveRule: selectedWidget).events"
+    [snApp]="snApp"
+    (ruleSelected)="onRuleSelected($event)"
+    (changed)="onChanged()">
+</widget-parameters-properties>
+
+<events-parameters *ngIf="selectedTab === 'behavior'"
+    [widget]="widget.displayState?.rule | resolveRule: widget"
+    [events]="(widget.displayState?.rule | resolveRule: widget).events"
+    [app]="snApp"
+    [page]="page"
+    (ruleSelected)="onRuleSelected($event)"
+    (eventsChanged)="onChanged()">
+</events-parameters>
+
+<rules-parameters *ngIf="selectedTab === 'conditions' && widget.rules"
+    [snApp]="snApp"
+    [page]="page"
+    [widget]="widget"
+    [rules]="widget.rules"
+    [settings]="settings"
+    (rulesChanged)="onRulesChanged($event)"
+    (widgetChanged)="onWidgetChanged($event)"
+    (ruleSelected)="onRuleSelected($event)">
+</rules-parameters>

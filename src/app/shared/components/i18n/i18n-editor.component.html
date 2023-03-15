@@ -1,0 +1,22 @@
+
+<ion-progress-bar class="progress" color="secondary" type="indeterminate"
+    *ngIf="!spinnerDisplay"></ion-progress-bar>
+
+<div class="content">
+    <div class="import-i18n">
+        <app-i18n-validate
+            class="data"
+            (activateSpinner)="onActivateSpinner($event)"
+            (launchImportation)="onLaunchImportation()"
+        >
+        </app-i18n-validate>
+    </div>
+
+    <div class="import-i18n">
+        <app-i18n-monitoring
+            [refresh]="refreshMonitoring"
+            [imports]="imports"
+        >
+        </app-i18n-monitoring>
+    </div>
+</div>

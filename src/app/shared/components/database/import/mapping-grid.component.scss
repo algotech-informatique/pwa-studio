@@ -1,0 +1,137 @@
+@import '../../../modules/inspector/theme/_mixins.scss';
+
+:host {
+  display: block;
+  height: 100%;
+  width: 100%;
+  //--GRID-POPUP: #08090dd6;
+  --HEADER-FOOTER: #1B1C26;
+  --GRID-POPUP: var(--HEADER-FOOTER);
+
+  --ion-color-primary: var(--ALGOTECH-PRIMARY);
+  --ion-color-success: var(--ALGOTECH-SUCCESS);
+  --ion-color-warning: var(--ALGOTECH-WARNING);
+  --ion-color-danger: var(--ALGOTECH-DANGER);
+}
+
+.mapping-title {
+  text-align: center;
+  line-height: 30px;
+  border: 1px solid var(--INSPECTOR-INPUT-BORDER-COLOR);
+  border-radius: 5px;
+  background-color: var(--HEADER-FOOTER);
+}
+
+.grid {
+  display: block;
+  height: calc(100% - 80px);
+  width: 100%;
+
+  --GRID-HEADER: 1px solid var(--INSPECTOR-INPUT-BORDER-COLOR);
+  --GRID-COLUMN-SELECTION: #2C6585;
+  --GRID-FG: #FFF;
+  --GRID-BG: var(--GRID-POPUP);
+  --GRID-RADIUS: 5px;
+  --GRID-BORDER-TOP: 1px solid var(--INSPECTOR-INPUT-BORDER-COLOR);
+  --GRID-BORDER-BOTTOM: 1px solid var(--INSPECTOR-INPUT-BORDER-COLOR);
+  --GRID-BORDER-LEFT: 1px solid var(--INSPECTOR-INPUT-BORDER-COLOR);
+  --GRID-BORDER-RIGHT: 1px solid var(--INSPECTOR-INPUT-BORDER-COLOR);
+  --MASK-BG: var(--INSPECTOR-INPUT-BORDER-COLOR); //var(--DB-BACKGROUD-COLOR);
+  --GRID-BORDER-ROW: 1px solid var(--INSPECTOR-INPUT-BORDER-COLOR);
+  //--GRID-BORDER-COLUMN: 1px solid var(--INSPECTOR-INPUT-BORDER-COLOR);
+  --GRID-SELECTION: #38383870;
+  --GRID-SELECTION-HOVER: #38383831;
+
+  --GRID-FONT-SIZE: 14px;
+  --GRID-JUSTIFY-CONTENT: center;
+
+  // header
+  --GRID-HEADER-COLOR: #FFF;
+  --GRID-HEADER-JUSTIFY-CONTENT: center;
+  --GRID-HEADER-FONT-SIZE: 14px;
+
+  // cell
+  --GRID-CELL-COLOR: #FFF;
+  --GRID-CELL-JUSTIFY-CONTENT: center;
+  --GRID-CELL-FONT-SIZE: 12px;
+
+  --SCROLLBAR-BG-TRACK: #2d2f33;
+
+}
+
+.seperators{
+  @include toolbox();
+  background-color: var(--HEADER-FOOTER);
+  margin-right: 12px;
+  width: 100%;
+  border-radius: 5px;
+  flex-direction: column;
+  justify-content: center;
+
+  .section {
+    width: fit-content;
+
+    label {
+      margin-left: 20px;
+    }
+
+    input {
+      margin-left: 5px;
+      width: 30px;
+      border-radius: 5px;
+      color: #FFF;
+      background-color: var(--HEADER-FOOTER);
+      text-align: center;
+      font-weight: bold;
+  }
+  }
+}
+
+.importActions {
+  @include toolbox();
+  background-color: var(--HEADER-FOOTER);
+  margin-right: 12px;
+  width: 100%;
+  border-radius: 5px;
+  height: 48px;
+
+  .section {
+    width: fit-content;
+
+    label {
+      margin-left: 5px;
+    }
+
+    input {
+      margin-left: 5px;
+    }
+  }
+}
+
+.import-message {
+  position: absolute;
+  top: 37%;
+  left: -33px;
+  width: 610px;
+  height: 85px;
+  background-color: var(--HEADER-FOOTER);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid #2d2f33;
+  border-radius: 3px;
+
+  .msg {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+    flex-direction: column;
+    align-items: center;
+
+    .at-spinner-container {
+      position: sticky;
+      left: 0px;
+    }
+  }
+}

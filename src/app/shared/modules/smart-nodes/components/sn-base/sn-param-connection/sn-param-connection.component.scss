@@ -1,0 +1,37 @@
+:host {
+    display: flex;
+    align-items: center;
+    height: 40px;
+}
+
+.param-connect {
+    circle {
+        fill: var(--SN-NODE-PARAM-COLOR-CONNECT);
+    }
+}
+
+.param-disconnect {
+    circle {
+        fill: var(--SN-NODE-PARAM-COLOR-DISCONNECT);
+    }
+}
+
+.undroppable {
+    circle,
+    path {
+        opacity: var(--SN-NODE-UNDROPPABLE-OPACITY);
+    }
+}
+
+.dragHover {
+    circle {
+        fill: var(--SN-NODE-PARAM-COLOR-CONNECT);
+    }
+}
+
+rect {
+    width: 100%;
+    height: 100%;
+    fill: white;
+    opacity: 0;
+}

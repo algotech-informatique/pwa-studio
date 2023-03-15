@@ -1,0 +1,34 @@
+<ui-tree-line
+    [ngClass]="{'hidden': item.element.custom.hidden}"
+    [item]="item"
+    [name]="name"
+    [icon]="icon"
+    [draghook]="true"
+    [selected]="(appSelection.selections.widgets | elementSelected:item.element) === 'selected'"
+    [snApp]="snApp"
+    [settings]="settings"
+    (selectLine)="onWidgetSelected($event)"
+    (toggleLine)="onToggleLine($event)"
+    (nameChanged)="onNameChanged($event)">
+
+    <div class="actions">
+
+        <span *ngIf="item.element.displayState?.highlight|| item.element.custom.locked"
+            class="action lock"
+            (click)="onLockClick($event)">
+            <i *ngIf="!item.element.custom.locked" class="fa-solid fa-lock-open"></i>
+            <i *ngIf="item.element.custom.locked" class="fa-solid fa-lock"></i>
+        </span>
+
+        <span *ngIf="item.element.displayState?.highlight || item.element.custom.hidden || item.element.custom.locked"
+            class="action hide"
+            [style.visibility]="item.element.custom.locked && !item.element.displayState?.highlight && !item.element.custom.hidden ?
+                'hidden' : 'visible'"
+            (click)="onEyeClick($event)">
+            <i *ngIf="!item.element.custom.hidden" class="fa-solid fa-eye"></i>
+            <i *ngIf="item.element.custom.hidden" class="fa-solid fa-eye-slash"></i>
+        </span>
+
+    </div>
+
+</ui-tree-line>

@@ -1,0 +1,110 @@
+<div class="event" [ngClass]="{'app-errors': error }">
+
+    <inspector-section 
+        [title]="(objectType === 'page') && hasKey ?
+            (pipeEvent.key) ? 
+                pipeEvent.key :
+                ('INSPECTOR.PAGE.DATASOURCE.NEW' | translate) :
+            (pipeEvent?.action | eventAction:pipeEvent?.type:app:page)?.length > 0 ?
+                (pipeEvent?.action | eventAction:pipeEvent?.type:app:page) :
+                ('INSPECTOR.WIDGET.EVENT.NEW' | translate)"                
+        [subTitle]="pipeEvent?.type | eventType"
+        [subTitleIcon]="pipeEvent?.type | eventTypeIcon"
+        [defaultOpen]="defaultOpen"
+        [display]="'card'">
+
+        <div class="property inside-card" *ngIf="objectType === 'page' && hasKey">
+            <display-key-element
+                [title]="'INSPECTOR.WIDGET.EVENT.KEY' | translate"
+                [errorCalculation]="keyHasError"
+                [key]="pipeEvent?.key"
+                (changed)="onInputKeyChanged($event)">
+            </display-key-element>
+        </div>
+
+        <div class="property inside-card"
+            [ngClass]="{'last': !pipeEvent?.type}">
+            <select-element
+                [title]="'INSPECTOR.WIDGET.EVENT.TYPE' | translate"
+                [list]="eventTypes"
+                [selectedKey]="pipeEvent?.type"
+                [showSearch]="false"
+                (selectNewItem)="onSelectType($event)">
+            </select-element>
+        </div>
+
+        <div *ngIf="pipeEvent.type" [ngSwitch]="pipeEvent?.type">
+            <event-card-type-workflow *ngSwitchCase="'workflow'"
+                [app]="app"
+                [page]="page"
+                [widget]="widget"
+                [event]="event"
+                [pipeEvent]="pipeEvent"
+                (eventPipeChanged)="onEventPipeChanged($event)">
+            </event-card-type-workflow>
+            <event-card-type-smartflow *ngSwitchCase="'smartflow'"
+                [app]="app"
+                [page]="page"
+                [widget]="widget"
+                [event]="event"
+                [pipeEvent]="pipeEvent"
+                (eventPipeChanged)="onEventPipeChanged($event)">
+            </event-card-type-smartflow>
+            <event-card-type-page *ngSwitchCase="'page'"
+                [app]="app"
+                [page]="page"
+                [widget]="widget"
+                [event]="event"
+                [pipeEvent]="pipeEvent"
+                (eventPipeChanged)="onEventPipeChanged($event)">
+            </event-card-type-page>
+            <event-card-type-page-nav *ngSwitchCase="'page::nav'"
+                [app]="app"
+                [page]="page"
+                [widget]="widget"
+                [event]="event"
+                [pipeEvent]="pipeEvent"
+                (eventPipeChanged)="onEventPipeChanged($event)">
+            </event-card-type-page-nav>
+            <event-card-type-url *ngSwitchCase="'url'"
+                [page]="page"
+                [widget]="widget"
+                [event]="event"
+                [pipeEvent]="pipeEvent"
+                (eventPipeChanged)="onEventPipeChanged($event)">
+            </event-card-type-url>
+            <event-card-type-call-onload *ngSwitchCase="'call::onLoad'"
+                [page]="page"
+                [app]="app"
+                [widget]="widget"
+                [pipeEvent]="pipeEvent"
+                (eventPipeChanged)="onEventPipeChanged($event)">
+            </event-card-type-call-onload>
+            <event-card-type-smartobjects *ngSwitchCase="'smartobjects'"
+                [pipeEvent]="pipeEvent"
+                (eventPipeChanged)="onEventPipeChanged($event)">
+            </event-card-type-smartobjects>
+        </div>
+
+        <div class="actions"
+            [ngClass]="{'only-delete': event?.pipe?.length === 1}">
+            <div class="move-event" *ngIf="event?.pipe?.length > 1">
+                <i class="fa-solid fa-arrow-alt-circle-up button" (click)="arrowMoveEvent('up')"></i>
+                <i class="fa-solid fa-arrow-alt-circle-down button" (click)="arrowMoveEvent('down')"></i>
+            </div>
+
+            <div class="delete-event">
+                <i class="fa-solid fa-trash button" (click)="removePipeEvent()"></i>
+            </div>
+        </div>
+        <div goto (click)="openWorkflowTab($event)">
+            <i class="fa-solid fa-sign-in-alt icon"></i>
+        </div>
+
+    </inspector-section>
+
+</div>
+
+<div *ngIf="!isLastPipeEvent" class="event-arrow">
+    <i *ngIf="event?.custom?.mode === 'sequence'" class="event-arrow" class="fa-solid fa-arrow-alt-circle-down"></i>
+</div>

@@ -1,0 +1,12 @@
+<div class="widget-button" [ngStyle]="widget?.css?.main">
+    <button [ngStyle]="widget?.css?.button">
+        <div class="layout" [ngStyle]="widget?.css?.layout">
+            <i *ngIf="widget.custom.icon" [class]="widget.custom.icon" [ngStyle]="widget?.css?.icon"></i>
+            <span [ngStyle]="widget?.css?.text">
+                {{ (widget.custom.preview && (widget.custom.preview | snlang: false)) ?
+                    (widget.custom.preview | snlang: false) : (widget.custom.title | snlang: false | inputTransform: snApp: widget)
+                }}
+            </span>
+        </div>
+    </button>
+</div>

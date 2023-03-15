@@ -1,0 +1,101 @@
+<options-container class="form">
+    <div class="smartlink">
+
+        <div class="title">
+            <div class="left-side">
+                <i class="fa-solid fa-share-alt icon"></i>
+                <div class="link-title" *ngIf="situationLink === 'SHARE'">
+                    {{ 'SMARTLINK-LINK.SHARE-USERS' | translate }}
+                </div>
+                <div class="link-title" *ngIf="situationLink === 'CREATION'">
+                    {{ 'SMARTLINK-LINK.TITLE' | translate }}
+                </div>
+            </div>
+
+            <i class="fa-solid fa-xmark close"
+                (click)="onClose($event)"
+                [title]="'SMARTLINK-LINK.CLOSE' | translate"
+            ></i>
+        </div>
+
+        <div class="contents">
+            <div class="content" *ngIf="link">
+                <label> {{ 'SMARTLINK-LINK.SHARE-MAIL-LINK' | translate }} </label>
+                <options-copytext
+                    includeBottomBorder="true"
+                    class="item"
+                    [copyText]="link"
+                ></options-copytext>
+            </div> 
+
+            <smart-link-creation class="content" *ngIf="linkInfo"
+                [ngStyle]="{'display': situationLink === 'CREATION' ? 'block' : 'none'}"
+                [linkInfo]="linkInfo"
+                [backupList]="backupList"
+                [variables]="variables"
+                [radioList]="radioList"
+                (updateLinkInfo)="onUpdateLinkInfo($event)"
+            >
+            </smart-link-creation>
+
+            <smart-link-share class="content" *ngIf="eMail"
+                [ngStyle]="{'display': situationLink === 'SHARE' ? 'block' : 'none'}"
+                [eMail]="eMail"
+                (updateMail)="onUpdateMail($event)"
+            >
+            </smart-link-share>
+        </div>
+
+        <div class="footer">
+
+            <div class="button"
+                *ngIf="situationLink === 'SHARE'"
+                [title]="'SMARTLINK-LINK.RETURN-TEXT' | translate"
+                (click)="onBackEvent()">
+
+                <i class="fa-solid fa-arrow-alt-circle-left style-icon"></i>
+
+                <div class="title">
+                    {{ 'SMARTLINK-LINK.RETURN' | translate}}
+                </div>
+            </div>
+
+            <div class="button"
+                [ngClass]="{'disabled': link === '' }"
+                *ngIf="situationLink === 'CREATION'"
+                [title]="'SMARTLINK-LINK.CREATE-MAIL-TEXT' | translate"
+                (click)="openMail()">
+
+                <i class="fa-solid fa-at style-icon"></i>
+
+                <div class="title">
+                    {{ 'SMARTLINK-LINK.CREATE-MAIL' | translate}}
+                </div>
+            </div>
+
+            <div class="button" 
+                [ngClass]="{'disabled': eMail.to.length === 0 }"
+                *ngIf="situationLink === 'SHARE'"
+                [title]="'SMARTLINK-LINK.MAIL-SEND-TEXT' | translate"
+                (click)="onSendMail()">
+
+                <i class="fa-solid fa-upload style-icon"></i>
+                
+                <div class="title">
+                    {{ 'SMARTLINK-LINK.MAIL-SEND' | translate}}
+                </div>
+            </div>
+
+            <div class="button"
+                [title]="'SMARTLINK-LINK.CLOSE-TEXT' | translate"
+                (click)="onClose($event)">
+                <i class="fa-solid fa-xmark style-icon"></i>
+                
+                <div class="title">
+                    {{ 'SMARTLINK-LINK.CLOSE' | translate}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</options-container>

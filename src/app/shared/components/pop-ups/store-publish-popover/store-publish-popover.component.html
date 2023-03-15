@@ -1,0 +1,19 @@
+<div class="top-bar">
+
+    <div class="logo-name">
+        <span>Store</span>
+    </div>
+    <div class="top-bar-drag"></div>
+    <div class="top-bar-buttons">
+        <div class="top-bar-button" (click)="SendResponse(false)">
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+    </div>
+</div>
+<div class="message">
+    {{ message }}
+</div>
+<div class="btns">
+    <div class="btn" (click)="SendResponse(true)"> {{ 'DIALOGBOX.OK' | translate }}</div>
+    <div *ngIf="isQuery" class="btn" (click)="SendResponse(false)"> {{ 'DIALOGBOX.CANCEL' | translate }}</div>
+</div>

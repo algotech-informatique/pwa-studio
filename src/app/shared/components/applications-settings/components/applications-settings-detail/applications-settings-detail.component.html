@@ -1,0 +1,43 @@
+<div class="content">
+
+    <div class="group">
+
+        <div class="elements">
+            <label>{{ 'SETTINGS.APPLICATIONS.DEFAULT.WEB' | translate }}</label>
+            <options-list
+                [inputList]="listWebApplications"
+                [selected]="selected.web"
+                (selectValue)="onSelectDefaultApp($event, 'web')">
+            </options-list>
+            <div class="apply-all" (click)="applyDefaultToAll(selected.web?.key, 'web')">
+                {{ 'SETTINGS.APPLICATIONS.APPLY-ALL' | translate }}
+            </div>
+        </div>
+
+        <div class="elements">
+            <label>{{ 'SETTINGS.APPLICATIONS.DEFAULT.MOBILE' | translate }}</label>
+            <options-list
+                [inputList]="listMobileApplications"
+                [selected]="selected.mobile"
+                (selectValue)="onSelectDefaultApp($event, 'mobile')">
+            </options-list>
+            <div class="apply-all" (click)="applyDefaultToAll(selected.mobile?.key, 'mobile')">
+                {{ 'SETTINGS.APPLICATIONS.APPLY-ALL' | translate }}
+            </div>
+        </div>
+
+        <div class="elements authorized">
+            <label>{{ 'SETTINGS.APPLICATIONS.AUTHORIZED' | translate }}</label>
+            <options-chips-list
+                class="chips"
+                type="text"
+                [inputList]="listApplications"
+                [items]="authorizedApps"
+                [includeBottomBorder]="false"
+                (changeValue)="onAuthorizedAppsChanged($event)">
+            </options-chips-list>   
+        </div>
+    
+    </div>
+
+</div>

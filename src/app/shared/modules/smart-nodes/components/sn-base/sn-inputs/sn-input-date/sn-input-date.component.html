@@ -1,0 +1,11 @@
+<div class="input-date">
+    
+    <input #input 
+        type="date"
+        class="input"
+        [value]="value | dateFormat:'YYYY-MM-DD'"
+        (focusout)="update(input.value)" />
+
+    <i class="fa-solid fa-calendar-days"></i>
+
+</div>

@@ -1,0 +1,121 @@
+<div class="styles">
+   
+    <app-inspector-section 
+        [snApp]="snApp"
+        [title]="'INSPECTOR.APP.TAB.DESIGN.LAYOUT' | translate" *ngIf="(styles | find: 'style':'layout')"
+        [showLock]="_type === 'widget'"
+        [section]="'css.layout'"
+        [widgets]="widgets">
+        <design-style-layout-parameters
+            [showDirection]="(styles | find:'style':'icon') && (appSelection.selections.widgets | widgetsWithIcon)
+                || !(styles | find:'style':'icon') && (styles | find:'style':'layout')?.value?.['flex-direction'] !== undefined"
+            [showJustify]="(styles | find:'style':'icon')
+                || !(styles | find:'style':'icon') && (styles | find:'style':'layout')?.value?.['justify-content'] !== undefined"
+            [layoutStyle]="(styles | find:'style':'layout')?.value"
+            (changed)="onChanged($event, 'layout')">
+        </design-style-layout-parameters>
+    </app-inspector-section>
+
+    <app-inspector-section 
+        *ngIf="(styles | find: 'style':'icon') && (appSelection.selections.widgets | widgetsWithIcon)"
+        [snApp]="snApp"
+        [title]="'INSPECTOR.APP.TAB.DESIGN.ICON' | translate"
+        [showLock]="_type === 'widget'"
+        [section]="'css.icon'"
+        [widgets]="widgets">
+        <design-style-icon-parameters
+            [iconStyle]="(styles | find:'style':'icon')?.value"
+            (changed)="onChanged($event, 'icon')">
+        </design-style-icon-parameters>
+    </app-inspector-section>
+
+    <app-inspector-section 
+        [snApp]="snApp"
+        [title]="'INSPECTOR.APP.TAB.DESIGN.TEXT' | translate" *ngIf="(styles | find: 'style':'text')"
+        [showLock]="_type === 'widget'"
+        [section]="'css.text'"
+        [widgets]="widgets">
+        <!-- FG COLOR -->
+        <div class="property">
+            <color-element
+                [showApptheme]="true"
+                [color]="(styles | find: 'style':'text')?.value?.color"
+                (changed)="onChanged({path: 'color', value: $event}, 'text')">
+            </color-element>
+        </div>
+
+        <!-- TEXT -->
+        <design-style-text-parameters
+            [defaultValue]="(styles | find: 'style':'text').value"
+            (changed)="onChanged($event, 'text')">
+        </design-style-text-parameters>        
+    </app-inspector-section>
+
+    <app-inspector-section
+        *ngIf="
+            (styles | find: 'style':'gap') ||
+            (styles | find: 'style':'background') ||
+            (styles | find: 'style':'radius') ||
+            bordersStyles?.length === 4"
+        [snApp]="snApp"
+        [title]="'INSPECTOR.APP.TAB.DESIGN.BACKGROUND' | translate"
+        [showLock]="_type === 'widget'"
+        [section]="'css.background'"
+        [widgets]="widgets">
+
+        <!-- BG COLOR -->
+        <div class="property" *ngIf="(styles | find: 'style':'background')">
+            <color-element
+                [showApptheme]="true"
+                [color]="(styles | find: 'style':'background')?.value"
+                (changed)="onChanged({value: $event}, 'background')">
+            </color-element>
+        </div>
+
+        <!-- RADIUS -->
+        <div class="property" *ngIf="(styles | find: 'style':'radius')">
+            <design-style-radius-parameters class="element"
+                [radiusValue]="(styles | find: 'style':'radius').value"
+                (changed)="onChanged({value: $event}, 'radius')">
+            </design-style-radius-parameters>
+        </div>
+
+        <!-- BORDER -->
+        <div class="property last" *ngIf="bordersStyles.length === 4">
+            <span class="title">{{ 'INSPECTOR.APP.TAB.DESIGN.BORDERS' | translate }}</span>
+            <design-style-border-parameters
+                [bordersStyles]="bordersStyles"
+                (changed)="onMultipleChanged($event)">
+            </design-style-border-parameters>
+        </div>
+
+    </app-inspector-section>
+
+    <app-inspector-section 
+        *ngIf="(styles | find: 'style':'shadow')"
+        [snApp]="snApp"
+        [title]="'INSPECTOR.APP.TAB.DESIGN.EFFECTS' | translate"
+        [showLock]="_type === 'widget'"
+        [section]="'css.shadow'"
+        [widgets]="widgets">
+        <design-style-shadow-parameters class="element small"
+            *ngIf="(styles | find: 'style':'shadow')"
+            [defaultValue]="(styles | find: 'style':'shadow').value"
+            (changed)="onChanged({value: $event}, 'shadow')">
+        </design-style-shadow-parameters>
+    </app-inspector-section>    
+
+    <app-inspector-section 
+        *ngIf="strokeStyles?.length !== 0" [title]="'INSPECTOR.APP.TAB.DESIGN.STROKE' | translate"
+        [snApp]="snApp"
+        [showLock]="_type === 'widget'"
+        [section]="'css.stroke'"
+        [widgets]="widgets">
+        <!-- STROKE -->
+        <design-style-stroke-parameters
+            [strokeStyles]="strokeStyles"
+            (changed)="onMultipleChanged($event)">
+        </design-style-stroke-parameters>
+    </app-inspector-section>
+
+</div>

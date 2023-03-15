@@ -1,0 +1,22 @@
+.widget-button {
+    position: relative;
+    height: 100%;
+    overflow: visible;
+
+    button {
+        border: none;
+        border-radius: 2px;
+        outline: none;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        text-transform: none;
+        pointer-events: none;
+    }
+
+    .layout {
+        display: flex;
+        height: 100%;
+        width: 100%;
+    }
+}

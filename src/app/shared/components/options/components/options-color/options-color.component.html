@@ -1,0 +1,25 @@
+<div class="content">
+
+    <div class="color" #button (click)="onClickIcon($event)" [ngStyle]="{'background-color': color}">
+        <i class="fa-solid fa-fill-drip"></i>        
+
+        <color-popover class="options-popover" *ngIf="showPopover"
+            [color]="color"
+            [dropdown]="'click'"
+            [clickPosition]="clickPosition"
+            [containerLeft]="containerLeft"
+            [containerWidth]="popoverContainerWidth"
+        >
+            <div
+                class="color-element"
+                [style.background]="color"
+                [cpToggle]="true"
+                [cpPresetLabel]="''"
+                [cpDialogDisplay]="'inline'"
+                [cpPresetColors]="colors"
+                [(colorPicker)]="color"
+                (colorPickerChange)="onColorChange($event)">
+            </div>
+        </color-popover>
+    </div>
+</div>

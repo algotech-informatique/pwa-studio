@@ -1,0 +1,84 @@
+<as-split direction="horizontal" unit="pixel" (clickOutside)="onClickOutside()">
+    <as-split-area size="280" maxSize="280" minSize="280">
+        <app-data-base-list 
+        [smartModels]="smartModels"
+        [forceSelect]="breadCrumb.length > 1"
+        (onSelectModel)="reloadDataBase($event, true, false, true)"
+        (actionClicked)="executeAction($event)"
+        (onMonitoring)="handleMonitoring($event)">
+        </app-data-base-list>
+    </as-split-area>
+    <as-split-area size="*">
+        <div *ngIf="showMonitoring" class="db-background">
+        <app-data-base-monitoring
+            [imports]="imports"
+            [deletions]="deletions"
+            [refresh]="refreshMonitoring">
+        </app-data-base-monitoring>
+        </div>
+        <div *ngIf="!showMonitoring" class="db-background">
+            <div class="breadCrumb" >
+                <app-data-base-navigation 
+                [breadCrumb]="breadCrumb"
+                (navigateTo)="onNavigate($event)"></app-data-base-navigation>
+            </div>
+            <div class="tabs">
+                <div class="tab" *ngFor="let tab of tabs" 
+                [ngClass]="{'selected-tab': tab?.key === selectedTab }"
+                (click)="onOpenTab(tab.key)">
+                    <span>{{ tab?.display | translate }}</span>
+                </div>
+            </div>
+            <div class="actions">
+                <div class="text-input" [ngClass]="{'error': error}">
+                    <div class="input-container">
+                    <i class="fa-solid fa-filter icon"></i>
+                    <input class="input" type="text" [(ngModel)]="filter" (ngModelChange)="reloadDataBase(selectedModel, true, true)"
+                        [placeholder]="'DATABASE-FILTER-SMARTOBJECTS' | translate" [ngClass]="{disabled: !selectedModel || origin}" >
+                    </div>
+                </div>
+            <div class="input-container left-buttons">          
+                <i class="fa-solid fa-angles-left icon" [ngClass]="{disabled: data.length === 0 || sysQuery.skip === 0}" (click)="reloadDataBaseTo('first')"></i>
+                <i class="fa-solid fa-chevron-left icon" [ngClass]="{disabled: data.length === 0 || sysQuery.skip === 0}"(click)="reloadDataBaseTo('previous')"></i>
+                <i class="fa-solid fa-chevron-right icon" [ngClass]="{disabled: data.length === 0 || !moreDataToLoad}" (click)="reloadDataBaseTo('next')"></i>
+                <i class="fa-solid fa-angles-right icon" [ngClass]="{disabled: data.length === 0 || !moreDataToLoad}" (click)="reloadDataBaseTo('last')"></i>
+            </div>
+            <div *ngIf="selectedTab === 'smartObjects'" class="input-container left-buttons">
+                <i class="fa-solid fa-plus icon" [ngClass]="{disabled: !selectedModel}" (click)="executeAction({ key: 'add'})"></i>
+                <i *ngIf="selectedModel && origin && breadCrumb.length > 1 && !breadCrumb[breadCrumb.length - 1]?.isComposition" class="fa-solid fa-link icon" [ngClass]="{disabled: !selectedModel && !origin}" (click)="executeAction({ key: 'link'})"></i>                        
+            </div>
+            <div *ngIf="selectedTab === 'smartObjects' "class="input-container right-buttons" [ngClass]="{disabled: origin || !selectedModel}">
+                <label for="fileInput" class="button-container">
+                    <i id="download-template" class="fa-solid fa-file-csv icon" ></i>
+                    <span for="download-template"> {{ 'INSPECTOR.DATABASE.IMPORTSOS.ACTION' | translate }}</span>            
+                    <i id="download-template" class="fa-solid fa-upload icon" ></i>
+                </label>
+                <input id="fileInput" type="file" style="display:none" accept=".csv" (change)="executeAction({ event: $event, key: 'importSOs'})">
+                <div class="button-container" (click)="executeAction({ key: 'downloadModel'})">
+                <i id="download-template" class="fa-solid fa-file-csv icon" ></i>
+                <span for="download-template"> {{ 'INSPECTOR.DATABASE.DOWNLOAD.MODEL' | translate }}</span>            
+                <i id="download-template" class="fa-solid fa-download icon" ></i>
+                </div>
+            </div>
+            </div>
+            <app-data-base-grid
+                [empty]="data.length === 0"
+                [data]="data"
+                [paginate]="paginate"
+                [query]="sysQuery"
+                [moreDataToLoad]="moreDataToLoad"
+                [loading]="loading"
+                [configuration]="configuration"
+                [count]="soCount"
+                [actions]="actions"
+                [skip]="skip"
+                [lastPage]="lastPage"
+                (reloadDataBase)="reloadDataBase(selectedModel, true, true)"        
+                (cellChanged)="executeAction($event)"
+                (executeAction)="executeAction($event)"
+                (navigateTo)="onNavigate($event, true)"
+            ></app-data-base-grid>
+        </div>
+    </as-split-area>
+    <popover [showPopup]="popup" [dismissPopup]="dismiss" (dismissed)="handleDismiss()"></popover>
+</as-split>

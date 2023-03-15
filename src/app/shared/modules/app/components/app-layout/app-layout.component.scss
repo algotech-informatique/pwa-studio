@@ -1,0 +1,164 @@
+@import '../../theme/variables';
+@import '../../../../../../styles.scss';
+
+:host {
+    --FRAME-BACKGROUND: linear-gradient(0deg, rgba(25, 31, 44, 0.95), rgba(25, 31, 44, 0.95)),
+        url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAdVBMVEUAAAD///+Tk5Pb29vt7e0ICAjX19dVVVXAwMBaWlpDQ0O4uLgWFhb8/Py9vb0jIyP29vbMzMw+Pj6Ghobl5eVoaGioqKg3NzcwMDAqKip+fn7Y2Njf398PDw8gICAbGxtJSUmcnJyLi4tzc3NqamqXl5ejo6PGJSApAAACxElEQVR4nO3dW3OiQBiEYQQUPIBAQE0ExMP6/3/ipirX3VvFFkaTt++7yJPxar6amSDQCWc6C9Obx6aYmOLa9FLT25jezPQQIkSIECFChAgRIkSIECFChAgRIkSIECHCzxxd8dHCbqzwrW5lclcsda9tKpn9vdQ573VxML0yMHqnqDLdi0+mGJkPhqaXjF2nscKVE24nEC4RIkSIECFChAgRIkSIECFChAgRIkSIEOE3CU0v7k2xfbgw1lmbWlXrXltt31U2eXRUaS8n2euXrewdo2CuE3QyQZgVMqUpnupMx86eTM/9oLqZ/kMLt7wvM11jQooQIUKECBEiRIgQIUKECBEiRIgQIUKEEwqfakd4boV7mUOoz1vU6UEX92Wkc13KJLtooRLtEl1savPBQG/4Z24yszKTgnpjipy3UGFCihAhQoQIESJEiBAhQoQIESJEiBAhQoTfJTS9Fzpv0R9U3hPTayvZO/RlLROfh0TmGutibXpJsJHx5y3mnep1fW2GGoP5b+dmmUq3TGPX92Wma0xIESJEiBAhQoQIESJEiBAhQoQIESJEiBDhfwgn2vOWlyjZMVGge1kWmLcvdo3O1fTym6zdmlweGlksLtVKpWqOpriXvdVq9Aseple4FzweP10bKfwFE1KECBEiRIgQIUKECBEiRIgQIUKECBEi/EVCNwyxe97dBMLxtyi96Zx3On9M72Od6ribsO6md3Y3YaW5jsO72VPkis91m9lI4c+fHyJEiBAhQoQIESJEiBAhQoQIESJEiBAhwq/YPe/CFIcJhP4WJT0pKHd6UrC8mRHDetCnH6rUvTzey5fHt417eVyf0/DnLUbPnp7rNjPT+/nzQ4QIESJEiBAhQoQIESJEiBAhQoQIESJE+G9h5YTuvMXRfPBiepO8Wr24fsiERliYcxp3N5cq77ropjazS6jzF+ICC8AMT4YKAAAAAElFTkSuQmCC");
+    --SECTION-ADD-COLOR: #27ae60;
+    --SECTION-BOX-SHADOW-COLOR: rgba(0, 0, 0, 0.25);
+    --SECTION-ADD-HOVER-COLOR: rgb(219, 219, 219);
+    --CELL-SIZE: 10px;
+}
+
+.pages-layout {
+    height: 100%;
+    position: relative;
+
+    @keyframes display {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    &.display {
+        animation: display .2s ease-in;
+        display: block;
+    }
+
+    &.backdrop,
+    &.drawing {
+        &.backdrop {
+            box-shadow: inset 0 0 10px var(--SN-COLOR-ACTIVE);
+
+            #svg {
+                background-color: var(--SN-COLOR-LAYOUT-SHADE);
+            }
+            #container {
+                opacity: 0.5;
+            }
+
+            .toolbox-designer {
+                pointer-events: none;
+            }
+        }
+
+        cursor: crosshair;
+
+        .page-layout {
+
+            .widgets,
+            .selections,
+            .page-selector {
+                pointer-events: none;
+            }
+        }
+    }
+
+    .page-layout {
+        overflow: visible;
+    }
+
+    #svg {
+        width: 100%;
+        height: 100%;
+        background-color: var(--SN-COLOR-LAYOUT);
+        user-select: none;
+
+        #grid {
+            background-color: #FFF;
+        }
+
+        .container-landmarks {
+            shape-rendering: auto;
+        }
+    }
+
+    foreignObject {
+        overflow: visible;
+    }
+
+    foreignObject:not(.locked) {
+        cursor: pointer;
+    }
+    foreignObject.locked {
+        pointer-events: none;
+    }
+
+    .selections {
+        pointer-events: none;
+        shape-rendering: auto;
+    }
+
+    .app-errors {
+        .page {
+            stroke: var(--SN-COLOR-ERROR);
+        }
+    }
+
+    .highlight {
+        .page {
+            stroke: var(--SN-COLOR-SELECTION);
+        }
+    }
+
+    .selected {
+        stroke: var(--SN-COLOR-SELECTION) !important;
+    }
+
+    .draghover {
+        &.page {
+            stroke: var(--SN-COLOR-SELECTION);
+            opacity: 0.9;
+        }
+
+        cursor: grabbing;
+    }
+
+    .app-size-phantom {
+        stroke-width: 2px;
+        stroke: var(--SN-COLOR-SELECTION);
+        fill: none;
+        stroke-dasharray: 10;
+        transition: stroke 0.1s ease-out, stroke-width 0.1s ease-out;
+
+        &.hide  {
+            stroke-width: 0px;
+            stroke: transparent;
+            transition: stroke 0.1s ease-out, stroke-width 0.1s ease-out;
+        }
+    }
+
+    .page-size-helper { //displayed elements
+        stroke-width: 3px;
+        stroke: var(--SN-NODE-PARAM-COLOR); 
+        transition: stroke 0.1s ease-out, stroke-width 0.1s ease-out;
+
+        &.hide  {
+            stroke-width: 0px;
+            stroke: transparent;
+            transition: stroke 0.1s ease-out, stroke-width 0.1s ease-out;
+        }
+    }
+
+    .page-size-handler { //invisible hanlding zones
+        fill: transparent;
+        &.horizontal {
+            &:hover {
+                cursor: ns-resize;
+            }
+        }
+        &.vertical {
+            &:hover {
+                cursor: ew-resize;
+            }
+        }
+        &.diagonal {
+            &:hover {
+                cursor: nwse-resize;
+            }
+        }
+    }
+}

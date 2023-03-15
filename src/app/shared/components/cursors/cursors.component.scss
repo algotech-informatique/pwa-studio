@@ -1,0 +1,14 @@
+@import "../../../../styles.scss";
+
+.cursor {
+    position: absolute;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    .user {
+        font-size: 12px;
+        color:  $COLOR-FG;
+        padding: 3px;
+        margin: 10px 0px 0px 15px
+    }
+}

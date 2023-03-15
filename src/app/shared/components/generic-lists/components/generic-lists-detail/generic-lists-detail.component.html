@@ -1,0 +1,60 @@
+<div class="content"
+    [ngClass]="{'all-langs': activeAllLangs }">
+
+    <div class="title">
+    </div>
+
+    <div class="glist">
+
+        <div class="elements">
+            <label> {{ 'GENERIC-LIST.LIST-NAME' | translate }} </label>
+            <options-input-multilang
+                class="element"
+                [inputText]="gList.displayName"
+                (updateText)="updateName($event)"
+                
+            ></options-input-multilang>    
+    
+            <div class="border-bottom"></div>
+        </div>
+    
+        <div class="elements">
+            <options-checkbox
+    			[label]="'GENERIC-LIST.VALIDATE' | translate"
+	    		[checkElement]="gList.protected"
+		    	selected="true"
+			    (checkedChange)="onChecked($event)"
+		    >
+		    </options-checkbox>
+        </div>      
+    </div>
+
+    <div class="details"
+        [ngClass]="{'new-list': gList.key === 'new-list'}"
+    >
+
+        <generic-lists-detail-line
+            class="detail"
+            [formatedDetailLines]="formatedDetailLines"
+            [customerLangs]="customerLangs"
+            [mainLang]="mainLang"
+            [nextLangs]="nextLangs"
+            (activeAllLangs)="onActiveAllLangs($event)"
+            (removeLines)="onRemoveLines($event)"
+            (updateLine)="onUpdateLine($event)"
+            (updateLines)="onUpdateLines($event)"
+        >
+        </generic-lists-detail-line>
+    </div>
+
+    <div class="footer"
+        [ngClass]="{'new-list': gList.key === 'new-list'}"
+    >
+        <div
+            class="delete-list"
+            (click)="onDeleteList()"
+        >
+            <span>{{ 'GENERIC-LIST.DELETE-LIST' | translate }}</span>
+        </div>
+    </div>
+</div>

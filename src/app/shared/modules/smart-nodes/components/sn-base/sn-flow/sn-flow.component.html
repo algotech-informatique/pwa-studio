@@ -1,0 +1,37 @@
+<div class="flow-content">
+
+    <div class="flow" 
+        [ngClass]="{
+            'flow-reverse': flow.direction === 'out',
+            'selected': flow.displayState?.selected
+        }"
+        [id]="'connector-' + flow?.id"
+        (click)="select($event)"
+        (contextmenu)="select($event, true)"
+        > <!-- id use for link calcul -->
+
+        <svg width="19" height="15" viewBox="0 0 19 15" [attr.id]="flow?.id"
+            [ngClass]="{
+                'flow-in': flow.direction === 'in',
+                'flow-out': flow.direction === 'out',
+                'flow-disconnect': !flow.displayState?.connected,
+                'flow-connect': flow.displayState?.connected
+            }">
+    
+            <path d="M0.5 5.5C0.5 2.73858 2.73858 0.5 5.5 0.5H14.5L19 7.5L14.5
+                14.5H5.5C2.73858 14.5 0.5 12.2614 0.5 9.5V5.5Z" />
+        </svg>
+
+        <div class="name" *ngIf="flow.displayName && flow?.direction === 'out'">
+            {{ flow.displayName | snlang}}
+        </div>
+    </div>
+
+    <sn-params
+        class="params"
+        *ngIf="flow?.params?.length > 0"
+        [params]="flow.params"
+        [snView]="snView"
+        [node]="node"
+    ></sn-params>
+</div>

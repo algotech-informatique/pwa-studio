@@ -1,0 +1,62 @@
+@import "../../theme/mixins";
+
+$back-color: #E1E37E;
+
+.comment-container {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    width: 400px;
+    height: 200px;
+
+    padding: 5px;
+
+    background: $back-color;
+    border-radius: var(--SN-ELEMENT-BORDER-RADIUS);
+
+    box-shadow: 0px 4px 4px #00000040;
+
+    .header {
+
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+
+        i {
+            cursor: pointer;
+            margin: 5px;
+
+            &.fa-times {
+                font-size: 24px;
+            }
+        }
+    }
+
+    textarea {
+        @include custom-scrollbar;
+        width: 100%;
+
+        background: transparent;
+        border: none;
+        outline: none;
+        resize: none;
+        overflow: auto;
+
+        flex-grow: 1;
+
+        padding: 10px;
+    }
+}
+
+.line {
+    overflow: visible;
+    pointer-events: none;
+
+    * {
+        stroke: $back-color;
+        fill: $back-color;
+    }
+}

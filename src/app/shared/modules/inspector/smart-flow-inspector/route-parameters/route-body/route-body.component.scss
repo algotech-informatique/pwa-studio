@@ -1,0 +1,25 @@
+@import '../../../theme/mixins';
+
+:host {
+    @include app-errors();
+}
+
+.property {
+    @include property();
+}
+
+.property-items {
+    margin-bottom: 20px;
+}
+
+.property-item {
+    margin-bottom: 15px;
+
+    &.last {
+        margin-bottom: 0;
+    }
+}
+
+sn-display-radio {
+    --RADIO-SIZE: 16px;
+}

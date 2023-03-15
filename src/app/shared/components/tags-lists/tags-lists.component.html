@@ -1,0 +1,27 @@
+<div class="content">
+
+    <div class="tagslist">
+        <tags-lists-main
+            class="tags"
+            [(search)]="search"
+            [tagsLists]="_tagsLists"
+            [selectedId]="selectedUuid"
+            (selectedList)="onSelectedTagslist($event)"
+            (createNewTagsList)="onCreateNewList()"
+        >
+        </tags-lists-main>
+    </div>
+
+    <div class="tagslist" *ngIf="selectedUuid">
+        <tags-lists-detail
+            [tagsList]="selectedTagsList"
+            [smartModels]="smartModels"
+            [formatedDetailLines]="formatedDetailLines"
+            [customerLangs]="customerLangs"
+            (updateTagsList)="onUpdateTagsList($event)"
+            (removeLine)="onRemoveLine($event)"
+            >
+        </tags-lists-detail>
+    </div>
+
+</div>

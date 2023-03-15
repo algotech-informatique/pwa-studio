@@ -1,0 +1,18 @@
+<div *ngIf="showPopup" class="modal lang-selector-pop-up" [ngStyle]="{'top.px': top}">
+
+    <div class="lang lang-selector-pop-up"
+        [ngClass]="{'selected': lang.lang === selected.lang}"
+        *ngFor="let lang of langs"
+        (click)="chooseLang(lang)"
+    >
+
+        <div class="show lang-selector-pop-up" *ngIf="short">
+            {{ lang.lang | slice:0:2 | titlecase }}
+        </div>
+
+        <div class="show lang-selector-pop-up" *ngIf="!short">
+            {{ lang.value }}
+        </div>
+
+    </div>
+</div>

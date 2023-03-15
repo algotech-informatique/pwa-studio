@@ -1,0 +1,31 @@
+<div class="select">
+    <div class="button" (click)="toggleList(!showList, $event)" #select>
+        <div class="text" [title]="selectedValue?.value || 'DIALOGBOX.SELECT' | translate">
+            {{ selectedValue?.value || 'DIALOGBOX.SELECT' | translate }}
+        </div>
+        <i [ngClass]="showList ? 'fa-solid fa-caret-up' : 'fa-solid fa-caret-down'"></i>
+    </div>
+    <div *ngIf="showList" class="list" (clickOutside)="toggleList(false)" [style.top.px]="top">
+        <div class="search">
+            <input #searchInput [placeholder]="'SEARCHBOX.PLACEHOLDER' | translate" type="search" (keyup)="onSearch()"
+                [(ngModel)]="search" (click)="$event.stopPropagation()">
+            <i *ngIf="search.length > 0" class="fa-solid fa-xmark icon" (click)="resetSearch($event)"></i>
+        </div>
+        <div class="items scrollable">
+            <div *ngFor="let item of filterList"
+                class="item"
+                [ngClass]="{
+                    'item-selected': selectedValue && selectedValue.key && item.key === selectedValue.key,
+                    'disabled': item.disabled
+                }"
+                (click)="selectItem($event, item)">
+                <span class="item-value" [title]="item.value">
+                    <i *ngIf="item.icon" [class]="item.icon"></i>
+                    {{ item.value }}
+                </span>
+                <i *ngIf="selectedValue && selectedValue.key && item.key === selectedValue.key" class="fa-solid fa-check"></i>
+            </div>
+        </div>
+        <i *ngIf="!filterList || filterList.length === 0" class="fa-solid fa-ban empty-icon"></i>
+    </div>
+</div>

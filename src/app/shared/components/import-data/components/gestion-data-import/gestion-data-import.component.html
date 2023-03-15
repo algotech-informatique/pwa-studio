@@ -1,0 +1,52 @@
+<div class="content">
+
+    <div class="title">
+        <div class="gestion-title">
+            {{ 'IMPORT-DATA.GESTION-DATA' | translate }}
+        </div>
+    </div>
+
+    <div class="options">
+
+        <!-- LIST-MODELS -->
+        <gestion-data-list
+            class="list"
+            searchPlaceHolder="IMPORT-DATA.IMPORTING-DOCUMENTS"
+            [optionList]="optionModelList"            
+            (selectedChanged)="onModelChanged($event)"
+        ></gestion-data-list>
+
+        <!-- GLISTS -->        
+        <gestion-data-list
+            class="list"
+            searchPlaceHolder="IMPORT-DATA.IMPORTING-GLISTS"
+            [optionList]="optionGListList"
+            (selectedChanged)="onGListChanged($event)"
+        ></gestion-data-list>
+
+        <div class="border-bottom"></div>
+
+        <!-- CHECKS -->
+        <div class="check-option">
+            <options-checkbox
+                class="check"
+                [label]="'IMPORT-DATA.LAYER-IMPORT' | translate"
+                [checkElement]="exportData.addLayers"
+                selected="true"
+                (checkedChange)="onLayerImport($event)"
+            >
+            </options-checkbox>
+        </div>
+
+        <div class="footer">
+            <div
+                [ngClass]="{'inactive': !validateDownload }"
+                class="donwload-list"
+                (click)="onDownload()"
+            >
+                <span>{{ 'IMPORT-DATA.DOWNLOAD-FORMAT-DATA' | translate }}</span>
+            </div>
+        </div>
+
+    </div>
+</div>

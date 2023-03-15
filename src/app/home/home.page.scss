@@ -1,0 +1,172 @@
+@import '../../styles.scss';
+@import '../shared/modules/smart-nodes/theme/mixins';
+@import '../shared/modules/smart-nodes/theme/dark';
+
+$TAB-HEIGHT: 50px;
+
+.home {
+    height: 100%;
+    width: 100%;
+
+    app-tabs {
+        z-index: 3;
+        width: 100%;
+        position: absolute;
+        -webkit-app-region: no-drag;
+        max-width: calc(100% - #{$EXPLORER-REDUCE-SIZE});
+        left: calc(#{$EXPLORER-REDUCE-SIZE});
+
+        &.expanded {
+            left: calc(#{$EXPLORER-EXPAND-SIZE});
+            max-width: calc(100% - #{$EXPLORER-EXPAND-SIZE});
+        }
+    }
+
+    .disabled {
+        filter: brightness(0.5);
+            pointer-events: none;
+    }
+
+    .container {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        flex-direction: column;
+        display: flex;
+
+        &.loading {
+            pointer-events: none;
+            opacity: 0.9;
+            * {
+                pointer-events: none;
+            }
+        }
+
+        
+        .studio-content {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            background-color: var(--SN-COLOR-LAYOUT);
+
+            .explorer {
+                z-index: 4;
+                background: var(--INSPECTOR-VERT-MENU-BACKGROUND);
+                border-right: 1px solid var(--INSPECTOR-VERT-MENU-SECTION-BORDER-COLOR);
+            }
+
+            &.with-tabs {
+                background-color: $COLOR-DARK-TINT;
+            }
+        }
+    }
+
+    .connection {
+        --MODAL-MIN-HEIGHT: 700px;
+        --MODAL-MIN-WIDTH: 750px;
+    }
+
+    .wizard {
+        --MODAL-TITLE-BACKGROUND: transparent;
+        --MODAL-CONTENT-BACKGROUND: white;
+        --MODAL-TITLE-FOREGROUND: white;
+        --MODAL-MIN-HEIGHT: 700px;
+        --MODAL-MIN-WIDTH: 370px;
+        --FORM-INPUT-LABEL-MIN-WIDTH: 120px;
+        --FORM-INPUT-EYE-COLOR: white;
+    }
+
+    .view {
+        position: relative;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+
+        &.with-tabs {
+            padding-top: $TABS-HEIGHT;
+        }
+
+        .progress {
+            z-index: 3;
+            position: absolute;
+        }
+
+        .view-empty {
+            background-color: var(--SN-COLOR-LAYOUT);
+            display: flex;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .view-empty-icon {
+                font-size: 80px;
+                color: $COLOR-FG
+            }
+
+            .empty-logo {
+                height: 250px;
+                filter: invert(12%) sepia(10%) saturate(77%) hue-rotate(175deg) brightness(23%) contrast(97%);
+                margin: 10px;
+            }
+
+            .info {
+                display: flex;
+                flex-direction: column;
+                background-color: var(--SN-COLOR-PRIMARY);
+                margin: 25px;
+                border-radius: 5px;
+                padding: 10px;
+                width: 250px;
+                height: 100px;
+
+                .title {
+                    @include normal-text(var(--SN-COLOR-FONT));
+                    font-size: 16px;
+                    height: 30px;
+                }
+
+                .option {
+                    @include normal-text(var(--SN-COLOR-SELECTION));
+                    font-size: 16px;
+                }
+
+                .option:hover {
+                    cursor: pointer;
+                    opacity: 0.7;
+                }
+            }
+        }
+
+        .view-content {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--SN-COLOR-LAYOUT);
+        }
+    }
+
+    .toasts-container {
+        z-index: 2;
+        display: flex;
+        flex-direction: column-reverse;
+
+        position: absolute;
+        bottom: 0;
+        right: 30px;
+    }
+
+    .preload-fa {
+        height: 0px;
+        width: 0px;
+        overflow: hidden;
+    }
+
+    app-environment-bar {
+        z-index: 1;
+    }
+}

@@ -1,0 +1,33 @@
+.flows {    
+    .flow-in {
+        display: block;
+        &.absolute {
+            position: absolute;
+        }
+    }
+
+    .flow-out {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .flow-add {
+        display: flex;
+        height: 14px;
+        margin-bottom: 10px;
+        flex-direction: row-reverse;
+        svg {
+            fill: var(--SN-FLOW-COLOR-ADD) !important;
+        }
+        i {
+            position: absolute;
+            font-size: 10px;
+            padding: 2px 5px 0px 0px;
+            color: var(--SN-COLOR-BUTTON);
+        }
+    }
+
+    .flow-add:hover {
+        cursor: pointer;
+    }
+}

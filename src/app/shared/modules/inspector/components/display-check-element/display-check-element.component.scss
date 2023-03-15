@@ -1,0 +1,30 @@
+@import "../../theme/mixins";
+
+.options {
+    display: flex;
+    flex-direction: row;
+
+    &.disabled {
+        pointer-events: none;
+        opacity: 0.7;
+        * {
+            pointer-events: none;
+        }
+    }
+
+    .option {
+        display: flex;
+        flex-direction: row;
+        cursor: pointer;
+        align-items: center;
+        transition: 0.1s ease-in;
+
+        .mode {
+            @include check-options;
+        }
+
+        .label {
+            user-select: none;
+        }    
+    }
+}

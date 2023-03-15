@@ -1,0 +1,94 @@
+@import "../../../../styles.scss";
+
+// EXPOSED VARIABLES
+:host {
+    --MODAL-MASK-COLOR: black;
+    --MODAL-MASK-OPACITY: 60%;
+    --MODAL-MIN-HEIGHT: 700px;
+    --MODAL-MIN-WIDTH: 750px;
+    --MODAL-TITLE-HEIGHT: 40px;
+    --MODAL-TITLE-BACKGROUND: #{$COLOR-BG-LIGHT};
+    --MODAL-TITLE-FOREGROUND: white;
+    --MODAL-CONTENT-BACKGROUND: #{$COLOR-BG};
+    --MODAL-WINDOW-BORDER-RADIUS: 5px;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+
+    .modal-mask {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--MODAL-MASK-COLOR);
+        opacity: var(--MODAL-MASK-OPACITY);
+    }
+
+    .modal-window {
+        position: relative;
+        min-width: var(--MODAL-MIN-WIDTH);
+        min-height: var(--MODAL-MIN-HEIGHT);
+
+        .modal-window-title {
+            position: absolute;
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: var(--MODAL-TITLE-HEIGHT);
+            background-color: var(--MODAL-TITLE-BACKGROUND);
+            border-top-left-radius: var(--MODAL-WINDOW-BORDER-RADIUS);
+            border-top-right-radius: var(--MODAL-WINDOW-BORDER-RADIUS);
+            user-select: none;
+
+            .modal-window-title-icon {
+                position: absolute;
+                left: 5px;
+                color: $COLOR-FG;
+            }
+
+            span {
+                padding-left: 20px;
+                width: 100%;
+                line-height: var(--MODAL-TITLE-HEIGHT);
+                @include title(var(--MODAL-TITLE-FOREGROUND));
+            }
+
+            .modal-window-title-close {
+                padding-right: 10px;
+                font-size: 24px;
+                color: $COLOR-FG;
+                cursor: pointer;
+            }
+        }
+
+        .modal-window-content {
+            padding-top: var(--MODAL-TITLE-HEIGHT);
+            min-height: var(--MODAL-MIN-HEIGHT);
+            width: 100%;
+            border-radius: var(--MODAL-WINDOW-BORDER-RADIUS);
+            background-color: var(--MODAL-CONTENT-BACKGROUND);
+            @include scrollbar();
+        }
+    }
+
+    &.close {
+        display: none;
+    }
+}

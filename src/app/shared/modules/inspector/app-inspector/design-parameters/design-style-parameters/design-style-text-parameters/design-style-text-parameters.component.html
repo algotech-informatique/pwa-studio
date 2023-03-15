@@ -1,0 +1,35 @@
+<div [ngClass]="{'property': !insideSection, 'inside-section': insideSection}">
+    <display-definition-values
+        [title]="'INSPECTOR.APP.TAB.DESIGN.TEXT.SIZE' | translate"
+        [width]="defaultValue['font-size']"
+        widthLabel=""
+        [roundValue]="true"
+        (changedWidth)="onSizeChanged($event)">
+    </display-definition-values>
+</div>
+
+<div [ngClass]="{'last': !defaultValue?.margin && !defaultValue?.padding && defaultValue['text-align'] === undefined,
+    'property': !insideSection, 'inside-section': insideSection}">
+    <select-inline-element
+        [title]="'INSPECTOR.APP.TAB.DESIGN.TEXT.STYLE' | translate"
+        [items]="styleElements"
+        [selectedKeys]="styleSelectedKeys"
+        (selectItem)="onStyleChanged($event)">
+    </select-inline-element>
+</div>
+
+<div *ngIf="defaultValue['text-align'] !== undefined"
+    [ngClass]="{'last': !defaultValue?.margin && !defaultValue?.padding, 'property': !insideSection, 'inside-section': insideSection}">
+    <select-inline-element
+        [title]="'INSPECTOR.APP.TAB.DESIGN.TEXT.ALIGNMENT' | translate"
+        [items]="alignmentElements"
+        [selectedKeys]="alignmentSelectedKeys"
+        (selectItem)="onChanged('justify-content', $event)">
+    </select-inline-element>
+</div>
+
+<design-style-margin-padding-parameters
+    *ngIf="defaultValue?.margin || defaultValue?.padding"
+    [style]="defaultValue"
+    (changed)="onMarginPaddingChanged($event)">
+</design-style-margin-padding-parameters>

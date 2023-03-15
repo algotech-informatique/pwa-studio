@@ -1,0 +1,47 @@
+<div class="content">
+
+    <div class="title">
+        <div class="gestion-title">
+            {{ 'IMPORT-DATA.LAUNCH-IMPORT-DATA' | translate }}
+        </div>
+    </div>
+
+    <div class="options" [ngClass]="{'inactive-content': !activate}">
+
+        <div class="logs">
+            <options-logger
+			    class="logger"
+			    rows="15"
+			    [loadLog]="inputInfoLog"
+			    [clearLog]="clearInfoLog"
+                exportLog="true"
+		    >
+		    </options-logger>
+        </div>
+
+        <div class="launch-import">
+            <div class="import">
+                <div
+                    [ngClass]="{'inactive': !activate }"
+                    class="import-button"
+                    (click)="onLaunchImportData()"
+                >
+                    <span>{{ 'IMPORT-DATA.IMPORT-DATA-LAUNCH' | translate }}</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="info-logs">
+            <options-logger
+			    class="info-logger"
+			    rows="15"
+			    [loadLog]="importInputLog"
+			    [clearLog]="importClearLog"
+                exportLog="true"
+		    >
+		    </options-logger>
+        </div>
+
+    </div>
+
+</div>

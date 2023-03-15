@@ -1,0 +1,21 @@
+@import "../../../../styles.scss";
+
+:host {
+    --BACK-COLOR: #394554;
+    --TASK-MARGIN: 25px 0px 25px 25px
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    height: 100%;
+    width: 100%;
+    
+    .task {
+        margin: var(--TASK-MARGIN);
+        box-shadow: grey;
+        border-radius: 5px;
+        background-color: $COLOR-BG-LIGHT;
+    }
+}

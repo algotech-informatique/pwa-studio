@@ -1,0 +1,13 @@
+@import '../../../../theme/mixins';
+
+.property {
+    @include property;
+}
+
+.select-inline {
+    @include align-items-inputs;
+}
+
+.inside-section {
+    margin-top: 5px;
+}

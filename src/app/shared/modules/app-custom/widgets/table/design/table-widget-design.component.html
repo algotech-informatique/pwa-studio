@@ -1,0 +1,154 @@
+<app-inspector-section
+    [snApp]="snApp"
+    [title]="'Lignes' | translate"
+    [section]="'css.row'">
+    <div class="property">
+        <display-definition-values
+            [title]="'Hauteur' | translate"
+            [width]="(styles | find: 'style':'row')?.value?.['height']"
+            widthLabel=""
+            [roundValue]="true"
+            (changedWidth)="onChanged({path: 'height', value: $event + 'px'}, 'row')">
+        </display-definition-values>
+    </div>
+
+    <div class="property last" [ngClass]="{'section': (styles | find: 'style':'row')?.value?.['border-width'] !== '0px'}">
+        <display-check-element
+            [title]="'Activer bordures lignes'" 
+            [value]="(styles | find: 'style':'row')?.value?.['border-width'] !== '0px'"
+            (changed)="onBorderChanged($event, 'row')">
+        </display-check-element>
+
+        <display-definition-values *ngIf="(styles | find: 'style':'row')?.value?.['border-width'] !== '0px'"
+            class="inside-section"
+            [title]="'Epaisseur' | translate"
+            [width]="(styles | find: 'style':'row')?.value?.['border-width']"
+            widthLabel=""
+            [roundValue]="true"
+            (changedWidth)="onChanged({path: 'border-width', value: $event + 'px'}, 'row')">
+        </display-definition-values>
+
+        <color-element *ngIf="(styles | find: 'style':'row')?.value?.['border-width'] !== '0px'"
+            class="inside-section"
+            [showApptheme]="true"
+            [color]="(styles | find: 'style':'row')?.value?.['border-color']"
+            (changed)="onChanged({path: 'border-color', value: $event}, 'row')">
+        </color-element>
+    </div>
+</app-inspector-section>
+
+<app-inspector-section
+    [snApp]="snApp"
+    [title]="'Colonnes' | translate"
+    [section]="'css.column'">
+    <div class="property">
+        <display-definition-values
+            [title]="'Largeur' | translate"
+            [width]="(styles | find: 'style':'column')?.value?.['width']"
+            widthLabel=""
+            [roundValue]="true"
+            (changedWidth)="onColumnWidthChanged($event)">
+        </display-definition-values>
+    </div>
+
+    <div class="property last" [ngClass]="{'section': (styles | find: 'style':'column')?.value?.['border-width'] !== '0px'}">
+        <display-check-element
+            [title]="'Activer bordures colonnes'" 
+            [value]="(styles | find: 'style':'column')?.value?.['border-width'] !== '0px'"
+            (changed)="onBorderChanged($event, 'column')">
+        </display-check-element>
+
+        <display-definition-values *ngIf="(styles | find: 'style':'column')?.value?.['border-width'] !== '0px'"
+            class="inside-section"
+            [title]="'Epaisseur' | translate"
+            [width]="(styles | find: 'style':'column')?.value?.['border-width']"
+            widthLabel=""
+            [roundValue]="true"
+            (changedWidth)="onChanged({path: 'border-width', value: $event + 'px'}, 'column')">
+        </display-definition-values>
+
+        <color-element *ngIf="(styles | find: 'style':'column')?.value?.['border-width'] !== '0px'"
+            class="inside-section"
+            [showApptheme]="true"
+            [color]="(styles | find: 'style':'column')?.value?.['border-color']"
+            (changed)="onChanged({path: 'border-color', value: $event}, 'column')">
+        </color-element>
+    </div>
+</app-inspector-section>
+
+<app-inspector-section
+    [snApp]="snApp"
+    [title]="'Titres en-têtes' | translate"
+    [section]="'css.header'">
+    <!-- FG COLOR -->
+    <div class="property">
+        <color-element
+            [showApptheme]="true"
+            [color]="(styles | find: 'style':'header')?.value?.color"
+            (changed)="onChanged({path: 'color', value: $event}, 'header')">
+        </color-element>
+    </div>
+
+    <!-- TEXT -->
+    <design-style-text-parameters
+        [defaultValue]="(styles | find: 'style':'header').value"
+        (changed)="onChanged($event, 'header')">
+    </design-style-text-parameters>        
+</app-inspector-section>
+
+<app-inspector-section
+    [snApp]="snApp"
+    [title]="'Fond en-têtes' | translate"
+    [section]="'css.headerBackground'">
+    <div class="property">
+        <color-element
+            [showApptheme]="true"
+            [color]="(styles | find: 'style':'header')?.value?.['background-color']"
+            (changed)="onChanged({path: 'background-color', value: $event}, 'header')">
+        </color-element>
+    </div>
+
+    <div class="property last" [ngClass]="{'section': (styles | find: 'style':'header')?.value?.['border-bottom-width'] !== '0px'}">
+        <display-check-element
+            [title]="'Bordure en bas'" 
+            [value]="(styles | find: 'style':'header')?.value?.['border-bottom-width'] !== '0px'"
+            (changed)="onHeaderBorderBottomChanged($event)">
+        </display-check-element>
+    
+        <display-definition-values *ngIf="(styles | find: 'style':'header')?.value?.['border-bottom-width'] !== '0px'"
+            class="inside-section"
+            [title]="'Epaisseur' | translate"
+            [width]="(styles | find: 'style':'header')?.value?.['border-bottom-width']"
+            widthLabel=""
+            [roundValue]="true"
+            (changedWidth)="onChanged({path: 'border-bottom-width', value: $event + 'px'}, 'header')">
+        </display-definition-values>
+
+        <color-element *ngIf="(styles | find: 'style':'header')?.value?.['border-bottom-width'] !== '0px'"
+            class="inside-section"
+            [showApptheme]="true"
+            [color]="(styles | find: 'style':'header')?.value?.['border-bottom-color']"
+            (changed)="onChanged({path: 'border-bottom-color', value: $event}, 'header')">
+        </color-element>
+    </div>
+</app-inspector-section>
+
+<app-inspector-section
+    [snApp]="snApp"
+    [title]="'Textes cellules' | translate"
+    [section]="'css.cell'">
+    <!-- FG COLOR -->
+    <div class="property">
+        <color-element
+            [showApptheme]="true"
+            [color]="(styles | find: 'style':'cell')?.value?.color"
+            (changed)="onChanged({path: 'color', value: $event}, 'cell')">
+        </color-element>
+    </div>
+
+    <!-- TEXT -->
+    <design-style-text-parameters
+        [defaultValue]="(styles | find: 'style':'cell').value"
+        (changed)="onChanged($event, 'cell')">
+    </design-style-text-parameters>        
+</app-inspector-section>

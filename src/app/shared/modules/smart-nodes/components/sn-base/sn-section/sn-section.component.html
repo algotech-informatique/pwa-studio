@@ -1,0 +1,36 @@
+<div class="header" [id]="'section-' + section.id">
+
+    <span class="collapse" (click)="openClose(section)">
+
+        <i class="fa-solid" [ngClass]="{
+            'fa-chevron-down': section.open,
+            'fa-chevron-up': !section.open
+        }"></i>
+
+        <b class="name">
+            {{section.displayName | snlang}}
+        </b>
+
+    </span>
+
+    <button *ngIf="section.editable" (click)="addParam($event, section)">
+        +
+    </button>
+
+    <sn-watcher-selector
+        class="selector"
+        [snView]="snView"
+        [node]="node"
+        [key]="node.id + '.' + section.key"
+        [types]="'object'"
+        *ngIf="snView?.displayState?.debug && node | snIsWatchable: section: 'section'">
+    </sn-watcher-selector>
+</div>
+
+<div *ngIf="node && snView">
+    <sn-params *ngIf="section.open && section.params?.length > 0" [params]="section.params" [snView]="snView"
+        [node]="node">
+    </sn-params>
+</div>
+
+<ng-content *ngIf="section.open"></ng-content>

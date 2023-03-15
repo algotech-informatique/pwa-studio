@@ -1,0 +1,9 @@
+<div class="property inside-card last">
+    <display-input-element
+        [title]="'INSPECTOR.WIDGET.EVENT.ADDRESS' | translate"
+        [rows]="5"
+        [items]="inputsData"
+        [value]="pipeEvent?.action"
+        (changed)="onSelectUrl($event)">
+    </display-input-element>
+</div>

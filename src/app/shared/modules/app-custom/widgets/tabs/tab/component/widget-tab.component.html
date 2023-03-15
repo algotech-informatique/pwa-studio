@@ -1,0 +1,15 @@
+<div class="main"
+    [ngStyle]="css?.main"
+    [style.width]="tabsOrientationStartsWithRow ?widget?.box?.width + 'px' : '100%'"
+    [style.height]="!tabsOrientationStartsWithRow ? widget?.box?.height + 'px' : '100%'">
+    <div class="widget-text" [ngStyle]="css?.tab">
+        <i *ngIf="widget?.custom?.icon"
+            [ngStyle]="css?.icon"
+            [class]="widget.custom.icon"></i>
+        <span [ngStyle]="css?.text">
+            {{ widget.custom.preview && (widget.custom.preview | snlang: false) ?
+                (widget.custom.preview | snlang: false) : (widget.custom.text | snlang: false | inputTransform: snApp: widget)
+            }}
+        </span>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+.profil {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: -6px;
+    margin-top: 14px;
+
+    .image {
+        .fa-stack {
+            font-size: 0.95em;
+        }
+
+        i { 
+            vertical-align: middle;
+        }
+    }
+
+    .list {
+        border: 0;
+        width: 100%;
+        margin: 0 5px;
+        font-size: var(--SN-NODE-PARAM-SIZE);
+        width: 150px;
+    }
+}

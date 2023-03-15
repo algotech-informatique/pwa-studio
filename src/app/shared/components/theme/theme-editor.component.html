@@ -1,0 +1,80 @@
+<div class="content" *ngIf="theme">
+
+    <div class="theme">
+        <span class="title">{{'THEME-TITLE' | translate}}</span>
+
+        <div class="theme-content">
+            <div class="theme-selector">
+                <button class="tab" [ngClass]="{'active': theme.themeKey === 'light' }" (click)="changeTheme('light')">{{'THEME-LIGHT' | translate}}</button>
+                <button class="tab" [ngClass]="{'active': theme.themeKey === 'dark' }" (click)="changeTheme('dark')">{{'THEME-DARK' | translate}}</button>
+                <button class="tab" [ngClass]="{'active': theme.themeKey === 'custom' }" (click)="changeTheme('custom')">{{'THEME-CUSTOM' | translate}}</button>
+            </div>
+            <div class="apply" *ngIf="theme.themeKey !== 'custom'">
+                <i (click)="applyColors()">{{'COLOR-APPLY-CUSTOM' | translate}}</i>
+            </div>
+
+            <div class="color-selector">
+                <div class="color-line" *ngFor="let color of keyProperties">
+                    <div class="color-line-content">
+                        <div class="color-description">
+                            <i class="circle" [ngStyle]="{'background-color': theme | themeColor: color }"></i>
+                            {{'COLOR-' + color | translate}}
+                            <div class="description">{{'COLOR-' + color + '-DESCRIPTION' | translate}}</div>
+                        </div>
+
+                        <div class="color-editor">
+                            <div class="color-editor-area" (click)="openColor(color)"  [ngClass]="{'disabled': theme.themeKey !== 'custom' }">
+                                <i class="square" [ngStyle]="{'background-color': theme | themeColor: color }"></i>
+                                <color-pop-up
+                                    *ngIf="top[color]"
+                                    [(top)]="top[color]"
+                                    [withHeader]="false"
+                                    [color]="theme | themeColor: color"
+                                    (changed)="changeColor(color, $event)">
+                                </color-pop-up>
+                                <span>{{theme | themeColor: color}}</span>
+                            </div>
+
+                            <span class="chevron" (click)="openDetail($event, color)">
+                                <i class="fa-solid fa-chevron-down" *ngIf="!detail[color]"></i>
+                                <i class="fa-solid fa-chevron-up" *ngIf="detail[color]"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="detail" *ngIf="detail[color]">
+                        <div class="color-line-content" *ngFor="let colorType of ['shade', 'tint', 'hover']">
+                            <div class="color-description generate">
+                                <i class="circle" [ngStyle]="{'background-color': theme | themeColor: color: colorType }"></i>
+                                {{('COLOR-' + (colorType | uppercase) | translate)}}
+                            </div>
+                            <div class="color-editor" [style.marginRight.px]="20">
+                                <div class="color-editor-area disabled">
+                                    <i class="square" [ngStyle]="{'background-color': theme | themeColor: color: colorType }"></i>
+                                    <span>{{theme | themeColor: color: colorType}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="debugger" *ngIf="showDebugger">
+
+        <at-workflow-debugger-layout
+            class="run-debugger"
+            *ngIf="workflow && models"
+            [workflow]="workflow"
+            [smartmodels]="models"
+            [settings]="sessionsService.active.datas.read.settings"
+            [groups]="[]"
+            [glists]="[]"
+            [tags]="[]"
+            [apps]="[]"
+            (retry)="runDebug()">
+        </at-workflow-debugger-layout>
+    </div>
+
+
+</div>

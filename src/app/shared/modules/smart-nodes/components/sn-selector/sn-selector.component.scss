@@ -1,0 +1,89 @@
+@import '../../theme/mixins';
+
+.content {    
+    display: flex;
+    flex-direction: column;
+    background-color: var(--SN-NO-COLOR);
+    max-height: calc(var(--SN-NODE-CONTENT-MAX-HEIGHT) - 1px);
+    padding: var(--SN-NODE-CONTENT-PADDING);
+    position: relative;
+    @include custom-scrollbar;
+
+    .search {
+        background-color: var(--SN-COLOR-INPUT);
+        border-radius: var(--SN-SELECTOR-SEARCH-BORDER-RADIUS);
+        height: var(--SN-SELECTOR-SEARCH-HEIGHT);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 15px;
+  
+        .searchBox {
+            background-color: transparent;
+            color: var(--SN-COLOR-FONT);
+            border: 0;
+            width: 100%;
+            height: var(--SN-SELECTOR-SEARCH-HEIGHT);
+            margin: var(--SN-SELECTOR-SEARCH-MARGIN);
+            font-size: var(--SN-SELECTOR-SEARCH-CLOSE-SIZE);
+            @include text-ellipsis;
+        }
+        
+        .searchBox:focus {
+            outline: none;
+        }
+  
+        .icon {
+            margin-right: 10px;
+            font-size: var(--SN-SELECTOR-SEARCH-CLOSE-SIZE);
+            color: var(--SN-COLOR-FONT);
+        }
+      }
+
+    .listGroups {
+        display: flex;
+        flex-direction: column;
+      
+        .entry-group {
+        
+            .item-group {
+                font-size: var(--SN-SELECTOR-SN-NODE-PARAM-SIZE);            
+                background-color: var(--SN-NO-COLOR); 
+                height: var(--SN-SELECTOR-NODE-HEIGHT);      
+                display: flex;
+                align-items: center;
+                font-weight: bold;
+            }
+
+            .element:last-child {
+                border-bottom: none !important; 
+            }
+            .element {
+                background-color: var(--SN-COLOR-SECONDARY); 
+                color: var(--SN-COLOR-FONT);
+                display: flex;
+                flex-direction: row;
+                padding-left: 10px; 
+                font-size: var(--SN-SELECTOR-SN-NODE-PARAM-SIZE);            
+                border-bottom: 1px solid var(--SN-COLOR-LIGHT); 
+                height: var(--SN-SELECTOR-NODE-HEIGHT);
+                align-items: center;
+
+                .name {
+                    @include text-ellipsis;
+                }
+
+                &:hover {
+                    cursor: pointer;
+                    background-color: var(--SN-COLOR-LIGHT);
+                }         
+
+                .icon {
+                    color: var(--SN-COLOR-FONT);
+                    margin-right: 10px;
+                    font-size: var(--SN-SELECTOR-SEARCH-CLOSE-SIZE);
+                }            
+            }
+        }
+    }
+}

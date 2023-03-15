@@ -1,0 +1,57 @@
+<app-inspector-section
+    [ngClass]="{'first': !widget || !(widget?.rules?.length > 0)}"
+    [snApp]="snApp"
+    [title]="'INSPECTOR.DISPLAY' | translate"
+    [section]="'box'">   
+    <div class="property size last" *ngIf="!widget">
+        <display-definition-values
+            [width]="page?.pageWidth"
+            [height]="page?.pageHeight"
+            [roundValue]="true"
+            [minWidth]="snApp?.pageWidth"
+            [minHeight]="snApp?.pageHeight"
+            [title]="'INSPECTOR.PAGE.SIZE-DISPLAY' | translate"
+            [subTitle]="'INSPECTOR.PAGE.SIZE' | translate"
+            (changedWidth)="onPageWidthChanged($event)"
+            (changedHeight)="onPageHeightChanged($event)">
+        </display-definition-values>
+    </div>
+
+    <div class="property" *ngIf="widget && !widget.displayState?.relativeTo">
+        <display-definition-values class="widget"
+            [width]="widget.box?.x"
+            [height]="widget.box?.y"
+            [title]="'INSPECTOR.WIDGET.POSITION' | translate"
+            widthLabel="X"
+            heightLabel="Y"
+            [roundValue]="true"
+            [heightDisabled]="(widget | widgetType)?.lockAxis && ((widget | widgetType).lockAxis | includes: 'y')"
+            [widthDisabled]="(widget | widgetType)?.lockAxis && ((widget | widgetType).lockAxis | includes: 'x')"
+            (changedWidth)="onPosXChanged($event)"
+            (changedHeight)="onPosYChanged($event)">
+        </display-definition-values>
+    </div>
+
+    <div class="property size" *ngIf="widget && !widget.displayState?.relativeTo">
+        <display-definition-values class="widget"
+            [width]="widget.box?.width"
+            [height]="widget.box?.height"
+            [title]="'INSPECTOR.PAGE.SIZE-DISPLAY' | translate"
+            [roundValue]="true"
+            [minWidth]="1"
+            [minHeight]="1"
+            (changedWidth)="onWidgetWidthChanged($event)"
+            (changedHeight)="onWidgetHeightChanged($event)">
+        </display-definition-values>
+        <div class="constrain-button" (click)="onConstrainSize()">
+            <i *ngIf="constrainRatio?.active" class="fa-solid fa-link constrain"></i>
+            <i *ngIf="!constrainRatio?.active" class="fa-solid fa-link-slash"></i>
+        </div>
+    </div>
+
+    <div class="property last" *ngIf="widget">
+        <display-check-element [value]="widget.custom?.hidden" [title]="'INSPECTOR.WIDGET.CUSTOM-HIDDEN' | translate"
+            (changed)="onHiddenChanged($event)">
+        </display-check-element>
+    </div>
+</app-inspector-section>

@@ -1,0 +1,68 @@
+@import "../../../../styles.scss";
+
+// EXPOSED VARIABLES
+:host {
+    // --LINE-SELECTED-COLOR: #53606f;
+    --LINE-SELECTED-COLOR: #{$EXPLORER-BG-SELECTED};
+    --LINE-ACTIVE-COLOR: #{$EXPLORER-BG-ACTIVE};
+    --INPUT-BORDER-COLOR: #{$COLOR-BTN-LIGHT};
+    --INPUT-BORDER: 2px;
+}
+
+app-expander {
+    --BACKGROUND-TITLE: transparent;
+    --BORDER-BOTTOM-SIZE: 0;
+    --CONTENT-PADDING-RIGHT: 0;
+    --CONTENT-OPEN-PADDING-RIGHT: 0;
+    width: 100%;
+
+    .tree-line-left {
+        position: absolute;
+        left: 10px;
+    }
+
+}
+
+.tree-line {
+    position: relative;
+    height: $EXPLORER-LINE-HEIGHT;
+    line-height: $EXPLORER-LINE-HEIGHT;
+    overflow: hidden;
+    cursor: pointer;
+    @include normal-text($EXPLORER-FG-COLOR);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .tree-line-left {
+        position: absolute;
+        left: 10px;
+    }
+
+    .name {
+        margin-left: 35px;
+        width: calc(100% - 35px);
+        user-select: none;
+        display: flex;
+        justify-content: space-around;
+
+        .text {
+            width: 100%;
+            @include text-ellipsis();
+        }
+        
+        .tree-line-right {
+            padding: 0px 5px;
+        }
+    }
+
+    flex-direction: row;
+}
+.tree-line.active {
+    background-color: var(--LINE-ACTIVE-COLOR);
+}
+.tree-line.selected {
+    font-weight: 600;
+    color: $EXPLORER-FG-SELECTED;
+    background-color: var(--LINE-SELECTED-COLOR);
+}

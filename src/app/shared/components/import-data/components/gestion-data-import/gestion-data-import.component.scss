@@ -1,0 +1,95 @@
+@import "../../../../../../styles.scss";
+
+:host {
+    --LABEL-COLOR: #2D9CDB;
+    --TITLE-COLOR-SELECTED: #ffffff;
+    --BUTTON-DOWNLOAD-COLOR: #27AE60;
+    --DATA-WIDTH: 400px;
+    --TITLE-MARGIN-BOTTOM: 20px;
+    --CHECK-MARGIN: 15px 10px;
+}
+
+.content {
+    width: var(--DATA-WIDTH);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    @include scrollbar-hidden();
+
+    .title {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: 5%;
+        padding: 15px;
+        margin-bottom: 20px;
+
+        .gestion-title {
+            @include option-title-selected(var(--TITLE-COLOR-SELECTED));
+            padding-top: 10px;
+        }
+    }
+
+    .options {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 80%;
+        padding: 10px;
+        margin-bottom: var(--TITLE-MARGIN-BOTTOM);
+
+        .list {
+            width: 100%;
+            height: 300px;
+        }
+
+        .check-option {
+            width: 100%;
+            
+            .check {
+                --OPTIONS-CHECK-MARGIN: var(--CHECK-MARGIN);
+            }  
+        }
+
+        .inactive {
+            pointer-events: none;
+            --OPTIONS-CHECK-BACKCOLOR: gray;
+            opacity: 0.6;
+        }
+
+        .border-bottom {
+            width: 100%;
+            border-bottom: 2px solid var(--LABEL-COLOR);
+        }
+
+        .footer {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            height: 12%;
+
+            .donwload-list {
+                @include button();
+                background-color: var(--BUTTON-DOWNLOAD-COLOR) !important;
+                margin: 20px;
+
+                span {
+                    padding: 0px 10px 0px 10px;
+                    @include option-title-selected(var(--TITLE-COLOR-SELECTED));
+                }
+            }
+
+            .inactive {
+                pointer-events: none;
+                opacity: 0.6;
+            }
+
+            .donwload-list:hover {
+                cursor: pointer;
+                opacity: 0.5;
+            }
+
+        }
+}
+
+}

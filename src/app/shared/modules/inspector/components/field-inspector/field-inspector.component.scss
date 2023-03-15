@@ -1,0 +1,29 @@
+@import '../../theme/variables';
+@import '../../theme/mixins';
+
+.property {
+    @include property();
+}
+
+data-inputs {
+    display: block;
+}
+
+.tags {
+    display: flex;
+    flex-direction: column;
+
+    p {
+        margin: 0px 7px 0px 7px;
+        padding: 0;
+    }
+
+}
+
+.cdk-drag-handle {
+    cursor: pointer;
+}
+
+inspector-section.first {
+    --BORDER-TOP-WIDTH: 0;
+}

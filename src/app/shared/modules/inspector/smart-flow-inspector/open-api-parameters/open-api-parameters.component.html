@@ -1,0 +1,92 @@
+<div class="property first">
+    <display-input-element
+        [title]="'INSPECTOR.SMART_FLOW.OPENAPI.SUMMARY' | translate"
+        [rows]="2"
+        [value]="api?.summary"
+        (changed)="onSummaryChanged($event)">
+    </display-input-element>
+</div>
+
+<div class="property last">
+    <display-input-element
+        [title]="'INSPECTOR.SMART_FLOW.OPENAPI.DESCRIPTION' | translate"
+        [rows]="5"
+        [value]="api?.description"
+        (changed)="onDescriptionChanged($event)">
+    </display-input-element>
+</div>
+
+<inspector-section [title]="'INSPECTOR.SMART_FLOW.OPENAPI.RESPONSES' | translate">
+    <div class="responses">    
+        <inspector-section *ngFor="let response of api?.result; index as i"
+            class="card"
+            [title]="response?.code || ('INSPECTOR.SMART_FLOW.OPENAPI.RESPONSE' | translate)"  
+            [defaultOpen]="addedIndex === i"
+            [display]="'card'">
+
+            <div class="property inside-card">
+                <display-key-element
+                    [title]="'INSPECTOR.SMART_FLOW.OPENAPI.RESPONSE.CODE' | translate"
+                    [formatKey]="false"
+                    [suggestionsList]="codeSuggestionsList"
+                    [showIcon]="false"
+                    [placeholder]="' '"
+                    [key]="response?.code"
+                    (changed)="onResponseCodeChanged($event, i)">
+                </display-key-element>
+            </div>
+
+            <div class="property inside-card">
+                <display-name-element
+                    [title]="'INSPECTOR.SMART_FLOW.OPENAPI.RESPONSE.DESCRIPTION' | translate"
+                    [name]="response?.description"
+                    (changed)="onResponseDescriptionChanged($event, i)">
+                </display-name-element>
+            </div>
+
+            <div class="property inside-card">
+                <display-key-element
+                    [title]="'Content'"
+                    [formatKey]="false"
+                    [suggestionsList]="contentSuggestionsList"
+                    [showIcon]="false"
+                    [placeholder]="' '"
+                    [key]="response?.content"
+                    (changed)="onResponseContentChanged($event, i)">
+                </display-key-element>
+            </div>
+
+            <div class="property inside-card">
+                <select-element
+                    [title]="'INSPECTOR.SMART_FLOW.OPENAPI.RESPONSE.TYPE' | translate"
+                    [list]="types"
+                    [selectedKey]="response?.type"
+                    (selectNewItem)="onResponseTypeChanged($event, i)">
+                </select-element>
+            </div>
+            
+            <display-check-element class="property inside-card last"
+                [title]="'INSPECTOR.SMART_FLOW.OPENAPI.RESPONSE.MULTIPLE' | translate"
+                [value]="response?.multiple"
+                (changed)="onResponseMultipleChanged($event, i)">
+            </display-check-element>
+
+            <div class="actions only-delete">
+                <div class="delete-event">
+                    <i class="fa-solid fa-trash button" (click)="deleteResponse(index)"></i>
+                </div>
+            </div>
+        </inspector-section>
+    
+        <div *ngIf="api?.result?.length === 0" class="no-element section-content">
+            <p>{{ 'INSPECTOR.SMART_FLOW.OPENAPI.RESPONSE.EMPTY' | translate }}</p>
+        </div>
+    
+        <div class="button-container">
+            <div class="add-button section-content" (click)="addResponse()">
+                <i class="fa-solid fa-plus"></i>
+                <p>{{ 'INSPECTOR.SMART_FLOW.OPENAPI.RESPONSE.ADD' | translate }}</p>
+            </div>
+        </div>  
+    </div>
+</inspector-section>

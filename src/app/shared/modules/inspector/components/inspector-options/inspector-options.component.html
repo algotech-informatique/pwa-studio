@@ -1,0 +1,61 @@
+<inspector-section class="first" *ngIf="options" [title]="'INSPECTOR.SMART_FLOW.PROPERTIES' | translate">
+    <div class="property">
+        <display-key-element
+            class="display-element"
+            [title]="'INSPECTOR.SMART_FLOW.PROPERTIES_KEY' | translate"
+            [key]="snModel?.key"
+            [disabled]="snModel?.publishedVersion"
+            [snModel]="snModel"
+            (changed)="onChangedDisplayKey($event)">
+        </display-key-element>
+    </div>
+    <div class="property" [ngClass]="{'last': snModel?.type !== 'workflow' && (!options || !options.tags)}">
+        <display-translate-element
+            [title]="'INSPECTOR.SMART_FLOW.PROPERTIES_NAME' | translate"
+            [displayText]="snModel?.displayName"
+            (changed)="onChangedDisplayName($event)">
+        </display-translate-element>
+    </div>
+    <div class="property" *ngIf="snModel?.type === 'workflow'">
+        <select-icon
+            [icon]="options?.iconName"
+            (changed)="onIconChanged($event)">
+        </select-icon>
+    </div>
+    <div class="property" *ngIf="options && options.tags" [ngClass]="{'last': snModel?.type !== 'workflow'}">
+        <multi-select-element
+            [title]="'INSPECTOR.SMART_FLOW.TAGS' | translate"
+            [list]="tagsList"
+            [selectedKeys]="options?.tags"
+            [showSearch]="true"
+            (selectNewItems)="updateTags($event)">
+        </multi-select-element>
+    </div>
+    <div class="property last" *ngIf="snModel?.type === 'workflow'">
+        <display-check-element
+            [disabled]="snModel?.publishedVersion"
+            [value]="options?.subWorkflow"
+            [title]="'INSPECTOR.WORK_FLOW.SUB_WORKFLOW' | translate"
+            (changed)="onChangedSubWorkflow($event)">
+        </display-check-element>
+    </div>
+</inspector-section>
+
+<inspector-section *ngIf="snModel.type === 'workflow' && options?.variables"
+    [title]="'INSPECTOR.SMART_FLOW.VARIABLES' | translate">
+    <variables
+        [sources]="sources"
+        [variables]="options?.variables"
+        [errors]="snView?.displayState?.errors"
+        (changed)="onChanged()">
+    </variables>
+</inspector-section>
+
+<inspector-section *ngIf="options && options.profiles" [title]="'INSPECTOR.SMART_FLOW.PROFILS' | translate">
+    <profiles
+        [profiles]="options?.profiles"
+        [snView]="snView"
+        (changed)="onChanged()"
+        (popupClosed)="onPopupClosed()">
+    </profiles>
+</inspector-section>

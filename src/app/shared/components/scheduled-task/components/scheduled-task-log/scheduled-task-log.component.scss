@@ -1,0 +1,79 @@
+@import '../../../../../../styles.scss';
+
+:host {
+    --LABEL-COLOR: #2D9CDB;
+    --TITLE-COLOR: #ffffff;
+    --BUTTON-BACK-COLOR: #27AE60;
+    --LIST-BACK-COLOR: #5E738D;
+    --TASK-WIDTH: 450px;
+    --OBJECT-MARGIN: 4px 5px 4px 5px;
+    --BORDER-RADIUS: 5px;
+    --ITEM-HEIGHT: 50px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    width: var(--TASK-WIDTH);
+    height: 100%;
+
+    .title {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: 50px;
+        padding: 15px;
+        margin-bottom: 20px;
+
+        .task-title {
+            @include option-title-selected(var(--TITLE-COLOR));
+            padding-top: 10px;
+        }
+        
+        .buttons {
+            display: flex;
+            flex-direction: row;
+            
+            .reload {
+                @include button();
+                background-color: var(--BUTTON-BACK-COLOR) !important;
+                min-width: 40px !important;
+                margin: 0 10px;  
+            }
+
+            .reload:hover {
+                cursor: pointer;
+                opacity: 0.5;
+            }
+
+            .export-csv {
+                @include button();
+                background-color: var(--BUTTON-BACK-COLOR) !important;
+                
+                span {
+                    padding: 0px 10px 0px 10px;
+                    @include option-title-selected(var(--TITLE-COLOR));
+                }
+            }
+    
+            .export-csv:hover {
+                cursor: pointer;
+                opacity: 0.5;
+            }
+        }
+        
+    }
+
+    .logs {
+        margin: 10px;
+        border-radius: 5px;
+        height: calc(100% - 90px);
+
+        .list {
+            --OPTIONS-ITEM-HEIGHT: var(--ITEM-HEIGHT);
+            --OPTIONS-LIST-BORDER-RADIUS: var(--BORDER-RADIUS);
+            --OPTIONS-LIST-BACK-COLOR: var(--LIST-BACK-COLOR);
+            --OPTIONS-LIST-OBJECT-MARGIN: var(--OBJECT-MARGIN);
+        }
+    }
+}

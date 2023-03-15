@@ -1,0 +1,184 @@
+@import "../../../../../../styles.scss";
+
+:host {
+    --LABEL-COLOR: #2D9CDB;
+    --TITLE-COLOR-SELECTED: #ffffff;
+    --TITLE-COLOR-NO-SELECTED: #A0A7B4;
+    --BUTTON-ADD-COLOR: #27AE60;
+    --CHECKED-COLOR:#27AE60;
+    --BUTTON-REMOVE-COLOR: #FF6473;
+    --SHOW-LANGS-COLOR: #2D9CDB;
+    --USER-WIDTH: 350px;
+    --TITLE-MARGIN-BOTTOM: 20px;
+    --USER-MARGIN: 10px 0;
+
+    --BORDER-RADIUS: 0px 0px 5px 5px;
+    --USER-BACK-COLOR: #5E738D;          
+    --ITEM-HEIGHT: 30px;  
+    --MARGIN-DETAIL: 0px 10px 0px 10px;
+}
+
+.content {
+    width: var(--USER-WIDTH);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    @include scrollbar-hidden();
+
+    .title {
+        display: flex;  
+        flex-direction: row;
+        justify-content: flex-end;
+        height: 50px;
+        padding: 10px;
+        margin-bottom: var(--TITLE-MARGIN-BOTTOM);
+
+        .check {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            margin-right: -5px;
+
+            .label {
+                padding-top: 9px;
+                @include option-line(var(--TITLE-COLOR-SELECTED));
+                text-align: right;    
+            }
+
+            .toggle {
+                padding: 5px 10px;
+                --OPTION-CHECKED-COLOR: var(--CHECKED-COLOR);
+
+                &.lock {
+                    pointer-events: none;
+                    --OPTION-CHECKED-COLOR: var(--TITLE-COLOR-NO-SELECTED);
+                }
+            }
+        }
+    }
+    
+    .detail {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+
+        .security {
+            height: 250px;
+    
+            .elements {
+                margin: 10px 10px 20px 10px;
+                max-width: 310px;
+        
+                label {    
+                    @include option-label(var(--LABEL-COLOR));
+                }
+    
+                .element {
+                    margin-left: 5px;            
+                }
+        
+                .element-end {
+                    display: flex;
+                    flex-direction: row;
+                    
+                    .subElement {
+                        --OPTIONS-CHECK-MARGIN: var(--CHECK-MARGIN);
+                        padding-top: 10px;
+                    }
+    
+                }
+         
+                .border-bottom {
+                    width: 100%;
+                    margin-top: 5px;
+                    border-bottom: 2px solid var(--LABEL-COLOR);
+                }
+            }
+        }   
+    
+        .details {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+    
+            label {
+                margin: 10px;
+                @include option-label(var(--LABEL-COLOR));
+            }
+    
+            .members {
+                display: flex;
+                flex-direction: column;
+                margin: 0 10px 10px 10px;
+                height: 100%;
+                max-width: 310px;
+    
+                .chips {
+                    --OPTION-CHIP-HEIGHT: 250px;
+                    --OPTION-CHIP-MAX-HEIGHT: 250px;
+                }
+            
+                .change {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-start;
+    
+                    .change-password {
+                        @include button();
+                        background-color: var(--BUTTON-ADD-COLOR) !important;    
+                        padding: 5px !important;
+                        height: 25px !important;
+                        min-width: 25px !important;
+                    }
+    
+                    .message {
+                        margin: 2px 5px 2px 5px;
+                        @include option-title(var(--TITLE-COLOR-NO-SELECTED));
+                    }
+                }
+    
+                .border-bottom {
+                    width: 100%;
+                    margin-top: 5px;
+                    border-bottom: 2px solid var(--LABEL-COLOR);
+                }
+            }
+        }
+    
+        .footer {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            width: 100%;
+            margin: 10px 0 15px 0;
+            padding-bottom: 10px;
+
+            .button {
+                @include button();
+    
+                span {
+                    padding: 0px 10px 0px 10px;
+                    @include option-title-selected(var(--TITLE-COLOR));
+                }
+
+                &:hover {
+                    cursor: pointer;
+                    opacity: 0.5;
+                }
+
+                &.delete-user {
+                    background-color: var(--BUTTON-REMOVE-COLOR) !important;
+                }
+
+                &.add-user {
+                    background-color: var(--BUTTON-ADD-COLOR);
+                }
+            }
+        }
+    }
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}

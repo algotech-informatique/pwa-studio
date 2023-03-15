@@ -1,0 +1,28 @@
+<display-check-element [title]="'INSPECTOR.WIDGET.ZOOM' | translate"
+    [value]="zoom"
+    (changed)="onZoomAutoChanged($event)">
+</display-check-element>
+
+<display-definition-values *ngIf="zoom"
+    [widthLabel]="'INSPECTOR.WIDGET.ZOOM.MIN' | translate"
+    [heightLabel]="'INSPECTOR.WIDGET.ZOOM.MAX' | translate"
+    [width]="zoom?.min"
+    [height]="zoom?.max"
+    [unit]="null"
+    (changedWidth)="onZoomMinChanged($event)"
+    (changedHeight)="onZoomMaxChanged($event)">
+</display-definition-values>
+
+<div class="scale" *ngIf="zoom">
+    <display-check-element [title]="'INSPECTOR.WIDGET.SCALE' | translate"
+        [value]="zoom.auto"
+        (changed)="onZoomScaleAutoChanged($event)">
+    </display-check-element>
+</div>
+
+<display-definition-values *ngIf="zoom && !zoom.auto"
+    [widthLabel]="'INSPECTOR.WIDGET.ZOOM.SCALE' | translate"
+    [width]="zoom?.scale"
+    [unit]="null"
+    (changedWidth)="onZoomScaleChanged($event)">
+</display-definition-values>

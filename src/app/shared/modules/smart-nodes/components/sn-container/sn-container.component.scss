@@ -1,0 +1,100 @@
+@import '../../theme/mixins';
+
+.container {
+    border-radius: var(--SN-ELEMENT-BORDER-RADIUS);
+    height: 100%;
+    width: 100%;
+
+    .header {
+        height: var(--SN-CONTAINER-HEADER-HEIGHT);
+        font-size: var(--SN-CONTAINER-HEADER-FONT-SIZE);
+        color: var(--SN-COLOR-FONT);
+        padding: var(--SN-CONTAINER-HEADER-PADDING);
+        width: 100%;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        .name {
+            @include text-ellipsis;
+        }
+
+        .comment {
+            font-size: 20px;
+            padding: 10px;
+        }
+    }
+
+    .content {
+        height: calc(100% - var(--SN-CONTAINER-HEADER-HEIGHT));
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .container-icon {
+        display: flex;
+
+        .icon-style {
+            flex-direction: column;
+            align-items: center;
+            color: var(--SN-COLOR-FONT);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+
+    .container-icon:hover {
+        cursor: pointer;
+    }
+
+    .container-open {
+        .icon-style {
+            font-size: 60px;
+        }
+    }
+
+    .container-close {
+        .icon-style {
+            font-size: 30px;
+        }
+
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+    }
+}
+
+
+.group {
+    &.dragHover {
+        .content {
+            opacity: 1 !important;
+        }
+    }
+
+    .content {
+        opacity: 0.5;
+    }
+}
+
+.box {
+    background: var(--SN-BOX-COLOR);
+    &.header {
+        background: var(--SN-CONTAINER-HEADER-COLOR);
+    }
+    &.dragHover {
+        background: var(--SN-BOX-DRAGHOVER-COLOR) !important;
+    }
+
+    &.bringToFront {
+        opacity: 0.5;
+    }
+}
+
+.selected {
+    box-shadow: 0 0 0 var(--SN-SELECTION-BORDER) var(--SN-COLOR-SELECTION);
+}

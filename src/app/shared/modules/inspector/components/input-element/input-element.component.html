@@ -1,0 +1,34 @@
+<div class=input-element>
+    <span *ngIf="title" class="title" [title]="subTitle ? subTitle : ''">{{ title }}</span>
+
+    <div class="container" #container [ngClass]="{'error': input.error}">
+        <primitive-input *ngIf="inputType !== 'object'"
+            [input]="input"
+            [inputType]="inputType"
+            [dataItems]="dataItems"
+            [dataSelectorShowed]="showDataSelector"
+            (dataSelector)="openDataSelector()"
+            (inputChanged)="onInputChanged($event)">
+        </primitive-input>
+        <object-input *ngIf="inputType === 'object'"
+            [input]="input"
+            [dataSelectorShowed]="showDataSelector"
+            (dataSelector)="openDataSelector()">
+        </object-input>
+    </div>
+</div>
+
+<popup-element *ngIf="dataItems"
+    [show]="showDataSelector"
+    [container]="dataItemsContainer"
+    [popupMargin]="popupMargin"
+    (closePopup)="closeDataSelector()">
+    <data-selector
+        [items]="dataItems"
+        [show]="showDataSelector"
+        [expectedTypes]="input.types"
+        [expectedMultiple]="input.multiple"
+        [multiNoStrict]="input.multiNoStrict"
+        (selectedData)="onSelectedData($event)">
+    </data-selector>
+</popup-element>

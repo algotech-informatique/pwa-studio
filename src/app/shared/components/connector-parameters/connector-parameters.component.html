@@ -1,0 +1,33 @@
+<div class="content">
+
+    <div class="table">
+        <div class="column checkbox">
+        </div>
+        <div class="column">
+            {{'SN-CONNECTOR-PARAMETERS-KEY' | translate | uppercase}}
+        </div>
+        <div class="column">
+            {{'SN-CONNECTOR-PARAMETERS-VALUE' | translate | uppercase}}
+        </div>
+    </div>
+
+    <div class="table" *ngFor="let parameter of parameters">
+        <div class="column checkbox">
+            <i class="fa-solid fa-square-check" *ngIf="parameter.active === true" (click)="activeParameter(parameter)"></i>
+            <i class="fa-regular fa-square" *ngIf="parameter.active === false" (click)="activeParameter(parameter)"></i>
+        </div>
+
+        <div class="column">
+            <input type="text" [placeholder]="'SN-CONNECTOR-PARAMETERS-KEY' | translate"
+                [title]="parameter.key" [(ngModel)]="parameter.key" (keyup)="editParameter(parameter)">
+        </div>
+
+        <div class="column">
+            <input type="text" [placeholder]="'SN-CONNECTOR-PARAMETERS-VALUE' | translate"
+                [title]="parameter.value" [(ngModel)]="parameter.value" (keyup)="editParameter(parameter)">
+
+            <i class="rm fa-solid fa-xmark" (click)="removeParameter(parameter)"></i>
+        </div>
+
+    </div>
+</div>

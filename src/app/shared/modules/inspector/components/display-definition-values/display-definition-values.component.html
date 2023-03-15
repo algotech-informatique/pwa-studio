@@ -1,0 +1,33 @@
+<div class="content">
+    <span *ngIf="title" class="title" [title]="subTitle ? subTitle : ''">{{ title }}</span>
+    <div *ngIf="width !== undefined" class="item" [ngClass]="{'without-unit': !unit}">
+        <span *ngIf="widthLabel" class="label" [ngClass]="{'with-constrain-ratio': showConstrain}">{{ widthLabel }}</span>
+        <div class="selected-item">
+            <input #widthInput
+                class="input"
+                type="number"
+                step="any"
+                [disabled]="widthDisabled"
+                [min]="min"
+                [value]="width"
+                (click)="$event.target.select()"
+                (change)="changeWidth(widthInput.value)" />
+        </div>
+        <div *ngIf="unit" class="unit">{{ unit }}</div>
+    </div>
+    <div *ngIf="height !== undefined" class="item second">
+        <span class="label">{{ heightLabel }}</span>
+        <div class="selected-item">
+            <input #heightInput
+                class="input"
+                type="number"
+                step="any"
+                [disabled]="heightDisabled"
+                [min]="min"
+                [value]="height"
+                (click)="$event.target.select()"
+                (change)="changeHeight(heightInput.value)" />
+        </div>
+        <div *ngIf="unit" class="unit">{{ unit }}</div>
+    </div>
+</div>

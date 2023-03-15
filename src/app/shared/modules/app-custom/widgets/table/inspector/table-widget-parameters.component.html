@@ -1,0 +1,121 @@
+<app-inspector-section 
+    [snApp]="snApp"
+    [title]="'INSPECTOR.WIDGET.DATA' | translate"
+    [ngClass]="{'first': widget?.rules?.length === 0}"
+    [section]="'input.table'">
+    <div class="property">
+        <input-element
+            [ngClass]="{ 'app-errors': widget?.displayState?.errors | showAppErrors: 'custom.table.collection': widget }"
+            [title]="'INSPECTOR.APP.DATASOURCE' | translate"
+            [input]="inputCollection"
+            [dataItems]="items"
+            (inputChanged)="onCollectionChanged($event)">
+        </input-element>
+    </div>
+
+    <div class="property" [ngClass]="{'last': !(widget?.displayState?.errors | showAppErrors: 'custom.table.collection.columns': widget) }">
+        <multi-select-element
+            [ngClass]="{ 'app-errors': widget?.displayState?.errors | showAppErrors: 'custom.table.collection.columns': widget }"
+            [title]="'INSPECTOR.WIDGET.TABLE.COLUMNS' | translate"
+            [subTitle]="'INSPECTOR.WIDGET.SECURITY.MOVE' | translate"
+            [list]="columnsList"
+            [selectedKeys]="widget?.custom?.columns"
+            (selectNewItems)="onChangeColumns($event)">
+        </multi-select-element>
+    </div>
+
+    <div *ngIf="widget?.displayState?.errors | showAppErrors: 'custom.table.collection.columns': widget"
+        class="property last">
+        <div class="update-columns-button" (click)="onCollectionChanged()">
+            {{'INSPECTOR.WIDGET.TABLE.COLUMNS.REFRESH' | translate}}
+        </div>
+    </div>
+</app-inspector-section>
+
+<app-inspector-section
+    [snApp]="snApp"
+    [title]="'INSPECTOR.WIDGET.FILTERS' | translate"
+    [section]="'filters.table'">
+    <div class="property">
+        <display-check-element [title]="'INSPECTOR.WIDGET.TABLE.OPTION.MULTISELECTION' | translate"
+            [value]="widget?.custom?.multiselection"
+            (changed)="onMultiselectionChanged($event)">
+        </display-check-element>
+    </div>
+
+    <div class="property">
+        <display-check-element [title]="'INSPECTOR.WIDGET.TABLE.OPTION.SORT' | translate"
+            [value]="widget.custom?.sort"
+            (changed)="onSortChanged($event)">
+        </display-check-element>
+    </div>
+
+    <div class="property"
+        [ngClass]="{'last': !(inputCollection?.value | paginable: page: ['page', 'limit']) &&
+            !(inputCollection?.value | paginable: page: ['filter'])}">
+        <display-check-element [title]="'INSPECTOR.WIDGET.TABLE.OPTION.FILTER' | translate"
+            [value]="widget.custom?.filter"
+            (changed)="onFilterChanged($event)">
+        </display-check-element>
+    </div>
+
+    <div class="property" *ngIf="(inputCollection?.value | paginable: page: ['filter'])"
+        [ngClass]="{'last': !(inputCollection?.value | paginable: page: ['page', 'limit'])}">
+        <display-check-element [title]="'INSPECTOR.WIDGET.TABLE.OPTION.SEARCH' | translate"
+            [value]="widget.custom?.search"
+            (changed)="onSearchChanged($event)">
+        </display-check-element>
+    </div>
+
+    <div class="property last" *ngIf="(inputCollection?.value | paginable: page: ['page', 'limit'])"
+        [ngClass]="{'section': widget?.custom?.paginate?.limit > 0}">
+        <display-check-element *ngIf="(inputCollection?.value | paginable: page: ['page', 'limit'])"
+            [title]="'INSPECTOR.WIDGET.ACTIVATE-PAGINATION' | translate"
+            [value]="widget?.custom?.paginate?.limit > 0"
+            (changed)="onPaginationChanged($event)">
+        </display-check-element>
+        
+        <input-element *ngIf="widget?.custom?.paginate?.limit > 0"
+            class="inside-section"
+            [title]="'INSPECTOR.WIDGET.TABLE.ROW-BY-PAGE' | translate"
+            [input]="inputPagination"
+            (inputChanged)="onPaginationNumberChanged($event)">
+        </input-element>
+
+        <select-element *ngIf="widget?.custom?.paginate?.limit > 0"
+            class="inside-section"
+            [title]="'INSPECTOR.WIDGET.LIST.PAGINATION' | translate"
+            [list]="paginationModes"
+            [selectedKey]="widget?.custom?.paginate.mode"
+            [showSearch]="false"
+            (selectNewItem)="onSelectModePagination($event)">
+        </select-element>
+    </div>
+</app-inspector-section>
+
+<app-inspector-section
+    [snApp]="snApp"
+    [title]="'INSPECTOR.WIDGET.TABLE.INTERACTIONS' | translate"
+    [section]="'interactions.table'">
+    <div class="property last" [ngClass]="{'section': widget?.custom?.editable}">
+        <display-check-element
+            [title]="'INSPECTOR.WIDGET.TABLE.OPTIONS.EDIT-COLUMN' | translate"
+            [value]="widget?.custom?.editable"
+            (changed)="onEditableChanged($event)">
+        </display-check-element>
+
+        <display-check-element *ngIf="widget?.custom?.editable"
+            class="inside-section"
+            [title]="'INSPECTOR.WIDGET.TABLE.OPTION.RESIZECOLUMNS' | translate"
+            [value]="widget?.custom?.resize"
+            (changed)="onResizeChanged($event)">
+        </display-check-element>
+
+        <display-check-element *ngIf="widget?.custom?.editable"
+            class="inside-section" 
+            [title]="'INSPECTOR.WIDGET.TABLE.OPTIONS.REORDER-COLUMN' | translate"
+            [value]="widget?.custom?.reorder"
+            (changed)="onReorderChanged($event)">
+        </display-check-element>
+    </div>
+</app-inspector-section>

@@ -1,0 +1,34 @@
+<div class="select">
+
+    <div class="input-key">
+        <input #input
+            type="text"
+            class="input"
+            [(ngModel)]="value"
+            [placeholder]="placeholder"
+            (keyup)="onSearch(true)"
+            (click)="onToggleList(true)"
+            (focusout)="onUpdate()" />
+        <i class="{{icon}}"></i>
+    </div>
+
+    <div *ngIf="predefined && predefinedListDisplay.length !== 0" class="list" [style.top.px]="top">
+        <div class="items scrollable">
+            <div *ngFor="let item of predefinedListDisplay"
+                class="item"
+                [ngClass]="{ 'item-selected': value === item.key }"
+                (click)="onSelectItem(item)">
+
+                <i *ngIf="item.icon" [class]="item.icon.value" class="icon"></i>
+                <i *ngIf="item.multiple" class="fa-solid fa-layer-group icon"></i>
+                <i *ngIf="!item.multiple" class="icon"></i>
+
+                <span class="item-value" [title]="item.key">
+                    {{ item.key }}
+                    <i *ngIf="value === item.key" class="fa-solid fa-check"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+    
+</div>

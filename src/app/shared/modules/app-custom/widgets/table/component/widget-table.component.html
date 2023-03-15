@@ -1,0 +1,46 @@
+<at-grid [configuration]="configuration"
+    [style.--GRID-HEADER]="widget?.css?.header?.['border-bottom-width'] + ' solid ' + widget?.css?.header?.['border-bottom-color']"
+    [style.--GRID-HEADER-BG]="widget?.css?.header?.['background-color']"
+    [style.--GRID-HEADER-COLOR]="widget?.css?.header?.color"
+    [style.--GRID-HEADER-FONT-SIZE]="widget?.css?.header?.['font-size']"
+    [style.--GRID-HEADER-FONT-STYLE]="widget?.css?.header?.['font-style']"
+    [style.--GRID-HEADER-TEXT-DECORATION]="widget?.css?.header?.['text-decoration']"
+    [style.--GRID-HEADER-FONT-WEIGHT]="widget?.css?.header?.['font-weight']"
+    [style.--GRID-HEADER-JUSTIFY-CONTENT]="widget?.css?.header?.['justify-content']"
+    [style.--GRID-BORDER-ROW]="widget?.css?.row?.['border-width'] + ' solid ' + widget?.css?.row?.['border-color']"
+    [style.--GRID-BORDER-COLUMN]="widget?.css?.column?.['border-width'] + ' solid ' + widget?.css?.column?.['border-color']"
+    [style.--GRID-BG]="widget?.css?.main?.['background-color']"
+    [style.--GRID-RADIUS]="widget?.css?.main?.['border-radius']"
+    [style.--GRID-BORDER-TOP]="widget?.css?.main?.['border-top']"
+    [style.--GRID-BORDER-BOTTOM]="widget?.css?.main?.['border-bottom']"
+    [style.--GRID-BORDER-LEFT]="widget?.css?.main?.['border-left']"
+    [style.--GRID-BORDER-RIGHT]="widget?.css?.main?.['border-right']">
+    <at-grid-row [id]="row.id" *ngFor="let row of data" [configuration]="configuration">
+        <at-grid-cell *ngFor="let column of configuration.columns"
+            [ngClass]="{'highlight': column.custom.widget?.displayState?.highlight &&
+                (appSelection.selections.widgets | elementSelected:column.custom.widget) === 'hidden'}"
+            [width]="column.width"
+            [style.--GRID-CELL-BORDER-TOP]="column.custom?.css?.main?.['border-top']"
+            [style.--GRID-CELL-BORDER-BOTTOM]="column.custom?.css?.main?.['border-bottom']"
+            [style.--GRID-CELL-BORDER-LEFT]="column.custom?.css?.main?.['border-left']"
+            [style.--GRID-CELL-BORDER-RIGHT]="column.custom?.css?.main?.['border-right']"
+            [style.--GRID-CELL-BG]="column.custom?.css?.main?.['background-color']"
+            [style.--GRID-CELL-COLOR]="column.custom?.overloadStyle ? column.custom?.css?.cell?.color : widget?.css?.cell?.color"
+            [style.--GRID-CELL-FONT-SIZE]="column.custom?.overloadStyle ? column.custom?.css?.cell?.['font-size'] : widget?.css?.cell?.['font-size']"
+            [style.--GRID-CELL-FONT-STYLE]="column.custom?.overloadStyle ? column.custom?.css?.cell?.['font-style'] : widget?.css?.cell?.['font-style']"
+            [style.--GRID-CELL-TEXT-DECORATION]="column.custom?.overloadStyle ? column.custom?.css?.cell?.['text-decoration'] : widget?.css?.cell?.['text-decoration']"
+            [style.--GRID-CELL-FONT-WEIGHT]="column.custom?.overloadStyle ? column.custom?.css?.cell?.['font-weight'] : widget?.css?.cell?.['font-weight']"
+            [style.--GRID-CELL-JUSTIFY-CONTENT]="column.custom?.overloadStyle ? column.custom?.css?.cell?.['justify-content'] : widget?.css?.cell?.['justify-content']"
+            [style.--GRID-CELL-INPUT-TEXT-ALIGN]="column.custom?.overloadStyle ? column?.custom?.css?.cell?.['text-align'] : widget?.css?.cell?.['text-align']">
+
+            <at-grid-cell-value
+                [editable]="false"
+                [format]="column.custom.format"
+                [icon]="(column.custom.display | includes: 'icon') ? column.custom.icon : null"
+                [type]="column.type"
+                [multiple]="column.multiple"
+                [value]="(column.custom.display | includes: 'text') ? (row.properties | find: 'key': column.key)?.value : ''">
+            </at-grid-cell-value>
+        </at-grid-cell>
+    </at-grid-row>
+</at-grid>

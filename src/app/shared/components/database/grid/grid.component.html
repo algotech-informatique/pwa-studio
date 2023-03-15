@@ -1,0 +1,43 @@
+<div  class="info">
+  {{'INSPECTOR.DATABASE.SMARTOBJECTS.PAGE' | translate}} : {{skip}} / {{lastPage}} ({{soCount}} {{'INSPECTOR.DATABASE.SMARTOBJECTS' | translate}})
+</div>
+<div class="container" 
+  [appGridDnd]="this.configuration.columns.length > 0"
+  (fileDropped)="onFileDropped($event)">
+  <at-grid #grid [configuration]="configuration" class="grid" 
+    [empty]="empty"
+    [paginate]="paginate"
+    [currentQuery]="query"
+    [moreDataToLoad]="moreDataToLoad"
+    [loading]="loading"
+    [forceOverscroll]="true"
+    [currentQuery]="query"
+    (queryChanged)="onQueryChanged($event)"
+    (actionClick)="onActionClick($event, false)"
+    [saveConfiguration]="true"
+    [saveQuery]="true">
+    <at-grid-row class="row" *ngFor="let row of data" [clickable]="false" 
+      [id]="row.id" 
+      [configuration]="configuration"
+      (actionClick)="onActionClick($event, row.id)">
+        <at-grid-cell *ngFor="let column of configuration.columns" 
+        [editable]="true" 
+        [clickable]="column.custom.clickable"  
+        [width]="column.width"
+        [hide]="column.hide"
+        (cellClick)="onCellClick(row, column)">
+          <at-grid-cell-value 
+            [key]="column.key"
+            [editable]="column.custom.editable" 
+            [type]="column.type"
+            [multiple]="column.custom.multiple"
+            [showNullValue]="true"
+            [showMultipleValues]="false"
+            [value]="(row.properties | find: 'key': column.key).value"
+            [items]="column.custom.items"
+            (changed)="onCellChange($event, row, column.key)">
+          </at-grid-cell-value>
+        </at-grid-cell>
+    </at-grid-row>
+  </at-grid>
+</div>

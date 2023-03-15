@@ -1,0 +1,153 @@
+@import '../../../../../../../styles.scss';
+@import '../../../theme/mixins';
+
+:host {
+    --ITEM-HEIGHT: 30px;
+    --ICON-SIZE: 13px;
+    --PADDING-LEFT: 0px;
+    --OFFSET-LEFT: 15px;
+    --ICON-COLOR: var(--INSPECTOR-SECTION-CONTENT-COLOR);
+    --DRAG-SEPARATOR-COLOR: #FFF;
+}
+
+.ui-tree-line {
+    position: relative;
+    .ui-tree-line-item {
+        height: var(--ITEM-HEIGHT);
+        border: 1px solid transparent;
+
+        .content {
+            display: flex;
+            height: 100%;
+            align-items: center;
+            cursor: default;
+            padding-left: var(--PADDING-LEFT);
+
+            .icon {
+                width: 18px;
+                flex-shrink: 0;
+                text-align: center;
+                color: var(--ICON-COLOR);
+                font-size: var(--ICON-SIZE);
+            }
+
+            .arrow-icon {
+                @include arrow-icon();
+            }
+
+            .name {
+                padding: 3px 3px 3px 8px;
+                user-select: none;
+                width: 100%;
+                @include text-ellipsis;
+            }
+
+            .name-input {
+                background-color: var(--INSPECTOR-VERT-MENU-BACKGROUND);
+                border-radius: 3px;
+                border: 3px solid $COLOR-BTN-LIGHT;
+                width: 100%;
+                padding: 1px 5px;
+            }
+
+            .name-input:active,
+            .name-input:focus {
+                outline: none;
+            }
+        }
+
+        &.selected {
+            background-color: var(--INSPECTOR-BG-COLOR-SELECTED-ITEM);
+        }
+
+        &.highlight:not(.selected) {
+            border: 1px solid var(--SN-COLOR-SELECTION);
+        }
+
+        .ui-tree-line-item-drag-hook {
+            display: none;
+        }
+    }
+
+    &.drag-hook {
+        .ui-tree-line-item-drag-hook {
+            &.root {
+                --OFFSET-DRAG-LEFT: 0px;
+            }
+            &:not(.root) {
+                --OFFSET-DRAG-LEFT: 80px;
+            }
+            width: 100%;
+            height: 0px;
+            display: block;
+
+            .top, .bottom {
+                position: absolute;
+                height: var(--ITEM-HEIGHT);
+
+                .line {
+                    display: none;
+                    pointer-events: none;
+                }
+
+                &.draghover {
+                    .line {
+                        display: block;
+                        border-bottom: 2px solid var(--DRAG-SEPARATOR-COLOR);
+                        height: calc(50% + 1px);
+                    }
+                }
+
+                &.dragrefused {
+                    display: none;
+                }
+            }
+
+            .top {
+                top: calc((var(--ITEM-HEIGHT) / 2) * -1);
+                width: 100%;
+                z-index: 0;
+                &.draghover {
+                    .line {
+                        margin-left: var(--PADDING-LEFT);
+                    }
+                }
+
+                &.dragrefused {
+                    display: none;
+                }
+            }
+
+            .center {
+                position: absolute;
+                top: calc(var(--ITEM-HEIGHT) / 4);
+                height: calc(var(--ITEM-HEIGHT) / 2);
+                width: 100%;
+                z-index: 2;
+            }
+
+            .bottom {
+                bottom: calc((var(--ITEM-HEIGHT) / 2) * -1);
+                left: calc(var(--PADDING-LEFT) + (var(--OFFSET-DRAG-LEFT) - var(--OFFSET-LEFT)));
+                width: calc(100% - (var(--PADDING-LEFT) + (var(--OFFSET-DRAG-LEFT) - var(--OFFSET-LEFT))));
+                z-index: 1;
+                &.draghover {
+                    .line {
+                        margin-left: calc(var(--OFFSET-LEFT) - var(--OFFSET-DRAG-LEFT));
+                    }
+                }
+            }
+        }
+    }
+
+    .children {
+        &.selected {
+            background-color: var(--INSPECTOR-BG-COLOR-SELECTED-ITEM-CHILDREN);
+        }
+
+        ui-tree-widget, ui-tree-shared-widget {
+            display: block;
+            --PADDING-LEFT-WIDGET: calc(var(--PADDING-LEFT) + var(--OFFSET-LEFT));
+        }
+    }
+}

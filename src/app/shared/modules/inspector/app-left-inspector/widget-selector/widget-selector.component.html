@@ -1,0 +1,45 @@
+<div id="widget-selector">
+    <div class="widget-types">
+        <div *ngFor="let widgetType of widgetTypes">
+            <div *ngIf="widgetType.platform | includes: snApp.environment "
+                class="widget-type"
+                [ngClass]="{'selected': widgetType?.key === selectedWidgetType?.key}"
+                (click)="selectType(widgetType?.key)">
+                <i class="icon" [class]="widgetType?.icon"></i>
+                <span>{{ widgetType?.displayName | translate }}</span>
+            </div>
+        </div>
+
+    </div>
+    <div class="widget-types-templates">
+        <div *ngFor="let subCategory of selectedWidgetType?.subCategories" class="widget-type-template">
+            <div class="title" (click)="subCategory.closed = !subCategory.closed">
+                <i class="fa-solid fa-caret-up" *ngIf="subCategory.closed"></i>
+                <i class="fa-solid fa-caret-down" *ngIf="!subCategory.closed"></i>
+                <span>{{ subCategory?.displayName | snlang }}</span>
+            </div>
+            <div class="preview" [ngClass]="{'hidden': subCategory.closed}">
+                <div class="template"
+                    [ngClass]="{
+                        'reverseColor': subCategory.reverseColor
+                    }"
+                    *ngFor="let widget of subCategory?.widgets"
+                    [style.transform]="'scale(' + (widget | previewSize: subCategory.colCount) + ')'"
+                    [style.height.px]="widget.box.height * (widget | previewSize: subCategory.colCount)"
+                    [style.width.px]="widget.box.width * (widget | previewSize: subCategory.colCount)"
+                    >
+                    <widget
+                        class="widget"
+                        [id]="widget.id"
+                        [style.height.px]="widget.box.height"
+                        [style.width.px]="widget.box.width"
+                        [widget]="widget"
+                        [snApp]="snApp"
+                        [css]="widget.css"
+                        [custom]="widget.custom"
+                    ></widget>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

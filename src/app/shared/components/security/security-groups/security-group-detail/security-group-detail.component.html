@@ -1,0 +1,75 @@
+<div class="content">
+
+    <div class="title">
+    </div>
+
+    <div class="security">
+
+        <div class="elements">
+            <label> {{ 'SECURITY-GROUPS.GROUP-NAME' | translate }} </label>
+            <options-input
+                class="element"
+                [readOnly]="!groupCanBeEdited"
+                [inputText]="group.group.name"
+                (updateText)="updateName($event)">
+            </options-input>
+            <div class="border-bottom"></div>
+        </div>
+
+        <div class="elements"
+            [ngClass]="{'new-group': group.group.key === 'new-group'}"
+        >
+            <label> {{ 'SECURITY-GROUPS.GROUP-DESCRIPTION' | translate }} </label>
+            <options-input
+                class="element"
+                [readOnly]="group.group.key === 'new-group' || !groupCanBeEdited"
+                [inputText]="group.group.description"
+                (updateText)="updateDescription($event)">
+            </options-input>
+            <div class="border-bottom"></div>
+
+        </div>
+    </div>
+
+    <div class="options">
+
+        <div class="details"
+            [ngClass]="{'new-group': group.group.key === 'new-group'}"
+        >
+            <label> {{ 'SECURITY-GROUPS.GROUP-MEMBERS' | translate }} </label>
+
+            <div class="members">
+                <options-search
+                    class="search"
+                    [(search)]="search"
+                    (searchValue)="onSearch($event)">
+                </options-search>
+
+                <div class="groups">
+
+                    <options-object-list
+                        class="group"
+                        [optionObjects]="optionUsersFiltered"
+                        (selectedObject)="onSelectedObject($event)">
+                    </options-object-list>
+                </div>
+            </div>       
+        </div>
+
+        <div class="footer"
+                [ngClass]="{'new-group': group.group.key === 'new-group'}"
+            >
+            <div
+                class="delete-group"
+                [ngClass]="{'disabled' : !groupCanBeEdited}"
+                (click)="groupCanBeEdited && onDeleteGroup()"
+            >
+                <span>
+                    <i *ngIf="!groupCanBeEdited" class="fa-solid fa-shield-alt"></i>
+                    {{ 'SECURITY-GROUPS.DELETE-GROUP' | translate }}
+                </span>
+            </div>
+        </div>
+
+    </div>
+</div>

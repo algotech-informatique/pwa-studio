@@ -1,0 +1,58 @@
+<div class="select-icon">
+    <span class="title">{{ title || 'INSPECTOR.APP.ICON' | translate }}</span>
+    <div #container class="select"
+        [ngClass]="{'no-selected-item': !selectedItem, 'inside-card': insideCard, 'app-errors': error, 'selected': showIcons}"
+        (click)="iconPopUp($event)">
+        <div class="selected-item">
+            <i [class]="icon + ' icon'"></i>
+            <p>{{icon}}</p>
+        </div>
+        <i [class]="showIcons ? 'fa-solid fa-chevron-up button' : 'fa-solid fa-chevron-down button'"></i>
+    </div>
+</div>
+
+<popup-element
+    [show]="showIcons"
+    [container]="iconContainer"
+    [popupMargin]="popupMargin"
+    (closePopup)="showIcons = false">
+    <div class="modal">
+        <div class="search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input #searchInput
+                type="search"
+                [placeholder]="'SEARCHBOX.PLACEHOLDER' | translate"
+                (keyup)="filterElements()"
+                [(ngModel)]="searchValue">
+            <i class="fa-solid fa-xmark reset" (click)="clearSearchBar()" *ngIf="searchValue"></i>
+        </div>
+    
+        <div class="container" *ngIf="displayTabIcons">
+            <div class="loading" *ngIf="isLoading">
+                <div class="loader"></div>
+            </div>
+    
+            <div class="item" *ngIf="searchValue === '' && tabIcons.length > 0">
+                <div class="moreicon" (click)="onIconChanged('')">
+                    <i></i>
+                </div>
+            </div>
+            <div class="item" *ngFor="let iconName of tabIcons">
+                <div class="moreicon" (click)="onIconChanged(iconName?.key)">
+                    <i [class]="iconName?.key"></i>
+                </div>
+                <span class="tooltip-icon">{{iconName?.popup}}</span>
+            </div>
+    
+            <div class="more" *ngIf="moreDataToLoad" (click)="onLoadMore()">
+                <div class="load-more">
+                    {{ 'SETTINGS.POI.POPOVER-ICON.MORE-ICON' | translate }}
+                </div>
+            </div>
+        </div>
+    
+        <div class="no-icon" *ngIf="!displayTabIcons">
+            <p>{{ 'SETTINGS.POI.POPOVER-ICON.NO-ICON' | translate }}</p>
+        </div>
+    </div>
+</popup-element>

@@ -1,0 +1,105 @@
+@import "../../../../../../styles.scss";
+
+:host {
+    --LABEL-COLOR: #2D9CDB;
+    --TITLE-COLOR-SELECTED: #ffffff;
+    --TITLE-COLOR-NO-SELECTED: #A0A7B4;
+    --BUTTON-ADD-COLOR: #27AE60;
+    --BUTTON-REMOVE-COLOR: #FF6473;
+    --SHOW-LANGS-COLOR: #2D9CDB;
+    --LIST-WIDTH: 350px;
+    --TITLE-MARGIN-BOTTOM: 20px;
+    --LIST-MARGIN: 10px;
+    --CHECK-MARGIN: 5px 0px 5px 5px;
+}
+
+.content {
+    width: var(--LIST-WIDTH);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    @include scrollbar-hidden();
+
+    .title {
+        display: flex;  
+        flex-direction: row;
+        justify-content: flex-end;
+        height: 50px;
+        padding: 10px;
+        margin-bottom: var(--TITLE-MARGIN-BOTTOM);
+    } 
+
+    .glist {
+        height: 400px;
+
+        .elements {
+            margin: 10px 10px 20px 10px;
+            max-width: 95%;
+            display: flex;
+            flex-direction: column;
+                    
+            label {    
+                @include option-label(var(--LABEL-COLOR));
+            }
+
+            .element {
+                margin-left: 5px;
+                --OPTIONS-CHECK-MARGIN: var(--CHECK-MARGIN);
+            }
+     
+            .border-bottom {
+                width: 100%;
+                margin-top: 5px;
+                border-bottom: 2px solid var(--LABEL-COLOR);
+            }
+
+            .chips {
+                --OPTION-CHIP-HEIGHT: 120px;
+                --OPTION-CHIP-MAX-HEIGHT: 120px;
+            }
+        }
+    }   
+
+    .details {
+        margin: var(--LIST-MARGIN);
+        height: 40%;
+        display: flex;
+        flex-direction: column;
+
+        .detail {
+            height: 100%;
+        }
+    }
+
+    .footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100%;
+        padding: 10px 0 15px 0;
+
+        .delete-list {
+            @include button();
+            background-color: var(--BUTTON-REMOVE-COLOR) !important;
+
+            span {
+                padding: 0px 10px 0px 10px;
+                @include option-title-selected(var(--TITLE-COLOR));
+            }
+        }
+
+        .delete-list:hover {
+            cursor: pointer;
+            opacity: 0.5;
+        }
+    }
+}
+
+.all-langs {
+    width: 650px;           
+}
+
+.new-list {
+    pointer-events: none;
+    opacity: 0.5;
+}

@@ -1,0 +1,147 @@
+@import '../../../theme/mixins';
+
+.content {
+    background-color: var(--SN-COLOR-SECONDARY);
+    border-radius: 0px 0px 5px 5px;
+    display: flex;
+    padding: 5px;
+
+    .tools {
+
+        .tool {
+            size: 24px;
+            color: var(--SN-COLOR-FONT);
+            margin: auto;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            flex-direction: row;
+            position: relative;
+
+            &.separator {
+                border-bottom: var(--SN-CONTEXTMENU-SEPARATOR-HEIGHT) solid var(--SN-COLOR-LAYOUT);
+            }
+
+            &.disabled {
+                pointer-events: none;
+                opacity: 0.2 !important;
+
+                * {
+                    pointer-events: none;
+                }
+            }
+
+            .activeItem {
+
+                position: relative;
+                padding: 5px;
+                display: flex;
+                flex-direction: row;
+
+                .icon {
+                    font-size: 1.8em;
+                    height: 40px;
+                    width: 40px;
+                    margin: 5px;
+                    color: var(--SN-COLOR-FONT);
+                }
+
+                .itemsIcon {
+                    position: absolute;
+                    left: 35px;
+                    font-size: 17px;
+                }
+
+                .bottom {
+                    bottom: 3px;
+                }
+
+                .top {
+                    top: 3px;
+                }
+
+                .icon .tooltiptext {
+                    visibility: hidden;
+                    background-color: var(--SN-COLOR-ACTIVE);
+                    opacity: 0.7;
+                    color: var(--SN-COLOR-FONT);
+                    text-align: left;
+                    border-radius: 6px;
+                    padding: 4px;
+                    top: 15px;
+                    left: 8px;
+                    position: absolute;
+                    font-size: 12px;
+                    @include text-ellipsis;
+                    z-index: 1;
+
+                    &.row {
+                        top: 30px;
+                        left: 0;
+                    }
+                }
+
+                .icon:hover .tooltiptext {
+                    visibility: visible;
+                }
+
+                .display {
+                    align-self: center;
+                    color: var(--SN-COLOR-FONT);
+                    font-size: 13px;
+                    @include text-ellipsis;
+                    margin-left: 10px;
+
+                    .description {
+                        font-style: italic;
+                        margin: 2px;
+                        font-size: 10px;
+                        @include text-ellipsis;
+                    }
+                }
+
+                .more {
+                    position: absolute;
+                    bottom: 1px;
+                    right: 8px;
+                    font-size: 14px;
+                }
+            }
+
+            .row-subItems {
+                top: 50px;
+                position: absolute;
+            }
+
+            .deleteItem {
+                margin-left: 15px;
+                align-self: center;
+
+                .deleteIcon {
+                    margin: 5px;
+                    color: var(--SN-COLOR-FONT);
+                }
+            }
+
+            .deleteItem:hover {
+                .deleteIcon {
+                    color: var(--SN-COLOR-SELECTION);
+                }
+            }
+        }
+
+        .tool:hover {
+            background-color: var(--SN-COLOR-ACTIVE);
+            border-radius: 5px;
+            cursor: pointer;
+
+            .display {
+                color: var(--SN-COLOR-FONT);
+            }
+
+            .icon {
+                color: var(--SN-TOOLBOX-ICON-SELECTED);
+            }
+        }
+    }
+}

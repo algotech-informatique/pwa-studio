@@ -1,0 +1,44 @@
+<div class="widget-magnet" [id]="widget.id" [ngClass]="{'no-image': !widget.custom?.imageUuid}">
+
+    <img class="svg" *ngIf="widget.custom?.imageUuid" [ngStyle]="widget.css | injectStyle: ['main', 'image']"
+        [src]="(widget.custom?.imageUuid | uuid2image)"
+        onerror="this.src='./assets/images/loading.gif'"
+    />
+    <svg class="widget-magnet-svg" [id]="widget.id"></svg>
+
+    <div *ngIf="!widget.custom?.imageUuid" class="empty">
+        <i class="fa-solid fa-magnet"></i>
+    </div>
+
+     <!-- properties to drag -->
+     <div *ngIf="selected && model" class="properties scrollable">
+         <div class="properties-content">
+            <div *ngFor="let property of model.properties" class="magnet-property" [id]="property.key">
+                <div>
+                    {{property.displayName | tlang}}
+                </div>
+             </div>
+         </div>
+     </div>
+
+     <!-- properties to show -->
+    <div *ngIf="widget.group">
+        <div
+            class="widget-child"
+            *ngFor="let child of widget.group.widgets"
+            [id]="child.id"
+            [style.left]="child.box.x + 'px'"
+            [style.top]="child.box.y + 'px'"
+            [style.height]="child.box.height + 'px'"
+            [style.width]="child.box.width + 'px'">
+
+            <widget [widget]="child" [snApp]="snApp" [css]="child.css" [custom]="child.custom"></widget>
+        </div>
+    </div>
+
+    <div class="edition" *ngIf="selected && widget.custom.modelKey" (click)="activeEdition()" [ngClass]="{right: model}">
+        <i class="fa-solid fa-text-height" *ngIf="!model"></i>
+        <i class="fa-solid fa-angle-double-right" *ngIf="model"></i>
+    </div>
+
+</div>

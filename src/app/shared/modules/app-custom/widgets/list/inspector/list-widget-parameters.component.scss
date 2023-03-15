@@ -1,0 +1,9 @@
+@import '../../../../inspector/theme/mixins';
+
+.property {
+    @include property();
+}
+
+.disabled {
+    @include disabled();
+}

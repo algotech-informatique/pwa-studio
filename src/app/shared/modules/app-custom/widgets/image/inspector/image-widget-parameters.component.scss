@@ -1,0 +1,9 @@
+@import '../../../../inspector/theme/mixins';
+
+.property {
+    @include property();
+}
+
+ngx-dropzone {
+    @include dropzone;
+}

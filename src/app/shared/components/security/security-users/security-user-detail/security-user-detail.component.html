@@ -1,0 +1,92 @@
+<div class="content">
+
+    <div class="title">
+        <div class="check" [ngClass]="{'disabled': !isSuperAdmin || isNewUser}">
+            <div class="label">
+                {{ 'SECURITY-USERS.USER-ISACTIVE' | translate }}
+            </div>
+            <options-toggle class="toggle"
+                [ngClass]="{ 'lock': isCurrentUser }"   
+                [(checked)]="user.enabled"
+                (checkedChanged)="activeUser()">
+            </options-toggle>
+        </div>
+    </div>
+
+    <div class="detail">
+
+        <div class="security">
+
+            <div class="elements">
+                <label> {{ 'SECURITY-USERS.USER-LOGIN' | translate }} </label>
+                <options-input
+                    class="element"
+                    [readOnly]="!isNewUser"
+                    [inputText]="user.username"
+                    (updateText)="updateLogin($event)"
+                >
+                </options-input>
+                <div class="border-bottom"></div>
+            </div>
+    
+            <div class="elements">
+                <label> {{ 'SECURITY-USERS.USER-FIRST-NAME' | translate }} </label>
+                <options-input
+                    class="element"
+                    [inputText]="user.firstName"
+                    (updateText)="updateFirstName($event)">
+                </options-input>
+                <div class="border-bottom"></div>
+            </div>
+    
+            <div class="elements">
+                <label> {{ 'SECURITY-USERS.USER-LAST-NAME' | translate }} </label>
+                <options-input
+                    class="element"
+                    [inputText]="user.lastName"
+                    (updateText)="updateLastName($event)">
+                </options-input>
+                <div class="border-bottom"></div>
+            </div>
+    
+        </div>
+    
+        <div class="details">
+            <label> {{ 'SECURITY-USERS.USER-GROUPS' | translate }} </label>
+    
+            <div class="members">
+                <options-chips-list
+                    class="chips"
+                    type="text"
+                    [inputList]="inputList"
+                    [items]="items"
+                    [includeBottomBorder]="false"
+                    (changeValue)="onChangeUserGroups($event)"
+                >
+                </options-chips-list>
+                <div class="border-bottom"></div>
+            </div>
+    
+            <div class="members">
+                <div class="change" [ngClass]="{'disabled': !isSuperAdmin || isNewUser}">
+                    <div class="change-password" (click)="onChangePassword()">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </div>
+                    <div class="message"> {{ 'SECURITY-USERS.USER-REASSIGN-PASSWORD' | translate }} </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="footer">
+            <div *ngIf="isNewUser" class="button add-user"
+                [ngClass]="{'disabled': !user.username || !user.firstName || !user.lastName}" (click)="onAddUser()">
+                <span>{{ 'SECURITY-USERS.ADD-USER' | translate }}</span>
+            </div>
+            <div *ngIf="!isNewUser" class="button delete-user" [ngClass]="{'disabled': !isSuperAdmin}" (click)="onDeleteUser()">
+                <span>{{ 'SECURITY-USERS.DELETE-USER' | translate }}</span>
+            </div>
+        </div>
+
+    </div>
+
+</div>

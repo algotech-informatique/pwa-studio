@@ -1,0 +1,120 @@
+<div class="content" *ngIf="data" #content>
+
+    <div class="title">
+        <div class="task-title">
+            {{ 'SMART-TASKS.TASK-PROPERTY' | translate }}
+        </div>
+        <div class="check">
+            <div class="label">
+                {{ 'SMART-TASKS.TASK-ACTIVE' | translate }}
+            </div>
+            <options-toggle class="toggle"
+                [(checked)]="data.enabled"
+                (checkedChanged)="saveData()">
+            </options-toggle>
+        </div>
+    </div>
+
+    <div class="options">
+        <div class="elements">
+            <label> {{ 'SMART-TASKS.TASK-PROPERTY-NOM' | translate }} </label>
+            <options-input 
+                class="element"
+                [readOnly]="readOnly"
+                [inputText]="data.name"
+                (updateText)="updateName($event)"
+            ></options-input>    
+    
+            <div class="border-bottom"></div>
+        </div>
+    
+        <div class="elements">
+            <label> {{ 'SMART-TASKS.TASK-PROPERTY-PERIODICITY' | translate }} </label>
+            
+            <options-date class="element"
+                [label]="'SMART-TASKS.TASK-PROPERTY-START' | translate"
+                [duration]="data.startDate"
+                [readOnly]="readOnly"
+                includeBottomBorder="true"
+                (updateDate)="onChangeStartDate($event)"
+            ></options-date>
+    
+            <div class="element-end">
+                <options-checkbox class="subElement"
+                    [checkElement]="data.endDateActive"
+                    [readOnly]="readOnly"
+                    (checkedChange)="onEndChecked()"
+                >
+                </options-checkbox>
+    
+                <options-date class="subElement element-date"
+                    [label]="'SMART-TASKS.TASK-PROPERTY-END' | translate"
+                    [duration]="data.endDate"
+                    [readOnly]="!data.endDateActive || readOnly"
+                    includeBottomBorder="true"
+                    (updateDate)="onChangeEndDate($event)"
+                ></options-date>
+            </div>
+    
+            <options-checkbox
+                [selected]="data.byDay"
+                [label]="'SMART-TASKS.TASK-PROPERTY-PERIODICITY-DAY' | translate"
+                [readOnly]="readOnly"
+                [checkElement]="data.byDay"
+                (checkedChange)="onTypeChecked('day')"
+            >
+            </options-checkbox>
+    
+            <scheduled-task-combined class="element" *ngIf="data.byDay"
+                [data]="data"
+                (radioChanged)="onRadioChanged($event)"
+                (combinedChanged)="onCombinedChanged($event)"
+            >
+            </scheduled-task-combined>
+            
+            <options-checkbox
+                [selected]="data.byMonth"
+                [label]="'SMART-TASKS.TASK-PROPERTY-PERIODICITY-MONTH' | translate"
+                [readOnly]="readOnly"
+                [checkElement]="data.byMonth"
+                (checkedChange)="onTypeChecked('month')"
+            >
+            </options-checkbox>
+    
+            <options-checkbox
+                [selected]="data.byYear"
+                [label]="'SMART-TASKS.TASK-PROPERTY-PERIODICITY-YEAR' | translate"
+                [readOnly]="readOnly"
+                [checkElement]="data.byYear"
+                (checkedChange)="onTypeChecked('year')"
+            >
+            </options-checkbox>
+    
+        </div>
+
+        <div class="elements" *ngIf="smartTask.flowType === 'smartflow'">
+            <label> {{ 'SMART-TASKS.TASK-PROPERTY-TYPE' | translate }} </label>
+            <options-list
+                class="element"
+                [inputList]="listSmartFlows"
+                [readOnly]="readOnly"
+                [selected]="selectedSmartFlow"
+                [relativeLeft]="contentLeft"
+                (selectValue)="onSelectFlowType($event)"
+            >
+            </options-list>
+
+        </div>
+
+        <div class="footer">
+            <div
+                class="delete-task"
+                (click)="onDeleteTask()"
+            >
+                <span>{{ 'SMART-TASKS.DELETE-TASK' | translate }}</span>
+            </div>
+        </div>
+    
+    </div>
+
+</div>

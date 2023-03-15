@@ -1,0 +1,29 @@
+@import '../../theme/mixins';
+
+.property {
+    @include property();
+}
+
+.section {
+    p {
+        font-size: 13px;
+    }
+    
+    .inside-section {      
+        &.auth {
+            margin-left: 15px;
+        }
+    }
+
+    multi-select-element {
+        margin-top: 5px;
+    }
+}
+
+.body {
+    margin-top: 5px;
+}
+
+route-variables.last {
+    --PADDING-BOTTOM: 20px;
+}

@@ -1,0 +1,47 @@
+<app-inspector-section 
+    [snApp]="snApp"
+    [title]="'INSPECTOR.WIDGET.DISPLAY' | translate"
+    [section]="'box'"
+    [ngClass]="{'first': !(widget?.rules?.length > 0)}">
+    <div class="property last">
+        <display-definition-values class="widget"
+            [width]="widget?.box?.width"
+            [height]="tableContainer?.box?.height"
+            [title]="'INSPECTOR.PAGE.SIZE-DISPLAY' | translate"
+            [roundValue]="true"
+            [minWidth]="1"
+            [minHeight]="1"
+            [heightDisabled]="true"
+            (changedWidth)="onWidgetWidthChanged($event)">
+        </display-definition-values>    
+    </div>
+</app-inspector-section>
+
+<app-inspector-section
+    [snApp]="snApp"
+    [title]="'INSPECTOR.WIDGET.TABLE.COLUMN-CELLS' | translate"
+    [section]="'css.cell'">
+    <div class="property last" [ngClass]="{'section': widget?.custom?.overloadStyle}">
+        <display-check-element
+            [title]="'INSPECTOR.WIDGET.TABLE.COLUMN-OVERRIDE-STYLE' | translate"
+            [value]="widget?.custom?.overloadStyle"
+            (changed)="onOverloadStyleChanged($event)">
+        </display-check-element>
+
+        <!-- FG COLOR -->
+        <color-element *ngIf="widget?.custom?.overloadStyle"
+            class="inside-section"
+            [showApptheme]="true"
+            [color]="(styles | find: 'style':'cell')?.value?.color"
+            (changed)="onChanged({path: 'color', value: $event}, 'cell')">
+        </color-element>
+    
+        <!-- TEXT -->
+        <design-style-text-parameters
+            *ngIf="widget?.custom?.overloadStyle"
+            [insideSection]="true"
+            [defaultValue]="(styles | find: 'style':'cell').value"
+            (changed)="onChanged($event, 'cell')">
+        </design-style-text-parameters>
+    </div>
+</app-inspector-section>

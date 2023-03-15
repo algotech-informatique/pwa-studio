@@ -1,0 +1,42 @@
+<div class="selected-formula">
+    <sn-formula-element
+        class="code-element"
+        [codeFormula]="selectedFormula.code"
+        [fields]="selectedFormula.fields"
+    ></sn-formula-element>
+
+    <div class="description">
+        {{ selectedFormula.description }}
+    </div>
+
+    <div class="fields" *ngFor="let field of selectedFormula.fields">
+        <button (click)="onSelectField(field)" [disabled]="field.disabled">
+            +
+        </button>
+        <div class="field">
+            {{ field.code }}(
+        </div>
+        <div class="format" [ngStyle]="{'color': field.color}"> 
+            {{field.type }}
+        </div>
+        <div class="array" *ngIf="field.isArray">[]</div>
+        <div [ngStyle]="{'color': field.color}" *ngIf="!field.isOptional">*</div>
+        )
+
+        <div class="field-desc" *ngIf="field.description">
+            {{ field.description }}
+        </div>
+    </div>
+
+    <div class="formula-usage">
+        <div class="usage-title">
+            {{ 'FORMULA.USAGE' | translate }}
+        </div>
+        <div class="usage-example">
+            {{ selectedFormula.example }}
+        </div>
+        <div class="usage-expectedresult">
+            {{ selectedFormula.expectedResult }}
+        </div>
+    </div>
+</div>

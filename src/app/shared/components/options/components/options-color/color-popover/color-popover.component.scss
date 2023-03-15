@@ -1,0 +1,17 @@
+@import "../../../../../../../styles.scss";
+
+:host {
+    height: 100%;
+    width: fit-content;
+}
+
+.options-popover {
+    position: absolute;
+    z-index: 2;
+    max-height: 230px;
+
+    .content {
+        display: inherit;
+        height: 100%;
+    }
+}

@@ -1,0 +1,45 @@
+<div class="content">
+    <div class="header">
+        <div class="left-controls">
+            <div class="button" [ngClass]="{ 'selected-type' : modeEdition }" (click)="onModeClick()">Edit</div>
+            <div class="button" [ngClass]="{ 'selected-type' : !modeEdition }" (click)="onModeClick()">Preview
+            </div>
+        </div>
+        <div class="right-controls">
+            <div *ngIf="listParams.length !== 1">
+                <select  class="select-css" *ngIf="display" id="params" name="params" [(ngModel)]="defaultValue" (change)="onAddElementClick($event)">
+                    <option *ngFor="let param of listParams" [value]="param.key" [selected]="selected === defaultValue">
+                        {{param.value}}
+                    </option>
+                </select>
+            </div>
+            <!--
+            <div class="button" (click)="transformText('&lt;br&gt;','')">BR</div>                    
+            <div class="button" (click)="transformText('&lt;strong&gt;','&lt;\/strong&gt;')"><strong>B</strong></div>
+            <div class="button" (click)="transformText('&lt;em&gt;','&lt;\/em&gt;')"><em>I</em></div>
+            <div class="button" (click)="transformText('\n&lt;code&gt;\n','\n&lt;\/code&gt;\n')">Code</div>
+            <div class="button" (click)="transformText(' :-)','')">:-)</div> -->
+        </div>
+    </div>
+
+    <div class="center">
+        <div class="edit-text" *ngIf="modeEdition">
+            <textarea #txtAreas [value]="activeText" (change)="onChangeArea()">
+                </textarea>
+        </div>
+
+        <div class="preview-text" *ngIf="!modeEdition"> <!-- [innerHTML]="previewText"  -->
+            {{ previewText }}
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="languages" *ngIf="activeLangs.length !== 0">
+            <div class="language" *ngFor="let lang of activeLangs" (click)="selectedLang(lang.lang)"
+                [ngClass]="{ 'selected' : lang.lang === selectedKey  }">
+                {{lang.value}}
+            </div>
+            <div class="language" (click)="onClose()">Close</div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+@import '../../theme/mixins';
+
+.key-element {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.title {
+    @include title;
+}
+
+.display {
+    @include input-box;
+    cursor: auto;
+
+    .name {
+        @include input-element;
+        min-width: 0;
+        display: flex;
+
+        input {
+            margin-right: 0;
+        }
+    }
+}

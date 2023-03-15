@@ -1,0 +1,273 @@
+/*****************************
+TITLES
+*****************************/
+@mixin title($color:$COLOR-FG) {
+    color: $color;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: roboto-medium;
+}
+
+@mixin sub-title($color:$COLOR-FG) {
+    color: $color;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: roboto-medium;
+}
+
+@mixin normal-text($color:$COLOR-FG) {
+    color: $color;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: roboto-regular;
+}
+
+@mixin normal-sub-text($color:grey) {
+    color: $color;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: roboto-regular;
+}
+
+/*****************************
+FORM TEXTS
+*****************************/
+
+@mixin option-title($color: $COLOR-FG) {
+    color: $color;
+    font-style: normal;
+    font-size: 13px;
+    font-weight: 400;
+    font-family: var(--ion-font-family);
+}
+
+@mixin option-title-selected($color: $COLOR-FG) {
+    color: $color;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: var(--ion-font-family);
+}
+
+@mixin option-line($color: $COLOR-FG) {
+    color: $color;
+    font-size: 12px;
+    font-weight: 400;
+    font-family: var(--ion-font-family);
+}
+
+@mixin option-label($color: $COLOR-FG) {
+    color: $color;
+    font-size: 13px;
+    font-weight: 400;
+    font-family: var(--ion-font-family);
+}
+
+@mixin option-input-label($color: $COLOR-FG) {
+    color: $color;
+    font-size: 13px;
+    font-weight: 400;
+    font-family: var(--ion-font-family);
+}
+
+@mixin option-input-label-selected($color: $COLOR-FG) {
+    color: $color;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: var(--ion-font-family);
+}
+
+@mixin option-sub-label($color: $COLOR-FG) {
+    color: $color;
+    font-size: 12px;
+    font-weight: 400;
+    font-family: var(--ion-font-family);
+}
+
+@mixin option-select-line($color: $COLOR-FG) {
+    color: $color;
+    font-size: 11px;
+    font-weight: 400;
+    font-family: var(--ion-font-family);
+}
+
+@mixin option-button-label($color: $COLOR-FG) {
+    color: $color;
+    font-size: 11px;
+    font-weight: 500;
+    font-family: var(--ion-font-family);
+}
+
+@mixin option-header-label($color: $COLOR-FG) {
+    color: $color;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: var(--ion-font-family);
+}
+
+@mixin option-label-detail($color: $COLOR-FG) {
+    color: $color;
+    font-size: 9px;
+    font-weight: 300;
+    font-family: var(--ion-font-family);
+}
+
+/*****************************
+BUTTONS
+*****************************/
+@mixin button($type:'normal', $size:'normal') {
+    padding: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: $GLOBAL-RADIUS;
+    color: $COLOR-FG;
+    user-select: none;
+    cursor: pointer;
+
+    @if $size=='normal' {
+        height: 40px;
+        min-width: 100px;
+    }
+
+    @if $size=='tiny' {
+        height: 30px;
+        width: 30px;
+    }
+
+    @if $type=='warn' {
+        background-color: $COLOR-WARN;
+        &:hover {
+            background-color: $COLOR-WARN-ALT;
+        }
+        &:active {
+            background-color: $COLOR-WARN-ACTIVE;
+
+        }
+    }
+    @else {
+        background-color: $COLOR-BG-LIGHT;
+        &:hover {
+            background-color: $COLOR-BG-DARK-ALT;
+        }
+        &:active {
+            background-color: $COLOR-BTN;
+
+        }
+    }
+}
+
+/*****************************
+SCROLLBAR
+*****************************/
+@mixin scrollbar($color: $COLOR-BG-LIGHT, $size: 7px, $background-color: $COLOR-BG) {
+    overflow: auto;
+    /* width */
+    &::-webkit-scrollbar {
+        width: $size;
+        height: $size;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: $background-color;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background: $color;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+}
+
+@mixin scrollbar-hidden() {
+    overflow: auto;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        width: 0px;
+        height: 0px;
+    }
+}
+
+/*****************************
+EFFECTS
+*****************************/
+@mixin ripple($color: rgba(#fff, .2)) {
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 5px;
+        height: 5px;
+        background: $color;
+        opacity: 0;
+        border-radius: 100%;
+        transform: scale(1, 1) translate(-50%);
+        transform-origin: 50% 50%;
+        transition: .3s;
+    }
+
+    &:focus::after {
+        animation: ripple .7s ease-out;
+    }
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 1;
+    }
+
+    20% {
+        transform: scale(25, 25);
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(40, 40);
+    }
+}
+
+@mixin text-ellipsis {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+@mixin disabled {
+    pointer-events: none;
+    opacity: 0.7;
+
+    * {
+        pointer-events: none;
+    }
+}
+
+@mixin drawing($left: 0px) {
+    position: absolute;
+    z-index: 10;
+    top: calc(#{$TOP-BAR-HEIGHT} + 10px);
+    left: calc(#{$left} + 10px);
+
+    --TOOLBAR-DIRECTION: column;
+    --TOOLBAR-HEIGHT: 0px;
+    --TOOLBAR-WIDTH: #{$TOP-BAR-HEIGHT};
+    --TOOLBAR-ITEM-HEIGHT: #{$TOP-BAR-HEIGHT};
+    --TOOLBAR-ITEM-WIDTH: #{$TOP-BAR-HEIGHT};
+    --TOOLBAR-ITEM-RADIUS: calc((#{$TOP-BAR-HEIGHT} + 10px) / 2);
+    --TOOLBAR-POPUP-OFFSET: 10px;
+    --TOOLBAR-ITEM-FONT-SIZE: 18px;
+    --TOOLBAR-ITEM-MARGIN: 5px;
+    --TOOLBAR-ITEM-HOVER: var(--INSPECTOR-VERT-MENU-BACKGROUND);
+    --TOOLBAR-ITEM-ACTIVE: var(--INSPECTOR-BG-COLOR-SELECTED-ITEM);
+}

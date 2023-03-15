@@ -1,0 +1,35 @@
+@import '../../../theme/mixins';
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.property {
+    @include property;
+
+    &.size {
+        flex-direction: row;
+        align-items: flex-end;
+
+        .constrain-button {
+            cursor: pointer;
+            margin-left: 10px;
+            height: 25px;
+            align-items: center;
+            display: flex;
+
+            .constrain {
+                color: $EXPLORER-FG-SELECTED;
+            }
+        }
+    }
+
+    &.first {
+        padding-top: 15px;
+    }
+}
+
+display-definition-values.widget {
+    --INPUT-WIDTH: 84px;
+}

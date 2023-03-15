@@ -1,0 +1,47 @@
+@import '../../theme/variables';
+@import '../../theme/mixins';
+
+.display-radio {
+    display: flex;
+    flex-direction: row;
+}
+
+.title {
+    @include title;
+    margin-top: 7px;
+}
+
+.elements {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3px;
+
+    .element:hover {
+        cursor: pointer;
+    }
+    
+    .element {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding-top: 5px;
+        transition: 0.1s ease-in;
+
+        .selected, .noselected {
+            @include check-options;
+        }
+    
+        .icon {
+            font-size: 15px;
+        }
+    
+        .text {
+            user-select: none;
+            padding-left: 7px;
+
+            &.overflow-hidden {
+                @include text-ellipsis;
+            }
+        }
+    }
+}

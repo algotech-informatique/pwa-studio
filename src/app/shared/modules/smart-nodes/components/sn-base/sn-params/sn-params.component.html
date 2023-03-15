@@ -1,0 +1,11 @@
+<div class="params" *ngIf="params?.length > 0">
+    <div class="param" *ngFor="let param of params">
+        <sn-param
+            *ngIf="!param.displayState?.hidden || param.displayState?.error"
+            [param]="param"
+            [params]="params"
+            [snView]="snView"
+            [node]="node">
+        </sn-param>
+    </div>
+</div>

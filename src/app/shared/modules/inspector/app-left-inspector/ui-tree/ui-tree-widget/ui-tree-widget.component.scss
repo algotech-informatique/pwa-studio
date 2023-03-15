@@ -1,0 +1,30 @@
+:host {
+    --PADDING-LEFT-WIDGET: 0px;
+}
+
+ui-tree-line {
+    --PADDING-LEFT: var(--PADDING-LEFT-WIDGET);
+    --ICON-COLOR: var(--INSPECTOR-VERT-MENU-LIGHT-COLOR);
+    --ICON-SIZE: 11px;
+}
+
+.hidden {
+    color: var(--INSPECTOR-VERT-MENU-LIGHT-COLOR);
+    display: block;
+}
+
+.actions {
+    display: flex;
+    margin: 0 8px;
+}
+
+.action {
+    width: 22px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+
+    i {
+        padding: 3px;
+    }
+}

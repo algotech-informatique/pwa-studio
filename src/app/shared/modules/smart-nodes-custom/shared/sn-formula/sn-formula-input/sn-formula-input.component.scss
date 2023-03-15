@@ -1,0 +1,28 @@
+.input-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+
+    .formula-input {
+        background: var(--SN-COLOR-INPUT);
+        padding: 0 35px 0 4px;
+        border-radius: 4px;
+        width: 100%;
+        border: none;
+        outline: none;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden; 
+    }
+    
+    .error {
+        border: 1px solid var(--SN-COLOR-ERROR-SHADE);
+    }
+    
+    .formula-icon {
+        cursor: pointer;
+        position: absolute;
+        right: 5px;
+    }
+}

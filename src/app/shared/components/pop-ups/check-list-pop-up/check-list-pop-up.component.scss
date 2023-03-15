@@ -1,0 +1,62 @@
+@import '../../../../../styles';
+@import '../theme/variables';
+
+:host {
+    --CHECK-LIST-COLOR: #5E738D;
+    --CHECK-LIST-BACK: #394554;
+    --HEADER-COLOR: #596575;
+    --POP-UP-CHECK-MARGIN: 10px;
+}
+
+.modal {
+    --MAX-HEIGHT: 300px;
+    z-index: 1;
+    background-color: transparent;
+
+    .header {
+        padding: 6px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        background: var(--HEADER-COLOR);
+        border-radius: 4px 4px 0px 0px;
+        color: var(--INSPECTOR-HEADER-COLOR);
+
+        .left-side {
+
+            .title {
+                padding: 5px;
+                color: var(--POP-UP-HEADER-COLOR);
+            }
+        }
+
+        .close-icon {
+            margin: 5px 0;
+            color: var(--POP-UP-HEADER-COLOR);
+        }
+        .close-icon:hover  {
+            cursor: pointer;
+            opacity: 0.5;
+        }
+    }
+
+    .color-element {
+        display: flex;
+        flex-direction: column;
+        margin-top: 5px;
+    }
+
+    .list {
+        max-height: 200px;
+        @include custom-scrollbar;
+        overflow: none !important;
+        overflow-y: auto;
+        background-color: var(--CHECK-LIST-COLOR);
+        border-radius: 0px 0px 4px 4px;
+        
+        .element {
+            --OPTIONS-CHECK-MARGIN: var(--POP-UP-CHECK-MARGIN);
+            max-width: 150px;
+        }
+    }
+}

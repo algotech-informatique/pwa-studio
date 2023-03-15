@@ -1,0 +1,29 @@
+<div class="content">
+
+    <div class="title">
+        <div class="new-list"
+            (click)="onCreateNewList()">
+
+            <span>{{ 'SETTINGS.TAGS.ADD_LIST' | translate }}</span>
+        </div>
+    </div>
+
+    <options-search
+        class="search"
+        [(search)]="search"
+        (searchValue)="onSearch($event)"
+    >
+    </options-search>
+
+    <div class="lists">
+
+        <options-object-list
+            class="list"
+            [selectId]="selectedId"
+            [optionObjects]="optionListFiltered"
+            (selectedObject)="onSelectedObject($event)"
+        >
+        </options-object-list>
+
+    </div>
+</div>

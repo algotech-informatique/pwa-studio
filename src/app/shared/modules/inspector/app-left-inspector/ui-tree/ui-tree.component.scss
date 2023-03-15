@@ -1,0 +1,79 @@
+@import '../../../../../../styles.scss';
+@import '../../theme/mixins';
+
+:host {
+    width: 100%;
+    height: 100%;
+    font-size: 11px;
+    font-family: 'roboto-regular';
+}
+
+as-split-area {
+    @include custom-scrollbar(var(--INSPECTOR-VERT-MENU-LIGHT-COLOR), #ffffff00, 5px);
+
+    &.header {
+        flex-grow: 0 !important;
+        flex-shrink: 0 !important;
+        flex-basis: var(--INSPECTOR-VERT-MENU-HEADER) !important;
+    }
+
+    &.content {
+        flex-grow: 0 !important;
+        flex-shrink: 0 !important;
+        flex-basis: calc(85% - var(--INSPECTOR-VERT-MENU-HEADER)) !important;
+    }
+}
+
+.as-split-gutter {
+    flex: 0 0 0 !important;
+}
+
+
+
+.ui-tree-container {
+    width: var(--LEFT-INSPECTOR-WIDTH);
+    color: var(--INSPECTOR-SECTION-CONTENT-COLOR);
+    overflow: hidden;
+    height: 100%;
+    display: block;
+    flex-direction: column;
+
+    .section-header {
+        display: flex;
+        align-items: center;
+        height: var(--INSPECTOR-VERT-MENU-HEADER);
+        flex-shrink: 0;
+
+        .section-title {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+
+            .title {
+                font-family: 'roboto-bold';
+                user-select: none;
+            }
+
+            .arrow-icon {
+                @include arrow-icon();
+            }
+        }
+
+        .add-icon {
+            margin-left: auto;
+            padding-right: 10px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+    }
+
+    .section-content {
+        display: block;
+        height: 100%;
+        flex-direction: column;
+
+        @include custom-scrollbar(var(--INSPECTOR-VERT-MENU-LIGHT-COLOR), #ffffff00, 5px);
+    }
+
+
+}

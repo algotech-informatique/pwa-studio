@@ -1,0 +1,18 @@
+<div class="main" [ngStyle]="widget?.css?.main">
+    <div class="tabs" *ngIf="showTabs" [ngStyle]="widget?.css?.tabs">
+        <ng-container *ngFor="let child of widget?.group?.widgets">
+            <div *ngIf="child.typeKey === 'tab'"
+                class="widget-child"
+                [id]="child?.id"
+                [ngClass]="{'selected': (appSelection.selections.widgets | elementSelected:child) === 'selected'}">
+                <widget
+                    [snApp]="snApp"
+                    [parent]="widget"
+                    [widget]="child.displayState?.rule | resolveRule: child"
+                    [css]="(child.displayState?.rule | resolveRule: child).css"
+                    [custom]="(child.displayState?.rule | resolveRule: child).custom"
+                ></widget>
+            </div>
+        </ng-container>
+    </div>
+</div>

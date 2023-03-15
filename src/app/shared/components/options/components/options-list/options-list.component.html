@@ -1,0 +1,23 @@
+<div class="input">
+    <div class="input-list">
+        <label *ngIf="label"> {{ label }} {{ selected?.value }} </label>
+        <div #select class="select options-popover" [ngStyle]="!relativeLeft && {'position': 'relative'}"
+            [style.width]="label ? 'calc(100% - 95px)' : '100%'">
+            <div class="input" (click)="togglePopover($event)">
+                <i *ngIf="selected?.icon" [class]="selected.icon + ' icon'"></i>
+                <div class="selected">{{ selected?.value }}</div>
+                <i [class]="showPopover ? 'fa-solid fa-chevron-up' : 'fa-solid fa-chevron-down'"></i>
+            </div>
+
+            <options-popover *ngIf="showPopover"
+                [inputList]="inputList"
+                [clickPosition]="clickPosition"
+                [containerWidth]="popoverContainerWidth"
+                [containerLeft]="popoverContainerLeft"
+                (selectedInput)="onInputSelected($event)">
+            </options-popover>
+        </div>
+    </div>
+
+    <div class="border"></div>
+</div>

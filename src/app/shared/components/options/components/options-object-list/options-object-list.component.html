@@ -1,0 +1,19 @@
+<div class="list">
+
+    <div class="item"
+        [ngClass]="{'selected': object.uuid === selectId}"
+        *ngFor="let object of optionObjects"
+    >
+        <options-object-detail 
+            class="detail"
+            (click)="onObjectClick(object)"
+            [showLine]="showLine"            
+            [object]="object"
+        >
+        </options-object-detail>
+
+        <div class="show-line" *ngIf="showLine === true">
+        </div>
+
+    </div>
+</div>

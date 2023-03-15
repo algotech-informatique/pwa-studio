@@ -1,0 +1,13 @@
+@import '../theme/mixins';
+
+:host {
+    font-size: 11px;
+}
+
+.property {
+    @include property();
+}
+
+inspector-section.first {
+    --BORDER-TOP-WIDTH: 0;
+}

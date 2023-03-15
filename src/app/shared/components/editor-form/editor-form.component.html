@@ -1,0 +1,13 @@
+<div class="report">
+    <div class="editor">
+        <div class="title">
+            <span>{{"EDITOR_ENABLED" | translate}}</span>
+            <options-toggle class="toggle"
+                [(checked)]="enabled"
+                (checkedChanged)="onEmitChanged($event)">
+            </options-toggle>
+        </div>
+        
+        <ng-content></ng-content>
+    </div>
+</div>

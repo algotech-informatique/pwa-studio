@@ -1,0 +1,18 @@
+@import "../../../theme/mixins";
+
+.object-input {
+    @include input-box;
+    transition: 0.1s ease-in ;
+
+    .placeholder {
+        color: grey;
+    }
+
+    .text {
+        width: 120px;
+    }
+
+    &:hover, &.selected {
+        background-color: var(--INSPECTOR-INPUT-TINT);
+    }
+}

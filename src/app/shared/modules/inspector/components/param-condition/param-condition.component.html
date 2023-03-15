@@ -1,0 +1,70 @@
+<div class="conditions-cards">
+    <div class="section-content">
+        <inspector-section
+            class="section"
+            *ngFor="let condition of conditions?.list; index as i"
+            [title]="condition?.value !== null ? condition?.value : 'Nouvelle condition'"
+            [subTitle]="types[i]"
+            [subTitleIcon]="icons[i]"
+            [defaultOpen]="addedIndex === i"
+            [display]="'card'">
+
+            <div class="property inside-card">
+                <select-element
+                    [title]="'INSPECTOR.PARAM.CONDITION.PROPERTY' | translate"
+                    [list]="listProperties"
+                    [selectedKey]="condition?.field"
+                    [showSearch]="true"
+                    (selectNewItem)="onSelectProperty($event, i)">
+                </select-element>
+            </div>
+
+            <div *ngIf="condition.field" class="property inside-card">
+                <data-inputs class="data-input"
+                    inputKey="defaultValue"
+                    [title]="'INSPECTOR.PARAM.CONDITION.VALUE' | translate"
+                    [typeInput]="types[i]"
+                    [value]="condition?.value"
+                    [iconVisible]="true"
+                    (changed)="onChangeValue($event, i)">
+                </data-inputs>
+            </div>
+
+            <div class="actions only-delete">
+                <div class="delete-event">
+                    <i class="fa-solid fa-trash button" (click)="eraseCondition(i)"></i>
+                </div>
+            </div>
+        </inspector-section>
+
+        <div *ngIf="!conditions || !conditions.list || conditions.list.length === 0" class="no-element section-content">
+            <p>{{ 'INSPECTOR.PARAM.CONDITION.EMPTY' | translate }}</p>
+        </div>
+        <div class="button-container">
+            <div class="add-button section-content" (click)="addCondition()">
+                <i class="fa-solid fa-plus"></i>
+                <p>{{ 'INSPECTOR.PARAM.CONDITION.ADD' | translate }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="conditions && conditions.list?.length > 0" class="property">
+    <sn-display-radio
+        mode="radio"
+        [title]="'INSPECTOR.PARAM.CONDITION.MODE' | translate"
+        [radioList]="modeList"
+        [selected]="[conditions?.mode]"
+        (changed)="onUpdateMode($event)">
+    </sn-display-radio>
+</div>
+
+<div *ngIf="conditions && conditions.list?.length > 0" class="property last">
+    <sn-display-radio
+        mode="radio"
+        [title]="'INSPECTOR.PARAM.CONDITION.OPERATOR' | translate"
+        [radioList]="operatorList"
+        [selected]="[conditions?.operator]"
+        (changed)="onUpdateOperator($event)">
+    </sn-display-radio>
+</div>

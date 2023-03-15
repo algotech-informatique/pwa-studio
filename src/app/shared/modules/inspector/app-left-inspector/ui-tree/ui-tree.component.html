@@ -1,0 +1,36 @@
+<div class="ui-tree-container">
+    <as-split direction="vertical" unit="percent">
+        <div class="section-header">
+            <div class="section-title" (click)="togglePagesSection()">
+                <i class="arrow-icon fa-solid fa-caret-down" [ngClass]="{'closed': !pagesSectionIsOpen}"></i>
+                <div class="title">{{'APP-PAGES' | translate}}</div>
+            </div>
+            <i class="add-icon fa-solid fa-plus" (click)="addPage()"></i>
+        </div>
+        <as-split-area size="67">
+            <div class="section-content" *ngIf="pagesSectionIsOpen">
+                <ui-tree-page *ngFor="let item of tree; trackBy: trackById" [snApp]="snApp" [item]="item"
+                    [settings]="settings">
+                </ui-tree-page>
+            </div>
+        </as-split-area>
+        <as-split-area size="33">
+            <as-split direction="vertical" unit="pixel" class="hide-gutter" disabled>
+                <div class="section-header " (click)="toggleSharedSection()">
+                    <div class="section-title">
+                        <i class="arrow-icon fa-solid fa-caret-down" [ngClass]="{'closed': !sharedSectionIsOpen}"></i>
+                        <div class="title">{{'APP-SHARED' | translate}}</div>
+                    </div>
+                </div>
+                <as-split-area class="content" *ngIf="sharedSectionIsOpen">
+                    <div class="section-content shared-tree" id="shared-widgets">
+                        <ui-tree-shared-widget *ngFor="let widget of sharedTree; trackBy: trackBysharedId"
+                            class="master" [ngClass]="{'draggable': !widget.editMode}" [id]="widget.element.sharedId"
+                            [snApp]="snApp" [item]="widget" [settings]="settings">
+                        </ui-tree-shared-widget>
+                    </div>
+                </as-split-area>
+            </as-split>
+        </as-split-area>
+    </as-split>
+</div>

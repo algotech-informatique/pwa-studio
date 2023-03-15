@@ -1,0 +1,85 @@
+<div class="contents">
+
+    <div class="content" *ngIf="variables?.length > 0">
+        <label> {{ 'SMARTLINK-LINK.SOURCES' | translate }} </label>
+        <options-sources
+            class="sources"
+            [variables]="variables"
+            [inputs]="linkInfo.sources"
+            (update)="onUpdateSources($event)"
+        >
+        </options-sources>
+    </div>
+
+    <div class="content">
+        <label> {{ 'SMARTLINK-LINK.BACKUP' | translate }} </label>
+
+        <!-- <options-radio
+            class="item"
+            [listRadio]="backupList"
+            name="backup"
+            [value]="linkInfo.backupType"
+            (radioChanged)="onUpdateASAPEND($event)">
+        </options-radio> -->
+        <sn-display-radio
+            class="item"
+            mode="radio"
+            [radioList]="radioList"
+            [selected]="[linkInfo.backupType]"
+            (changed)="onUpdateASAPEND($event)"
+        >
+        </sn-display-radio> 
+    </div>
+
+    <div class="content">
+        <label> {{ 'SMARTLINK-LINK.OPTIONS' | translate }} </label>
+
+        <display-check-element
+            class="item"
+            [value]="linkInfo.unique"
+            [title]="'SMARTLINK-LINK.UNIQUE-VALUE' | translate"
+            mode="check"
+            (changed)="onUpdateUnique($event)"
+        >
+        </display-check-element>
+    </div>
+
+    <!-- <div class="content">
+        <label> {{ 'SMARTLINK-LINK.AUTHENTICATION' | translate }} </label>
+
+        <options-radio
+            [listRadio]="authenticationList"
+            name="authentication"
+            (radioChanged)="onUpdateAuthentication($event)">
+        </options-radio>
+
+        <div class="content" *ngIf="linkInfo.authentication === 'automatic'">
+            <div class="login">
+                <options-input
+                    type='text'
+                    [label]="'SMARTLINK-LINK.AUTHENTICATION-USER' | translate"
+                    [inputText]="linkInfo.automaticLogin.user"
+                    (updateText)="onUpdateUser($event)"
+                ></options-input>
+                <options-input
+                    type='password'
+                    [label]="'SMARTLINK-LINK.AUTHENTICATION-PASSWORD' | translate"
+                    [inputText]="linkInfo.automaticLogin.password"
+                    (updateText)="onUpdatePassword($event)"
+                ></options-input>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="content" *ngIf="linkInfo.authentication === 'automatic'" >
+        <label> {{ 'SMARTLINK-LINK.DURATION' | translate }} </label>
+        <options-list
+            [label]="'SMARTLINK-LINK.DURATION-VALUE' | translate"
+            [inputList]="durationList"
+            [selected]="linkInfo.duration"
+            (selectValue)="onUpdateDuration($event)">
+        </options-list>
+    </div> -->
+
+</div>

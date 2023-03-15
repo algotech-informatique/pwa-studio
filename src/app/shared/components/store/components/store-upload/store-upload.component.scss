@@ -1,0 +1,38 @@
+@import "../../../../../../styles.scss";
+
+:host {
+    --LABEL-COLOR: #2D9CDB;
+    --TITLE-COLOR-SELECTED: #ffffff;
+    --TITLE-COLOR-NO-SELECTED: #A0A7B4;
+    --BUTTON-BACK-COLOR: #27AE60;
+    --STORE-WIDTH: 450px;
+    --TITLE-MARGIN-BOTTOM: 20px;
+    // --LIST-MARGIN: 8px 10px 10px 25px;
+    --BORDER-RADIUS: 0px 0px 5px 5px;
+    --LIST-MARGIN: 0px 10px 10px 10px;
+    --LIST-BACK-COLOR: #5E738D;          
+    --ITEM-HEIGHT: 40px;  
+}
+
+.content {
+    width: var(--STORE-WIDTH);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .search {
+        border-radius: var(--BORDER-RADIUS);
+        margin: 0px 10px 0px 10px;
+    }
+
+    .lists {
+        height: 85%;
+        margin: var(--LIST-MARGIN);
+
+        .list {            
+            --OPTIONS-ITEM-HEIGHT: var(--ITEM-HEIGHT);
+            --OPTIONS-LIST-BORDER-RADIUS: var(--BORDER-RADIUS);
+            --OPTIONS-LIST-BACK-COLOR: var(--LIST-BACK-COLOR);                            
+        }
+    }   
+}

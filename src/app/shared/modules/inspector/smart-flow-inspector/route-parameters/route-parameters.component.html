@@ -1,0 +1,114 @@
+<div *ngIf="api">
+    <inspector-section [title]="'URL'">
+        <div class="property">
+            <display-name-element
+                [title]="'INSPECTOR.SMART_FLOW.API.URL.NAME' | translate"
+                [name]="api.route"
+                (changed)="onChangeUrlName($event)">
+            </display-name-element>
+        </div>
+    
+        <div class="property">
+            <select-element
+                [ngClass]="{'app-errors': errors | showAppErrors: 'api.type' }"
+                [title]="'INSPECTOR.SMART_FLOW.API.URL.VERB' | translate"
+                [list]="verbs"
+                [selectedKey]="api.type"
+                (selectNewItem)="onChangeVerb($event)">
+            </select-element>
+        </div>
+
+        <route-variables
+            use='url-segment'
+            [title]="'INSPECTOR.SMART_FLOW.API.PATH_PARAMETERS' | translate"            
+            [buttonAdd]="'INSPECTOR.SMART_FLOW.API.PATH_PARAMETERS.ADD' | translate"
+            [emptyString]="'INSPECTOR.SMART_FLOW.API.PATH_PARAMETERS.EMPTY' | translate"
+            [variables]="urlSegments"
+            [errors]="errors"
+            (variablesChanged)="onVariablesChanged('url-segment', urlSegments)">
+        </route-variables>
+    </inspector-section>
+
+    <inspector-section [title]="'INSPECTOR.SMART_FLOW.API.QUERY_PARAMETERS' | translate">
+        <route-variables class="last"
+            use='query-parameter'
+            [buttonAdd]="'INSPECTOR.SMART_FLOW.API.QUERY_PARAMETERS.ADD' | translate"
+            [emptyString]="'INSPECTOR.SMART_FLOW.API.QUERY_PARAMETERS.EMPTY' | translate"
+            [variables]="queryParameters"
+            [errors]="errors"
+            (variablesChanged)="onVariablesChanged('query-parameter', queryParameters)">
+        </route-variables>
+    </inspector-section>
+
+    <inspector-section [title]="'INSPECTOR.SMART_FLOW.API.BODY' | translate" >
+        <route-body
+            [variables]="variables"
+            [errors]="errors"
+            [sources]="sources"
+            (variablesChanged)="onBodyVariablesChanged($event)">
+        </route-body>
+    </inspector-section>
+
+    <inspector-section [title]="'INSPECTOR.SMART_FLOW.API.HEADERS' | translate">
+        <route-variables class="last"
+            use='header'
+            [buttonAdd]="'INSPECTOR.SMART_FLOW.API.HEADERS.ADD' | translate"
+            [emptyString]="'INSPECTOR.SMART_FLOW.API.HEADERS.EMPTY' | translate"
+            [variables]="headers"
+            [errors]="errors"
+            (variablesChanged)="onVariablesChanged('header', headers)">
+        </route-variables>
+    </inspector-section>
+
+    <inspector-section *ngIf="api?.auth" [title]="'INSPECTOR.SMART_FLOW.API.SECURITY' | translate">    
+        <div class="property" [ngClass]="{'section': api.auth.jwt}">
+            <display-check-element
+                mode="radio"
+                [title]="'INSPECTOR.SMART_FLOW.API.SECURITY.USE_JWT' | translate"
+                [value]="api.auth.jwt"
+                (changed)="onJwtChanged($event)">
+            </display-check-element>
+
+            <display-check-element *ngIf="api.auth.jwt"
+                class="inside-section auth"
+                [title]="'INSPECTOR.SMART_FLOW.API.SECURITY.USE_GROUPS' | translate"
+                [disabled]="!api.auth.jwt"
+                [value]="api.auth.groups"
+                (changed)="onGroupsChanged($event)">
+            </display-check-element>
+            
+            <multi-select-element *ngIf="api.auth.jwt && api.auth.groups"
+                class="inside-section auth"
+                [title]="'INSPECTOR.SMART_FLOW.API.SECURITY.GROUPS' | translate"
+                [list]="securityGroupList"
+                [selectedKeys]="api.auth.groups"
+                (selectNewItems)="onChangeSecurityGroups($event)">
+            </multi-select-element>
+        </div>        
+
+        <div class="property last" [ngClass]="{'section': api.auth.webhook}">
+            <display-check-element
+                mode="radio"
+                [title]="'INSPECTOR.SMART_FLOW.API.SECURITY.USE_WEBHOOK' | translate"
+                [value]="api.auth.webhook"
+                (changed)="onWebhookChanged($event)">
+            </display-check-element>
+            
+            <div *ngIf="api.auth.webhook" class="inside-section auth">
+                <display-name-element
+                    [title]="'INSPECTOR.SMART_FLOW.API.SECURITY.WEBHOOK_HEADER' | translate"
+                    [name]="api.auth.webhook.key"
+                    (changed)="onWebhookHeaderChanged($event)">
+                </display-name-element>
+            </div>
+
+            <div *ngIf="api.auth.webhook" class="inside-section auth">
+                <display-name-element
+                    [title]="'INSPECTOR.SMART_FLOW.API.SECURITY.WEBHOOK_VALUE' | translate"
+                    [name]="api.auth.webhook.value"
+                    (changed)="onWebhookValueChanged($event)">
+                </display-name-element>
+            </div>
+        </div>
+    </inspector-section>
+</div>

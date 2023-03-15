@@ -1,0 +1,29 @@
+@import '../../../../theme/mixins';
+
+.input-text {
+    background-color: var(--SN-NODE-PARAM-COLOR-STRING-FADE);
+    border-radius: var(--SN-ELEMENT-BORDER-RADIUS);
+    height: var(--SN-NODE-PARAM-INPUT-LINE-HEIGHT);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .input {
+        background-color: transparent;
+        border: 0;
+        width: 100%;
+        height: var(--SN-NODE-PARAM-INPUT-LINE-HEIGHT);
+        margin: 0 5px;
+        font-size: var(--SN-NODE-PARAM-SIZE);
+        @include text-ellipsis;
+    }
+
+    .input:focus {
+        outline: none;
+    }
+
+    .fa-solid {
+        margin-right: 5px;
+        font-size: var(--SN-NODE-PARAM-SIZE);
+    }
+}

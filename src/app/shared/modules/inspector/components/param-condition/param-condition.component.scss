@@ -1,0 +1,25 @@
+@import "../../theme/mixins";
+
+.conditions-cards {
+    @include card-element;
+    @include app-errors;
+    padding-bottom: 5px;
+
+    .section {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    p {
+        margin: 5px 0 5px 0;
+        text-align: left !important;
+    }
+
+    .no-element p {
+        text-align: center !important;
+    }
+}
+
+.property {
+    @include property();
+}

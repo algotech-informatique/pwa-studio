@@ -1,0 +1,11 @@
+<ui-tree-line
+    [item]="item"
+    [name]="name"
+    [icon]="'fa-solid fa-file'"
+    [selected]="(appSelection.selections.pages | elementSelected:item.element) === 'selected'"
+    [snApp]="snApp"
+    [settings]="settings"
+    (selectLine)="onPageSelected()"
+    (toggleLine)="onToggleLine($event)"
+    (nameChanged)="onNameChanged($event)">
+</ui-tree-line>

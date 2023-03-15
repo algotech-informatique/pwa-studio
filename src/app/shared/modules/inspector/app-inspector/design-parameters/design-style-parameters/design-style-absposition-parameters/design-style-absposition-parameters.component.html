@@ -1,0 +1,67 @@
+<div class="absposition-parameters">
+
+    <div class="properties">
+        <span class="select-title">{{ 'SN-TOOLBOX-POSITION.POSITION' | translate }}</span>
+        
+        <div class="property">
+            
+            <div class="select-inline-type line">
+        
+                <div class="item" [ngClass]="{'selected': topSelected}" (click)="selectType('top')"
+                    [title]="'SN-TOOLBOX-POSITION.TOP' | translate">
+                    <i class="fa-solid fa-arrows-up-to-line"></i>
+                </div>
+
+                <display-definition-values class="item" [ngClass]="{'disabled': !topSelected}" 
+                    [width]="topValue"
+                    widthLabel=""
+                    minWidth="-200"
+                    (changedWidth)="onSizeChanged($event, 'top')">
+                </display-definition-values>
+            </div>
+
+            <div class="select-inline-type line">
+                <div class="item" [ngClass]="{'selected': bottomSelected}" (click)="selectType('bottom')"
+                    [title]="'SN-TOOLBOX-POSITION.BOTTOM' | translate">
+                    <i class="fa-solid fa-long-arrow-alt-down"></i>
+                </div>              
+
+                <display-definition-values class="item" [ngClass]="{'disabled': !bottomSelected}" 
+                    [width]="bottomValue"
+                    widthLabel=""
+                    minWidth="-200"
+                    (changedWidth)="onSizeChanged($event, 'bottom')">
+                </display-definition-values>
+            </div>
+
+            <div class="select-inline-type line">
+                <div class="item" [ngClass]="{'selected': leftSelected}" (click)="selectType('left')"
+                    [title]="'SN-TOOLBOX-POSITION.LEFT' | translate">
+                    <i class="fa-solid fa-left-long"></i>
+                </div>
+
+                <display-definition-values class="item" [ngClass]="{'disabled': !leftSelected}" 
+                    [width]="leftValue"
+                    widthLabel=""
+                    minWidth="-200"
+                    (changedWidth)="onSizeChanged($event, 'left')">
+                </display-definition-values>
+            </div>
+
+            <div class="select-inline-type line">
+                <div class="item" [ngClass]="{'selected': rightSelected}" (click)="selectType('right')"
+                    [title]="'SN-TOOLBOX-POSITION.RIGHT' | translate">
+                    <i class="fa-solid fa-right-long"></i>
+                </div>
+
+                <display-definition-values class="item" [ngClass]="{'disabled': !rightSelected}"
+                    [width]="rightValue"
+                    widthLabel=""
+                    minWidth="-200"
+                    (changedWidth)="onSizeChanged($event, 'right')">
+                </display-definition-values>
+            </div>
+        </div>
+    </div>
+</div>
+            

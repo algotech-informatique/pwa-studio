@@ -1,0 +1,30 @@
+ @import '../../../inspector/theme/mixins';
+
+.display:hover {
+    cursor: pointer;
+}
+
+.display {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 4px;
+    transition: 0.1s ease-in;
+
+    .square {
+        @include check-options ;
+    }
+
+    .icon {
+        font-size: 15px;
+        margin-left: 10px;
+    }
+
+    .text {
+        user-select: none;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+}

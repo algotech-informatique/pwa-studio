@@ -1,0 +1,6 @@
+<sn-section class="json-edit" [section]="section" *ngIf="section">
+    <div class="json-text error" [ngClass]="{'error': error}" (click)="openEditor($event)">
+        <textarea #txtAreas [value]="jsonText">
+        </textarea>        
+    </div>
+</sn-section>

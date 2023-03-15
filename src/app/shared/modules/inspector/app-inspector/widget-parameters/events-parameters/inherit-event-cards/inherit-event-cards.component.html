@@ -1,0 +1,27 @@
+<div *ngIf="inheritEvent?.pipe?.length > 0" class="inherit-events-cards">
+    <div class="section-content">
+        <div *ngFor="let action of inheritEvent?.pipe; index as i; last as isLast">
+            <div class="card" (click)="clickAction(i)">
+                <i [class]="allowedEvents[i] ? 'check-icon checked fa-solid fa-square-check' : 'check-icon fa-solid fa-square'"></i>
+                <div class="titles">
+                    <div *ngIf="action.type | eventType" class="subtitle" [ngClass]="{'with-icon': action.type | eventTypeIcon}">
+                        <i *ngIf="action.type | eventTypeIcon" [class]="(action.type | eventTypeIcon) + ' icon'"></i>
+                        <p>{{ action.type | eventType }}</p>
+                    </div>
+                    <div class="title" [ngClass]="{'with-icon': titleIcon}">
+                        <p>
+                            {{ (action.action | eventAction:action.type:app:page)?.length > 0 ?
+                            (action.action | eventAction:action.type:app:page) :
+                            ('INSPECTOR.WIDGET.EVENT.NEW' | translate) }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="!isLast || event?.pipe?.length > 0" class="event-arrow">
+                <i *ngIf="inheritEvent.custom?.mode === 'sequence' && 
+                    (!isLast || (isLast && event?.pipe?.length > 0 && event?.custom?.mode === 'sequence'))" 
+                    class="event-arrow fa-solid fa-arrow-alt-circle-down"></i>
+            </div>
+        </div>
+    </div>
+</div>

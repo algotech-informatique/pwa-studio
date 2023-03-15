@@ -1,0 +1,110 @@
+@import "../../../../../../styles.scss";
+
+:host {
+    --LABEL-COLOR: #2D9CDB;
+    --TITLE-COLOR-SELECTED: #ffffff;
+    --TITLE-COLOR-NO-SELECTED: #A0A7B4;
+    --BUTTON-BACK-COLOR: #27AE60;
+    --BUTTON-ADD-COLOR: #27AE60;
+    --USER-WIDTH: 400px;
+    --TITLE-MARGIN-BOTTOM: 20px;
+    --USER-MARGIN: 0px 10px 10px 10px;
+    --BORDER-RADIUS: 0px 0px 5px 5px;
+    --USER-BACK-COLOR: #5E738D;          
+    --ITEM-HEIGHT: 30px;
+    --ITEM-WIDTH: 300px;
+}
+
+.content {
+    width: var(--USER-WIDTH);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+ 
+    .title {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: 50px;
+        padding: 10px;
+        margin-bottom: var(--TITLE-MARGIN-BOTTOM);
+
+        .options {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+
+            .option {
+                @include option-title(var(--TITLE-COLOR-NO-SELECTED));
+                padding-top: 10px;
+                margin-right: 10px;
+            }
+    
+            .option:hover {
+                cursor: pointer;
+                opacity: 0.7;
+            }
+    
+            .option-selected {
+                // padding-top: 10px;
+                @include option-title-selected(var(--TITLE-COLOR-SELECTED));
+                border-bottom: 1px solid var(--TITLE-COLOR-SELECTED);
+            }
+        }
+
+        .new-user {
+            @include button();
+            background-color: var(--BUTTON-BACK-COLOR) !important;
+
+            span {
+                padding: 0px 10px 0px 10px;
+                @include option-title-selected(var(--TITLE-COLOR));
+            }
+        }
+
+        .new-user:hover {
+            cursor: pointer;
+            opacity: 0.5;
+        }   
+    }
+
+    .search {
+        border-radius: var(--BORDER-RADIUS);
+        margin: 0px 10px 0px 10px;
+    }
+    
+    .users {
+        height: calc(100% - 120px);
+        margin: var(--USER-MARGIN);
+
+        .user {            
+            --OPTIONS-ITEM-HEIGHT: var(--ITEM-HEIGHT);
+            --OPTIONS-LIST-BORDER-RADIUS: var(--BORDER-RADIUS);
+            --OPTIONS-LIST-BACK-COLOR: var(--USER-BACK-COLOR);    
+            --OPTIONS-TITLE-MAX-WIDTH: var(--ITEM-WIDTH)                        
+        }
+    }    
+
+    .footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100%;
+        margin: 10px 0 15px 0;
+
+        .extract {
+            @include button();
+            background-color: var(--BUTTON-BACK-COLOR) !important;
+
+            span {
+                padding: 0px 10px 0px 10px;
+                @include option-title-selected(var(--TITLE-COLOR));
+            }
+        }
+
+        .extract:hover {
+            cursor: pointer;
+            opacity: 0.5;
+        }
+    }
+}

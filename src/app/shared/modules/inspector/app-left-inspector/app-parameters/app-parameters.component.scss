@@ -1,0 +1,46 @@
+@import '../../../../../../styles.scss';
+@import "../../theme/mixins";
+
+:host {
+    height: 100%;
+    width: 100%;
+
+    --PIXELS-TEXT-COLOR: #CCCCCC;
+    
+    color: var(--INSPECTOR-SECTION-CONTENT-COLOR);
+}
+
+.inspector {
+    height: 100%;
+    width: var(--LEFT-INSPECTOR-WIDTH);
+
+    .header {
+        height: var(--INSPECTOR-HEADER-HEIGHT);
+        background: var(--INSPECTOR-HEADER-BG);
+        
+        i {
+            margin: 0px 10px;
+        }
+
+        display: flex;
+        align-items: center;
+    }
+
+    .content {
+        overflow: auto;
+        @include custom-scrollbar;
+        height: calc(100% - var(--INSPECTOR-HEADER-HEIGHT));
+
+        .property {
+            @include property();
+
+            &.first {
+                margin-top: 15px;
+            }
+        }
+    
+        .element {
+            padding: 10px 7px 20px 7px;
+        }
+    }
+}

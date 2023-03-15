@@ -1,0 +1,20 @@
+<sn-select-modal [(top)]="top" class="modal">
+    
+    <div class="header">
+        <div class="left-side">
+            <div class="title">{{ title }}</div>
+        </div>
+        <i class="fa-solid fa-xmark close-icon" (click)="close()"></i>
+    </div>
+
+    <div class="list">
+        <options-checkbox *ngFor="let item of listItems"
+            class="element"
+            [label]="item.value"
+            [checkElement]="item.selected"
+            readOnly="false"
+            (checkedChange)="onCheckedChanged(item.key)"
+        >
+        </options-checkbox>
+    </div>
+</sn-select-modal>

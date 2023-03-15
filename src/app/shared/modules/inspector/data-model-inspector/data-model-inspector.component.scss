@@ -1,0 +1,21 @@
+@import '../theme/variables';
+@import '../theme/mixins';
+@import '../../smart-nodes/theme/mixins';
+
+:host {
+    font-size: 11px;
+}
+
+.content {
+    @include custom-scrollbar;
+    max-height: var(--INSPECTOR-CONTAINER-MAX-HEIGHT);
+    background: var(--INSPECTOR-SECTION-CONTENT-BACKGROUND);
+}
+
+.property {
+    @include property();
+}
+
+inspector-section.first {
+    --BORDER-TOP-WIDTH: 0;
+}

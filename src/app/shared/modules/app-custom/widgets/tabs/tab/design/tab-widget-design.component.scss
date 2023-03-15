@@ -1,0 +1,9 @@
+@import '../../../../../inspector/theme/mixins';
+
+.property {
+    @include property();
+
+    &.first {
+        padding-top: 15px;   
+    }
+}

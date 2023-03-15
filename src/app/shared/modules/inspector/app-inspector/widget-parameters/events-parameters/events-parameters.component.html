@@ -1,0 +1,25 @@
+<div *ngFor="let ev of listEvents; index as i">
+    <app-inspector-section *ngIf="ev"
+        [snApp]="app"
+        [title]="('INSPECTOR.WIDGET.EVENT.' + (ev.eventKey | uppercase)) | translate"
+        [button]="listMode[i]"
+        (clickButton)="onModeChanged($event, i)"
+        [section]="'events.' + ev.eventKey">
+        <inherit-event-cards
+            [event]="ev"
+            [inheritEvent]="listInheritEvents[i]"
+            [page]="page"
+            [app]="app"
+            [widget]="widget"
+            (eventChanged)="onEventChanged($event, ev)">
+        </inherit-event-cards>
+        <events-cards
+            [ngClass]="{'with-inherit-cards': listInheritEvents[i]?.pipe?.length > 0}"
+            [event]="ev"
+            [page]="page"
+            [widget]="widget"
+            [app]="app"
+            (eventChanged)="onEventChanged($event, ev)">
+        </events-cards>
+    </app-inspector-section>
+</div>

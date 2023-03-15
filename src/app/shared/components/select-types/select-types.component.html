@@ -1,0 +1,24 @@
+<div class="type">
+    <p *ngIf="visibleTitle">{{ title ? title : 'INSPECTOR.VARIABLES.VARIABLE_TYPE' | translate }}</p>
+    <div class="display-name" (click)="onVariableClicked()" [ngClass]="{'disabled': disabled}">
+        <i [className]="(variableType | keyToDisplay: variableTypes : 'icon') + ' icon'"></i>
+        <p class="type-text" [title]="variableType | keyToDisplay: variableTypes">
+            {{variableType | keyToDisplay: variableTypes }}
+        </p>
+    </div>
+
+    <div *ngIf="showVariableDropDown" class="type-dropdown">
+        <div class="dropdown-container">
+            <div class="type-input">
+                <input [placeholder]="'SETTINGS.PARAM-CONDITION.FILTER' | translate" [(ngModel)]="typeSearch"
+                    (input)="onSearchChange($event)" (focusout)="searchLoseFocus()" type="text" #search>
+            </div>
+            <div class="type-element" *ngFor="let type of filteredTypesAfterSearch" (mousedown)="onTypeClicked($event, type.key)">
+                <i [className]="(type.key | keyToDisplay: types : 'icon') + ' icon'"></i>
+                <div class="title-text" [title]="type.value">
+                    {{type.value}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

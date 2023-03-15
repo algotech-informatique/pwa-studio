@@ -1,0 +1,118 @@
+<app-inspector-section
+    [ngClass]="{'first': widget?.rules?.length === 0}"
+    [snApp]="snApp"
+    [title]="'INSPECTOR.WIDGET.TABLE.COLUMN-DISPLAY' | translate"
+    [section]="'display.column'">
+
+    <div class="property"
+        [ngClass]="{'section': (widget?.custom?.display |  includes:'text') && propertyKeyType !== 'boolean' &&
+            !(typesHideFormatOptions | includes:propertyKeyType),
+            'last': propertyKeyType === 'boolean' && !showCustomFormat}">
+        <display-check-element *ngIf="propertyKeyType !== 'boolean'"
+            [title]="'INSPECTOR.WIDGET.TABLE.COLUMN-SHOW-VALUE' | translate"
+            [value]="widget?.custom?.display | includes:'text'"
+            (changed)="onDisplayTextChanged($event)">
+        </display-check-element>
+    
+        <sn-display-radio
+            *ngIf="(widget?.custom?.display | includes:'text') && !(typesHideFormatOptions | includes:propertyKeyType) && !isSoType"
+            class="inside-section"
+            [title]="'INSPECTOR.WIDGET.TABLE.COLUMN-FORMAT' | translate"
+            [mode]="'radio'"
+            [radioList]="formats"
+            [selected]="isSoType ? widget.custom.format : [widget.custom.format?.key]"
+            (changed)="onChangedFormatKeys($event)">
+        </sn-display-radio>
+
+        <multi-select-element
+            *ngIf="(widget?.custom?.display | includes:'text') && isSoType"
+            class="inside-section"
+            [title]="'INSPECTOR.WIDGET.TABLE.COLUMNS' | translate"
+            [list]="formats"
+            [selectedKeys]="widget.custom.format"
+            (selectNewItems)="onChangeColumns($event)">
+        </multi-select-element>
+
+        <div class="inside-section" *ngIf="(widget?.custom?.display | includes:'text') && showCustomFormat">
+            <display-name-element *ngIf="isDateType"
+                [title]="'INSPECTOR.WIDGET.TABLE.COLUMN-CUSTOM-FORMAT' | translate"
+                [name]="widget.custom.format?.custom"
+                (changed)="onCustomChanged($event)">
+            </display-name-element>
+            
+            <display-name-element *ngIf="propertyKeyType === 'number'"
+                [title]="'INSPECTOR.WIDGET.TABLE.COLUMN-CURRENCY' | translate"
+                [name]="widget.custom.format?.custom"
+                (changed)="onCustomChanged($event)">
+            </display-name-element>
+        </div>
+    </div>
+
+    <div *ngIf="(widget?.custom?.display | includes:'text') && showCustomFormat && propertyKeyType === 'boolean'">
+        <div class="property">
+            <select-icon
+                [title]="'INSPECTOR.WIDGET.TABLE.COLUMN-ICON-TRUE' | translate"
+                [icon]="widget.custom.format?.custom?.true"
+                (changed)="onCustomChanged($event, 'true')">
+            </select-icon>
+        </div>
+
+        <div class="property last">
+            <select-icon
+                [title]="'INSPECTOR.WIDGET.TABLE.COLUMN-ICON-FALSE' | translate"
+                [icon]="widget.custom.format?.custom?.false"
+                (changed)="onCustomChanged($event, 'false')">
+            </select-icon>
+        </div>
+
+    </div>
+
+    <div class="property"
+        *ngIf="(widget?.custom?.display | includes:'text') && (propertyKeyType === 'string')">
+        <display-check-element
+            [title]="'INSPECTOR.WIDGET.TABLE.COLUMN-LINE-RETURN' | translate"
+            [value]="widget?.custom?.lineBreak"
+            (changed)="onLineBreakChanged($event)">
+        </display-check-element>
+    </div>
+
+    <div *ngIf="propertyKeyType !== 'boolean'" class="property last">
+        <select-icon
+            [icon]="widget?.custom?.icon"
+            (changed)="onIconChanged($event)">
+        </select-icon>
+    </div>
+
+</app-inspector-section>
+
+<app-inspector-section *ngIf="!widget.displayState?.relativeTo"
+    [snApp]="snApp"
+    [title]="'INSPECTOR.WIDGET.FILTERS' | translate"
+    [section]="'filters.column'">
+    <div class="property">
+        <display-check-element [title]="'INSPECTOR.WIDGET.TABLE.OPTION.SORT' | translate"
+            [value]="widget.custom?.sort"
+            (changed)="onSortChanged($event)">
+        </display-check-element>
+    </div>
+
+    <div class="property last">
+        <display-check-element [title]="'INSPECTOR.WIDGET.TABLE.OPTION.FILTER' | translate"
+            [value]="widget.custom?.filter"
+            (changed)="onFilterChanged($event)">
+        </display-check-element>
+    </div>
+</app-inspector-section>
+
+<app-inspector-section *ngIf="!widget.displayState?.relativeTo"
+    [snApp]="snApp"
+    [title]="'INSPECTOR.WIDGET.TABLE.INTERACTIONS' | translate"
+    [section]="'interactions.column'">
+    <div class="property last">
+        <display-check-element [title]="'INSPECTOR.WIDGET.TABLE.OPTION.RESIZECOLUMN' | translate"
+            [disabled]="!parentTable?.custom?.editable"
+            [value]="parentTable?.custom?.editable && widget.custom?.resize"
+            (changed)="onResizeChanged($event)">
+        </display-check-element>
+    </div>
+</app-inspector-section>

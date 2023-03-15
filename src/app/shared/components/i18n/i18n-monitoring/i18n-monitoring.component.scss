@@ -1,0 +1,53 @@
+@import "../../../../../styles.scss";
+
+:host {
+    --LABEL-COLOR: #2D9CDB;
+    --TITLE-COLOR-SELECTED: #ffffff;
+    --BUTTON-DOWNLOAD-COLOR: #27AE60;
+    --DATA-WIDTH: 400px;
+    --TITLE-MARGIN-BOTTOM: 20px;
+    --CHECK-MARGIN: 15px 10px;
+
+    as-split-area {
+        @include custom-scrollbar(var(--INSPECTOR-VERT-MENU-LIGHT-COLOR), #ffffff00, 5px);
+    }
+
+}
+
+.content {
+    width: var(--DATA-WIDTH);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    @include scrollbar-hidden();
+
+    .title {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: 5%;
+        padding: 15px;
+        margin-bottom: 20px;
+
+        .gestion-title {
+            @include option-title-selected(var(--TITLE-COLOR-SELECTED));
+            padding-top: 10px;
+        }
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0px 15px 0px 15px;
+        color: #FFF;
+        border-radius: 5px;
+        padding: 10px;
+        min-height: calc(100% - 120px);
+
+        .card {
+            height: 90%;
+        }
+    }
+
+}

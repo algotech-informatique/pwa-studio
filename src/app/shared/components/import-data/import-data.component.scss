@@ -1,0 +1,26 @@
+@import "../../../../styles.scss";
+
+:host {
+    --BACK-COLOR: #394554;
+    --GLIST-MARGIN: 25px 0px 25px 25px
+}
+
+.progress {
+    z-index: 3;
+    position: absolute;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    height: 100%;
+    width: 100%;
+    
+    .import-data {
+        margin: var(--GLIST-MARGIN);
+        box-shadow: grey;
+        border-radius: 5px;
+        background-color: $COLOR-BG-LIGHT;
+    }
+}

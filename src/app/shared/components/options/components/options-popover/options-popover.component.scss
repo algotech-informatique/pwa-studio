@@ -1,0 +1,65 @@
+@import "../../../../../../styles.scss";
+
+.options-popover {
+    position: absolute;
+    z-index: 1;
+
+    .arrow {
+        width: 0;
+        height: 0;  
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid #1C232D;
+
+        &.top {
+            transform: rotate(180deg);
+        }
+    }
+    
+    .content {
+        background-color: #1C232D;
+        color: white;
+        border-radius: 8px;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+        options-search {
+            display: block;
+            border-bottom: 1px solid #51565c;
+            --INPUT-PADDING-TOP-BOTTOM: 3px;
+        }
+    
+        .list {
+            @include scrollbar(#51565c, 7px, transparent);
+            max-height: 230px;
+
+            .element {
+                display: flex;
+                height: 30px;
+                align-items: center;
+                font-size: 12px;
+                padding: 0px 8px 0px 8px;
+    
+                .icon {
+                    margin-right: 5px;
+                }
+    
+                .value {
+                    user-select: none;
+                    @include text-ellipsis();
+                }
+    
+                &:hover {
+                    cursor: pointer;
+                    background-color: #303844;
+                }
+            }
+        }
+
+        .empty-icon {
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+            opacity: 0.5;
+        }
+    }
+}

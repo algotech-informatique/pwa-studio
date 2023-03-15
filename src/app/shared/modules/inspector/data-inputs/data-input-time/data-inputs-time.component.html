@@ -1,0 +1,9 @@
+<div class="text-input">
+    <div class="selected-item">
+        <input class="date-input" 
+            type="time"
+            [(ngModel)]="value"
+            (change)="onChangeValue()">
+        <i *ngIf="iconVisible" class="fa-solid fa-clock coloured-icon"></i>   
+    </div>
+</div>

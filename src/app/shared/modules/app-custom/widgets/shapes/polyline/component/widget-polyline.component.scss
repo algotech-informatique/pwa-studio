@@ -1,0 +1,21 @@
+@import '../../../../../../../../styles.scss';
+
+svg {
+    overflow: visible;
+    height: 20px;
+
+    &:hover {
+        circle {
+            opacity: 0.8;
+        }
+    }
+}
+
+circle {
+    opacity: 0;
+    stroke-width: 4px;
+    stroke: var(--SN-COLOR-SELECTION);
+    fill: #fff;
+
+
+}

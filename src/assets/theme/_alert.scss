@@ -1,0 +1,68 @@
+.alert-wrapper.sc-ion-alert-md {
+    min-width: 350px;        
+    border-radius: 8px;
+}
+    
+.alert-head.sc-ion-alert-md {
+    padding-top: 10px;
+    min-width: 250px;
+    background-color: #E17A40;
+    margin-bottom: 10px;
+}
+
+.alert-message.sc-ion-alert-md {
+    padding-top: 10px;    
+}
+
+.alert-title.sc-ion-alert-md {
+    color: #FFFFFF;    
+}
+
+.alert-button-inner.sc-ion-alert-md {
+    justify-content: center;    
+}
+
+.alert-button.sc-ion-alert-md {
+    color: #FFFFFF;
+    font-weight: bold;
+    min-width: 100px;
+    min-height: 30px;
+    border-radius: 5px;
+    background-color: #E17A40;
+}    
+
+.alertTitle{
+    padding-top: 10px;
+    font-weight: bold;
+}
+
+.alertMessage {
+    padding-top: 10px;
+}
+
+.alerterror {    
+    .alert-head.sc-ion-alert-md {
+        background-color: #f04141;
+    }    
+    .alertButton {
+        background-color: #f04141;    
+    }
+}
+
+.alertwarning {
+    .alert-head.sc-ion-alert-md {
+        background-color: #E17A40;
+    }    
+    .alertButton {
+        background-color: #E17A40;    
+    }
+}
+
+.alertinformation{
+    .alert-head.sc-ion-alert-md {
+        background-color: #404553;
+    }    
+    .alertButton {
+        background-color: #404553;    
+    }
+}

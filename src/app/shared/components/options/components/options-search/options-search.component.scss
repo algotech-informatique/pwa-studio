@@ -1,0 +1,64 @@
+@import "../../../../../../styles.scss";
+
+:Host {
+    --LABEL-COLOR: #2D9CDB;
+    --INPUT-COLOR: #f0f0f0;
+    --TEXT-COLOR: #c4c4c4;
+    --OPTION-INPUT-MARGIN: 0px;
+    --BACK-COLOR: #1C232D;
+    --OPTION-TOP-RADIUS: 5px;
+    --INPUT-PADDING-TOP-BOTTOM: 8px;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    margin: var(--OPTION-INPUT-MARGIN);
+    
+    .input-text {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        width: 100%;
+        background-color: var(--BACK-COLOR);
+        padding: 5px;
+        border-top-left-radius: var(--OPTION-TOP-RADIUS);
+        border-top-right-radius: var(--OPTION-TOP-RADIUS);
+        
+        .element {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            
+            .text {
+                display: flex;
+                flex-direction: row;
+
+                .edit-text {
+                    @include option-title(var(--INPUT-COLOR));
+                    @include text-ellipsis();
+                    border: none;
+                    background-color: var(--BACK-COLOR);
+                    outline: none;
+                    min-width: 40px;
+                    width: 100%;
+                    padding-top: var(--INPUT-PADDING-TOP-BOTTOM);
+                    padding-bottom: var(--INPUT-PADDING-TOP-BOTTOM);
+                }
+
+                .search-icon {
+                    position: absolute;
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    right: var(--FORM-INPUT-PADDING);
+                    cursor: pointer;
+                    top: 0px;
+                    right: 10px;
+                    color: var(--INPUT-COLOR);
+                }
+            }
+        }
+    }
+}

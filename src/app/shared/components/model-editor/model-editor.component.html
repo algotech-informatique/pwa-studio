@@ -1,0 +1,34 @@
+<as-split direction="vertical" unit="pixel">
+    <as-split-area size="*">
+        <div class="graph" #editor>
+            <div class="layout">
+                <sn-toolbox class="toolbox" [snModel]="snModel" [snView]="snView" [host]="host"
+                    [customerKey]="customerKey">
+                </sn-toolbox>
+
+                <toolbox-drawing *ngIf="snView && snView.drawing" class="toolbox-drawing" [svgID]="'svg'"
+                    [containerID]="'container'" [data]="snView.drawing" (dataChanged)="onChanged()"
+                    (activated)="onDrawingActivate($event)">
+                </toolbox-drawing>
+
+                <div class="work-layout">
+                    <sn-main-layout class="layout" [settings]="settings" [snView]="snView"
+                        (selected)="onSelected($event)" (changed)="onChanged($event)">
+                    </sn-main-layout>
+                    <sn-data-model-inspector *ngIf="snModel && snView" [snModel]="snModel" [snView]="snView"
+                        [context]="context" [custom]="context?.element?.custom" [options]="snView.options"
+                        [fieldOptions]="fieldOptions" [forceOpenTab]="openInspector" (changed)="onChangedInspector()">
+                    </sn-data-model-inspector>
+                </div>
+            </div>
+
+            <cursors *ngIf="snView" [editor]="editor" [zoomService]="snZoom" [customerKey]="customerKey" [host]="host"
+                [viewId]="snView.id">
+            </cursors>
+        </div>
+    </as-split-area>
+    <as-split-area [size]="treeDebugSize" *ngIf="!treeDebugCLosed && openDebug">
+        <app-tree-debug [report]="report" (closeTab)="handCloseTabs()">
+        </app-tree-debug>
+    </as-split-area>
+</as-split>

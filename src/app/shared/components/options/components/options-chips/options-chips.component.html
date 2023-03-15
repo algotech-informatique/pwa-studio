@@ -1,0 +1,32 @@
+<div class="input-chip">
+    <div class="label" *ngIf="label">
+        {{ label }}
+    </div>
+
+    <div class="chips">
+        <div class="list-chips">
+            <div class="chip" *ngFor="let item of items; let i = index;">
+                <i *ngIf="type === 'mail' || type === 'phone'" class="fa-solid fa-user chip-user"></i>
+                <i *ngIf="type === 'text'" class="{{getObjectIcon(item)}} chip-user"></i>
+                <div class="chip-label">{{ item }}</div>
+                <i *ngIf="!readOnly" class="fa-solid fa-xmark chip-close" (click)="removeItem(i)"></i>
+            </div>
+        </div>
+
+        <div class="text" *ngIf="!readOnly">
+            <input [type]="'text'"
+                [ngClass]="{'input-error': inputError}"
+                class="input"
+                [(ngModel)]="inputValue"
+                [readonly]="readOnly"
+                (keyup.Space)="validateValue(inputValue)"
+                (keyup.Enter)="validateValue(inputValue)"
+                (focusout)="validateValue(inputValue)"
+            />
+        </div>
+
+        <div class="bottom-border" *ngIf="includeBottomBorder">
+        </div>
+
+    </div>
+</div>

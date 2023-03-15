@@ -1,0 +1,40 @@
+@import '../theme/variables';
+@import "../theme/mixins";
+
+:host {
+    --INSPECTOR-WIDTH: 300px;
+    --INSPECTOR-CONTAINER-BOX-SHADOW: 0px;
+    --INSPECTOR-SECTION-CONTENT-BACKGROUND: #1c232d;
+    font-size: 11px;
+    font-family: 'roboto-regular';
+}
+
+.content {
+    display: flex;
+    width: var(--INSPECTOR-WIDTH);
+    height: 100%;
+    flex-direction: column;
+    background: var(--INSPECTOR-VERT-MENU-BACKGROUND);
+    color: var(--INSPECTOR-SECTION-CONTENT-COLOR);
+    @include tabs();
+
+}
+
+.lock {
+    position: relative;
+    left: 62px;  
+}
+
+.parameters {
+    overflow: auto;
+    @include custom-scrollbar(var(--SN-COLOR-SCROLLBAR), #ffffff00, 5px);
+    height: 100%;
+}
+
+.property {
+    @include property;
+}
+
+.rules {
+    padding-top: 15px;
+}

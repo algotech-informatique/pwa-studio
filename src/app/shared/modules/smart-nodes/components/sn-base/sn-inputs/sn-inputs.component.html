@@ -1,0 +1,48 @@
+<div *ngIf="display && inFastTypes">
+    <sn-input-text *ngIf="fastType === 'string' && (display === 'input' || display === 'password')"
+        [value]="value"
+        [type]="display === 'password' ? 'password' : 'text'"
+        (updateValue)="onUpdateValue($event)">
+    </sn-input-text>
+    
+    <sn-input-number *ngIf="fastType === 'number' && display === 'input'"
+        [value]="value"
+        (updateValue)="onUpdateValue($event)">
+    </sn-input-number>
+    
+    <sn-input-datetime *ngIf="fastType === 'datetime' && display === 'input'"
+        [value]="value"
+        (updateValue)="onUpdateValue($event)">
+    </sn-input-datetime>
+    
+    <sn-input-date *ngIf="fastType === 'date' && display === 'input'"
+        [value]="value"
+        (updateValue)="onUpdateValue($event)">
+    </sn-input-date>
+    
+    <sn-input-time *ngIf="fastType === 'time' && display === 'input'"
+        [value]="value"
+        (updateValue)="onUpdateValue($event)">
+    </sn-input-time>
+    
+    <sn-input-boolean *ngIf="fastType === 'boolean' && display === 'input'"
+        [value]="value"
+        (updateValue)="onUpdateValue($event)">
+    </sn-input-boolean>
+    
+    <sn-input-select *ngIf="display === 'select' && !multiple"
+        [snView]="snView"
+        [value]="value"
+        [list]="items"
+        [node]="node"
+        (updateValue)="onUpdateValue($event)">
+    </sn-input-select>
+
+    <sn-input-select-multiple *ngIf="display === 'select' && multiple"
+        [snView]="snView"
+        [values]="value"
+        [list]="items"
+        [node]="node"
+        (updateValue)="onUpdateValue($event)">
+    </sn-input-select-multiple>
+</div>

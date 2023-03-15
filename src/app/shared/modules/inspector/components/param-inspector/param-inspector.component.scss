@@ -1,0 +1,61 @@
+@import '../../theme/variables';
+@import '../../theme/mixins';
+
+.section-container {
+    display: flex;
+    flex-direction: column;
+
+    box-shadow: var(--INSPECTOR-CONTAINER-BOX-SHADOW);
+}
+
+.section-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 5px 10px;
+
+    user-select: none;
+    cursor: pointer;
+
+    background: var(--INSPECTOR-SECTION-TITLE-BACKGROUND);
+    color: var(--INSPECTOR-SECTION-TITLE-COLOR);
+
+    i {
+        height: 16px;
+        transition: transform 0.2s ease-out;
+    }
+
+    p {
+        margin: 0;
+        // font-size: var(--INSPECTOR-SECTION-TITLE-FONT-SIZE);
+        font-weight: var(--INSPECTOR-SECTION-TITLE-FONT-WEIGHT);
+        padding-left: 10px;
+    }
+
+    .open {
+        transform: rotate(90deg);
+    }
+}
+
+.section-content {
+    display: none;
+
+    color: var(--INSPECTOR-SECTION-CONTENT-COLOR);
+    background: var(--INSPECTOR-SECTION-CONTENT-BACKGROUND);
+
+    padding: 2px;
+
+    font-size: var(--INSPECTOR-SECTION-CONTENT-FONT-SIZE);
+}
+
+.content-opened {
+    display: block;
+}
+
+.property {
+    @include property();
+}
+
+inspector-section.first {
+    --BORDER-TOP-WIDTH: 0;
+}

@@ -1,0 +1,53 @@
+<div class="style-margin">
+    <span class="title">{{ title }}</span>
+    
+    <div class="parameters">
+        <div class="line">
+            <img [ngClass]="{'selected': !showAllMargins}" class="margin-icon" (click)="cornersButtonClicked(true)" src="./assets/images/margin-all.svg" />
+            <img [ngClass]="{'selected': showAllMargins}" class="margin-icon" (click)="cornersButtonClicked(false)" src="./assets/images/margin-side.svg" />
+            <display-definition-values
+                [width]="same ? marginValues?.[0] : null"
+                widthLabel=""
+                [roundValue]="true"
+                (changedWidth)="onChanged($event)">
+            </display-definition-values>
+        </div>
+    
+        <div *ngIf="showAllMargins" class="line">
+            <div class="margin-corners">
+                <div class="input" class="inline-first" [title]="'SN-TOOLBOX-POSITION.TOP' | translate">
+                    <display-definition-values
+                        [width]="marginValues?.[0]"
+                        widthLabel=""
+                        [roundValue]="true"
+                        (changedWidth)="onCornerChanged($event, 0)">
+                    </display-definition-values>
+                </div>
+                <div class="input" class="inline-inside" [title]="'SN-TOOLBOX-POSITION.RIGHT' | translate">
+                    <display-definition-values
+                        [width]="marginValues?.[1]"
+                        widthLabel=""
+                        [roundValue]="true"
+                        (changedWidth)="onCornerChanged($event, 1)">
+                    </display-definition-values>
+                </div>
+                <div class="input" class="inline-inside" [title]="'SN-TOOLBOX-POSITION.BOTTOM' | translate">
+                    <display-definition-values
+                        [width]="marginValues?.[2]"
+                        widthLabel=""
+                        [roundValue]="true"
+                        (changedWidth)="onCornerChanged($event, 2)">
+                    </display-definition-values>
+                </div>
+                <div class="input" class="inline-last" [title]="'SN-TOOLBOX-POSITION.LEFT' | translate">
+                    <display-definition-values
+                        [width]="marginValues?.[3]"
+                        widthLabel=""
+                        [roundValue]="true"
+                        (changedWidth)="onCornerChanged($event, 3)">
+                    </display-definition-values>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

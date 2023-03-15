@@ -1,0 +1,17 @@
+<sn-select-modal [(top)]="top" [snView]="snView" class="modal">
+
+    <div class="list">
+        <div class="item"
+            [ngClass]="{'selected': element.id === selected}"  
+            *ngFor="let element of listElements">
+        
+            <div class="{{element.type.icon}} icon-style"></div>
+            <div class="element"          
+                (click)="onElementClick(element)"
+            >
+                {{ element.name }}
+            </div>
+        </div>
+    </div>
+
+</sn-select-modal>

@@ -1,0 +1,26 @@
+<div class="input-list">
+    <label *ngIf="label"> {{ label }} </label>
+
+    <div class="items" (click)="onOpenList($event)">
+        <div class="item">
+            {{ showItems }}
+        </div>
+        <i class="fa-solid fa-caret-down icon"></i>
+    </div>
+    
+    <div class="endLabel"
+        *ngIf="endLabel">
+        {{ endLabel }}
+    </div>
+</div>
+
+<check-list-pop-up
+    *ngIf="top"
+    class="pop-up"
+    [(top)]="top"
+    [title]="popupTitle"
+    [snView]="snView"
+    [listItems]="listItems"
+    (checkedChanged)="onListChange($event)"
+>
+</check-list-pop-up>

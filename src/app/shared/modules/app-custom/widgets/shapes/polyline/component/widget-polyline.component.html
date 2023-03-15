@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="polyline">
+    <path [attr.d]="widget?.custom.d" [ngStyle]="widget?.css?.main" fill="none" />
+    <circle *ngFor="let p of points; let i=index;" 
+    class="handle" 
+    [attr.cx]="p.cx" 
+    [id]="widget.id"
+    [attr.cy]="p.cy" r="9" />
+</svg>

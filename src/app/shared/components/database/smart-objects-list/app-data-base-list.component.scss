@@ -1,0 +1,94 @@
+@import '../../../../../styles.scss';
+@import '../../../modules/inspector/theme/_mixins.scss';
+@import 'node_modules/@algotech/business/src/lib/_mixins.scss';
+
+:host {
+    font-size: 11px;
+    font-family: 'roboto-regular';
+    height: calc(100% - 40px);
+
+}
+
+.content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--INSPECTOR-VERT-MENU-BACKGROUND);
+    color: var(--INSPECTOR-SECTION-CONTENT-COLOR);
+    @include tabs();
+    height: 100%;
+    .monitoring {
+        font-size: 15px;
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+    }
+}
+
+
+.layout {
+    height: calc(100% - 60px);
+
+    .hidden {
+        display: none;
+    }
+
+    flex-shrink: 0;
+
+    .text-input {
+        @include input-box;
+        cursor: auto;
+
+        .input-container {
+            @include input-element();
+
+            .input {
+                width: calc(100% - 30px);
+                height: 100%;
+            }
+        }
+
+
+    }
+
+    .models {
+        height: 100%;
+        @include scrollbar(auto);
+    }
+
+    .model {
+        cursor: pointer;
+        padding: 10px 10px 10px 20px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .action {
+            visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 20px;
+            width: 20px;
+        }
+
+        &:hover {
+            .action {
+                visibility: visible;
+            }
+            background-color: var(--INSPECTOR-BG-COLOR-SELECTED-ITEM-CHILDREN);
+        }
+
+        &.selected {
+            background-color: var(--INSPECTOR-BG-COLOR-SELECTED-ITEM);
+        }
+    }
+
+    .icon {
+        color: var(--ICON-COLOR);
+        width: 25px;
+        text-align: center;
+        padding-top: 3px;
+    }
+}

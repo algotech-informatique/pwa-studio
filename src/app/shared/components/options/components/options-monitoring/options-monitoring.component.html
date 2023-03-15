@@ -1,0 +1,33 @@
+<div *ngFor="let monitoring of monitorings" class="card"
+    [ngClass]="{'selected': monitoring.uuid === selectedMonitoring}" (click)="onSelect(monitoring)">
+    <label for="monitoring-progress">
+        <div class="date">{{monitoring.createdDate | localeDate: 'd LLLL HH:mm'}}</div>
+        <div class="value" [ngClass]="{ 
+                'error': monitoring.processState === 'error',
+                'succeeded': monitoring.processState === 'succeeded',
+                'canceled': monitoring.processState === 'canceled'
+                }">
+            {{monitoring.current | percentage: monitoring.total}}%
+            <div class="at-spinner-container" *ngIf="monitoring.processState === 'inProgress'"
+                [style.width.px]="20">
+                <ion-spinner class="spinner" name="bubbles"></ion-spinner>
+            </div>
+            <i *ngIf="monitoring.processState === 'succeeded'" class="fa-solid fa-check"></i>
+            <i *ngIf="monitoring.processState === 'canceled'" class="fa-solid fa-xmark"></i>
+            <i *ngIf="monitoring.processState === 'error'" class="fa-solid fa-bug"></i>
+            <i *ngIf="monitoring.uuid === selectedMonitoring" class="fa-solid fa-chevron-up"></i>
+            <i *ngIf="monitoring.uuid !== selectedMonitoring" class="fa-solid fa-chevron-down"></i>
+        </div>
+    </label>
+    <ion-progress-bar *ngIf="monitoring.processState === 'inProgress'" color="primary"
+        [value]="monitoring.total ? monitoring.current / monitoring.total : 1"></ion-progress-bar>
+    <ion-progress-bar *ngIf="monitoring.processState === 'succeeded'" color="success"
+        [value]="monitoring.total ? monitoring.current / monitoring.total : 1"></ion-progress-bar>
+    <ion-progress-bar *ngIf="monitoring.processState === 'canceled'" color="warning"
+        [value]="monitoring.total ? monitoring.current / monitoring.total : 1"></ion-progress-bar>
+    <ion-progress-bar *ngIf="monitoring.processState === 'error'" color="danger"
+        [value]="monitoring.total ? monitoring.current / monitoring.total : 1"></ion-progress-bar>
+    <div *ngIf="monitoring.uuid === selectedMonitoring" class="console">
+        <pre>{{ logMonitoring }}</pre>
+    </div>
+</div>

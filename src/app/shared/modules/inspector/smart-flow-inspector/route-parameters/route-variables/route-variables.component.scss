@@ -1,0 +1,16 @@
+@import '../../../theme/mixins';
+
+:host {
+    --PADDING-BOTTOM: 10px;
+}
+
+.cards {
+    @include card-element(10px);
+    @include app-errors;
+    padding-bottom: var(--PADDING-BOTTOM);
+}
+
+.card {
+    margin-bottom: 10px;
+    display: block;
+}

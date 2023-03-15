@@ -1,0 +1,13 @@
+<div class="toast" [ngClass]="toast.type">
+    <i *ngIf="toast.type === 'success'" class="icon fa-solid fa-check"></i>
+    <i *ngIf="toast.type === 'warning'" class="icon fa-solid fa-triangle-exclamation"></i>
+    <i *ngIf="toast.type === 'error'" class="icon fa-solid fa-circle-xmark"></i>
+    <i *ngIf="toast.type === 'info'" class="icon fa-solid fa-circle-info"></i>
+
+    <i (click)="close()" class="close-btn fa-solid fa-xmark"></i>
+
+    <div class="text">
+        <p *ngIf="toast.title" class="title">{{toast.title}}</p>
+        <p *ngIf="toast.message" class="message">{{toast.message}}</p>
+    </div>
+</div>

@@ -1,0 +1,101 @@
+@import "../styles.scss";
+
+// EXPOSED VARIABLES
+:host {
+    --UPDATE-MASK-COLOR: black;
+    --UPDATE-MASK-OPACITY: 60%;
+    --UPDATE-MIN-WIDTH: 750px;
+    --UPDATE-TITLE-HEIGHT: 40px;
+    --UPDATE-TITLE-BACKGROUND: #{$COLOR-BG-LIGHT};
+    --UPDATE-TITLE-FOREGROUND: white;
+    --UPDATE-CONTENT-BACKGROUND: #{$COLOR-BG};
+    --UPDATE-WINDOW-BORDER-RADIUS: 5px;
+    --UPDATE-PROGRESSBAR-BORDER-RADIUS: 30px;
+    --UPDATE-PROGRESSBAR-COLOR: #{$COLOR-VALID};
+}
+
+.update {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+
+    .update-mask {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--UPDATE-MASK-COLOR);
+        opacity: var(--UPDATE-MASK-OPACITY);
+    }
+
+    .update-window {
+        position: relative;
+        min-width: var(--UPDATE-MIN-WIDTH);
+
+        .update-window-title {
+            position: absolute;
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: var(--UPDATE-TITLE-HEIGHT);
+            background-color: var(--UPDATE-TITLE-BACKGROUND);
+            border-top-left-radius: var(--UPDATE-WINDOW-BORDER-RADIUS);
+            border-top-right-radius: var(--UPDATE-WINDOW-BORDER-RADIUS);
+            user-select: none;
+
+            span {
+                padding-left: 20px;
+                width: 100%;
+                line-height: var(--UPDATE-TITLE-HEIGHT);
+                @include title(var(--UPDATE-TITLE-FOREGROUND));
+            }
+
+        }
+
+        .update-window-content {
+            width: 100%;
+            padding: 25px;
+            padding-top: 65px;
+            border-radius: var(--UPDATE-WINDOW-BORDER-RADIUS);
+            background-color: var(--UPDATE-CONTENT-BACKGROUND);
+            @include scrollbar();
+
+            span {
+                width: 100%;
+                line-height: var(--UPDATE-TITLE-HEIGHT);
+                @include sub-title(var(--UPDATE-TITLE-FOREGROUND));
+
+            }
+
+            .progress-bar {
+                height: 10px;
+
+                border-radius: var(--UPDATE-PROGRESSBAR-BORDER-RADIUS);
+
+                background: var(--UPDATE-TITLE-BACKGROUND);
+
+                .bar {
+                    height: 100%;
+
+                    border-radius: var(--UPDATE-PROGRESSBAR-BORDER-RADIUS);
+
+                    background: var(--UPDATE-PROGRESSBAR-COLOR);
+                }
+            }
+        }
+    }
+}

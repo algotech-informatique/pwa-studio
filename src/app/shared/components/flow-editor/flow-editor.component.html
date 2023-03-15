@@ -1,0 +1,79 @@
+<as-split direction="horizontal" unit="pixel">
+    <as-split-area size="*">
+        <as-split direction="vertical" unit="pixel">
+            <as-split-area size="*">
+                <div class="graph" #editor>
+                    <div class="layout">
+                        <sn-toolbox class="toolbox"
+                            [snModel]="snModel"
+                            [snView]="snView"
+                            [host]="host"
+                            [customerKey]="customerKey"
+                            (viewChanged)="onViewChanged($event)"
+                            (runDebug)="runDebug()"
+                            (stopDebug)="stopDebug({ redraw: true })">
+                        </sn-toolbox>
+
+                        <toolbox-drawing *ngIf="snView && snView.drawing" class="toolbox-drawing"
+                            [svgID]="'svg'"
+                            [containerID]="'container'"
+                            [data]="snView.drawing"
+                            (dataChanged)="onChanged()"
+                            (activated)="onDrawingActivate($event)">
+                        </toolbox-drawing>
+
+                        <div class="work-layout">
+                            <sn-main-layout 
+                                class="main-layout"
+                                [settings]="settings"
+                                [snView]="snView"
+                                (selected)="onSelected($event)"
+                                (changed)="onChanged($event)">
+                            </sn-main-layout>
+                            <sn-smart-flow-inspector
+                                *ngIf="snModel && snView"
+                                [snModel]="snModel"
+                                [snView]="snView"
+                                [context]="context"
+                                [options]="snView.options"
+                                [forceOpenTab]="openInspector"
+                                (changed)="onChangedInspector()">
+                            </sn-smart-flow-inspector>
+                        </div>
+                    </div>
+                    
+                    <cursors
+                        *ngIf="snView"
+                        [editor]="editor"
+                        [zoomService]="snZoom"
+                        [customerKey]="customerKey"
+                        [host]="host"
+                        [viewId]="snView.id"
+                        >
+                    </cursors>
+                </div>
+            </as-split-area>
+            <as-split-area [size]="treeDebugSize" *ngIf="!treeDebugCLosed && (openDebug || smartflowToDebug)">
+                <app-tree-debug
+                    [workflow]="smartflowToDebug"
+                    [report] = "report"
+                    (closeTab)="handCloseTabs()">
+                </app-tree-debug>
+            </as-split-area>
+        </as-split>
+    </as-split-area>
+
+    <as-split-area [size]="debuggerSize" class="debugger-area" *ngIf="smartflowToDebug">
+        <at-workflow-debugger-layout
+            [workflow]="smartflowToDebug"
+            [glists]="sessionsService.active.datas.read.glists"
+            [groups]="sessionsService.active.datas.read.groups"
+            [settings]="sessionsService.active.datas.read.settings"
+            [smartmodels]="sessionsService.active.datas.read.smartModels"
+            [tags]="sessionsService.active.datas.read.tags"
+            [apps]="sessionsService.active.datas.read.apps"
+            (retry)="runDebug()"
+            class="debugger">
+        </at-workflow-debugger-layout>
+    </as-split-area>
+</as-split>

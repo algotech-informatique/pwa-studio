@@ -1,0 +1,88 @@
+@import "../../../../../../styles.scss";
+
+:host {
+    --LABEL-COLOR: #2D9CDB;
+    --INPUT-COLOR: #F9F9F9;
+    --TEXT-COLOR: #C4C4C4;
+    --OPTIONS-CHECK-MARGIN: 30px 0px 5px 5px;
+    --OPTIONS-CHECK-BACKCOLOR: #eee;
+}
+
+.element {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin: var(--OPTIONS-CHECK-MARGIN);
+}
+
+.label {
+    line-height: 20px;
+    @include option-input-label(var(--TEXT-COLOR));       
+}
+
+.selected {
+    @include option-input-label-selected(var(--LABEL-COLOR));       
+}
+
+.container {
+    display: block;
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    border-radius: 3px;
+    background-color: var(--OPTIONS-CHECK-BACKCOLOR);
+}
+
+.container:hover input~.checkmark {
+    background-color: #ccc;
+    border: thin solid var(--TEXT-COLOR);
+}
+
+.container input:checked~.checkmark {
+    background-color: var(--LABEL-COLOR);
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.container input:checked~.checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+    left: 7px;
+    top: 1px;
+    width: 7px;
+    height: 13px;
+    border: solid var(--INPUT-COLOR);
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}

@@ -1,0 +1,40 @@
+@import '../theme/mixins';
+
+:host {
+    font-size: 11px;
+}
+
+.property {
+    @include property();
+}
+
+.preview-url {
+    padding: 10px 14px 15px 14px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--INSPECTOR-VERT-MENU-SECTION-BORDER-COLOR);
+
+    .type {
+        margin-right: 5px;
+        padding: 2px 4px;
+        display: flex;
+        align-items: center;
+        font-weight: 600;
+        font-size: 8pt;
+        border-radius: 3px;
+        border: 1px solid;
+    }
+
+    .url {        
+        user-select: text;
+        font-family: 'monospace';
+        font-weight: 600;
+        overflow-wrap: anywhere;
+    }
+
+
+}
+
+inspector-section.first {
+    --BORDER-TOP-WIDTH: 0;
+}

@@ -1,0 +1,54 @@
+<div class="profile-section" [ngClass]="{'reduced': !expand}">
+    <div class="section-head" (click)="toggleHead()">
+        <div class="avatar" [title]="userProfile.firstName + ' ' + userProfile.lastName">
+            {{ initials }}
+        </div>
+    
+        <div class="info" [ngStyle]="{'displayed': expand ? 'block' : 'none'}">
+            <div class="name">
+                {{ userProfile.firstName + ' ' + userProfile.lastName }}
+            </div>
+        
+            <div class="email">
+                {{ userProfile.email }}
+            </div>
+        </div>
+    
+        <div class="toggle-button">
+            <i *ngIf="!showDetail && expand" class="fa-solid fa-chevron-down"></i>
+            <i *ngIf="showDetail && expand" class="fa-solid fa-chevron-up"></i>
+        </div>
+    </div>
+    
+    <div class="section-detail" [ngClass]="{'displayed': expand && showDetail}" [ngClass]="{'popup': !expand}">
+        <div *ngIf='hasAdminPrivilege' class="button" (click)="adminConsole()">
+            <i class="fa-solid fa-crown"></i>
+            <div class="title">
+                {{ 'PROFILE-SELECTOR.TAB.ADMIN-CONSOLE' | translate }}
+            </div>
+        </div>  
+        <div class="button" (click)="accountManager()">
+            <i class="fa-solid fa-user"></i>
+            <div class="title">
+                {{ 'PROFILE-SELECTOR.TAB.PROFILE' | translate }}
+            </div>
+        </div>        
+        <div class="button" [ngClass]="{'selected': showLangs}" (click)="toggleLangs()">
+            <i class="fa-solid fa-earth-europe"></i>
+            <div class="title">
+                {{ 'LANGUAGES.KEY_' + (currentLang.lang | customerCode ) | translate }}
+            </div>
+        </div>        
+        <div class="langs" *ngIf="showLangs">
+            <div class="button lang" *ngFor="let lang of languages" [ngClass]="{'selected': lang.lang === currentLang.lang}" (click)="selectLang(lang)">
+                {{ 'LANGUAGES.KEY_' + (lang.lang | customerCode) | translate }}
+            </div>
+        </div>
+        <div class="button" (click)="logout()">
+            <i class="fa-solid fa-sign-out-alt"></i>
+            <div class="title">
+                {{ 'PROFILE-SELECTOR.TAB.LOGOUT' | translate }}
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+<ion-progress-bar class="progress" color="secondary" type="indeterminate"
+    *ngIf="!spinnerDisplay"></ion-progress-bar>
+
+<div class="content">
+
+    <div class="import-data">
+        <gestion-data-import class="data"
+            [exportData]="exportData"
+            (downloadFile)="onDownloadFile($event)"
+        >
+        </gestion-data-import>
+    </div>
+
+    <div class="import-data">
+        <validate-data class="data"
+            [activate]="activateValidate"
+            (activateIntegration)="onActivateIntegration($event)"
+            (activateSpinner)="onActivateSpinner($event)"
+        >
+        </validate-data>
+    </div>
+
+    <div class="import-data">
+        <launch-import-data 
+            [activate]="activateImport"
+            [replaceData]= "replaceData"
+            [importDataFile]="importDataFileDto"
+            [validateDataFile]="validateData"
+            [importDocs]="validateDocDto"
+            [validateImportContainer]="validateImportContainer"
+            [fileZip]="fileZip"
+            (activateSpinner)="onActivateSpinner($event)"
+        >
+        </launch-import-data>
+    </div>
+
+</div>

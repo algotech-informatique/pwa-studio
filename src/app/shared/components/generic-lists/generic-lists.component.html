@@ -1,0 +1,25 @@
+<div class="content">
+
+    <div class="glist">
+        <generic-lists-main class="list"
+            [genericLists]="_genericLists"
+            [selectedId]="selectedUuid"
+            (selectedList)="onSelectedGlist($event)"
+            (createNewList)="onCreateNewList()"
+            [(search)]="search"
+        >
+        </generic-lists-main>
+    </div>
+    
+    <div class="glist" *ngIf="selectedUuid">
+        <generic-lists-detail
+            [gList]="selectedGList"
+            [formatedDetailLines]="formatedDetailLines"
+            [customerLangs]="customerLangs"
+            (updateGList)="onUpdateGList($event)"
+            (removeLine)="onRemoveLine($event)"
+        >
+        </generic-lists-detail>
+    </div>
+
+</div>

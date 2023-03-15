@@ -1,0 +1,27 @@
+<div class="expander" [appDragExplorerTarget]="line" [type]="type" [host]="host" [customerKey]="customerKey">
+    <div class="expander-title" [ngClass]="{'active': active, 'selected': selected }" *ngIf="icons.length > 1"
+        [appDragExplorerSource]="line">
+        <i (click)="expandAction()" *ngIf="expand" [class]="icons[0] + ' expander-icon'"></i>
+        <i (click)="expandAction()" *ngIf="!expand" [class]="icons[1] + ' expander-icon'"></i>
+        <i *ngIf="icon" [class]="icon + ' expander-left-icon'"></i>
+
+        <span *ngIf="!renaming" [ngClass]="{'with-left-icon': !!icon }" (click)="expandAction()">{{ name }}</span>
+        <app-object-tree-input
+            *ngIf="line && renaming"
+            [line]="line"
+            [ngClass]="{'with-left-icon': !!icon }">
+        </app-object-tree-input>
+        
+        <div class="btn-tiny-bar">
+            <div (click)="actionClicked(i)" class="btn-tiny" *ngFor="let action of actions; let i = index">
+                <i [icon]="action"></i>
+            </div>
+        </div>
+
+    </div>
+    <div class="content w3-container" [ngClass]="{'open':expand}">
+        <div>
+            <ng-content></ng-content>
+        </div>
+    </div>
+</div>

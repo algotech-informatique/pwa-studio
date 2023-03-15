@@ -1,0 +1,43 @@
+<div class="module" 
+    *ngIf="!module.hidden"
+    [ngClass]="{
+    'state': module.state,
+    'selected': module.selected,
+    'active': module.active,
+    'root': root,
+    'reduce': !expand
+}" appDragExplorerTarget [type]="module.type" [host]="module.host" [customerKey]="module.customerKey">
+
+    <div class="name" [ngClass]="{'bold': (module.state||module.selected), 'active': module.active}" (click)="selectModule(module)"
+        (contextmenu)="moduleContextMenu($event)">
+        <div class="icon">
+            <i *ngIf="module.icon" [class]="module.icon"></i>
+        </div>
+        <span class="label">
+            {{module.name | translate}}
+        </span>
+    </div>
+    
+    <div class="childs-content" *ngIf="(module.state || !expand) && module.childs.length > 0">
+        <div class="childs-layout">
+            <span *ngIf="!expand" class="name" (click)="selectModule(module)">
+                {{module.name | translate}}
+            </span>
+            <div class="childs-scroll">
+                <div *ngIf="module.class === 'objects'" class="childs objects">
+                    <app-object-tree-line *ngFor="let child of module.childs, trackBy: trackUuid"
+                        [level]="0"
+                        [line]="child">
+                    </app-object-tree-line>
+                </div>
+                <div *ngIf="module.class === 'modules'" class="childs modules">
+                    <app-module-tree-line *ngFor="let child of module.childs, trackBy: trackUuid"
+                        [root]="false"
+                        [module]="child"
+                        (select)="selectModule(child)">
+                    </app-module-tree-line>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

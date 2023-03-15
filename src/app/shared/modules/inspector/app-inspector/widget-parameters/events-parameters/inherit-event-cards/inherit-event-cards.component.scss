@@ -1,0 +1,35 @@
+@import "../../../../theme/mixins";
+
+.inherit-events-cards {
+    @include card-element(12px);
+    padding-bottom: 0;
+    padding-right: 16px;
+    padding-left: 16px;
+ 
+    .card {
+        @include inspector-section-titles();
+        @include card-header();
+        padding: 13px 10px;
+        justify-content: flex-start;
+        background-color: var(--INSPECTOR-INHERIT-CARD-TITLE-BACKGROUND);
+
+        &:hover {
+            background-color: var(--INSPECTOR-INHERIT-CARD-TITLE-BACKGROUND-TINT);
+        }
+
+        .check-icon {
+            color: var(--INSPECTOR-NOSELECT);
+            margin-right: 10px;
+
+            &.checked {
+                color: var(--INSPECTOR-SELECTED);
+            }
+        }
+    }
+    
+    .event-arrow {
+        display: flex;
+        justify-content: center;
+        height: 16px;
+    }
+}

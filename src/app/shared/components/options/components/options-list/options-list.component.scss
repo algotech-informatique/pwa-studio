@@ -1,0 +1,58 @@
+@import "../../../../../../styles.scss";
+
+:host {
+    --LABEL-COLOR: #2D9CDB;
+    --INPUT-COLOR: #F9F9F9;
+    --OPTION-LIST-MARGIN-INPUT: 0px;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    margin: var(--OPTION-LIST-MARGIN-INPUT);
+
+    .input-list {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        margin: 0px;
+        align-items: center;
+        @include option-title(var(--INPUT-COLOR));
+    
+        label {
+            padding: 5px;
+            min-width: 90px;
+            @include option-sub-label(var(--LABEL-COLOR));
+            margin-right: 5px;
+        }
+
+        .select {        
+            .input {
+                display: flex;
+                align-items: center;
+                cursor: pointer;        
+                height: 33px;
+                flex-direction: row;
+                
+                .icon {
+                    margin-right: 5px;
+                }
+    
+                .selected {
+                    width: 100%;
+                    @include text-ellipsis();
+                }
+            }
+
+            options-popover {
+                display: block;
+            }
+        }
+    }
+
+    .border {
+        margin-top: 5px;
+        width: 100%;
+        border-bottom: 2px solid var(--LABEL-COLOR);
+    }
+}

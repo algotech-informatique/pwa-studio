@@ -1,0 +1,9 @@
+<div class="object-input" [ngClass]="{'selected': dataSelectorShowed}" (click)="openDataSelector($event)">
+    <div class="selected-item">
+          <i class="fa-solid fa-cube icon"></i>
+          <i *ngIf="input.multiple" class="fa-solid fa-layer-group icon"></i>
+          <p *ngIf="input.value" class="text" [title]="input.value">{{ input.value | parameterCode }}</p>
+          <p *ngIf="!input.value" class="placeholder">{{ input.key }}</p>
+    </div>
+    <i [class]="dataSelectorShowed ? 'fa-solid fa-chevron-up button' : 'fa-solid fa-chevron-down button'"></i>
+</div>

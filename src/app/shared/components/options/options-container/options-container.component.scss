@@ -1,0 +1,11 @@
+@import "../../../../../styles";
+@import '../../../modules//inspector/theme/variables';
+
+.options-container {
+ 
+    box-shadow: var(--INSPECTOR-VERT-MENU-SECTION-BORDER-COLOR);
+    border-radius: 5px;
+    background-color: var(--INSPECTOR-VERT-MENU-BACKGROUND);
+    width: 500px;
+    height: 100%;
+}

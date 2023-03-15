@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "pwa-studio",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

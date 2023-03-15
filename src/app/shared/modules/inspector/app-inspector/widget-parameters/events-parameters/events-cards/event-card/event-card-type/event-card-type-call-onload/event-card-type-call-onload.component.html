@@ -1,0 +1,10 @@
+<div class="property inside-card last">
+    <select-element
+        [title]="'SN-APP.WIDGET.EVENT.TYPE.PAGE' | translate"
+        [list]="widgets"
+        [selectedKey]="pipeEvent.action"
+        (selectNewItem)="onSelectWidget($event)"
+        (mouseenterItem)="setHighlight($event, true)"
+        (mouseleaveItem)="setHighlight($event, false)">
+    </select-element>
+</div>

@@ -1,0 +1,41 @@
+@import '../../theme/variables';
+@import '../../theme/mixins';
+
+.key-element {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.title {
+    @include title;
+}
+
+.text-input {
+    @include input-box;
+    cursor: auto;
+
+    &.error {
+        color: var(--SN-COLOR-ERROR) !important;
+    }
+    &.disabled {
+        @include disabled();
+    }
+    .selected-item {
+        @include input-element();
+    }
+}
+
+.list {
+    @include modal;
+    margin-top: 3px;
+
+    .list-items {
+        @include list();
+
+        p {
+            margin: 0 0 0 5px;
+            @include text-ellipsis;
+        }
+    }
+}

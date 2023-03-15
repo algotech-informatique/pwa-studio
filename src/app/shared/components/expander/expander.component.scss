@@ -1,0 +1,107 @@
+@import "../../../../styles.scss";
+
+// EXPOSED VARIABLES
+:host {
+    --BACKGROUND-TITLE: #{$COLOR-BG-LIGHT};
+    --BORDER-BOTTOM-COLOR: #{$COLOR-FG};
+    --BORDER-BOTTOM-SIZE: 1px;
+    --BORDER-BOTTOM-STYLE: solid;
+    --CONTENT-PADDING-TOP: 0px;
+    --CONTENT-PADDING-RIGHT: 15px;
+    --CONTENT-PADDING-BOTTOM: 0px;
+    --CONTENT-PADDING-LEFT: 15px;
+    --CONTENT-OPEN-PADDING-TOP: 0px;
+    --CONTENT-OPEN-PADDING-RIGHT: 15px;
+    --CONTENT-OPEN-PADDING-BOTTOM: 0px;
+    --CONTENT-OPEN-PADDING-LEFT: 15px;
+    --ICON-SIZE: 15px;
+    --LINE-SELECTED-COLOR: #{$EXPLORER-BG-SELECTED};
+    --LINE-ACTIVE-COLOR: #{$EXPLORER-BG-ACTIVE};
+    --INPUT-BORDER-COLOR: #{$COLOR-BTN-LIGHT};
+    --INPUT-BORDER: 2px;
+}
+
+.draghover {
+    background: $EXPLORER-BG-DRAG-HOVER;
+    .content {
+        background-color: $EXPLORER-BG-DRAG-HOVER !important;
+    }
+}
+
+.expander {
+    position: relative;
+    $PADDING-LEFT: 10px;
+    width: 100%;
+
+    .expander-title {
+        position: relative;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        height: $EXPLORER-LINE-HEIGHT;
+        width: 100%;
+        @include normal-text($EXPLORER-FG-COLOR);
+        user-select: none;
+        line-height: $EXPLORER-LINE-HEIGHT;
+        padding-left: $PADDING-LEFT + 25px;
+
+        border-bottom-color: var(--BORDER-BOTTOM-COLOR);
+        border-bottom-width: var(--BORDER-BOTTOM-SIZE);
+        border-bottom-style: var(--BORDER-BOTTOM-STYLE);
+
+        &.selected{
+            font-weight: 600;
+            color: $EXPLORER-FG-SELECTED;
+            background-color: var(--LINE-SELECTED-COLOR);
+        }
+        &.active {
+            background-color: var(--LINE-ACTIVE-COLOR);
+        }
+        span {
+            width: 100%;
+            @include text-ellipsis();
+            cursor: pointer;
+        }
+
+        span.with-left-icon {
+            margin-left: 10px;
+        }
+
+        .expander-icon {
+            position: absolute;
+            left: $PADDING-LEFT;
+            font-size: var(--ICON-SIZE);
+            cursor: pointer;
+        }
+
+        .expander-left-icon {
+            position: absolute;
+            left: $PADDING-LEFT + 15px;
+
+            .icon-left {
+                padding: 0 2px;
+            }
+        }
+
+        .btn-tiny-bar {
+            position: absolute;
+            right: 5px;
+            top: 0px;
+        }
+    }
+
+    .content {
+        overflow: auto;
+        padding: var(--CONTENT-PADDING-TOP) var(--CONTENT-PADDING-RIGHT) var(--CONTENT-PADDING-BOTTOM) var(--CONTENT-PADDING-LEFT);
+        max-height: 0;
+        opacity: 0;
+        transition: all 0.2s ease;
+        @include scrollbar();
+    }
+
+    .content.open {
+        max-height: max-content;
+        opacity: 1;
+        padding: var(--CONTENT-OPEN-PADDING-TOP) var(--CONTENT-OPEN-PADDING-RIGHT) var(--CONTENT-OPEN-PADDING-BOTTOM) var(--CONTENT-OPEN-PADDING-LEFT);
+    }
+}

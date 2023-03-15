@@ -1,0 +1,18 @@
+<div class="elements">
+
+    <div class="radio" *ngFor="let radio of listRadio; let i = index">
+        <label class="container">
+            <input type="radio"
+                [checked]="radio.key === value"
+                [name]="name"
+                (change)="updateLink($event, radio.key)">
+            <span class="checkmark"></span>
+        </label>
+
+        <div class="element"
+            [ngClass]="{'selected': radio.key === value}"
+        >
+            {{ radio.value }}
+        </div>
+    </div>
+</div>

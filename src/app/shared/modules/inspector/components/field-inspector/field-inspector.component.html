@@ -1,0 +1,84 @@
+<inspector-section [title]="'INSPECTOR.SMART_FLOW.PROPERTIES' | translate" class="first">
+    <div class="property" *ngIf="!isExtendedField">
+        <display-key-element class="display-element"
+            [title]="'INSPECTOR.SMART_FLOW.PROPERTIES_KEY' | translate"
+            [key]="fieldOptions?.key"
+            [snModel]="snModel"
+            [params]="dataParams"
+            [param]="fieldOptions"
+            type="uppercase"
+            (changed)="onChangedDisplayKey($event)">
+        </display-key-element>
+    </div>
+    <div class="property">
+        <display-translate-element
+            [title]="'INSPECTOR.SMART_FLOW.PROPERTIES_NAME' | translate"
+            [displayText]="fieldOptions?.displayName"
+            (changed)="onChangedDisplayName($event)">
+        </display-translate-element>
+    </div>
+
+    <div class="property" *ngIf="!isExtendedField">
+        <select-element
+            [title]="'INSPECTOR.SMART_FLOW.PROPERTIES_TYPE' | translate"
+            [list]="filteredTypes"
+            [selectedKey]="fieldOptions?.types"
+            (selectNewItem)="onTypeChanged($event)">
+        </select-element>
+    </div>
+
+    <div class="property last">
+        <display-name-element
+            [title]="'Description' | translate"
+            [name]="fieldOptions?.value?.description"
+            (changed)="onChangeDescription($event)">
+        </display-name-element>
+    </div>
+</inspector-section>
+
+<inspector-section [title]="'INSPECTOR.MODEL.FIELD-PROPERTY' | translate">
+    <div class="property last">
+        <sn-display-radio
+            [radioList]="fieldProperties?.radioList"
+            [selected]="fieldProperties?.selected"
+            (changed)="onDisplayRadioChanged($event)">
+        </sn-display-radio>
+    </div>
+</inspector-section>
+
+<inspector-section [title]="'INSPECTOR.MODEL.FIELD-VALUE' | translate" *ngIf="!isExtendedField">
+    <div class="property last" *ngIf="isSmartModel">
+        <sn-display-radio
+            [radioList]="fieldComposition?.radioList"
+            [selected]="fieldComposition?.selected"
+            (changed)="onDisplayRadioChanged($event)">
+        </sn-display-radio>
+    </div>
+
+    <div class="property" *ngIf="isDisplayItem" [ngClass]="{'last': !isPrimitive || fieldOptions?.multiple || isUniqueKey}">
+        <select-element
+            [title]="'INSPECTOR.SMART_FLOW.PROPERTIES_ITEMS' | translate"
+            [list]="genericList"
+            [selectedKey]="fieldOptions?.value?.items"
+            (selectNewItem)="onTypeItemChanged($event)">
+        </select-element>
+    </div>
+
+    <div class="property last" *ngIf="isPrimitive && !fieldOptions?.multiple && !isUniqueKey">
+        <data-inputs
+            inputKey="defaultValue"
+            [typeInput]="fieldOptions?.types"
+            [title]="'SN-DATA-INPUT-DEFAULT-VALUE' | translate"
+            [iconVisible]="true"
+            [value]="fieldOptions?.value?.defaultValue"
+            (changed)="onDataInputChanged($event)">
+        </data-inputs>
+    </div>
+</inspector-section>
+
+<inspector-section [title]="'INSPECTOR.MODEL.PERMISSIONS' | translate">
+    <permissions [custom]="fieldOptions?.value"
+        [permissions]="fieldOptions?.value?.permissions"
+        (changed)="onPermissionsChanged($event)" (applyAll)="onPermissionsApplyAll($event)">
+    </permissions>
+</inspector-section>

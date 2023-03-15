@@ -1,0 +1,5 @@
+<div *ngFor="let link of breadCrumb; let i = index" 
+  (click)="onNavigate(link)">   
+  <span class="link" [ngClass]="{active: i === breadCrumb.length - 1 }"> {{link.display}} </span>  
+  <i *ngIf="link.display" class="fa-solid fa-chevron-right"></i>
+</div>

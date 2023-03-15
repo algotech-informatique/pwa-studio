@@ -1,0 +1,20 @@
+@import "../../theme/mixins";
+
+.input-element {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.title {
+    @include title;
+}
+
+.error {
+    color: var(--SN-COLOR-ERROR) !important;
+}
+
+.container {
+    width: 100%;
+    min-width: 0;
+}

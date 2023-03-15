@@ -1,0 +1,60 @@
+@import '../../../../../styles';
+@import '../theme/variables';
+
+:host {
+    --SELECT-BACkCOLOR: #7C818B;
+}
+
+.modal {
+    --MAX-HEIGHT: 300px;
+
+    .list {
+        display: flex;
+        flex-direction: column;
+        max-height: 200px;
+
+        @include custom-scrollbar;
+        overflow: none !important;
+        overflow-y: auto;
+
+        .item {
+            padding: 5px;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            height: 35px;
+
+            .icon-style {
+                font-size: 15px;
+                color: var(--INSPECTOR-HEADER-COLOR);
+                margin-right: 5px;
+                line-height: 30px;
+            }
+
+            .element {
+                width: 100%;
+                @include text-ellipsis;
+                color: var(--INSPECTOR-HEADER-COLOR);
+                line-height: 30px;
+            }            
+        }
+
+        .selected {
+            .element {
+                color: var(--INSPECTOR-SELECTED);
+            }
+
+            .icon-style {
+                color: var(--INSPECTOR-SELECTED);
+            }
+            
+            background-color: var(--SELECT-BACkCOLOR);
+        }
+        
+        .item:hover {
+            cursor: pointer;
+            border-radius: 5px;
+            background: var(--SN-COLOR-SECONDARY-TINT);
+        }
+    }
+}

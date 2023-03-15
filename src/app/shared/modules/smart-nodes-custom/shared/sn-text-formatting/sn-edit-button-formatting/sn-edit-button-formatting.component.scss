@@ -1,0 +1,26 @@
+@import "../../../../../../../styles";
+
+// EXPOSED VARIABLES
+:host {
+    --FORM-BUTTON-FOREGROUND-COLOR: #{$COLOR-FG};
+    --FORM-BUTTON-MARGIN-LR: 60px;
+    --FORM-BUTTON-MARGIN-TB: 10px;
+}
+
+.form-button {
+    position: relative;
+    @include button();
+    margin: var(--FORM-BUTTON-MARGIN-TB) var(--FORM-BUTTON-MARGIN-LR);
+
+    span {
+        @include normal-text(var(--FORM-BUTTON-FOREGROUND-COLOR));
+        font-weight: 400;
+    }
+
+    &:hover {
+        .tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}

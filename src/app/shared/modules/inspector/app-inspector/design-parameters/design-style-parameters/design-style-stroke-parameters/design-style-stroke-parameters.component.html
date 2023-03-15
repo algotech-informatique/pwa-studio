@@ -1,0 +1,60 @@
+<div *ngIf="width" class="property">
+    <display-definition-values
+        [width]="thickness"
+        widthLabel=""
+        [title]="'SN-TOOLBOX.POLYLINE.STROKE-WIDTH' | translate"
+        [roundValue]="true"
+        (changedWidth)="updateWidth($event)">
+    </display-definition-values>
+</div>
+
+<div *ngIf="lineCap" class="property">
+    <div class="select-inline-cap">
+        <span class="select-title">{{ 'SN-TOOLBOX.POLYLINE.DASHCAP' | translate }}</span>
+            
+        <div class="inline-select">
+            <div class="item" [ngClass]="{'selected': lineCap?.value === 'butt'}" (click)="selectlineCap('butt')"
+                [title]="'SN-TOOLBOX.POLYLINE-BORDER.STROKE-LINECAP.BUTT' | translate">
+                <img class="cap-icon" src="./assets/images/stroke-cap-none.svg" />
+            </div>
+            <div class="item" [ngClass]="{'selected': lineCap?.value === 'square'}" (click)="selectlineCap('square')"
+                [title]="'SN-TOOLBOX.POLYLINE-BORDER.STROKE-LINECAP.SQUARE' | translate">
+                <img class="cap-icon" src="./assets/images/stroke-cap-square.svg" />
+            </div>
+            <div class="item" [ngClass]="{'selected': lineCap?.value === 'round'}" (click)="selectlineCap('round')"
+                [title]="'SN-TOOLBOX.POLYLINE-BORDER.STROKE-LINECAP.ROUND' | translate">
+                <img class="cap-icon" src="./assets/images/stroke-cap-round.svg" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="dashArray" class="property">
+    <display-definition-values
+        [width]="dash"
+        widthLabel=""
+        [title]="'SN-TOOLBOX.POLYLINE-BORDER.STROKE-DASH' | translate"
+        [roundValue]="true"
+        [unit]="null"
+        (changedWidth)="updateDash($event)">
+    </display-definition-values>
+</div>
+
+<div *ngIf="dashArray" class="property">
+    <display-definition-values
+        [width]="gap"
+        widthLabel=""
+        [title]="'SN-TOOLBOX.POLYLINE-BORDER.STROKE-GAP' | translate"
+        [roundValue]="true"
+        [unit]="null"
+        (changedWidth)="updateGap($event)">
+    </display-definition-values>
+</div>
+
+<div *ngIf="color" class="property last">
+    <color-element
+        [showApptheme]="true"
+        [color]="color.value"
+        (changed)="selectColor($event)">
+    </color-element>
+</div>

@@ -1,0 +1,28 @@
+.content {
+    height: 100%;
+    width: 100%;
+    display: block;
+
+    &.isdisabled {
+        pointer-events: none;
+        opacity: 0.5 !important;
+
+        * {
+            pointer-events: none;
+        }
+    }
+    
+    &.hidden {
+        opacity: 0.2;
+    }
+
+    &.error {
+        box-shadow: 0 0 0 var(--SN-SELECTION-BORDER) var(--SN-COLOR-ERROR);
+        border-radius: 3px;
+    }
+
+    &.highlight {
+        box-shadow: 0 0 0 var(--SN-SELECTION-BORDER) var(--SN-COLOR-SELECTION);
+        border-radius: 3px;
+    }
+}

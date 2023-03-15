@@ -1,0 +1,52 @@
+@import '../../../theme/mixins';
+
+.flow {
+    display: flex;
+    height: 14px;
+    margin-bottom: 10px;
+
+}
+
+.flow-reverse {
+    flex-direction: row-reverse;
+}
+
+.name {
+    color: var(--SN-COLOR-FONT-SHADE);
+    width: calc(100% - 60px);
+    font-size: var(--SN-FLOW-PARAM-SIZE);
+    margin: -10px 10px !important;
+    text-align: right;
+    font-weight: bold;
+    font-style: italic;
+    @include text-ellipsis;
+}
+
+.name:hover {
+    cursor: pointer;
+}
+
+.undroppable {
+    opacity: var(--SN-NODE-UNDROPPABLE-OPACITY) !important;
+}
+
+.selected {
+    svg {
+        fill: var(--SN-COLOR-SELECTION) !important;
+    }
+    .name {
+        color: var(--SN-COLOR-SELECTION) !important;
+    }
+}
+
+.flow-disconnect {
+    fill: var(--SN-FLOW-COLOR-DISCONNECT);
+}
+
+.flow-connect {
+    fill: var(--SN-FLOW-COLOR-CONNECT);
+}
+
+.params {
+    width: 100%;
+}

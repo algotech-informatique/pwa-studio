@@ -1,0 +1,20 @@
+<div class="top">
+    <div class="tabs">
+        <button *ngFor="let tab of tabs; let i = index" 
+        [ngClass]="{
+            'disabled': tab.disabled, 
+            'selected': tab.visible,
+            'hidden': tab.hidden
+        }" 
+            (click)="onTabClick(i)">
+            {{tab.name}}
+        </button>
+
+    </div>
+    <div class="close" (click)="closeTabs()">
+        <i class="fa-solid fa-xmark style-icon"></i>
+    </div>
+</div>
+<div class="tab-content">
+    <ng-content></ng-content>
+</div>

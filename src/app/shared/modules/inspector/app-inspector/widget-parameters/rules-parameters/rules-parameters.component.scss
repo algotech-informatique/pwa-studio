@@ -1,0 +1,47 @@
+@import "../../../theme/mixins";
+
+@include app-errors;
+.cards {
+    @include card-element(10px);
+}
+
+.rule-card {
+    display: block;
+}
+
+.section:not(:last-child) {
+    margin-bottom: 16px;
+}
+
+.property {
+    @include property;
+}
+
+p.title-inside-card {
+    margin: 0 0 5px 0;
+}
+
+.property.with-button {
+    align-items: center;
+    margin-top: 5px;
+}
+
+.button-format {
+    background-color: var(--INSPECTOR-CARD-TITLE-BACKGROUND-TINT);
+    border-radius: 20px;
+    cursor: pointer;
+    padding: 7px 10px;
+    text-transform: uppercase;
+    transition: 0.1s ease-in;
+
+    &:hover {
+        background-color: var(--INSPECTOR-CARD-TITLE-BACKGROUND);
+    }
+}
+
+.event-arrow {
+    display: flex;
+    justify-content: center;
+    height: 16px;
+    padding-top: 10px;
+}

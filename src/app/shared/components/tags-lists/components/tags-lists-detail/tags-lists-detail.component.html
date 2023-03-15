@@ -1,0 +1,86 @@
+<div class="content"
+    [ngClass]="{'all-langs': activeAllLangs }">
+
+    <div class="title">
+    </div>
+
+    <div class="glist">
+
+        <div class="elements">
+            <label> {{ 'SETTINGS.TAGS.TAG_LIST_NAME' | translate }} </label>
+            <options-input-multilang
+                class="element"
+                [inputText]="tagsList.displayName"
+                (updateText)="updateName($event)"
+                
+            ></options-input-multilang>    
+    
+            <div class="border-bottom"></div>
+        </div>
+    
+        <div class="elements"
+            [ngClass]="{'new-list': tagsList.key === 'new-tags-list'}"
+        >
+            <options-checkbox
+                class="element"
+    			[label]="'SETTINGS.TAGS.APPLY_DOCS' | translate"
+	    		[checkElement]="tagsList.applyToDocuments"
+		    	selected="true"
+			    (checkedChange)="onChecked($event, 'docs')"
+		    >
+		    </options-checkbox>
+
+            <options-checkbox
+                class="element"
+                [label]="'SETTINGS.TAGS.APPLY_PICS' | translate"
+	    		[checkElement]="tagsList.applyToImages"
+		    	selected="true"
+			    (checkedChange)="onChecked($event, 'pics')"
+		    >
+		    </options-checkbox>
+        </div>      
+    
+        <div class="elements"
+            [ngClass]="{'new-list': tagsList.key === 'new-tags-list'}"
+        >
+            <label> {{ 'SETTINGS.TAGS.APPLY_SM' | translate }} </label>
+            <options-chips-list
+                class="element chips"
+                type="text"
+                [inputList]="inputList"
+                [items]="items"
+                [includeBottomBorder]="false"
+                (changeValue)="onSelectValue($event)"
+            >
+            </options-chips-list>
+            <div class="border-bottom"></div>
+        </div>
+    </div>
+
+    <div class="details"
+        [ngClass]="{'new-list': tagsList.key === 'new-tags-list'}"
+    >
+        <tags-lists-detail-line
+            class="detail"
+            [formatedDetailLines]="formatedDetailLines"
+            [customerLangs]="customerLangs"
+            [mainLang]="mainLang"
+            [nextLangs]="nextLangs"
+            (activeAllLangs)="onActiveAllLangs($event)"
+            (removeLines)="onRemoveLines($event)"
+            (updateLine)="onUpdateLine($event)"
+        >
+        </tags-lists-detail-line>
+    </div>
+
+    <div class="footer"
+        [ngClass]="{'new-list': tagsList.key === 'new-tags-list'}"
+    >
+        <div
+            class="delete-list"
+            (click)="onDeleteList()"
+        >
+            <span>{{ 'SETTINGS.TAGS.TAG_LIST_DELETE' | translate }}</span>
+        </div>
+    </div>
+</div>

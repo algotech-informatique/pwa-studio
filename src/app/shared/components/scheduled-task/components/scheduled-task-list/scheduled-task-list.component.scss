@@ -1,0 +1,73 @@
+@import "../../../../../../styles.scss";
+
+:host {
+    --LABEL-COLOR: #2D9CDB;
+    --TITLE-COLOR-SELECTED: #ffffff;
+    --TITLE-COLOR-NO-SELECTED: #A0A7B4;
+    --BUTTON-BACK-COLOR: #27AE60;
+    --TASK-WIDTH: 450px;
+    --TITLE-MARGIN-BOTTOM: 20px;
+    --LIST-MARGIN: 8px 10px 10px 25px;
+}
+
+.content {
+    width: var(--TASK-WIDTH);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+ 
+    .title {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: 50px;
+        padding: 10px;
+        margin-bottom: var(--TITLE-MARGIN-BOTTOM);
+
+        .options {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+
+            .task-title {
+                @include option-title(var(--TITLE-COLOR-NO-SELECTED));
+                padding-top: 10px;
+                margin-right: 10px;
+            }
+    
+            .task-title:hover {
+                cursor: pointer;
+                opacity: 0.7;
+            }
+    
+            .task-title-selected {
+                // padding-top: 10px;
+                @include option-title-selected(var(--TITLE-COLOR-SELECTED));
+                border-bottom: 1px solid var(--TITLE-COLOR-SELECTED);
+            }
+        }
+        
+        .new-task {
+            @include button();
+            background-color: var(--BUTTON-BACK-COLOR) !important;
+
+            span {
+                padding: 0px 10px 0px 10px;
+                @include option-title-selected(var(--TITLE-COLOR));
+            }
+        }
+
+        .new-task:hover {
+            cursor: pointer;
+            opacity: 0.5;
+        }
+    }   
+
+    .lists {
+        height: calc(100% - 70px);
+
+        .list {
+            --OPTIONS-LIST-OBJECT-MARGIN: var(--LIST-MARGIN);
+        }
+    }
+}

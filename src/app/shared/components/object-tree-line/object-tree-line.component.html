@@ -1,0 +1,36 @@
+<app-expander 
+    *ngIf="line.isFolder"
+    [selected]="line.selected"
+    [active]="line.active"
+    [name]="line.name"
+    [icon]="line.icon"
+    [icons]="[line.openIcon, line.closeIcon]"
+    [expand]="line.state"
+    [line]="line"
+    [renaming]="line.renaming || line.creation"
+    (handleExpand)="expandLine()"
+    (contextmenu)="folderClick($event)">
+    <app-object-tree-line 
+        *ngFor="let child of line.children, trackBy: trackUuid" 
+        [level]="level+1"
+        [line]="child">
+    </app-object-tree-line>
+</app-expander>
+
+<div class="tree-line" *ngIf="!line.isFolder" (click)="selectLine()" [appDragExplorerSource]="line"
+    [ngClass]="{'active': line.active, 'selected':line.selected}" (contextmenu)="noFolderClick($event)">
+    <i *ngIf="line.icon.length > 0" [class]="line.icon + ' tree-line-left'"></i>
+
+    <div class="name">
+        <span *ngIf="!line.renaming && !line.creation" class="text" [title]="line.name">{{line.name}}</span>
+        <app-object-tree-input
+            class="text"
+            *ngIf="line.renaming || line.creation"
+            [line]="line">
+        </app-object-tree-input>
+
+        <div *ngIf="line.rightIcons.length > 0" class="tree-line-right" >
+            <i [class]="iconRight + ' icon-right'" *ngFor="let iconRight of line.rightIcons"></i>
+        </div>
+    </div>
+</div>

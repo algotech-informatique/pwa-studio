@@ -1,0 +1,42 @@
+:host {
+    // --ICON-MARGIN: 7px;
+}
+
+.main {
+    height: 100%;
+    width: 100%;
+    // padding: 0 10%;
+
+    .widget-text {
+        display: flex;
+        height: 100%;
+        width: 100%;
+
+        .layout-icon {
+            display: flex;
+            align-items: center;
+
+            i {
+                text-align: center;
+
+                // &.with-icon {
+                //     &.row {
+                //         margin-right: var(--ICON-MARGIN);
+                //     }
+        
+                //     &.row-reverse {
+                //         margin-left: var(--ICON-MARGIN);
+                //     }
+        
+                //     &.column {
+                //         margin-bottom: var(--ICON-MARGIN);
+                //     }
+        
+                //     &.column-reverse {
+                //         margin-top: var(--ICON-MARGIN);
+                //     }
+                // }
+            }
+        }
+    }
+}

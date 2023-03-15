@@ -1,0 +1,81 @@
+<svg [attr.height]="widget.box.height" [attr.width]="widget.box.width">
+    <rect class="selection"
+        [attr.x]="widget.box.x"
+        [attr.y]="widget.box.y"
+        [attr.height]="widget.box.height"
+        [attr.width]="widget.box.width"
+        [attr.stroke-width]="(appZoom.transform.k | scaleZoom: '+/-') + 'px'"
+    />
+
+    <g *ngIf="!widget.custom.locked" class="resize" [ngClass]="{'hidden': widget.displayState?.draghover}">
+        <rect class="resize top" [id]="'top.' + widget.id"
+        [attr.x]="widget.box.x"
+        [attr.y]="widget.box.y - (pageUtils.RESIZE_THICKNESS * (appZoom.transform.k | scaleZoom) / 2 + 1)"
+        [attr.width]="widget.box.width"
+        [attr.height]="pageUtils.RESIZE_THICKNESS * (appZoom.transform.k | scaleZoom)" />
+
+        <rect class="resize right" [id]="'right.' + widget.id"
+            [attr.x]="widget.box.x + widget.box.width - (pageUtils.RESIZE_THICKNESS * (appZoom.transform.k | scaleZoom)/2-1)"
+            [attr.y]="widget.box.y"
+            [attr.width]="pageUtils.RESIZE_THICKNESS * (appZoom.transform.k | scaleZoom)"
+            [attr.height]="widget.box.height" />
+
+        <rect class="resize bottom" [id]="'bottom.' + widget.id"
+            [attr.x]="widget.box.x"
+            [attr.y]="widget.box.y + widget.box.height - (pageUtils.RESIZE_THICKNESS * (appZoom.transform.k | scaleZoom)/2-1)"
+            [attr.width]="widget.box.width"
+            [attr.height]="pageUtils.RESIZE_THICKNESS * (appZoom.transform.k | scaleZoom)" />
+
+        <rect class="resize left" [id]="'left.' + widget.id"
+            [attr.x]="widget.box.x - (pageUtils.RESIZE_THICKNESS * (appZoom.transform.k | scaleZoom)/2+1)"
+            [attr.y]="widget.box.y"
+            [attr.width]="pageUtils.RESIZE_THICKNESS * (appZoom.transform.k | scaleZoom)"
+            [attr.height]="widget.box.height" />
+
+        <!-- CIRCLE NORTH WEST -->
+        <g class="resize nw" [id]="'nw.' + widget.id" [attr.transform]="'translate('
+            + (widget.box.x - (pageUtils.RESIZE_THICKNESS * (appZoom.transform.k | scaleZoom) / 2)) + ','
+            + (widget.box.y - (pageUtils.RESIZE_THICKNESS * (appZoom.transform.k | scaleZoom) / 2)) + ')'">
+            <circle class="resize-circle"
+                [attr.r]="pageUtils.RESIZE_THICKNESS * (appZoom.transform.k | scaleZoom)/2/2"
+                [attr.cx]="pageUtils.RESIZE_THICKNESS * (appZoom.transform.k | scaleZoom)/2"
+                [attr.cy]="pageUtils.RESIZE_THICKNESS * (appZoom.transform.k | scaleZoom)/2"
+                [attr.stroke-width]="(2 * (appZoom.transform.k | scaleZoom)) + 'px'" />
+        </g>
+
+        <!-- CIRCLE NORTH EST -->
+        <g class="resize ne" [id]="'ne.' + widget.id" [attr.transform]="'translate('
+            + (widget.box.x + widget.box.width - (pageUtils.RESIZE_THICKNESS * (appZoom.transform.k | scaleZoom) /2)) + ','
+            + (widget.box.y - (pageUtils.RESIZE_THICKNESS * (appZoom.transform.k | scaleZoom) / 2)) + ')'">
+            <circle class="resize-circle" 
+                [attr.r]="pageUtils.RESIZE_THICKNESS * (appZoom.transform.k | scaleZoom)/2/2"
+                [attr.cx]="pageUtils.RESIZE_THICKNESS * (appZoom.transform.k | scaleZoom)/2"
+                [attr.cy]="pageUtils.RESIZE_THICKNESS * (appZoom.transform.k | scaleZoom)/2"
+                [attr.stroke-width]="(2 * (appZoom.transform.k | scaleZoom)) + 'px'" />
+        </g>
+
+        <!-- CIRCLE SOUTH EST -->
+        <g class="resize se" [id]="'se.' + widget.id"
+            [attr.transform]="'translate('
+            + (widget.box.x + widget.box.width - (pageUtils.RESIZE_THICKNESS * (appZoom.transform.k | scaleZoom) /2)) + ','
+            + (widget.box.y + widget.box.height - (pageUtils.RESIZE_THICKNESS * (appZoom.transform.k | scaleZoom) /2)) + ')'">
+            <circle class="resize-circle" 
+                [attr.r]="pageUtils.RESIZE_THICKNESS * (appZoom.transform.k | scaleZoom)/2/2"
+                [attr.cx]="pageUtils.RESIZE_THICKNESS * (appZoom.transform.k | scaleZoom)/2"
+                [attr.cy]="pageUtils.RESIZE_THICKNESS * (appZoom.transform.k | scaleZoom)/2"
+                [attr.stroke-width]="(2 * (appZoom.transform.k | scaleZoom)) + 'px'" />
+        </g>
+
+        <!-- CIRCLE SOUTH WEST -->
+        <g class="resize sw" [id]="'sw.' + widget.id"
+            [attr.transform]="'translate('
+            + (widget.box.x - (pageUtils.RESIZE_THICKNESS * (appZoom.transform.k | scaleZoom) /2)) + ','
+            + (widget.box.y + widget.box.height - (pageUtils.RESIZE_THICKNESS * (appZoom.transform.k | scaleZoom) /2)) + ')'">
+            <circle class="resize-circle" 
+                [attr.r]="pageUtils.RESIZE_THICKNESS * (appZoom.transform.k | scaleZoom)/2/2"
+                [attr.cx]="pageUtils.RESIZE_THICKNESS * (appZoom.transform.k | scaleZoom)/2"
+                [attr.cy]="pageUtils.RESIZE_THICKNESS * (appZoom.transform.k | scaleZoom)/2"
+                [attr.stroke-width]="(2 * (appZoom.transform.k | scaleZoom)) + 'px'" />
+        </g>
+    </g>
+</svg>

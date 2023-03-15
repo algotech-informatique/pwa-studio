@@ -1,0 +1,64 @@
+<div class="toolbox" *ngIf="loaded">
+    <div class="section">
+        <i class="fa-solid fa-arrows-turn-to-dots item button"
+            [ngClass]="{'selected': snApp?.displayState?.linked }" 
+            (click)="onActiveLink()"
+            [title]="'SN-TOOLBAR-SHOW-TRANSITIONS' | translate"
+        ></i>
+        <i
+            class="fa-solid fa-draw-polygon item button"
+            [ngClass]="{'selected': activeDrawPolyline}"
+            (click)="onDrawPolyline()"
+            [title]="'SN-TOOLBAR-DRAW-POLYLINE' | translate"
+        ></i>
+        <i class="fa-solid fa-share-alt item button"
+            [ngClass]="{'disabled': !snModel.publishedVersion }"
+            (click)="onShare($event)"
+            [title]="'SMARTLINK-LINK-APP.TOOLBAR-LINK' | translate"
+        ></i>
+    </div>
+
+    <div class="section">
+        <i class="fa-solid fa-rotate-left item button"
+            [ngClass]="{'disabled': !canUndo}"
+            (click)="onUndo()"
+            [title]="'SN-TOOLBAR-UNDO' | translate"></i>
+        <i class="fa-solid fa-redo-alt item button"
+            [ngClass]="{'disabled': !canRedo}"
+            (click)="onRedo()"
+            [title]="'SN-TOOLBAR-REDO' | translate"></i>
+        <select-versions [snView]="snApp" [snModel]="snModel" (viewChanged)="onViewChanged($event)">
+        </select-versions>
+    </div>
+
+    <div class="section">
+
+        <div class="item action"
+            [title]="'SN-TOOLBAR-CHECK' | translate"
+            (click)="onCheck()"
+            >
+            <i class="fa-solid fa-check style-icon"></i>
+            <div class="title">
+                {{ 'SN-TOOLBAR-CHECK' | translate }}
+            </div>
+        </div>
+        <div class="item action"
+            [title]="'SN-TOOLBAR-PLAYER' | translate"
+            (click)="onDebug()"
+            >
+            <i class="fa-solid fa-play style-icon"></i>
+            <div class="title">
+                {{ 'SN-TOOLBAR-PLAYER' | translate }}
+            </div>
+        </div>
+        <div class="item action valide"
+            [title]="'SN-PUBLISH-APP' | translate"
+            (click)="onPublish()"
+            >
+            <i class="fa-solid fa-rocket style-icon"></i>
+            <div class="title">
+                {{ 'SN-PUBLISH' | translate }}
+            </div>
+        </div>
+    </div>
+</div>

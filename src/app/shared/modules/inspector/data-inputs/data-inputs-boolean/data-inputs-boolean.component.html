@@ -1,0 +1,6 @@
+<div class="display" (click)="activateBoolValue($event)">
+    <div [ngClass]="{'selected': value}" class="square">
+        <i *ngIf="value" class="fa-solid fa-check"></i>
+    </div>
+    <div class="text">{{ 'INSPECTOR.MODEL.FIELD-VALUE.BOOL-DEFAULT' | translate }}</div>
+</div>

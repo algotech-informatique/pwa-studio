@@ -1,0 +1,44 @@
+:host {
+    position: absolute;
+}
+
+svg {
+    overflow: visible;
+}
+
+.selection {
+    shape-rendering: auto;
+    fill: none;
+    stroke: var(--SN-COLOR-SELECTION);
+}
+
+.resize {
+    fill: none;
+    // opacity: 0.2;
+    pointer-events: all
+}
+
+.resize-circle {
+    fill: #fff;
+    stroke: var(--SN-COLOR-SELECTION);
+}
+
+.top,
+.bottom {
+    cursor: ns-resize;
+}
+
+.left,
+.right {
+    cursor: ew-resize;
+}
+
+.nw,
+.se {
+    cursor: nwse-resize;
+}
+
+.ne,
+.sw {
+    cursor: nesw-resize;
+}

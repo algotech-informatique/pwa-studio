@@ -1,0 +1,48 @@
+import { SnNodeSchema } from '../../../smart-nodes/dto';
+
+export const SN_FILTER_NODE_SCHEMA: SnNodeSchema = {
+    displayName: 'SN-FILTER',
+    type: 'SnFilterNode',
+    icon: 'fa-solid fa-filter',
+    flows: [],
+    params: [{
+        direction: 'out',
+        key: 'result',
+        types: 'sys:filter',
+        multiple: false,
+        pluggable: true,
+        master: true,
+        displayName: 'SN-FILTER',
+    }, {
+        key: 'criteria',
+        direction: 'in',
+        types: 'string',
+        multiple: false,
+        master: false,
+        required: true,
+        displayName: 'SN-FILTER.CRITERIA',
+        pluggable: false,
+        display: 'select',
+    }, {
+        key: 'firstValue',
+        direction: 'in',
+        types: 'string',
+        multiple: false,
+        master: false,
+        required: false,
+        pluggable: true,
+        display: 'input',
+        displayName: 'SN-FILTER.VALUE',
+    }, {
+        key: 'secondValue',
+        direction: 'in',
+        types: 'number',
+        multiple: false,
+        master: false,
+        required: false,
+        pluggable: true,
+        display: 'input',
+        displayName: 'SN-FILTER.VALUE',
+    }],
+    sections: [],
+};

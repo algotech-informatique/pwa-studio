@@ -1,0 +1,51 @@
+<div class="content">
+
+    <div class="title">
+        <div class="gestion-title">
+            {{ 'INSPECTOR.I18N.TITLE' | translate }}
+        </div>
+    </div>
+
+    <div class="options">
+
+        <div class="imports">
+
+            <div class="actions">
+                <div class="buttons">
+                    <input style="display:none" type="file" (change)="executeAction($event)" accept=".csv"
+                        #selectFileXLS>
+
+                    <div class="import">
+                        <div class="import-button" (click)="selectFileXLS.click()">
+                            <span>{{ 'INSPECTOR.I18N.IMPORTS.VALIDATE' | translate }}</span>
+                        </div>
+                    </div>
+    
+                    <div class="import">
+                        <div class="import-button" (click)="createTemplate()">
+                            <span>{{ 'INSPECTOR.I18N.DOWNLOAD.MODEL' | translate }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-bottom"></div>
+        </div>
+
+        <div class="imports">
+            <div class="buttons">
+                <div class="import">
+                    <div [ngClass]="{'inactive': inactiveImportation }" class="import-button" (click)="onLaunchImportation()">
+                        <span>{{ 'INSPECTOR.I18N.IMPORTS.ACTION' | translate }}</span>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="logs">
+            <options-logger class="logger" rows="15" [loadLog]="inputLog" [clearLog]="clearLog" exportLog="true">
+            </options-logger>
+        </div>
+    </div>
+</div>

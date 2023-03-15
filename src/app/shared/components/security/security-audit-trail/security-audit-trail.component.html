@@ -1,0 +1,81 @@
+<ion-progress-bar class="progress" color="secondary" type="indeterminate"
+    *ngIf="generating"></ion-progress-bar>
+
+<div class="content">
+
+    <div class="security">
+
+        <div class="title">
+            <div class="audit-trail"
+                [ngClass]="{'not-active': !beginDate || !endDate}"
+                (click)="onGenerateAuditTrail()">
+
+                <span>{{ 'SETTINGS.SECURITY.AUDIT.GENERATE' | translate }}</span>
+            </div>
+        </div>
+
+        <div class="options">
+            <div class="options-title">
+                <div class="options-title-text">
+                    {{ 'SETTINGS.SECURITY.AUDIT.CONFIG' | translate }}
+                </div>
+            </div>
+
+            <div class="elements">
+                <options-checkbox
+                    class="element"
+                    [checkElement]="securityAuditTrail.activated"
+                    [label]="'SETTINGS.SECURITY.AUDIT.CONFIG.ACTIVATION_AUDIT' | translate"
+                    selected="true"
+                    (checkedChange)="onChangeTrail($event, 'activated')"
+                >
+                </options-checkbox>
+
+                <options-checkbox
+                    class="element"
+                    [ngClass]="{'not-active': !securityAuditTrail.activated}"
+                    [readOnly]="!securityAuditTrail.activated"
+                    [checkElement]="securityAuditTrail.traceOriginal"
+                    [label]="'SETTINGS.SECURITY.AUDIT.CONFIG.ACTIVATION_TRACING' | translate"
+                    selected="true"
+                    (checkedChange)="onChangeTrail($event, 'traceOriginal')"
+                >
+                </options-checkbox>
+            </div>
+
+        </div>
+
+        <div class="options">
+            <div class="options-title">
+                <div class="options-title-text">
+                    {{ 'SETTINGS.SECURITY.AUDIT.RECOVERY' | translate }}
+                </div>
+            </div>
+
+            <div class="elements">
+                <options-input
+                    class="element"
+                    [label]="'SETTINGS.SECURITY.AUDIT.START_DATE' | translate"
+                    [inputText]="beginDate"
+                    type="date"
+                    includeBottomBorder="true"
+                    (updateText)="onChangeDate($event, 'beginDate')"
+                    >
+                </options-input>
+
+                <options-input
+                    class="element"
+                    [label]="'SETTINGS.SECURITY.AUDIT.END_DATE' | translate"
+                    [inputText]="endDate"
+                    type="date"
+                    includeBottomBorder="true"
+                    (updateText)="onChangeDate($event, 'endDate')"
+                    >
+                </options-input>
+            </div>
+            
+        </div>
+
+    </div>
+
+</div>

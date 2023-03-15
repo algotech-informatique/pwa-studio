@@ -1,0 +1,12 @@
+<div class="menu">
+    <div class="sub-menu" *ngFor="let subMenu of menu.subMenus; let lastSubMenu = last;"
+        [ngClass]="{'last-sub-menu': lastSubMenu ? true : false}">        
+        <div class="action" *ngFor="let action of subMenu" (click)="click($event, action)" (mouseenter)="hover(action)"
+            [ngClass]="{'action-selected': action.selected ? true : false, 'action-disabled': action.disabled ? true : false}">
+            <i *ngIf="action.icon" class="icon fas" [class]="action.icon"></i>
+            <div class="title">{{ action.title | snlang }}</div>
+            <div *ngIf="action.content" class="content">{{ action.content | snlang }}</div>
+            <i *ngIf="action.subActions" class="fa-solid fa-caret-right"></i>
+        </div>
+    </div>
+</div>

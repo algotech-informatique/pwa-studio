@@ -1,0 +1,106 @@
+@mixin toolbox {
+    background: var(--TOOLBAR-BACKGROUND);
+
+    display: flex;
+    border-bottom: 1px solid var(--INSPECTOR-VERT-MENU-SECTION-BORDER-COLOR);
+    height: $TOP-BAR-HEIGHT;
+    justify-content: space-between;
+
+    .section {
+        display: flex;
+        align-items: center;
+        color: var(--TOOLBAR-COLOR);
+
+        width: 33%;
+        justify-content: center;
+
+        &:first-child {
+            justify-content: left;
+        }
+
+        &:last-child {
+            justify-content: right;
+        }
+
+        .separator {
+            height: 100%;
+            border-right: var(--TOOLBAR-SEPARATOR);
+        }
+
+        .item {
+            width: $TOP-BAR-HEIGHT;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .tab {
+            transition: all 0.2s ease;
+
+            &:not(.selected) {
+                &:hover {
+                    font-size: 22px;
+                }
+            }
+
+            &.selected {
+                background-color: var(--INSPECTOR-VERT-MENU-BACKGROUND);
+            }
+        }
+
+        .button {
+            &:hover {
+                background-color: var(--INSPECTOR-VERT-MENU-BACKGROUND);
+            }
+
+            &.selected {
+                background-color: var(--INSPECTOR-BG-COLOR-SELECTED-ITEM);
+            }
+
+            &.disabled {
+                @include disabled();
+                opacity: 0.3;
+            }
+        }
+
+        .action {
+            width: 86px;
+            height: 23px;
+            border: 1px solid var(--INSPECTOR-TOOLS-BORDER-COLOR);
+            border-radius: 5px;
+            margin-right: 10px;
+            font-size: 12px;
+
+            &.stop {
+                color: var(--SN-COLOR-ERROR);
+                border: 1px solid var(--SN-COLOR-ERROR);
+                background-color: var(--SN-COLOR-ERROR-BLUR);
+            }
+
+            .style-icon {
+                padding-right: 5px;
+                font-size: 10px;
+            }
+
+            &:hover {
+                .style-icon {
+                    font-size: 12px;
+                }
+            }
+
+            &.valide {
+                background-color: var(--INSPECTOR-TOOLS-ACTIVE-BG);
+                border: 0;
+                color: #fff;
+            }
+
+            &.disabled {
+                @include disabled();
+                opacity: 0.3;
+            }
+        }
+    }
+}

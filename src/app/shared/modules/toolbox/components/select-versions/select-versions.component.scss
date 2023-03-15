@@ -1,0 +1,87 @@
+@import '../../../../../../styles.scss';
+@import '../../../inspector/theme/mixins';
+
+:host {
+    width: 160px;
+    font-size: 10px;
+    position: relative;
+    margin-left: 5px;
+}
+
+.select-element {
+    @include input-box();
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 0px;
+    background-color: var(--INSPECTOR-VERT-MENU-BACKGROUND);
+    width: 100%;
+
+    &:hover,
+    &.selected {
+        background-color: var(--INSPECTOR-VERT-MENU-BACKGROUND-SHADE);
+    }
+
+    @include text-ellipsis;
+}
+
+.list {
+    position: absolute;
+    @include modal;
+
+    .list-items {
+        @include list();
+        background-color: var(--INSPECTOR-VERT-MENU-BACKGROUND);
+
+        .item {
+            justify-content: space-between;
+            padding: 2px;
+            
+            &.new {
+                font-size: 11px;
+                width: 100%;
+                text-align: center;
+                color: var(--SN-COLOR-ACTIVE-TINT);
+                >span {
+                    width: 100%;
+                }
+            }
+
+            &.active {
+                cursor: default !important;
+                background-color: var(--INSPECTOR-CARD-TITLE-BACKGROUND);
+                font-weight: bold;
+            }
+
+            .icon {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 20px;
+                font-size: 11px;
+
+                .published {
+                    color: $EDITOR-COLOR-INPUTS;
+                }
+
+                .remove {
+                    cursor: pointer;
+                    display: none;
+                    color: $COLOR-WARN;
+                }
+            }
+
+            &:hover {
+                .icon>.remove {
+                    display: block !important;
+                }
+            }
+
+            .item-value {
+                margin-left: 5px;
+                user-select: none;
+                @include text-ellipsis;
+            }
+        }
+    }
+}

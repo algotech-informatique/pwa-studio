@@ -1,0 +1,11 @@
+@import '../../../../../../styles';
+@import '../../../inspector/theme/variables';
+
+:host {
+    --SN-COLOR-SECONDARY: #{$TOOLBOX-BG};
+    --SN-COLOR-ACTIVE: var(--TOOLBAR-ITEM-HOVER);
+}
+
+.toolbox {
+    @include toolbox();
+}

@@ -1,0 +1,13 @@
+<app-inspector-section 
+    [snApp]="snApp"
+    [title]="'INSPECTOR.WIDGET.PARAMETERS' | translate" display="section"
+    [section]="'icon.profile'">
+
+    <div class="property last">
+        <select-icon
+            [icon]="widget?.custom?.icon"
+            (changed)="onIconChanged($event)">
+        </select-icon>
+    </div>
+
+</app-inspector-section>

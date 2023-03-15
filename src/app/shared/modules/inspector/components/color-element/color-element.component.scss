@@ -1,0 +1,113 @@
+@import '../../theme/mixins';
+
+:host {
+    --TITLE-WIDTH: 70px;
+}
+
+:host-context(.disabled) {
+    .select {
+        pointer-events: none;
+        
+        .color-input {
+            opacity: 0.6;
+        }
+    }
+}
+
+.title {
+    @include title(var(--TITLE-WIDTH));
+}
+
+.color-element {
+    display: flex;
+    flex-direction: row;
+    align-items: center
+}
+
+.color-block {
+    height: 100%;
+    width: var(--INSPECTOR-INPUT-HEIGHT);
+    border-radius: 2px;
+    flex-shrink: 0;
+    cursor: pointer;
+    border-right: 1px var(--INSPECTOR-INPUT-BORDER-COLOR) solid;
+    display: flex;
+    position: relative;
+
+    .color-plain, .color-real, .transparency-background {
+        width: 50%;
+        height: 100%;
+    }
+
+    .transparency-background {
+        height: 100%;
+        background-image: repeating-conic-gradient(#ffffff 0% 25%, #c4c4c4 0% 50%);
+        background-position: 0 0, 10px 10px;
+        background-size: 10px 10px;
+        background-color: #c4c4c4;
+    }
+
+    .color-real {
+        position: absolute;
+        right: 0;
+    }
+}
+
+.select {
+    @include input-box;
+    align-items: center;
+    padding: 0;
+    cursor: auto;
+
+    .color-input {
+        @include input-element;
+        min-width: 0;
+        margin-left: 5px;
+        display: flex;
+    }
+}
+
+.color-picker {
+    @include modal;
+    position: relative;
+    height: 277px;
+    display: contents;
+    width: 100%;
+}
+
+.theme-title {
+    margin-bottom: 5px;
+    font-family: 'roboto-medium';
+    display: block;
+}
+
+.theme-group {
+    width: 85px;
+}
+
+.algotechColors {
+    background-color: #fff;
+    color: #555;
+    border: 1px solid #555;
+    border-top: none;
+    padding: 5px 10px;
+
+    .group {
+        display: flex;
+        align-items: center;
+       
+        .color {
+            width: 13px;
+            height: 13px;
+            margin: 3px;
+            border: 1px solid #a9a9a9;
+            border-radius: 25%;
+            cursor: pointer;
+            display: inline-block;
+
+            &.active {
+                border: 2px solid var(--INSPECTOR-SELECTED);
+            }
+        }
+    }
+}

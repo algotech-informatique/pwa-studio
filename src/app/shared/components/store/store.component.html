@@ -1,0 +1,99 @@
+<div class="content">
+
+    <div class="store">
+
+        <div class="title">
+            
+            <div class="store-title">
+                {{ 'STORE.GESTION' | translate }}
+            </div>
+    
+            <div class="connection">
+                <i class="fa-solid fa-network-wired logo"
+                    [ngClass]="{'connected': isStoreConnected }"
+                >
+                </i>
+            </div>
+        </div>
+
+        <div class="options">
+            <div 
+                class="option"
+                [ngClass]="{
+                    'option-selected': activeSelected === 'upload',
+                    'disabled': !isStoreConnected
+                }"
+                (click)="onOpenMenu('upload')"
+            >
+                {{'STORE.GESTION-UPLOAD' | translate }}
+            </div>            
+
+            <div 
+                class="option"
+                [ngClass]="{
+                    'option-selected': activeSelected === 'download',
+                    'disabled': !isStoreConnected
+                }"
+                (click)="onOpenMenu('download')"
+            >
+                {{'STORE.GESTION-DOWNLOAD' | translate }}
+            </div>            
+
+            <div 
+                class="option"
+                [ngClass]="{'option-selected': activeSelected === 'login'}"
+                (click)="onOpenMenu('login')"
+            >
+                {{'STORE.GESTION-LOGIN' | translate }}
+            </div>            
+        </div>
+
+        <div class="body">
+            <store-upload class="store-upload" *ngIf="activeSelected === 'upload'"
+                [listObjects]="listObjects"
+                (selectObject)="onSelectObject($event)"
+            >
+            </store-upload>
+        
+            <store-download  *ngIf="activeSelected === 'download'"
+                [customerKey]="customerKey"
+                [host]="host"
+                [storeLoginData]="storeLoginData"
+                [itemList]="itemList"
+                (loadListObjects)="onLoadListDownload($event)"
+            >
+            </store-download>
+            
+            <store-login
+                *ngIf="activeSelected === 'login'"
+                [data]="storeLoginData"
+                (changed)="onStoreLoginChanged($event)"
+            >
+            </store-login>
+        </div>
+    </div>
+
+    <div class="store" *ngIf="activeSelected !== 'login'">
+
+        <store-upload-list 
+            *ngIf="activeSelected === 'upload'"
+            [listObjects]="sendListObjects"
+            [inputLog]="storeLogInput"
+            [clearLog]="storeLogClear"
+            [forceSend]="forceSend"
+            (removeItem)="onRemoveItem($event)"
+            (checkedChanged)="onCheckedChanged($event)"
+            (sendStore)="onSendStore()"
+        >
+        </store-upload-list>
+
+        <store-download-list *ngIf="activeSelected === 'download'"
+            [listObjects]="downloadListObjects"
+            [inputLog]="downloadListInput"
+            [clearLog]="downloadListclear"
+            (deployItems)="onDeployItems($event)"
+        >
+        </store-download-list>
+
+    </div>
+</div>

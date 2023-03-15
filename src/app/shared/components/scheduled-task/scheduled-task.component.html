@@ -1,0 +1,31 @@
+<div class="content">
+
+    <div class="task">
+        <scheduled-task-list class="list"
+            [smartTasks]="tasksList"
+            [selectedId]="selectedId"
+            (selectedTask)="onSelectTask($event)"
+            (createTask)="onCreateTask()"
+        >
+        </scheduled-task-list>
+    </div>
+    
+    <div class="task" *ngIf="selectedTask">
+        <scheduled-task-detail
+            [smartTask]="selectedTask"
+            [readOnly]="readOnly"
+            (deleteTask)="onDeleteTask($event)"
+            (smartTaskChange)="onSmartTaskChange($event)"
+        >
+        </scheduled-task-detail>
+    </div>
+
+    <div class="task" *ngIf="selectedTask">
+        <scheduled-task-log
+            [smartLogs]="smartTaskLogs"
+            (exportToCSV)="onExportCSV()"
+            (reload)="onReloadLog()"
+        >
+        </scheduled-task-log>
+    </div>
+</div>

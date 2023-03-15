@@ -1,0 +1,8 @@
+<div class="property inside-card last">
+    <select-element
+        [title]="'SN-APP.WIDGET.EVENT.TYPE.PAGE' | translate"
+        [list]="smartmodels"
+        [selectedKey]="pipeEvent.action"
+        (selectNewItem)="onSelectSmartmodel($event)">
+    </select-element>
+</div>

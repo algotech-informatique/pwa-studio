@@ -1,0 +1,57 @@
+<div class="inspector">
+    <div #content class="content">
+        <div class="property first last">
+            <display-key-element
+                [title]="'INSPECTOR.VARIABLES.VARIABLE_KEY' | translate"
+                [key]="snModel?.key"
+                [disabled]="snModel?.publishedVersion"
+                [snModel]="snModel"
+                (changed)="onKeyChanged($event)">
+            </display-key-element>
+        </div>
+
+        <inspector-section [title]="'INSPECTOR.APP.GENERAL' | translate" display="section">
+            <div class="property">
+                <display-translate-element
+                    [title]="'INSPECTOR.APP.NAME' | translate"
+                    [displayText]="snModel?.displayName"
+                    (changed)="onDisplayTranslateChanged($event)">
+                </display-translate-element>
+            </div>
+            <div class="property last">
+                <select-icon
+                    [error]="snApp?.displayState?.errors | showAppErrors: 'app.icon'"
+                    [icon]="snApp?.icon"
+                    (changed)="onIconChanged($event)">
+                </select-icon>
+            </div>
+        </inspector-section>
+
+        <inspector-section [title]="'INSPECTOR.APP.LAYOUT' | translate" display="section">
+            <div class="property">
+                <display-check-element [title]="'INSPECTOR.APP.HIDE-MAIN-BAR' | translate"
+                [value]="snApp?.custom?.hiddenBar" (changed)="onHiddenBarChanged($event)"></display-check-element>
+            </div>
+            
+            <div class="property last">
+                <display-definition-values
+                    [title]="'INSPECTOR.PAGE.SIZE-DISPLAY' | translate"
+                    [subTitle]="'INSPECTOR.PAGES.SIZE' | translate"
+                    [minWidth]="100"
+                    [minHeight]="100"
+                    [roundValue]="true"
+                    [width]="snApp?.pageWidth"
+                    [height]="snApp?.pageHeight"
+                    (changedWidth)="onDeviceWidthChanged($event)"
+                    (changedHeight)="onDeviceHeightChanged($event)">
+                </display-definition-values>
+            </div>
+        </inspector-section>
+
+        <app-parameters-theme
+            [snApp]="snApp"
+            (themeChanged)="onChanged()">
+        </app-parameters-theme>
+
+    </div>
+</div>

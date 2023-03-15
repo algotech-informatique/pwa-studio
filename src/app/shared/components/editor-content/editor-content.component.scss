@@ -1,0 +1,200 @@
+@import "../../../../styles.scss";
+
+$background-input: linear-gradient(to right, #174F20, #83A985);
+$background-data: linear-gradient(to right, #EB6317, #FFBA5A);
+$background-document: linear-gradient(to right, #5F3B1C, #ECCAAC);
+$background-forms: linear-gradient(to right, #78448b, #BB6BD9);
+$background-lifecycle: linear-gradient(to right, #237A48, #1CF879);
+$background-mobile: linear-gradient(to right, #4D4D9F, #9595FE);
+$background-notification: linear-gradient(to right, #165a81, #5f95b4);
+
+$color-so: #EB6317;
+$color-object: #bf360c;
+$color-sys: #27AE60;
+$color-sk: #2D9CDB;
+$color-reset: #CFFAFF;
+
+:host {
+    --TOOLBAR-BACKGROUND: #{$TOOLBOX-BG};
+    --TOOLBAR-COLOR: #dfdfdf;
+    --TOOLBAR-SEPARATOR: 1px solid #394554;
+    --TOOLBAR-ITEM-HOVER: #3b4e65;
+    --TOOLBAR-ITEM-ACTIVE: #3f97f6;
+    --TOOLBAR-ITEM-ACTIVE-TINT: #4674a56e;
+    --TOOLBAR-ITEM-ACTIVE-TINT-HOVER: #447ab463;
+    --TOOLBAR-ITEM-TOOLTIP-COLOR: #{$COLOR-FG};
+    --TOOLBAR-ITEM-TOOLTIP-BG: #{$COLOR-BG};
+    --TOOLBAR-ITEM-TOOLTIP-OPACITY: 1;
+    --TOOLBAR-ITEM-ACTION: #{$EDITOR-COLOR-INPUTS};
+    
+    --TOOLBAR-ITEM-WIDTH: calc(var(--TOOLBAR-HEIGHT) + 5px);
+    --TOOLBAR-ITEM-MARGIN: 0px;
+    --TOOLBAR-ITEM-FONT-SIZE: 22px;
+    --TOOLBAR-POPUP-OFFSET: 5px;
+    --TOOLBAR-ITEM-RADIUS: 0px;
+}
+
+.error {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    z-index: 10000;
+}
+
+.error-snackbar {
+    background: $COLOR-BG-POPUP-DARK;
+    color: $COLOR-FG;
+    padding: 10px 20px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.disabled {
+    display: block;
+    height: 100%;
+    width: 100%;
+    pointer-events: none;
+    opacity: 0.5;
+    * {
+        pointer-events: none;
+    }
+}
+
+.flow-editor {
+    --SN-NODE-HEADER-BACKGROUND-SNDATANODE: #{$background-input};
+
+    // service
+    --SN-NODE-HEADER-BACKGROUND-SNDATANODE: linear-gradient(to right, #174F20, #83A985);
+    --SN-NODE-HEADER-BACKGROUND-SNDBCONNECTORNODE: linear-gradient(to right, #9b5523, #cba28a);
+    --SN-NODE-HEADER-BACKGROUND-SNSERVICENODE: linear-gradient(to right, #1828B5, #5fa0c9);
+    --SN-NODE-HEADER-BACKGROUND-SNQUERYBUILDERNODE: linear-gradient(to right, #1828B5, #5fa0c9);
+    --SN-NODE-HEADER-BACKGROUND-SNTRANSFORMNODE: linear-gradient(to right, #47174F, #9F83A9);
+    --SN-NODE-HEADER-BACKGROUND-SNCONNECTORPARAMETERNODE: linear-gradient(to right, #4F1717, #A98383);
+    --SN-NODE-HEADER-BACKGROUND-SNMAPPEDNODE: linear-gradient(to right, #47174F, #9F83A9);
+    --SN-NODE-HEADER-BACKGROUND-SNCSVMAPPEDNODE: linear-gradient(to right, #47174F, #9F83A9);
+    --SN-NODE-HEADER-BACKGROUND-SNREQUESTRESULTNODE: linear-gradient(to right, #38AE64, #85988E);
+    --SN-NODE-HEADER-BACKGROUND-SNREQUESTRESULTNODE-INFO: linear-gradient(to right, #42a5f570, #42a5f5);
+    --SN-NODE-HEADER-BACKGROUND-SNREQUESTRESULTNODE-SUCCESS: linear-gradient(to right, #00e67670, #00e676);
+    --SN-NODE-HEADER-BACKGROUND-SNREQUESTRESULTNODE-REDIRECT: linear-gradient(to right, #ffee5870, #ffee58);
+    --SN-NODE-HEADER-BACKGROUND-SNREQUESTRESULTNODE-CLIENT-ERROR: linear-gradient(to right, #ef535070, #ef5350);
+    --SN-NODE-HEADER-BACKGROUND-SNREQUESTRESULTNODE-SERVOR-ERROR: linear-gradient(to right, #c6282870, #c62828);
+    --SN-NODE-HEADER-BACKGROUND-SNGEONODE: linear-gradient(to right, #174F20, #27AE60);
+    --SN-NODE-HEADER-BACKGROUND-SNMAGNETNODE: linear-gradient(to right, #174F20, #27AE60);
+
+    // data
+    --SN-NODE-HEADER-BACKGROUND-SNDATABUFFERNODE: #{$background-data};
+    --SN-NODE-HEADER-BACKGROUND-SNOBJECTASSIGNMENTNODE: #{$background-data};
+    --SN-NODE-HEADER-BACKGROUND-SNOBJECTUICREATIONNODE: #{$background-data};
+    --SN-NODE-HEADER-BACKGROUND-SNOBJECTASSIGNMENTNODE: #{$background-data};
+    --SN-NODE-HEADER-BACKGROUND-SNOBJECTCREATIONNODE : #{$background-data};
+    --SN-NODE-HEADER-BACKGROUND-SNOBJECTDELETIONNODE: #{$background-data};
+    --SN-NODE-HEADER-BACKGROUND-SNOBJECTDOWNLOADNODE: #{$background-data};
+    --SN-NODE-HEADER-BACKGROUND-SNOBJECTFILTERNODE: #{$background-data};
+    --SN-NODE-HEADER-BACKGROUND-SNLAYERMETADATANODE: #{$background-data};
+    --SN-NODE-HEADER-BACKGROUND-SNMERGENODE: #{$background-data};
+    --SN-NODE-HEADER-BACKGROUND-SNMERGEV2NODE: #{$background-data};
+    --SN-NODE-HEADER-BACKGROUND-SNSKILLSNODE: #{$background-data};
+
+    // document
+    --SN-NODE-HEADER-BACKGROUND-SNDOCUMENTDELETIONNODE: #{$background-document};
+    --SN-NODE-HEADER-BACKGROUND-SNDOCUMENTDOWNLOADNODE: #{$background-document};
+    --SN-NODE-HEADER-BACKGROUND-SNDOCUMENTEDITIONNODE: #{$background-document};
+    --SN-NODE-HEADER-BACKGROUND-SNDOCUMENTLINKNODE: #{$background-document};
+    --SN-NODE-HEADER-BACKGROUND-SNDOCUMENTLISTNODE: #{$background-document};
+    --SN-NODE-HEADER-BACKGROUND-SNDOCUMENTLOCKNODE: #{$background-document};
+    --SN-NODE-HEADER-BACKGROUND-SNDOCUMENTUPLOADNODE: #{$background-document};
+    --SN-NODE-HEADER-BACKGROUND-SNDOCUMENTVIEWERNODE: #{$background-document};
+    --SN-NODE-HEADER-BACKGROUND-SNXREPORTNODE: #{$background-document};
+    --SN-NODE-HEADER-BACKGROUND-SNDOCUMENTSELECTNODE: #{$background-document};
+    --SN-NODE-HEADER-BACKGROUND-SNDOCUMENTCONVERTNODE: #{$background-document};
+    --SN-NODE-HEADER-BACKGROUND-SNDOCUMENTFILEZIPNODE: #{$background-document};
+    --SN-NODE-HEADER-BACKGROUND-SNDOCUMENTFILECREATENODE: #{$background-document};
+
+    // forms
+    --SN-NODE-HEADER-BACKGROUND-SNFORMNODE: #{$background-forms};
+    --SN-NODE-HEADER-BACKGROUND-SNINPUTNODE: #{$background-forms};
+    --SN-NODE-HEADER-BACKGROUND-SNLISTNODE: #{$background-forms};
+
+    // lifecycle
+    --SN-NODE-HEADER-BACKGROUND-SNCONDITIONNODE: #{$background-lifecycle};
+    --SN-NODE-HEADER-BACKGROUND-SNCONDITIONV2NODE: #{$background-lifecycle};
+    --SN-NODE-HEADER-BACKGROUND-SNFINISHERNODE: #{$background-lifecycle};
+    --SN-NODE-HEADER-BACKGROUND-SNLAUNCHERNODE: #{$background-lifecycle};
+    --SN-NODE-HEADER-BACKGROUND-SNMULTICHOICENODE: #{$background-lifecycle};
+    --SN-NODE-HEADER-BACKGROUND-SNUNDONODE: #{$background-lifecycle};
+    --SN-NODE-HEADER-BACKGROUND-SNLOOPNODE: #{$background-lifecycle};
+    --SN-NODE-HEADER-BACKGROUND-SNSUBWORKFLOWNODE: #{$background-lifecycle};
+    --SN-NODE-HEADER-BACKGROUND-SNCONNECTORNODE: #{$background-lifecycle};
+    --SN-NODE-HEADER-BACKGROUND-SNSWITCHNODE: #{$background-lifecycle};
+
+    // mobile
+    --SN-NODE-HEADER-BACKGROUND-SNCAMERAAUTONODE: #{$background-mobile};
+    --SN-NODE-HEADER-BACKGROUND-SNCAMERANODE: #{$background-mobile};
+    --SN-NODE-HEADER-BACKGROUND-SNGEOLOCATIONNODE: #{$background-mobile};
+    --SN-NODE-HEADER-BACKGROUND-SNGPSNODE: #{$background-mobile};
+    --SN-NODE-HEADER-BACKGROUND-SNQRCODENODE: #{$background-mobile};
+    --SN-NODE-HEADER-BACKGROUND-SNSIGNATURENODE: #{$background-mobile};
+
+    // notification
+    --SN-NODE-HEADER-BACKGROUND-SNALERTNODE: #{$background-notification};
+    --SN-NODE-HEADER-BACKGROUND-SNEMAILNODE: #{$background-notification};
+    --SN-NODE-HEADER-BACKGROUND-SNNOTIFICATIONNODE: #{$background-notification};
+    --SN-NODE-HEADER-BACKGROUND-SNREVIEWNODE: #{$background-notification};
+
+    // schedule
+    --SN-NODE-HEADER-BACKGROUND-SNSCHEDULEAUTOCREATIONNODE: #{$background-notification};
+    --SN-NODE-HEADER-BACKGROUND-SNSCHEDULECREATIONNODE: #{$background-notification};
+    --SN-NODE-HEADER-BACKGROUND-SNSCHEDULEDELETIONNODE: #{$background-notification};
+
+    // text
+    --SN-NODE-HEADER-BACKGROUND-SNTEXTFORMATTINGNODE: linear-gradient(to right, #27AE60, #BB6BD9);
+    --SN-NODE-HEADER-BACKGROUND-SNFORMULANODE: linear-gradient(to right, #BA7918, #C0B01C);
+    --SN-NODE-HEADER-BACKGROUND-SNJSONNODE: linear-gradient(to right, #BC7826, #bf360c);
+    --SN-NODE-HEADER-BACKGROUND-SNARRAYNODE: linear-gradient(to right, #029BD8, #EF6225);
+    --SN-NODE-HEADER-BACKGROUND-SNARRAYFUNCTIONNODE: linear-gradient(to right, #029BD8, #bf360c);
+    --SN-NODE-HEADER-BACKGROUND-SNOBJECTFUNCTIONNODE: linear-gradient(to right, #029BD8, #bf360c);
+    --SN-NODE-HEADER-BACKGROUND-SNFILTERNODE: linear-gradient(to right, #8c9db3, #4986df);
+    --SN-NODE-HEADER-BACKGROUND-SNRESETNODE: linear-gradient(to right, #8c9db3, #4986df);
+    --SN-NODE-HEADER-BACKGROUND-SNGLISTNODE: linear-gradient(to right, #8c9db3, #27AE60);
+   
+    // Services
+    --SN-NODE-HEADER-BACKGROUND-SNSERVICECONNECTORNODE: linear-gradient(to right, #687288, #bf360c);
+    --SN-NODE-HEADER-BACKGROUND-SNSERVICESMARTOBJECTV2NODE: linear-gradient(to right, #687288, #EB6317);
+    --SN-NODE-HEADER-BACKGROUND-SNSERVICESMARTOBJECTNODE: linear-gradient(to right, #687288, #EB6317);
+    --SN-NODE-HEADER-BACKGROUND-SNSERVICETREESEARCHNODE: linear-gradient(to right, #687288, #EB6317);
+    --SN-NODE-HEADER-BACKGROUND-SNSERVICEUSERSNODE: linear-gradient(to right, #687288, #27AE60);
+    --SN-NODE-HEADER-BACKGROUND-SNSERVICEWORKFLOWNODE: linear-gradient(to right, #687288, #27AE60);
+
+    // type
+    --SN-NODE-PARAM-COLOR-SO: #{$color-so};
+    --SN-NODE-PARAM-COLOR-JSON: #{$color-object};
+    --SN-NODE-PARAM-COLOR-OBJECT: #{$color-object};
+
+    --SN-NODE-PARAM-COLOR-SK: #{$color-sk};
+    --SN-NODE-PARAM-COLOR-SKATDOCUMENT: #{$color-sk};
+    --SN-NODE-PARAM-COLOR-SKATTAG: #{$color-sk};
+    --SN-NODE-PARAM-COLOR-SKATGEOLOCATION: #{$color-sk};
+    --SN-NODE-PARAM-COLOR-SKATSIGNATURE: #{$color-sk};
+    --SN-NODE-PARAM-COLOR-SKATMAGNET: #{$color-sk};
+
+    --SN-NODE-PARAM-COLOR-SYS: #{$color-sys};
+    --SN-NODE-PARAM-COLOR-SYSFILE: #{$color-sys};
+    --SN-NODE-PARAM-COLOR-SYSSIGNATURE: #{$color-sys};
+    --SN-NODE-PARAM-COLOR-SYSSCHEDULE: #{$color-sys};
+    --SN-NODE-PARAM-COLOR-SYSNOTIFICATION: #{$color-sys};
+    --SN-NODE-PARAM-COLOR-SYSWORKFLOW: #{$color-sys};
+    --SN-NODE-PARAM-COLOR-SYSLOCATION: #{$color-sys};
+    --SN-NODE-PARAM-COLOR-SYSMAGNET: #{$color-sys};
+    --SN-NODE-PARAM-COLOR-SYSUSER: #{$color-sys};
+    --SN-NODE-PARAM-COLOR-SYSDBCONNECTION: #{$color-sys};
+    --SN-NODE-PARAM-COLOR-SYSTAG: #{$color-sys};
+    --SN-NODE-PARAM-COLOR-SYSGLISTVALUE: #{$color-sys};
+    --SN-NODE-PARAM-COLOR-SYSQUERY: #{$color-sys};
+    --SN-NODE-PARAM-COLOR-SYSORDERPAIR: #{$color-sys};
+    --SN-NODE-PARAM-COLOR-SYSFILTERPAIR: #{$color-sys};
+    --SN-NODE-PARAM-COLOR-SYSFILTER: #{$color-sys};
+
+    --SN-NODE-PARAM-COLOR-RESET: #{$color-reset};
+}

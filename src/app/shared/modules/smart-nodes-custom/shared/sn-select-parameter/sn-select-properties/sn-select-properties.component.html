@@ -1,0 +1,33 @@
+<sn-select-modal [(top)]="top" [snView]="snView" class="modal">
+    <div class="header">
+        <div class="left-side">
+            <div *ngIf="propertiesShowed.parent" (click)="back()" class="back-button">
+                <i class="fa-solid fa-angle-left back-icon"></i>
+                {{ propertiesShowed.parent.property.name }}
+            </div>
+            <i *ngIf="!allSelected && multiSelection" class="fa-regular fa-square checkbox" (click)="toggleAll()"></i>
+            <i *ngIf="allSelected && multiSelection" class="fa-solid fa-square-check checkbox" (click)="toggleAll()"></i>
+        </div>
+        <i *ngIf="multiSelection" class="fa-solid fa-xmark close-icon" (click)="close()"></i>
+    </div>
+    <div class="search">
+        <input #searchInput [placeholder]="'SEARCHBOX.PLACEHOLDER' | translate" type="search" (keyup)="onSearch()" [(ngModel)]="search">
+    </div>
+    <div class="list scrollable" *ngIf="filterProperties" #list>
+        <div *ngFor="let propertyDisplay of filterProperties" class="property">
+            <i *ngIf="!propertyDisplay.selected && multiSelection" class="fa-regular fa-square checkbox" (click)="toggleCheckbox(propertyDisplay)"></i>
+            <i *ngIf="propertyDisplay.selected && multiSelection" class="fa-solid fa-square-check checkbox" (click)="toggleCheckbox(propertyDisplay)"></i>
+            <div class="title" (click)="toggleProperty(propertyDisplay, false)">
+                <i *ngIf="propertyDisplay.children" class="fa-solid fa-angle-right so-icon"></i>
+                <i *ngIf="propertyDisplay.icon" [className]="propertyDisplay.icon + ' icon'"></i>
+                <div class="title-text" [title]="propertyDisplay.property.name"
+                    [ngClass]="{'def-width': multiSelection, 'def-padding': !multiSelection}">
+                    {{ propertyDisplay.property.name }}
+                </div>
+            </div>
+        </div>
+        <div class="empty">
+            <i *ngIf="filterProperties?.length === 0" class="fa-solid fa-ban empty-icon"></i>
+        </div>
+    </div>
+</sn-select-modal>

@@ -1,0 +1,32 @@
+@import "../../../../../theme/mixins";
+
+.sub-card {
+    @include property;
+    background-color: var(--INSPECTOR-CARD-CONTENT-BACKGROUND-TINT);
+    padding: 10px;
+    border-radius: 5px;
+
+    .subproperty {
+        margin-top: 6px;
+    }
+}
+
+.actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 5px;
+    padding: 5px 2px;
+
+    .move-event {
+        .button {
+            margin-right: 8px;
+        }
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+
+}
+

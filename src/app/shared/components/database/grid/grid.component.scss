@@ -1,0 +1,69 @@
+@import '../../../modules/inspector/theme/_mixins.scss';
+
+:host {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+
+  .grid {
+    display: block;
+    margin-top: 10px;
+    height: calc(100% - 145px);
+    width: calc(100% - 15px);
+
+    --GRID-HEADER: 1px solid var(--INSPECTOR-INPUT-BORDER-COLOR);
+    --GRID-COLUMN-SELECTION: #2C6585;
+    --GRID-FG: #FFF;
+    --GRID-BG: #13141C;
+    --GRID-RADIUS: 5px;
+    --GRID-BORDER-TOP: 1px solid var(--INSPECTOR-INPUT-BORDER-COLOR);
+    --GRID-BORDER-BOTTOM: 1px solid var(--INSPECTOR-INPUT-BORDER-COLOR);
+    --GRID-BORDER-LEFT: 1px solid var(--INSPECTOR-INPUT-BORDER-COLOR);
+    --GRID-BORDER-RIGHT: 1px solid var(--INSPECTOR-INPUT-BORDER-COLOR);
+    --MASK-BG: var(--INSPECTOR-INPUT-BORDER-COLOR); //var(--DB-BACKGROUD-COLOR);
+    --GRID-BORDER-ROW: 1px solid var(--INSPECTOR-INPUT-BORDER-COLOR);
+    //--GRID-BORDER-COLUMN: 1px solid var(--INSPECTOR-INPUT-BORDER-COLOR);
+    --GRID-SELECTION: #38383870;
+    --GRID-SELECTION-HOVER: #38383831;
+
+    --GRID-FONT-SIZE: 14px;
+    --GRID-JUSTIFY-CONTENT: center;
+
+    // header
+    --GRID-HEADER-COLOR: #FFF;
+    --GRID-HEADER-JUSTIFY-CONTENT: center;
+    --GRID-HEADER-FONT-SIZE: 14px;
+
+    // cell
+    --GRID-CELL-COLOR: #FFF;
+    --GRID-CELL-JUSTIFY-CONTENT: center;
+    --GRID-CELL-FONT-SIZE: 12px;
+
+  }
+}
+
+.info {
+  margin-top: 10px;
+  font-family: 'roboto-medium';
+  font-size: 10px;
+  color: #FFF;
+  width: fit-content;
+}
+
+.fileover {
+  .grid {
+    --GRID-BG: #38383831;
+  }
+}
+
+
+.dropDisabled {
+  .grid {
+    --GRID-BG: var(--SN-COLOR-ERROR-BLUR);
+  }
+}

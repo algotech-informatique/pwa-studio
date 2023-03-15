@@ -1,0 +1,106 @@
+@import '../../../../smart-nodes/theme/mixins';
+@import "../../../../../../../styles.scss";
+
+:host {
+    --BORDER-COLOR: #{$COLOR-FG};
+    --TOOLTIP-COLOR: #505C6B;
+    --BG-ACTIVE: #435163;
+}
+
+.modal {
+    --SNMODAL-MAX-HEIGHT: 450px;
+    --SNMODAL-MAX-WIDTH: 650px;
+
+    .header-formulas {
+        display: flex;
+        flex-direction: row;
+        background-color: var(--BG-ACTIVE);
+        border-radius: 5px 5px 0px 0px;
+    }
+
+    .title-formula {
+        align-items: center;
+        display: flex;
+        padding: 0px 4px 0px 4px;
+    }
+
+    .title-formula:hover {
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .group-formula {
+        overflow-x: hidden;
+
+        .selected {
+            text-decoration: underline;
+        }
+
+        .element-formula {
+
+            margin-bottom: 5px;
+            margin-top: 5px;
+            border: var(--BORDER-COLOR) solid 0.5px;
+            border-radius: 5px;
+            padding: 5px;
+
+            .code-element {
+                font-size: 14px;
+                overflow-wrap: break-word;
+            }
+
+            .description {
+                overflow: hidden;
+                margin-top: -5px;
+                margin-left: 10px;
+                width: 600px;
+                line-height: 16px;
+                overflow-wrap: break-word;
+                font-size: 12px;
+            }
+
+            &:hover {
+                cursor: pointer;
+
+                .code-element {
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+
+    .list-formulas {
+        display: flex;
+        flex-direction: column;
+
+        .header {
+            padding: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            background-color: var(--INPUT-BACKGROUND-COLOR);
+            border-radius: 4px;
+            height: 50px;
+
+            .left-side {
+
+                .title {
+                    color: var(--POP-UP-HEADER-COLOR);
+                }
+            }
+
+            .close-icon {
+                cursor: pointer;
+                margin: 5px 0;
+            }
+
+        }
+
+        .formulas {
+            max-height: 350px;
+            @include scrollbar();
+
+
+        }
+    }
+}

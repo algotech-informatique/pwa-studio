@@ -1,0 +1,38 @@
+<div class="display-input">
+    <span *ngIf="title" class="title">{{ title | translate }}</span>
+    
+    <div class="display">
+        <div class="area" [ngClass]="{'with-buttons': items}">
+            <textarea
+                #textarea
+                name="textarea"
+                cols="40"
+                spellcheck="false"
+                [rows]="rows"
+                (change)="changeValue()"
+                [(ngModel)]="value">
+            </textarea>
+        </div>
+    
+        <div *ngIf="items" #container class="bottom">
+            <i [ngClass]="{'selected': showDataSelector}"
+                class="fa-solid fa-bullseye data-selector-button"
+                (click)="openDataSelector($event)">
+            </i>        
+        </div>
+    
+        <popup-element *ngIf="items"
+            [show]="showDataSelector"
+            [container]="itemsContainer"
+            [popupMargin]="popupMargin"
+            (closePopup)="closeDataSelector()">
+            <data-selector
+                [show]="showDataSelector"
+                [items]="items"
+                [expectedTypes]="['string']"
+                (selectedData)="addInput($event)">
+            </data-selector>
+        </popup-element>
+    </div>
+</div>
+

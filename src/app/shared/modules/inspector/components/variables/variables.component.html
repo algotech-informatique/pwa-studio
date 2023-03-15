@@ -1,0 +1,62 @@
+<div class="variables-cards">
+    <div class="section-content">
+
+        <inspector-section
+            class="section"
+            [ngClass]="{'app-errors': errors | showAppErrors: 'variable.' +  variable?.uuid }"
+            *ngFor="let variable of variables, let i = index"
+            [title]="variable?.key || 'INSPECTOR.VARIABLES.NEW' | translate"
+            [subTitle]="variable?.type | keyToDisplay:filteredTypesAndMultiple[i]?.filteredTypes"
+            [subTitleIcon]="variable?.type | keyToDisplay:filteredTypesAndMultiple[i]?.filteredTypes:'icon'"
+            [defaultOpen]="addedIndex === i"
+            [display]="'card'">
+
+            <div class="property inside-card"
+                [ngClass]="{'last': !(filteredTypesAndMultiple[i]?.filteredTypes?.length > 1) &&
+                    filteredTypesAndMultiple[i]?.disableMultiple}">
+                <display-key-element class="element"
+                    [title]="'INSPECTOR.VARIABLES.VARIABLE_KEY' | translate"
+                    [suggestionsList]="suggestionsList"
+                    [key]="variable?.key"
+                    (changed)="onKeyChange($event, i)">
+                </display-key-element>
+            </div>
+
+            <div *ngIf="filteredTypesAndMultiple[i]?.filteredTypes?.length > 1" class="property inside-card"
+                [ngClass]="{'last': filteredTypesAndMultiple[i]?.disableMultiple}">
+                <select-element
+                    [title]="'INSPECTOR.VARIABLES.VARIABLE_TYPE' | translate"
+                    [list]="filteredTypesAndMultiple[i]?.filteredTypes"
+                    [selectedKey]="variable?.type"
+                    (selectNewItem)="onTypeChanged($event, i)">
+                </select-element>
+            </div>
+
+            <div *ngIf="!filteredTypesAndMultiple[i]?.disableMultiple" class="property inside-card last">
+                <display-check-element
+                    class="multiple"
+                    [title]="'INSPECTOR.VARIABLES.VARIABLE_MULTIPLE' | translate"
+                    [value]="variable?.multiple"
+                    (changed)="multipleChanged($event, i)">
+                </display-check-element>
+            </div>
+
+            <div class="actions only-delete">
+                <div class="delete-event">
+                    <i class="fa-solid fa-trash button" (click)="deleteElement(i)"></i>
+                </div>
+            </div>
+
+        </inspector-section>
+
+        <div *ngIf="variables?.length === 0" class="no-element section-content">
+            <p>{{ 'INSPECTOR.VARIABLES.NO-VARIABLE' | translate }}</p>
+        </div>
+        <div class="button-container">
+            <div class="add-button section-content" (click)="addVariable()">
+                <i class="fa-solid fa-plus"></i>
+                <p>{{ 'INSPECTOR.WIDGET.VARIABLE.ADD-VARIABLE' | translate }}</p>
+            </div>
+        </div>
+    </div>
+</div>

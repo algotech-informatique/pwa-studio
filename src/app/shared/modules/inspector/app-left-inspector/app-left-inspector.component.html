@@ -1,0 +1,34 @@
+<div class="content" id="left-inspector">
+
+    <div class="tabs">
+        <div class="tab" *ngFor="let tab of tabs"
+            [ngClass]="{'selected-tab': tab?.key === selectedTab }"
+            (click)="onOpenTab(tab?.key)">
+            <span>{{ tab?.value | translate }}</span>
+        </div>
+    </div>
+
+    <div class="layout">
+
+        <widget-selector id="display-widgets-container"
+            [ngClass]="{'hidden': selectedTab !== 'widgets'}"
+            [snApp]="snApp"
+            class="widget-selector">
+        </widget-selector>
+
+        <ui-tree [ngClass]="{'hidden': selectedTab !== 'layers'}"
+            [snApp]="snApp"
+            [settings]="settings">
+        </ui-tree>
+
+        <app-parameters
+            [ngClass]="{'hidden': selectedTab !== 'application'}"
+            [snApp]="snApp"
+            [snModel]="snModel"
+            [securityGroups]="snApp?.securityGroups"
+            (changed)="onChanged()"
+            (changedPageName)="onChangedPageName()">
+        </app-parameters>
+
+    </div>
+</div>
