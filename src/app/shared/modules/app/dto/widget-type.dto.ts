@@ -1,4 +1,4 @@
-import { SnPageWidgetTypeReturnDto } from '@algotech/core';
+import { SnPageWidgetTypeReturnDto } from '@algotech-ce/core';
 
 export class WidgetTypeDto {
     typeKey: string;

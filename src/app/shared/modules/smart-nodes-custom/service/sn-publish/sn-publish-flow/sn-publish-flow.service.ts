@@ -3,15 +3,15 @@ import { SnView, SnGroup, SnNode, SnLang, SnFlow, SnParam } from '../../../../sm
 import {
     SnModelDto, WorkflowModelDto, WorkflowStepModelDto, TaskModelDto, TaskTransitionModelDto,
     PairDto, WorkflowExpressionDto, WorkflowProfilModelDto, ServiceModelDto, EnvironmentDirectoryDto,
-} from '@algotech/core';
+} from '@algotech-ce/core';
 import { throwError, of, Observable } from 'rxjs';
 import { UUID } from 'angular2-uuid';
-import { WorkflowModelsService, SmartFlowsService, KeyFormaterService } from '@algotech/angular';
+import { WorkflowModelsService, SmartFlowsService, KeyFormaterService } from '@algotech-ce/angular';
 import { DatasService, CheckService, MessageService, SessionsService, SnModelsService } from '../../../../../services';
 import { tap, map } from 'rxjs/operators';
 import { SnUtilsService, SnTranslateService, SnActionsService } from '../../../../smart-nodes/services';
 import * as _ from 'lodash';
-import { TaskTransitionDataModelDto, EnvironmentParameterDto } from '@algotech/core';
+import { TaskTransitionDataModelDto, EnvironmentParameterDto } from '@algotech-ce/core';
 import { ResourceType } from '../../../../../dtos';
 import { SnPublishFlowTransformService } from './sn-publish-flow-transform/sn-publish-flow-transform';
 import { SnPublishFlowSubflowService } from './sn-publish-flow-subflow/sn-publish-flow-subflow';

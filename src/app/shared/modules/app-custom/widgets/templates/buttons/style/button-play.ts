@@ -1,5 +1,5 @@
 
-import { SnPageWidgetDto } from '@algotech/core';
+import { SnPageWidgetDto } from '@algotech-ce/core';
 export const buttonPlay: SnPageWidgetDto = {
     id: '2b882186-7563-6585-076c-96fa24cd8084',
     typeKey: 'button',

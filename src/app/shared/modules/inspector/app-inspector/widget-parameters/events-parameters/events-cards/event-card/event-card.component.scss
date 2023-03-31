@@ -11,6 +11,11 @@
     display: flex;
     justify-content: center;
     height: 16px;
+    margin: 5px;
+
+    .icon {
+        font-size: 14px;
+    }
 }
 
 .property {

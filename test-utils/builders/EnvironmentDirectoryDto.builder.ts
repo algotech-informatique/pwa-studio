@@ -1,4 +1,4 @@
-import { EnvironmentDirectoryDto } from '@algotech/core';
+import { EnvironmentDirectoryDto } from '@algotech-ce/core';
 import { UUID } from 'angular2-uuid';
 import { MockBuilder } from './MockBuilder';
 

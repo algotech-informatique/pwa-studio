@@ -1,4 +1,4 @@
-import { ProcessMonitoringDto } from '@algotech/core';
+import { ProcessMonitoringDto } from '@algotech-ce/core';
 import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 

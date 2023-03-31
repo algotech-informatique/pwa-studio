@@ -3,7 +3,7 @@ import { PageUtilsService } from '../../../app/services';
 import { AppCustomService } from '../app-custom/app-custom.service';
 import * as _ from 'lodash';
 import { SnModelsService } from '../../../../services';
-import { SnAppDto, SnPageDto, SnPageWidgetDto } from '@algotech/core';
+import { SnAppDto, SnPageDto, SnPageWidgetDto } from '@algotech-ce/core';
 import { ActionControl } from '../../dto/action-control.dto';
 import { FormulaWidget } from '../../dto/formula-widget.dto';
 import { RuleWidget } from '../../dto/rule-widget.dto';
@@ -41,7 +41,7 @@ export class AppCheckUtilsService {
                 (page) ? page :
                     view;
         if (data.path) {
-            element.displayState.errors.push(data.path);
+            element.displayState.errors?.push(data.path);
         }
         report.errors.push({
             view,

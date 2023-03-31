@@ -1,5 +1,5 @@
 import { SessionsService } from './../../../../services/sessions/sessions.service';
-import { PairDto, typesSys, TypeSchema, SmartPropertyModelDto, SmartModelDto } from '@algotech/core';
+import { PairDto, typesSys, TypeSchema, SmartPropertyModelDto, SmartModelDto } from '@algotech-ce/core';
 import { IconsService } from './../../../../services/icons/icons.service';
 import { Component, Input, Output, EventEmitter, ViewChild, ElementRef, AfterViewInit,
     OnChanges, SimpleChanges } from '@angular/core';

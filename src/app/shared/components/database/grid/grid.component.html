@@ -1,5 +1,11 @@
 <div  class="info">
-  {{'INSPECTOR.DATABASE.SMARTOBJECTS.PAGE' | translate}} : {{skip}} / {{lastPage}} ({{soCount}} {{'INSPECTOR.DATABASE.SMARTOBJECTS' | translate}})
+    <app-data-base-page-counter
+        [skip]="skip"
+        [lastPage]="lastPage"
+        [soCount]="soCount"
+        (skipChange)="onSkipChanged($event)"
+    >
+    </app-data-base-page-counter>
 </div>
 <div class="container" 
   [appGridDnd]="this.configuration.columns.length > 0"

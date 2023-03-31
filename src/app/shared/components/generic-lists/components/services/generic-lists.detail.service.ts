@@ -1,5 +1,5 @@
-import { KeyFormaterService } from '@algotech/angular';
-import { GenericListDto, GenericListValueDto, LangDto } from '@algotech/core';
+import { KeyFormaterService } from '@algotech-ce/angular';
+import { GenericListDto, GenericListValueDto, LangDto } from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import * as _ from 'lodash';

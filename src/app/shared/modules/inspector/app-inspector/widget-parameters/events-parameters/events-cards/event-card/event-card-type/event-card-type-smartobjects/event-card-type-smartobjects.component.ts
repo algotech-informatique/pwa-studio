@@ -1,4 +1,4 @@
-import { SnPageEventPipeDto } from '@algotech/core';
+import { SnPageEventPipeDto } from '@algotech-ce/core';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ListItem } from '../../../../../../../dto/list-item.dto';
 import { PageWidgetParametersService } from '../../../../../../../services/page-widget-parameters.service';

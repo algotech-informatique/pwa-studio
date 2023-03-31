@@ -1,4 +1,4 @@
-import { SnPageDto, SnPageEventDto, SnPageEventPipeDto, SnPageWidgetDto } from '@algotech/core';
+import { SnPageDto, SnPageEventDto, SnPageEventPipeDto, SnPageWidgetDto } from '@algotech-ce/core';
 
 export class ActionControl {
     element: SnPageWidgetDto | SnPageDto;

@@ -9,7 +9,7 @@ import { SnActionsService, SnUtilsService } from '../../../../smart-nodes/servic
 import * as _ from 'lodash';
 import { SnATNodeUtilsService } from '../../../shared/sn-at-node/sn-at-node-utils.service/sn-at-node-utils.service';
 import { SnConnectorUtilsService } from './sn-connector-utils.service';
-import { SnModelDto } from '@algotech/core';
+import { SnModelDto } from '@algotech-ce/core';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({

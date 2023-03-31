@@ -19,10 +19,10 @@ import { SnSectionComponent, SnSelectorComponent, SnToolboxSubComponent, SnToolb
     SnDarkLayoutComponent, SnLightLayoutComponent, SnMainLayoutComponent, SnCommentComponent,
     SnSpinnerComponent, SnWatcherSelectorComponent, } from './components';
 import { ClickOutsideDirective } from './directives/click-outside.directive';
-import { DrawingModule } from '@algotech/business/drawing';
+import { DrawingModule } from '@algotech-ce/business/drawing';
 import { PipeModule } from '../../pipes/pipe.module';
 import { SnIsWatchablePipe } from './pipes/sn-is-watchable.pipe';
-import { PipesModule } from '@algotech/angular';
+import { PipesModule } from '@algotech-ce/angular';
 @NgModule({
     imports: [
         CommonModule,

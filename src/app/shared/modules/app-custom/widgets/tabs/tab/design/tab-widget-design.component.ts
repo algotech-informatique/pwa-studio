@@ -1,4 +1,4 @@
-import { SnAppDto, SnPageDto, SnPageWidgetDto } from '@algotech/core';
+import { SnAppDto, SnPageDto, SnPageWidgetDto } from '@algotech-ce/core';
 import { Component, EventEmitter, OnDestroy, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AppActionsService, AppSelectionService, PageUtilsService } from '../../../../../app/services';

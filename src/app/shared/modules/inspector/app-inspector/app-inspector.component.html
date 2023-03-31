@@ -1,5 +1,5 @@
 <div class="content">
-    
+  
     <div *ngIf="widget || page" class="tabs">
         <div class="tab" *ngFor="let tab of tabs"
             [ngClass]="{
@@ -23,6 +23,7 @@
             [title]="'INSPECTOR.WIDGET.RULE-STATUS-DISPLAY' | translate"
             [subTitle]="'INSPECTOR.WIDGET.RULE-STATUS' | translate"
             [list]="widgetStateList"
+            [allowForScroll]="false"
             [selectedKey]="widget?.displayState?.rule?.rule?.id || 'default'"
             (selectNewItem)="onSelectState($event)">
         </select-element>    

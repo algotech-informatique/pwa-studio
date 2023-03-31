@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, OnChanges, AfterViewInit, ChangeDetectorRef, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { SessionsService } from '../../../services/sessions/sessions.service';
-import { LangDto } from '@algotech/core';
+import { LangDto } from '@algotech-ce/core';
 import { TranslateService } from '@ngx-translate/core';
 import { SnView } from '../../../modules/smart-nodes';
 import * as _ from 'lodash';

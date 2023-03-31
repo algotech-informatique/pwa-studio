@@ -1,5 +1,5 @@
 
-import { SnPageWidgetDto } from '@algotech/core';
+import { SnPageWidgetDto } from '@algotech-ce/core';
 export const tabClearVertical: SnPageWidgetDto = {
     id: '50a9c2dd-3ff2-140d-6551-3275a0ce98c6',
     typeKey: 'tabs',

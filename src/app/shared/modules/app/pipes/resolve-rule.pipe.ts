@@ -1,4 +1,4 @@
-import { SnPageWidgetDto, SnPageWidgetRuleDto } from '@algotech/core';
+import { SnPageWidgetDto, SnPageWidgetRuleDto } from '@algotech-ce/core';
 import { Pipe, PipeTransform } from '@angular/core';
 import { PageWidgetService } from '../services';
 

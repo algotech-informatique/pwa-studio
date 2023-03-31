@@ -29,6 +29,14 @@
         align-items: center;
     }
 
+    .text {
+        overflow: hidden;
+        max-width: 230px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding: 2px;
+    }
+
     .open {
         transform: rotate(90deg);
     }

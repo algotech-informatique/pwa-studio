@@ -10,7 +10,6 @@ export const SN_FORMULA_NODE_SCHEMA: SnNodeSchema = {
         key: 'result',
         types: ['string', 'date', 'datetime', 'number', 'time', 'boolean'],
         dynamic: true,
-        multiple: false,
         pluggable: true,
         master: true,
         displayName: 'SN-SERVICE-RESULT',

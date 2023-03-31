@@ -8,7 +8,7 @@ import { SnNodeSchema } from '../../../../smart-nodes/dto';
 import { SnActionsService } from '../../../../smart-nodes/services';
 import { SnATNodeUtilsService } from '../../sn-at-node/sn-at-node-utils.service/sn-at-node-utils.service';
 import { SnConnectorUtilsService } from '../../../workflow/data/sn-connector-node/sn-connector-utils.service';
-import { SnModelDto } from '@algotech/core';
+import { SnModelDto } from '@algotech-ce/core';
 
 @Component({
     ...SN_BASE_METADATA,

@@ -7,7 +7,7 @@ import { SnActionsService, SnUtilsService } from '../../../smart-nodes/services'
 import { SnATNodeUtilsService } from '../sn-at-node/sn-at-node-utils.service/sn-at-node-utils.service';
 import { SnATNodeComponent } from '../sn-at-node/sn-at-node.component';
 import * as _ from 'lodash';
-import { PairDto } from '@algotech/core';
+import { PairDto } from '@algotech-ce/core';
 
 @Component({
     ...SN_BASE_METADATA,

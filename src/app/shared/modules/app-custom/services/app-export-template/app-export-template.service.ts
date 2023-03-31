@@ -1,10 +1,10 @@
-import { EnvService } from '@algotech/angular';
-import { SnAppDto, SnPageWidgetDto } from '@algotech/core';
+import { EnvService } from '@algotech-ce/angular';
+import { SnAppDto, SnPageWidgetDto } from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
 import { AppContextmenuActionExtension, WidgetTypeDto } from '../../../app/dto';
 import { AppActionsService, AppContextmenuService, AppSelectionService, PageWidgetService } from '../../../app/services';
 import * as _ from 'lodash';
-import { ReportsUtilsService } from '@algotech/business';
+import { ReportsUtilsService } from '@algotech-ce/business';
 import { PatchesService, SessionsService } from '../../../../services';
 import { templatesLibrary } from '../../widgets/templates/templates';
 import { allTypes } from '../../widgets/_data/data';
@@ -97,7 +97,7 @@ export class AppExportTemplateService {
 
                 const fileContent =
                     `
-import { SnPageWidgetDto } from '@algotech/core';
+import { SnPageWidgetDto } from '@algotech-ce/core';
 export const ${widgetName}: SnPageWidgetDto = ${this.objToString(widget)};
 `;
 

@@ -1,4 +1,4 @@
-import { SnAppDto, SnVersionDto, SnViewType } from '@algotech/core';
+import { SnAppDto, SnVersionDto, SnViewType } from '@algotech-ce/core';
 import { MockBuilder } from './MockBuilder';
 
 export class SnVersionDtoBuilder extends MockBuilder<SnVersionDto> {

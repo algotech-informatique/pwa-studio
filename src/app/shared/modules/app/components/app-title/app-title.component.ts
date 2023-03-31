@@ -1,4 +1,4 @@
-import { SnAppDto, SnPageDto } from '@algotech/core';
+import { SnAppDto, SnPageDto } from '@algotech-ce/core';
 import { Component, Input } from '@angular/core';
 import { AppSelectionService, AppZoomService } from '../../services';
 

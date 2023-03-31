@@ -1,6 +1,6 @@
-import { TranslateLangDtoService } from '@algotech/angular';
-import { SnLang } from '@algotech/business/src/lib/app/models';
-import { LangDto, PairDto } from '@algotech/core';
+import { TranslateLangDtoService } from '@algotech-ce/angular';
+import { SnLang } from '@algotech-ce/business/src/lib/app/models';
+import { LangDto, PairDto } from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
 import { IconsService } from 'src/app/shared/services';
 import { SnNode, SnParam, SnSelectionEvent, SnSelectionType, SnUtilsService, SnView } from '../../smart-nodes';

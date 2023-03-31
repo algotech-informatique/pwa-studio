@@ -1,6 +1,6 @@
-import { TranslateLangDtoService } from '@algotech/angular';
-import { GridColumnConfigurationDto } from '@algotech/business/src/lib/@components/grid/dto/grid-column-configuration.dto';
-import { GenericListDto, GenericListValueDto, SmartObjectDto, SmartPropertyModelDto, SysQueryDto } from '@algotech/core';
+import { TranslateLangDtoService } from '@algotech-ce/angular';
+import { GridColumnConfigurationDto } from '@algotech-ce/business/src/lib/@components/grid/dto/grid-column-configuration.dto';
+import { GenericListDto, GenericListValueDto, SmartObjectDto, SmartPropertyModelDto, SysQueryDto } from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
 import * as _ from 'lodash';
 import { IconsService, SessionsService } from '../../../services';
@@ -168,7 +168,7 @@ export class DataBaseUtilsService {
 
   getSkipState(soCount: number, page, limit) {
     const skip = soCount && page != null ? (page + 1) : 0;
-    const lastPage = (skip === 0) ? 0 : soCount ? this.lastSkip(soCount, limit as number) + 1 : 0;
+    const lastPage = (skip === 0) ? 0 : soCount ? this.lastSkip(soCount, limit) + 1 : 0;
     return {
       skip,
       lastPage

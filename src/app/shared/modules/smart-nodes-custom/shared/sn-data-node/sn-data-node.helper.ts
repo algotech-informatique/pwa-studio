@@ -1,4 +1,4 @@
-import { SmartModelDto, SmartPropertyModelDto, WorkflowVariableModelDto } from '@algotech/core';
+import { SmartModelDto, SmartPropertyModelDto, WorkflowVariableModelDto } from '@algotech-ce/core';
 import { SnNode, SnParam, SnSection } from '../../../smart-nodes/models';
 import { NodeHelper } from '../../helper/class';
 import HelperUtils from '../../helper/helper.utils';

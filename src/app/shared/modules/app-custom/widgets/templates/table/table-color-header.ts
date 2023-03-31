@@ -1,4 +1,4 @@
-import { SnPageWidgetDto } from '@algotech/core';
+import { SnPageWidgetDto } from '@algotech-ce/core';
 export const tableColorHeader: SnPageWidgetDto = {
 	id: '07c37993-36a3-7e7d-2a30-70c7b9617d3f',
 	typeKey: 'table',

@@ -1,5 +1,5 @@
-import { GroupsService } from '@algotech/angular';
-import { GroupDto } from '@algotech/core';
+import { GroupsService } from '@algotech-ce/angular';
+import { GroupDto } from '@algotech-ce/core';
 import { Component, Input, OnChanges } from '@angular/core';
 import * as _ from 'lodash';
 import { zip } from 'rxjs';

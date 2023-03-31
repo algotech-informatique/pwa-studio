@@ -1,4 +1,4 @@
-import { SnAppDto, SnPageEventPipeDto } from '@algotech/core';
+import { SnAppDto, SnPageEventPipeDto } from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
 import { SnLinksService } from '../../../smart-nodes';
 import * as d3 from 'd3';

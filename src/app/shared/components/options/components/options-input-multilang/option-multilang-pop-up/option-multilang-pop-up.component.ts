@@ -1,4 +1,4 @@
-import { LangDto } from '@algotech/core';
+import { LangDto } from '@algotech-ce/core';
 import { Component, ElementRef, EventEmitter, Input, OnChanges, Output, ViewChild } from '@angular/core';
 import { fromEvent, Subscription } from 'rxjs';
 import { SnView } from '../../../../../modules/smart-nodes';

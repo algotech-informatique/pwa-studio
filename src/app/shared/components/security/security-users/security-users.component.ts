@@ -1,5 +1,5 @@
-import { AuthService, CustomersService, GroupsService, UsersService } from '@algotech/angular';
-import { CustomerDto, GroupDto, UserDto } from '@algotech/core';
+import { AuthService, CustomersService, GroupsService, UsersService } from '@algotech-ce/angular';
+import { CustomerDto, GroupDto, UserDto } from '@algotech-ce/core';
 import { Component, Input, OnChanges } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { DialogMessageService, SessionsService, ToastService } from '../../../services';
@@ -29,7 +29,6 @@ export class SecurityUsersComponent implements OnChanges {
     favLang: string;
     userSAdmin = false;
     groups: GroupDto[];
-    generatePassword = false;
     isNewUser = false;
     isCurrentUser = false;
 
@@ -55,7 +54,8 @@ export class SecurityUsersComponent implements OnChanges {
     ) { }
 
     ngOnChanges() {
-        this.userSAdmin = this.authService.localProfil.groups.indexOf('sadmin') > -1;
+        this.userSAdmin = (this.authService.localProfil?.groups) ?
+            this.authService.localProfil.groups.indexOf('sadmin') > -1 : false;
         zip(
             this.userService.list(),
             this.groupsService.list(),
@@ -169,14 +169,6 @@ export class SecurityUsersComponent implements OnChanges {
             }
             this.securityUsers = _.cloneDeep(users);
         }
-    }
-
-    onChangePassword() {
-        this.generatePassword = true;
-    }
-
-    onCloseGeneratePassword() {
-        this.generatePassword = false;
     }
 
     onRemoveUser(data: UserDto) {

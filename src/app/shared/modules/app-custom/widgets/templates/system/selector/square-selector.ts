@@ -1,5 +1,5 @@
 
-import { SnPageWidgetDto } from '@algotech/core';
+import { SnPageWidgetDto } from '@algotech-ce/core';
 export const squareSelector: SnPageWidgetDto = {
     id: 'bee6f15d-fa9f-08de-1d9f-dcac85975705',
     typeKey: 'selector',

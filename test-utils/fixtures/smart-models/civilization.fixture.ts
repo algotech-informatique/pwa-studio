@@ -1,4 +1,4 @@
-import { SmartModelDto } from '@algotech/core';
+import { SmartModelDto } from '@algotech-ce/core';
 
 export const civilizationModelFixture: SmartModelDto = {
     uuid: '7dee8bee-5c94-ef7e-0f43-f9fb4d292bc7',

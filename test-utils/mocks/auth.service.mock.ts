@@ -1,6 +1,6 @@
-import { UserDto, WorkflowInstanceDto } from '@algotech/core';
+import { UserDto, WorkflowInstanceDto } from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
-import { LocalProfil } from '@algotech/angular';
+import { LocalProfil } from '@algotech-ce/angular';
 import { Observable, of } from 'rxjs';
 import { LocalProfilBuilder } from '../builders';
 

@@ -3,7 +3,7 @@ import { SnView, SnParam, SnLang } from '../../../../smart-nodes/models';
 import { SnEntryComponent, SnNodeSchema } from '../../../../smart-nodes/dto';
 import * as components from '../../../index-component';
 import * as schema from '../../../index-schema';
-import { EnvironmentParameterDto, WorkflowVariableModelDto } from '@algotech/core';
+import { EnvironmentParameterDto, WorkflowVariableModelDto } from '@algotech-ce/core';
 import * as _ from 'lodash';
 import { SnTranslateService, SnUtilsService } from '../../../../smart-nodes/services';
 import { SessionsService } from '../../../../../services';

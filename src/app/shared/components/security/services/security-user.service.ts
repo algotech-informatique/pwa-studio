@@ -1,4 +1,4 @@
-import { CredentialsDto, UserDto } from '@algotech/core';
+import { CredentialsDto, UserDto } from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
 import { OptionsObjectDto } from '../../../dtos';
 import moment from 'moment'; 

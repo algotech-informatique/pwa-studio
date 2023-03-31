@@ -1,4 +1,4 @@
-import { SnAppDto, SnPageDto, SnPageEventPipeDto, SnPageWidgetDto } from '@algotech/core';
+import { SnAppDto, SnPageDto, SnPageEventPipeDto, SnPageWidgetDto } from '@algotech-ce/core';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AppActionsService } from '../../../../../../../../app/services';
 import { ListItem } from '../../../../../../../dto/list-item.dto';

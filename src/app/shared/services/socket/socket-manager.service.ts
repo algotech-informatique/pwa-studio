@@ -1,7 +1,7 @@
 import websocketConnect from 'rxjs-websockets';
 import { Observable, ReplaySubject, Subject } from 'rxjs';
 import * as _ from 'lodash';
-import { PairDto, WsUserDto } from '@algotech/core';
+import { PairDto, WsUserDto } from '@algotech-ce/core';
 import { ObservableQueue } from '../rxjs/observable-queue';
 import { catchError, timeout } from 'rxjs/operators';
 

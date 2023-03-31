@@ -1,4 +1,4 @@
-import { SnAppDto, SnPageDto } from '@algotech/core';
+import { SnAppDto, SnPageDto } from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
 import { ValidationReportDto } from '../../dtos';
 import { AppRule, RulesStack, SnViewRule } from '../../models/check-rule.interface';

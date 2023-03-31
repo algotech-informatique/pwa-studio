@@ -1,4 +1,4 @@
-import { SnAppDto, SnModelDto, SnPageDto, SnPageWidgetDto, SnPageWidgetRuleDto } from '@algotech/core';
+import { SnAppDto, SnModelDto, SnPageDto, SnPageWidgetDto, SnPageWidgetRuleDto } from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
 import { PageUtilsService } from '../../../app/services/page-utils/page-utils.service';
 import { AppCustomService } from '../app-custom/app-custom.service';

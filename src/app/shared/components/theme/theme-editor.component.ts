@@ -1,5 +1,5 @@
-import { ThemeEngloberService } from '@algotech/business';
-import { ThemeDto } from '@algotech/core';
+import { ThemeEngloberService } from '@algotech-ce/business';
+import { ThemeDto } from '@algotech-ce/core';
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { DialogMessageService, SessionsService } from '../../services';
 import * as _ from 'lodash';

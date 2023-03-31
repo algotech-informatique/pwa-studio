@@ -1,4 +1,4 @@
-import { LangDto, SnModelDto } from '@algotech/core';
+import { LangDto, SnModelDto } from '@algotech-ce/core';
 import { UUID } from 'angular2-uuid';
 import { SnEntryComponents } from '../../../smart-nodes/dto';
 import { SnGroup, SnView } from '../../../smart-nodes/models';

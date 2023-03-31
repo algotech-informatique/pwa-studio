@@ -1,4 +1,4 @@
-import { UserDto } from '@algotech/core';
+import { UserDto } from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
 import { OptionsObjectDto } from '../../../dtos';
 import { SecurityGroup } from '../dto/security-group.dto';

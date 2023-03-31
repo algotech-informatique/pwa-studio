@@ -3,7 +3,7 @@ import {
     EventEmitter, SimpleChanges, ViewChild,
     ElementRef, ChangeDetectorRef, OnDestroy, ViewChildren, QueryList
 } from '@angular/core';
-import { SnAppDto } from '@algotech/core';
+import { SnAppDto } from '@algotech-ce/core';
 import {
     AppActionsService, AppClipboardService, AppContextmenuService, AppLinksService, AppSelectionService,
     AppZoomService, PageDragService, PageUtilsService
@@ -13,7 +13,7 @@ import { Subject, Subscription } from 'rxjs';
 import { SnContextmenu, SnDOMService } from '../../../smart-nodes';
 import { AppSelectionEvent, AppSettings } from '../../dto';
 import { debounceTime } from 'rxjs/operators';
-import { DrawingService } from '@algotech/business/drawing';
+import { DrawingService } from '@algotech-ce/business/drawing';
 import { ResizeOrientation } from '../../services/page-utils/resize-orientation.enum';
 import { WidgetComponent } from '../widget/widget.component';
 import * as _ from 'lodash';

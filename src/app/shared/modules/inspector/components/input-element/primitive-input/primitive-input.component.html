@@ -13,7 +13,7 @@
             [placeholder]="input.key"
             [type]="inputType"
             [readonly]="(input.multiple && !input.multiNoStrict)"
-            [title]="input.value"
+            [title]="input.value ? input.value : input.key"
             (focusout)="onInputChanged(cmp.value)"
         >
         

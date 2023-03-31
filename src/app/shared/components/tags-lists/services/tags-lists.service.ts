@@ -1,5 +1,5 @@
-import { KeyFormaterService, TagsService } from '@algotech/angular';
-import { LangDto, TagDto, TagListDto } from '@algotech/core';
+import { KeyFormaterService, TagsService } from '@algotech-ce/angular';
+import { LangDto, TagDto, TagListDto } from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable, of } from 'rxjs';

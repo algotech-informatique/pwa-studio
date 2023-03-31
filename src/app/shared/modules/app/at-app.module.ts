@@ -17,7 +17,7 @@ import { ElementSelectedPipe } from './pipes/widget-selected.pipe';
 import { ScaleZoomPipe } from './pipes/scale-zoom.pipe';
 import { ShowAppErrorsPipe } from './pipes/show-app-errors.pipe';
 import { AppResizeComponent } from './components/app-resize/app-resize.component';
-import { DrawingModule } from '@algotech/business/drawing';
+import { DrawingModule } from '@algotech-ce/business/drawing';
 import { AppSelectionComponent } from './components/app-selection/app-selection.component';
 import { AppTitleComponent } from './components/app-title/app-title.component';
 import { ResolveRulePipe } from './pipes/resolve-rule.pipe';

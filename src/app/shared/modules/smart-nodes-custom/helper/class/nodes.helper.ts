@@ -1,4 +1,4 @@
-import { SnModelDto, WorkflowVariableModelDto } from '@algotech/core';
+import { SnModelDto, WorkflowVariableModelDto } from '@algotech-ce/core';
 import { UUID } from 'angular2-uuid';
 import { SnEntryComponent, SnEntryComponents, SnNodeSchema } from '../../../smart-nodes/dto';
 import { SnNode, SnElement, SnView } from '../../../smart-nodes/models';

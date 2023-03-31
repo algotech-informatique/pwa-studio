@@ -1,6 +1,6 @@
 import { SessionsService } from './../../../services/sessions/sessions.service';
-import { TranslateLangDtoService } from '@algotech/angular';
-import { SnModelDto, SmartModelDto, SnAppDto, SnPageDto, SnPageWidgetDto } from '@algotech/core';
+import { TranslateLangDtoService } from '@algotech-ce/angular';
+import { SnModelDto, SmartModelDto, SnAppDto, SnPageDto, SnPageWidgetDto } from '@algotech-ce/core';
 import { Pipe, PipeTransform } from '@angular/core';
 import * as _ from 'lodash';
 import { AppCustomService } from '../../app-custom/services';

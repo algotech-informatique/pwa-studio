@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core
 import { OptionsObjectDto } from '../../../../dtos';
 import { ImportDataService } from '../../services/import-data.service';
 import * as _ from 'lodash';
-import { GenericListDto, SmartModelDto } from '@algotech/core';
+import { GenericListDto, SmartModelDto } from '@algotech-ce/core';
 import { ExportDataFileDto } from '../../dto/export-data-file.dto';
 import { SessionsService } from '../../../../services';
 

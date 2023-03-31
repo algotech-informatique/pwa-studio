@@ -1,5 +1,5 @@
 import { SnATNodeUtilsService } from '../../../../smart-nodes-custom/shared/sn-at-node/sn-at-node-utils.service/sn-at-node-utils.service';
-import { SnAppDto, SnPageDto, SnPageWidgetDto } from '@algotech/core';
+import { SnAppDto, SnPageDto, SnPageWidgetDto } from '@algotech-ce/core';
 import { Component, EventEmitter, Output } from '@angular/core';
 import * as _ from 'lodash';
 import { WidgetParametersInterface } from '../../../models/widget-parameters.interface';

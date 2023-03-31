@@ -10,7 +10,7 @@ import { SnSelectParameterModule } from '../sn-select-parameter/sn-select-parame
 import { SnFormulaService } from './sn-formula.service';
 import { SnFormulaSearch } from './sn-formula-search/sn-formula-search.component';
 import { SnFormulaElement } from './sn-formula-search/sn-formula-element/sn-formula-element.component';
-import { DirectivesModule } from '@algotech/angular';
+import { DirectivesModule } from '@algotech-ce/angular';
 import { SnFormulaSelected } from './sn-formula-search/sn-formula-selected/sn-formula-selected.component';
 
 @NgModule({

@@ -16,6 +16,7 @@ export class PopupElementComponent implements OnChanges {
     @Input() show: boolean;
     @Input() popupMargin: number;
     @Input() containerWidth = true;
+    @Input() allowForScroll = true;
     @Output() closePopup = new EventEmitter();
 
     width: number;
@@ -58,7 +59,11 @@ export class PopupElementComponent implements OnChanges {
 
     private updatePopoverPosition() {
         this.changeDetectorRef.detectChanges();
-        this.scrollHeight = this.popupElement.view ? this.popupElement.view.nativeElement.scrollTop : 0;
+        this.scrollHeight = (this.allowForScroll) ?
+            this.popupElement.view ?
+                this.popupElement.view.nativeElement.scrollTop
+                : 0
+            : 0;
         this.showToTop = (this.container.containerClientRect?.y + this.getPopupTotalHeight()) > window.innerHeight;
         this.rightPos = this.container.containerClientRect?.x + this.popup?.nativeElement.offsetWidth > window.innerWidth;
         if (this.showToTop) {

@@ -6,7 +6,7 @@ import { SnFinisherNodeHelper } from '../workflow/lifecycle/sn-finisher-node/sn-
 import { WorkflowHelper, GroupHelper, BoxHelper } from './class';
 import { UUID } from 'angular2-uuid';
 import { SnBox, SnGroup, SnLang, SnView } from '../../smart-nodes/models';
-import { SnModelDto } from '@algotech/core';
+import { SnModelDto } from '@algotech-ce/core';
 import _ from 'lodash';
 import { FixtureFactory } from 'test-utils/fixtures/FixtureFactory';
 import { TagDtoBuilder } from 'test-utils/builders';

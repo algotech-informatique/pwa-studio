@@ -2,7 +2,7 @@ import { Component, Input, OnChanges, Output, EventEmitter, OnDestroy, ChangeDet
 import { SnView, SnSelectionEvent, SnActionsService, SnParam, SnZoomService, SnNode } from '../../modules/smart-nodes';
 import * as _ from 'lodash';
 import { SnSettings } from '../../modules/smart-nodes/dto/sn-settings';
-import { SnModelDto, WorkflowModelDto, SnViewDto } from '@algotech/core';
+import { SnModelDto, WorkflowModelDto, SnViewDto } from '@algotech-ce/core';
 import { DatasService, SessionsService, MessageService, SnModelsService, ToastService,
     ConfigService, WatcherService } from '../../services';
 import {
@@ -11,10 +11,10 @@ import {
 } from '../../modules/smart-nodes-custom';
 import { ResourceType, ValidationReportDto } from '../../dtos';
 import { Subscription } from 'rxjs';
-import { WorkflowSubjectService, InterpretorSubjectDto } from '@algotech/business';
+import { WorkflowSubjectService, InterpretorSubjectDto } from '@algotech-ce/business';
 import { TranslateService } from '@ngx-translate/core';
 import { DocGenerateService } from '../../modules/smart-nodes-custom/documentation/doc-generate/doc-generate.service';
-import { EnvService } from '@algotech/angular';
+import { EnvService } from '@algotech-ce/angular';
 import { CheckService } from '../../services/check/check-service';
 import { OpenInspectorType } from '../../modules/app/dto/app-selection.dto';
 

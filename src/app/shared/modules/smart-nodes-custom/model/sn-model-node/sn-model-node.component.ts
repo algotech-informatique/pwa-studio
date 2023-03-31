@@ -2,7 +2,7 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 import { SN_BASE_METADATA, SnNodeBaseComponent } from '../../../smart-nodes';
 import { TranslateService } from '@ngx-translate/core';
 import { SnActionsService, SnTranslateService, SnDOMService, SnUtilsService } from '../../../smart-nodes/services';
-import { KeyFormaterService } from '@algotech/angular';
+import { KeyFormaterService } from '@algotech-ce/angular';
 import { IconsService } from '../../../../services';
 import * as _ from 'lodash';
 import { SnSectionClickEvent } from '../../../smart-nodes/dto';

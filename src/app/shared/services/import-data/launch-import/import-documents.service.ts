@@ -7,12 +7,12 @@ import { ValidateImportDataDto, ValidateImportDataModelDto } from '../../../comp
 import { ImportDataUtilsService } from '../import-data-utils.service';
 import * as _ from 'lodash';
 import { first, flatMap, map, tap } from 'rxjs/operators';
-import { SmartObjectsService } from '@algotech/angular';
-import { DocumentMetadatasDto, FileEditDto, FileUploadDto, SmartModelDto, SmartObjectDto } from '@algotech/core';
+import { SmartObjectsService } from '@algotech-ce/angular';
+import { DocumentMetadatasDto, FileEditDto, FileUploadDto, SmartModelDto, SmartObjectDto } from '@algotech-ce/core';
 import { UUID } from 'angular2-uuid';
 import { SessionsService } from '../../sessions/sessions.service';
 import { ImportDataDocService } from '../import-data-doc.service';
-import { FilesService } from '@algotech/business';
+import { FilesService } from '@algotech-ce/business';
 
 interface Documents {
     name: string;

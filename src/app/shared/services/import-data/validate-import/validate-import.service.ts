@@ -12,7 +12,7 @@ import { ValidateDataFileDto } from '../../../components/import-data/dto/validat
 import { ImportDataDocDto, ImportDataOptionsDto } from '../../../components/import-data/dto/import-data-doc.dto';
 import { Observable, of } from 'rxjs';
 import { ImportDataUtilsService } from '../import-data-utils.service';
-import { RxExtendService } from '@algotech/angular';
+import { RxExtendService } from '@algotech-ce/angular';
 
 @Injectable()
 export class ValidateImportService {

@@ -1,7 +1,7 @@
 import {
     PairDto, SnAppDto, SnModelDto, SnPageDto, SnPageEventDto, SnPageEventPipeDto, SnPageVariableDto,
     SnPageWidgetDto, SnPageWidgetTypeReturnDto, SnVersionDto, SnViewDto, TaskModelDto, WorkflowModelDto, WorkflowProfilModelDto
-} from '@algotech/core';
+} from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { WidgetInput } from '../../dto/widget-input.dto';
@@ -12,7 +12,7 @@ import { SnModelsService } from '../../../../services';
 import * as _ from 'lodash';
 import { PageUtilsService } from '../../../app/services';
 import { getAutoInputsEvents } from '../../widgets/_data/data';
-import { WorkflowUtilsService } from '@algotech/business';
+import { WorkflowUtilsService } from '@algotech-ce/business';
 import { EventWorkflowPairDto, EventWorkflowPairProfileDto } from '../../../inspector/dto/event-workflow-pair.dto';
 import { InputItem } from '../../../inspector/dto/input-item.dto';
 import { UUID } from 'angular2-uuid';

@@ -1,4 +1,4 @@
-import { SnPageEventDto, SnPageEventPipeDto, SnPageWidgetDto } from '@algotech/core';
+import { SnPageEventDto, SnPageEventPipeDto, SnPageWidgetDto } from '@algotech-ce/core';
 
 export class FormulaWidget {
     element: SnPageWidgetDto;

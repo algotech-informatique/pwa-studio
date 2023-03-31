@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, OnDestroy } from '@angular/core';
 import { SnSettings } from '../../modules/smart-nodes/dto/sn-settings';
 import { SnView, SnSelectionEvent, SnActionsService, SnZoomService, SnUtilsService } from '../../modules/smart-nodes';
-import { SnModelDto, SnViewDto } from '@algotech/core';
+import { SnModelDto, SnViewDto } from '@algotech-ce/core';
 import { CheckService, ConfigService, DatasService, SessionsService, SnModelsService } from '../../services';
 import * as _ from 'lodash';
 import { ModelEditorService } from './model-editor.service';

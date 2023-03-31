@@ -1,5 +1,5 @@
 
-import { SnPageWidgetDto } from '@algotech/core';
+import { SnPageWidgetDto } from '@algotech-ce/core';
 export const tabClearUnderline: SnPageWidgetDto = {
     id: '51b1949e-ac51-1b0b-9620-50453d1c5c86',
     typeKey: 'tabs',

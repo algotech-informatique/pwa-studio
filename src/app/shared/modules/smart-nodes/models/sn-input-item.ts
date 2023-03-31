@@ -1,4 +1,4 @@
-import { PairDto } from '@algotech/core';
+import { PairDto } from '@algotech-ce/core';
 
 export class SnInputItem {
     key: string;

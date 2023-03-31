@@ -1,4 +1,4 @@
-import { SnPageDto, SnPageWidgetConditionDto, SnPageWidgetDto } from '@algotech/core';
+import { SnPageDto, SnPageWidgetConditionDto, SnPageWidgetDto } from '@algotech-ce/core';
 import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { WidgetInput } from 'src/app/shared/modules/app-custom/dto/widget-input.dto';

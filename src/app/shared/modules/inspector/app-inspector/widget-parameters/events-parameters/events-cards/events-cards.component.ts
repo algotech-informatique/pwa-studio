@@ -1,5 +1,5 @@
 import { UUID } from 'angular2-uuid';
-import { SnPageEventDto, SnPageDto, SnPageWidgetDto, SnAppDto, SnPageEventPipeDto } from '@algotech/core';
+import { SnPageEventDto, SnPageDto, SnPageWidgetDto, SnAppDto, SnPageEventPipeDto } from '@algotech-ce/core';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import * as _ from 'lodash';
 

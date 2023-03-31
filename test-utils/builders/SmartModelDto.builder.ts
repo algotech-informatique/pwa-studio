@@ -1,4 +1,4 @@
-import { ATSkillsActiveDto, LangDto, SmartModelDto, SmartPermissionsDto, SmartPropertyModelDto } from '@algotech/core';
+import { ATSkillsActiveDto, LangDto, SmartModelDto, SmartPermissionsDto, SmartPropertyModelDto } from '@algotech-ce/core';
 import { MockBuilder } from './MockBuilder';
 
 export class SmartModelDtoBuilder extends MockBuilder<SmartModelDto> {

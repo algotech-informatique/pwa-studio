@@ -1,4 +1,4 @@
-import { SnPageDto, SnPageWidgetDto } from '@algotech/core';
+import { SnPageDto, SnPageWidgetDto } from '@algotech-ce/core';
 
 export type AppSelectionType = 'sharedWidget' | 'widget' | 'page'| 'app';
 export type OpenInspectorType = 'node' | 'inspector' | 'application' | 'behavior' | 'conditions' | 'layers';

@@ -1,6 +1,6 @@
 import { SnModelDto, EnvironmentDto, CustomerDto, GenericListDto, TagListDto,
-    SmartModelDto, SettingsDto, GroupDto, UserDto, WorkflowModelDto, ApplicationModelDto } from '@algotech/core';
-import { LocalProfil } from '@algotech/angular';
+    SmartModelDto, SettingsDto, GroupDto, UserDto, WorkflowModelDto, ApplicationModelDto } from '@algotech-ce/core';
+import { LocalProfil } from '@algotech-ce/angular';
 import { SocketManager } from '../services/socket/socket-manager.service';
 
 export class DatasDto {

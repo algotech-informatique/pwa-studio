@@ -1,4 +1,4 @@
-import { SnAppDto, SnPageDto, SnPageEventPipeDto } from '@algotech/core';
+import { SnAppDto, SnPageDto, SnPageEventPipeDto } from '@algotech-ce/core';
 import * as _ from 'lodash';
 import { AppCheckUtilsService } from '../app-check-utils.service';
 import { ValidationReportDto } from '../../../../../dtos';

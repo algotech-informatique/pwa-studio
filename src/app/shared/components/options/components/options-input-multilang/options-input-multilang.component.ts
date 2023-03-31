@@ -1,4 +1,4 @@
-import { LangDto } from '@algotech/core';
+import { LangDto } from '@algotech-ce/core';
 import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { SessionsService } from '../../../../services';
 import { SnView } from '../../../../modules/smart-nodes';

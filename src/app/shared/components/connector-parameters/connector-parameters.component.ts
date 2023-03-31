@@ -1,4 +1,4 @@
-import { EnvironmentParameterDto } from '@algotech/core';
+import { EnvironmentParameterDto } from '@algotech-ce/core';
 import { Component, Input, OnChanges, OnDestroy } from '@angular/core';
 import { ObjectTreeLineDto } from '../../dtos';
 import { DatasService, SessionsService, MessageService } from '../../services';

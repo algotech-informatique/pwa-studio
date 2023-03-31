@@ -2,7 +2,7 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 import { SnNodeBaseComponent } from '../../../smart-nodes';
 import { SnActionsService } from '../../../smart-nodes/services';
 import { SnParam, SnSection, SnItem } from '../../../smart-nodes/models';
-import { PairDto, SmartModelDto, SmartPropertyModelDto } from '@algotech/core';
+import { PairDto, SmartModelDto, SmartPropertyModelDto } from '@algotech-ce/core';
 import { SnNodeSchema } from '../../../smart-nodes/dto';
 import { SnATNodeUtilsService } from './sn-at-node-utils.service/sn-at-node-utils.service';
 import { SN_BASE_METADATA } from '../../../smart-nodes/components';

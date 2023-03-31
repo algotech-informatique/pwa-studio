@@ -1,4 +1,4 @@
-import { PairDto, WorkflowApiModelDto } from '@algotech/core';
+import { PairDto, WorkflowApiModelDto } from '@algotech-ce/core';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { SessionsService } from 'src/app/shared/services';
 import { VariablesServices } from '../../components/variables/variables.service';

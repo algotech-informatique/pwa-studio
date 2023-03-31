@@ -1,5 +1,5 @@
 
-import { SnPageWidgetDto } from '@algotech/core';
+import { SnPageWidgetDto } from '@algotech-ce/core';
 export const roundImage: SnPageWidgetDto = {
     id: '98531a13-83cb-4b36-38b8-8b8f67ee5021',
     typeKey: 'image',

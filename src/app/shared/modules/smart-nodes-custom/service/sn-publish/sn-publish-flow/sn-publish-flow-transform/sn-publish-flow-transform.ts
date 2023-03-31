@@ -3,8 +3,8 @@ import { SnView, SnNode, SnLang, SnFlow, SnParam } from '../../../../../smart-no
 import {
     PairDto, WorkflowProfilModelDto, ServiceModelDto,
     ServiceParamModelDto
-} from '@algotech/core';
-import { KeyFormaterService } from '@algotech/angular';
+} from '@algotech-ce/core';
+import { KeyFormaterService } from '@algotech-ce/angular';
 import { SnUtilsService, SnTranslateService } from '../../../../../smart-nodes/services';
 import * as _ from 'lodash';
 import { TranslateService } from '@ngx-translate/core';

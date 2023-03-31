@@ -5,7 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { GenericListsComponent } from './generic-lists.component';
-import { GenericListsService, PipesModule } from '@algotech/angular';
+import { GenericListsService, PipesModule } from '@algotech-ce/angular';
 import { PopUpModule } from '../pop-ups/pop-up.module';
 import { GenericListsDetailComponent } from './components/generic-lists-detail/generic-lists-detail.component';
 import { GenericListsMainComponent } from './components/generic-lists-main/generic-lists-main.component';

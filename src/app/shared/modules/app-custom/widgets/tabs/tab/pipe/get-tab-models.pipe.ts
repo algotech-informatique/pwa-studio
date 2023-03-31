@@ -1,4 +1,4 @@
-import { SnAppDto, SnPageDto, SnPageWidgetDto } from '@algotech/core';
+import { SnAppDto, SnPageDto, SnPageWidgetDto } from '@algotech-ce/core';
 import { Pipe, PipeTransform } from '@angular/core';
 import { AppSelectionService, PageUtilsService } from '../../../../../app/services';
 import { WidgetTabsService } from '../../services/widget-tabs.service';

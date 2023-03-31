@@ -1,4 +1,4 @@
-import { SnPageDto, SnPageWidgetDto } from '@algotech/core';
+import { SnPageDto, SnPageWidgetDto } from '@algotech-ce/core';
 
 export interface EleInterface {
     path: string;

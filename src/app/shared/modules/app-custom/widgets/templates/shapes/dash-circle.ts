@@ -1,5 +1,5 @@
 
-import { SnPageWidgetDto } from '@algotech/core';
+import { SnPageWidgetDto } from '@algotech-ce/core';
 export const dashCircle: SnPageWidgetDto = {
     id: 'da1d3a4b-a422-295a-114e-d5034f772a47',
     typeKey: 'circle',

@@ -66,15 +66,6 @@
                 </options-chips-list>
                 <div class="border-bottom"></div>
             </div>
-    
-            <div class="members">
-                <div class="change" [ngClass]="{'disabled': !isSuperAdmin || isNewUser}">
-                    <div class="change-password" (click)="onChangePassword()">
-                        <i class="fa-solid fa-user-shield"></i>
-                    </div>
-                    <div class="message"> {{ 'SECURITY-USERS.USER-REASSIGN-PASSWORD' | translate }} </div>
-                </div>
-            </div>
         </div>
     
         <div class="footer">

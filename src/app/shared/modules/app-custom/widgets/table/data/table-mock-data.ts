@@ -1,4 +1,4 @@
-import { PairDto, SmartModelDto, SmartObjectDto } from '@algotech/core';
+import { PairDto, SmartModelDto, SmartObjectDto } from '@algotech-ce/core';
 import { UUID } from 'angular2-uuid';
 import moment from 'moment'; 
 

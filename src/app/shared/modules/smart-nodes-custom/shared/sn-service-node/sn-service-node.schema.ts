@@ -40,7 +40,7 @@ export const SN_SERVICE_NODE_SCHEMA: (displayName: SnLang[], nameDone: SnLang[],
                 display: 'key-edit',
             }, {
                 direction: 'out',
-                types: ['string', 'object'],
+                types: 'object',
                 pluggable: true,
                 display: 'key-edit',
             }]

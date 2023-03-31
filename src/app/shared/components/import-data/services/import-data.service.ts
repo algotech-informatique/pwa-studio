@@ -1,8 +1,8 @@
-import { GenericListDto, LangDto, SmartModelDto } from '@algotech/core';
+import { GenericListDto, LangDto, SmartModelDto } from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
 import { OptionsObjectDto } from '../../../dtos';
 import * as _ from 'lodash';
-import { TranslateLangDtoService } from '@algotech/angular';
+import { TranslateLangDtoService } from '@algotech-ce/angular';
 import { ValidateDataFileDto, ValidateDataModel } from '../dto/validate-data-file.dto';
 import { MessageService } from '../../../services';
 import { OptionLoggerMessage } from '../../options/components/options-logger/option-logger-message.dto';

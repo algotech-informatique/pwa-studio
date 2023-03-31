@@ -1,4 +1,4 @@
-import { SnAppDto, SnPageWidgetDto } from '@algotech/core';
+import { SnAppDto, SnPageWidgetDto } from '@algotech-ce/core';
 import { ChangeDetectorRef, Component, OnChanges, SimpleChanges } from '@angular/core';
 import * as d3 from 'd3';
 import { WidgetComponentInterface } from '../../../../../app/interfaces';

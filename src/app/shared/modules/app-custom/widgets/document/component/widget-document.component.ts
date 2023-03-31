@@ -1,4 +1,4 @@
-import { SnAppDto, SnPageEventDto, SnPageWidgetDto, SysFile } from '@algotech/core';
+import { SnAppDto, SnPageEventDto, SnPageWidgetDto, SysFile } from '@algotech-ce/core';
 import { APP_BASE_HREF } from '@angular/common';
 import { Component, Inject } from '@angular/core';
 import { from } from 'rxjs';

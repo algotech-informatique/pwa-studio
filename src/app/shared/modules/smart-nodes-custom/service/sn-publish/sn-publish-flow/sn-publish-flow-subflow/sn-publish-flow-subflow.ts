@@ -1,4 +1,4 @@
-import { PairDto, WorkflowProfilModelDto, WorkflowVariableModelDto } from '@algotech/core';
+import { PairDto, WorkflowProfilModelDto, WorkflowVariableModelDto } from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
 import { UUID } from 'angular2-uuid';
 import * as _ from 'lodash';

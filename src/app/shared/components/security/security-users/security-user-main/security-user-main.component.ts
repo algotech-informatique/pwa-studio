@@ -1,4 +1,4 @@
-import { UserDto } from '@algotech/core';
+import { UserDto } from '@algotech-ce/core';
 import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { OptionsObjectDto } from '../../../../dtos';
 import * as _ from 'lodash';

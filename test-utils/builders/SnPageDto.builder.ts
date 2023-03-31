@@ -2,7 +2,7 @@ import {
     LangDto, SnCanvasDto, SnPageDto,
     SnPageEventDto, SnPageEventPipeDto,
     SnPageVariableDto, SnPageWidgetDto
-} from '@algotech/core';
+} from '@algotech-ce/core';
 import { MockBuilder } from './MockBuilder';
 
 export class SnPageDtoBuilder extends MockBuilder<SnPageDto> {

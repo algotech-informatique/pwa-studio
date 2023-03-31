@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
 import * as _ from 'lodash';
 import { cmSessionExpander } from './explorer-contextmenu-schema/session-expander';
 import { EnvironmentDisplayDto, ModuleTreeLineDto } from '../../dtos';
-import { AuthService } from '@algotech/angular';
+import { AuthService } from '@algotech-ce/angular';
 import { Title } from '@angular/platform-browser';
 
 @Component({

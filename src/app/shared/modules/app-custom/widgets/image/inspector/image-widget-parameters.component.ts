@@ -1,14 +1,14 @@
-import { FilesService } from '@algotech/business';
+import { FilesService } from '@algotech-ce/business';
 import { UUID } from 'angular2-uuid';
 import { ListItem } from './../../../../inspector/dto/list-item.dto';
-import { SnAppDto, SnPageDto, SnPageWidgetDto, TagListDto, TagDto } from '@algotech/core';
+import { SnAppDto, SnPageDto, SnPageWidgetDto, TagListDto, TagDto } from '@algotech-ce/core';
 import { Component, EventEmitter, Output } from '@angular/core';
 import * as _ from 'lodash';
 import { Observable } from 'rxjs';
 import { WidgetInput } from '../../../dto/widget-input.dto';
 import { WidgetParametersInterface } from '../../../models/widget-parameters.interface';
 import { AppCustomService } from '../../../services';
-import { DocumentsService, TranslateLangDtoService } from '@algotech/angular';
+import { DocumentsService, TranslateLangDtoService } from '@algotech-ce/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { SessionsService } from '../../../../../services';
 import { InputItem } from '../../../../inspector/dto/input-item.dto';

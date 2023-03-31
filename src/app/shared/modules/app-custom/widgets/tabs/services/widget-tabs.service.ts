@@ -1,4 +1,4 @@
-import { SnAppDto, SnPageBoxDto, SnPageDto, SnPageWidgetDto } from '@algotech/core';
+import { SnAppDto, SnPageBoxDto, SnPageDto, SnPageWidgetDto } from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
 import * as d3 from 'd3';
 import { SessionsService } from '../../../../../services';
@@ -6,7 +6,7 @@ import { AppContextmenuActionExtension } from '../../../../app/dto';
 import { AppActionsService, AppSelectionService, PageUtilsService, PageWidgetService } from '../../../../app/services';
 import { generateCss, tab } from '../../_data/data';
 import * as _ from 'lodash';
-import { TranslateLangDtoService } from '@algotech/angular';
+import { TranslateLangDtoService } from '@algotech-ce/angular';
 import { UUID } from 'angular2-uuid';
 
 @Injectable()

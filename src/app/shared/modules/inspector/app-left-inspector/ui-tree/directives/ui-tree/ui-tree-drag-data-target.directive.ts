@@ -1,6 +1,6 @@
 import { Directive, Input, ElementRef, HostListener } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { SnPageDto, SnPageWidgetDto } from '@algotech/core';
+import { SnPageDto, SnPageWidgetDto } from '@algotech-ce/core';
 import * as _ from 'lodash';
 import { AppActionsService, AppSelectionService, PageUtilsService, PageWidgetService } from '../../../../../app/services';
 import { UITreeMoveService } from '../../ui-tree-move.service';

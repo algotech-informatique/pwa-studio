@@ -1,5 +1,5 @@
 
-import { SnPageWidgetDto } from '@algotech/core';
+import { SnPageWidgetDto } from '@algotech-ce/core';
 export const roundRectangle: SnPageWidgetDto = {
     id: 'd052de6f-05b9-ee6c-15c6-28df8464d02f',
     typeKey: 'rectangle',

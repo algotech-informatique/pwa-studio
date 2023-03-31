@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
-import { SmartPermissionsDto, GroupDto } from '@algotech/core';
+import { SmartPermissionsDto, GroupDto } from '@algotech-ce/core';
 import { SessionsService } from '../../../../services';
 import * as _ from 'lodash';
 

@@ -3,7 +3,7 @@ import { ImportDataFileDto, ImportDataModel } from '../../../components/import-d
 import { ValidateData, ValidateDataFileDto, ValidateDataModel } from '../../../components/import-data/dto/validate-data-file.dto';
 import { ImportDataUtilsService } from '../import-data-utils.service';
 import * as _ from 'lodash';
-import { GenericListDto, PairDto, SmartModelDto, SmartObjectDto, SmartPropertyModelDto } from '@algotech/core';
+import { GenericListDto, PairDto, SmartModelDto, SmartObjectDto, SmartPropertyModelDto } from '@algotech-ce/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable, of } from 'rxjs';
 import { SessionsService } from '../../sessions/sessions.service';

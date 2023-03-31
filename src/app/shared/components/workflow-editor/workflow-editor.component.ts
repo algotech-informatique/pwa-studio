@@ -5,7 +5,7 @@ import {
 } from '../../modules/smart-nodes';
 import { SnSettings } from '../../modules/smart-nodes/dto/sn-settings';
 import { SessionsService } from '../../services/sessions/sessions.service';
-import { SnModelDto, WorkflowModelDto, SmartModelDto, SnViewDto } from '@algotech/core';
+import { SnModelDto, WorkflowModelDto, SmartModelDto, SnViewDto } from '@algotech-ce/core';
 import {
     DatasService,
     SmartModelsService, MessageService, SnModelsService,
@@ -19,11 +19,11 @@ import {
 import { ResourceType, ValidationReportDto } from '../../dtos';
 import { ParamEditorDto } from '../../modules/inspector/dto/param-editor.dto';
 import { ParamEditorService } from '../../modules/inspector/services/param-editor.service';
-import { WorkflowSubjectService, InterpretorSubjectDto } from '@algotech/business';
+import { WorkflowSubjectService, InterpretorSubjectDto } from '@algotech-ce/business';
 import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { DocGenerateService } from '../../modules/smart-nodes-custom/documentation/doc-generate/doc-generate.service';
-import { EnvService } from '@algotech/angular';
+import { EnvService } from '@algotech-ce/angular';
 import { StudioHelper } from '../../modules/smart-nodes-custom/helper/helper.service';
 import {
     SnAlertNodeHelper, SnDataNodeHelper, SnFormulaNodeHelper,

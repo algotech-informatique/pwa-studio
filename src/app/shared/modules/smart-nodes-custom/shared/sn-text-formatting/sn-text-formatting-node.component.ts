@@ -6,7 +6,7 @@ import * as _ from 'lodash';
 import { PopoverController } from '@ionic/angular';
 import { SnEditTextFormattingComponent } from './sn-edit-text-formatting/sn-edit-text-formatting.component';
 import { SnNodeSchema, SnSectionClickEvent } from '../../../smart-nodes/dto';
-import { LangDto } from '@algotech/core';
+import { LangDto } from '@algotech-ce/core';
 import { SessionsService } from '../../../../services';
 import { SnSection, SnParam } from '../../../smart-nodes/models';
 import { SnATNodeComponent } from '../sn-at-node/sn-at-node.component';

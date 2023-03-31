@@ -1,5 +1,5 @@
 import { EventEmitter } from '@angular/core';
-import { SnPageWidgetDto, SnAppDto, SnPageDto } from '@algotech/core';
+import { SnPageWidgetDto, SnAppDto, SnPageDto } from '@algotech-ce/core';
 
 export interface WidgetParametersInterface {
     widget: SnPageWidgetDto;

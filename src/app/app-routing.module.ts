@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './shared/components';
 import { HomePage } from './home/home.page';
-import { AppPreviewComponent, EncodeGuard, WorkflowDebuggerFrameComponent } from '@algotech/business';
-import { SignInGuard } from '@algotech/angular';
+import { AppPreviewComponent, EncodeGuard, WorkflowDebuggerFrameComponent } from '@algotech-ce/business';
+import { SignInGuard } from '@algotech-ce/angular';
 import { DocPage } from './doc/doc.page';
 import { NotAuthorizedPage } from './notauthorized/notauthorized.page';
 

@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { WorkflowProfilModelDto } from '@algotech/core';
+import { WorkflowProfilModelDto } from '@algotech-ce/core';
 import { UUID } from 'angular2-uuid';
 import { SnView } from '../../../smart-nodes';
 

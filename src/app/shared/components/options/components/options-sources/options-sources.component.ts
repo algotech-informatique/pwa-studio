@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import * as _ from 'lodash';
-import { PairDto, SmartObjectDto, WorkflowVariableModelDto } from '@algotech/core';
-import { InputDisplay } from '@algotech/business/src/lib/workflow-debugger/inputs-grid/dto/input-display.dto';
-import { SoUtilsService } from '@algotech/business';
-import { EnvService } from '@algotech/angular';
+import { PairDto, SmartObjectDto, WorkflowVariableModelDto } from '@algotech-ce/core';
+import { InputDisplay } from '@algotech-ce/business/src/lib/workflow-debugger/inputs-grid/dto/input-display.dto';
+import { SoUtilsService } from '@algotech-ce/business';
+import { EnvService } from '@algotech-ce/angular';
 
 @Component({
     selector: 'options-sources',

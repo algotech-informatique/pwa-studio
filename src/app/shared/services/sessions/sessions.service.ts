@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
 import * as _ from 'lodash';
 import { SessionDto } from '../../dtos/session.dto';
-import { EnvService, AuthService, SettingsDataService } from '@algotech/angular';
-import { ConnectionDto, ObjectTreeLineDto, ResourceType, DatasDto, AlertMessageDto,
-    DirectoryClipboardDto, ModuleTreeLineDto, EnvironmentDisplayDto } from '../../dtos';
+import { EnvService, AuthService, SettingsDataService } from '@algotech-ce/angular';
+import {
+    ConnectionDto, ObjectTreeLineDto, ResourceType, DatasDto, AlertMessageDto,
+    DirectoryClipboardDto, ModuleTreeLineDto, EnvironmentDisplayDto
+} from '../../dtos';
 import { EnvironmentService } from '../environment/environment.service';
 import { Observable, of } from 'rxjs';
 import { SocketManager } from '../socket/socket-manager.service';
 import { DatasService } from '../datas/datas-service';
 import { LangsService } from '../langs/langs.service';
-import { LangDto, SnModelDto } from '@algotech/core';
+import { LangDto, SnModelDto } from '@algotech-ce/core';
 import { MessageService } from '../message/message.service';
 import { DialogMessageService } from '../message/dialog-message.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -27,7 +29,7 @@ export class SessionsService {
 
     constructor(
         private env: EnvService,
-        private authService:  AuthService,
+        private authService: AuthService,
         private langsService: LangsService,
         private datasService: DatasService,
         private environmentService: EnvironmentService,
@@ -39,9 +41,10 @@ export class SessionsService {
     ) {
         this.env.environment.subscribe((res) => {
             this.production = res.production;
-
-            this.host = this.production ? `https://${window.location.host}${res.API_URL}` : res.API_URL;
-            this.socket = this.production ? `wss://${window.location.host}${res.WS_URL}` : res.WS_URL;
+            const protocol = window.location.protocol;
+            this.host = this.production ? `${protocol}//${window.location.host}${res.API_URL}` : res.API_URL;
+            this.socket = this.production ? `${protocol === 'http:' ? 'ws://' : 'wss://'}${window.location.host}${res.WS_URL}` :
+                res.WS_URL;
 
             // FEATURE TOGGLES
             if (res.DISABLE_WS) {
@@ -215,7 +218,7 @@ export class SessionsService {
     }
 
     refreshEnv(host?: string, customerKey?: string) {
-        const session  = customerKey && host ? this.findSession(host, customerKey) : this._active;
+        const session = customerKey && host ? this.findSession(host, customerKey) : this._active;
         session.environment = this.environmentService.calculEnv(session);
         this.messageService.send('session-refresh-env', this.environmentService.getAll(_.map(this.sessions, (s: SessionDto) =>
             s.environment)));
@@ -229,13 +232,13 @@ export class SessionsService {
             s.environment)));
     }
 
-    selectEnv(ressource: ObjectTreeLineDto|ModuleTreeLineDto) {
+    selectEnv(ressource: ObjectTreeLineDto | ModuleTreeLineDto) {
         if (!ressource) {
             for (const env of this.getEnvironments()) {
                 this.environmentService.expandModule(env, null);
             }
             this.environmentService.select(null);
-            return ;
+            return;
         }
         this.selectEnvByUUid(ressource.host, ressource.customerKey, ressource.refUuid);
     }

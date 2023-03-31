@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { ListItem } from '../../../../../dto/list-item.dto';
-import { SnPageEventPipeDto, SnAppDto, SnPageDto, SnPageWidgetDto, SnPageEventDto } from '@algotech/core';
+import { SnPageEventPipeDto, SnAppDto, SnPageDto, SnPageWidgetDto, SnPageEventDto } from '@algotech-ce/core';
 import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { WidgetInput } from '../../../../../../app-custom/dto/widget-input.dto';
 import { EventGroup, EventType } from '../../../../../dto/event-group.dto';

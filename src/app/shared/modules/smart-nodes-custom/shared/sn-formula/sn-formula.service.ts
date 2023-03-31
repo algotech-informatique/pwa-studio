@@ -5,7 +5,7 @@ import { formulaList } from './formulas';
 import * as _ from 'lodash';
 import { SnDOMService } from '../../../smart-nodes/services';
 import { Observable, of } from 'rxjs';
-import { InterpretorFormulaParser } from '@algotech/business';
+import { InterpretorFormulaParser } from '@algotech-ce/business';
 
 interface DescriptionFields {
     code: string;

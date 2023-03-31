@@ -1,10 +1,10 @@
 import { ToastService } from '../../../services';
-import { EMailDto, PairDto, SnAppDto, SnModelDto } from '@algotech/core';
+import { EMailDto, PairDto, SnAppDto, SnModelDto } from '@algotech-ce/core';
 import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { SmartLinkAppExService } from '../smart-link-app.service';
 import { OptionsElementDto } from 'src/app/shared/dtos/options-element.dto';
-import { TranslateLangDtoService } from '@algotech/angular';
+import { TranslateLangDtoService } from '@algotech-ce/angular';
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector

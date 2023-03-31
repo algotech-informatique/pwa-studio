@@ -1,4 +1,4 @@
-import { WsUserDto } from '@algotech/core';
+import { WsUserDto } from '@algotech-ce/core';
 import { ReplaySubject, Observable, Subject } from 'rxjs';
 import { SocketManager } from '../../src/app/shared/services';
 

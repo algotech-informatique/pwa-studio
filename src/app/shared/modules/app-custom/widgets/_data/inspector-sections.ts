@@ -1,5 +1,5 @@
 
-import { SnPageWidgetDto } from '@algotech/core';
+import { SnPageWidgetDto } from '@algotech-ce/core';
 import * as _ from 'lodash';
 import { WidgetCssSchemaInterface } from '../../models/widget-css-schema.interface';
 import { generateCss } from './data';

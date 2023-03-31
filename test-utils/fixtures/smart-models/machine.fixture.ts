@@ -1,4 +1,4 @@
-import { SmartModelDto } from '@algotech/core';
+import { SmartModelDto } from '@algotech-ce/core';
 
 export const machineModelFixture: SmartModelDto = {
     uniqueKeys: [

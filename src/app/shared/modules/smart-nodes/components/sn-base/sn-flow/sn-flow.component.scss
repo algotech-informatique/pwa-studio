@@ -47,6 +47,10 @@
     fill: var(--SN-FLOW-COLOR-CONNECT);
 }
 
+.flow-error {
+    fill: var(--SN-COLOR-ERROR);
+}
+
 .params {
     width: 100%;
 }

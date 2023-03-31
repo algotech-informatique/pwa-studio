@@ -4,7 +4,7 @@ import { CreateLineDto } from '../../dtos/create-line.dto';
 import {
     EnvironmentDirectoryDto, SnModelDto, EnvironmentDto, PatchPropertyDto, PatchService,
     SmartModelDto, SnViewType, WorkflowModelDto, SnAppDto,
-} from '@algotech/core';
+} from '@algotech-ce/core';
 import { UUID } from 'angular2-uuid';
 import { ObjectTreeLineDto, DatasDto, CursorMoveDto, DirectoryClipboardDto, ResourceType } from '../../dtos';
 import { SnModelsService } from '../smart-nodes/smart-nodes.service';
@@ -15,7 +15,7 @@ import {
     CustomersService, EnvironmentsService, SmartModelsService,
     TranslateLangDtoService, KeyFormaterService,
     UsersService, SmartNodesService, WorkflowModelsService, LoaderService, SettingsDataService, DocumentIconDtoService, AuthService,
-} from '@algotech/angular';
+} from '@algotech-ce/angular';
 import { SnActionsService, SnView } from '../../modules/smart-nodes';
 import { LangsService } from '../langs/langs.service';
 import { MessageService } from '../message/message.service';

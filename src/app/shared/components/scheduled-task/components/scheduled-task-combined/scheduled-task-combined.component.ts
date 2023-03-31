@@ -1,4 +1,4 @@
-import { PairDto } from '@algotech/core';
+import { PairDto } from '@algotech-ce/core';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ScheduledDataDto } from '../../../../dtos';
 import { ScheduledTaskService } from '../../services/scheduled-task.service';

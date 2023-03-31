@@ -1,5 +1,5 @@
 
-import { SnPageWidgetDto } from '@algotech/core';
+import { SnPageWidgetDto } from '@algotech-ce/core';
 export const tabSolidVertical: SnPageWidgetDto = {
     id: 'ee4a270f-559f-7301-7a60-c14efa80887e',
     typeKey: 'tabs',

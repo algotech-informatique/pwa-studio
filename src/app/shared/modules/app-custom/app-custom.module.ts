@@ -7,7 +7,7 @@ import { Uuid2ImagePipe } from './pipes/uuid2image.pipe';
 import * as widgets from './widgets';
 import { InspectorModule } from '../inspector/inspector.module';
 import { TranslateModule } from '@ngx-translate/core';
-import { PipesModule } from '@algotech/angular';
+import { PipesModule } from '@algotech-ce/angular';
 import { InputTransformPipe } from './pipes/input-transform.pipe';
 import { ATAppModule } from '../app/at-app.module';
 import { AppCheckService, AppCheckUtilsService, AppDebugService, AppExportTemplateService, AppPublishService } from './services';
@@ -16,9 +16,9 @@ import { AppCustomService } from './services/app-custom/app-custom.service';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { DataInputsModule } from '../inspector/data-inputs/data-inputs.module';
 import { WhiteSpacePipe } from './pipes/white-space.pipe';
-import { WidgetDocumentModule, SoInputModule, GridModule } from '@algotech/business';
+import { WidgetDocumentModule, SoInputModule, GridModule } from '@algotech-ce/business';
 import { GetTabModelsPipe } from './widgets/tabs/tab/pipe/get-tab-models.pipe';
-import { DirectivesModule } from '@algotech/business';
+import { DirectivesModule } from '@algotech-ce/business';
 
 @NgModule({
     imports: [

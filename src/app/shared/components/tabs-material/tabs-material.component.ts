@@ -1,5 +1,5 @@
 import { Component, Input, ContentChildren, AfterContentInit, QueryList, OnChanges, Output, EventEmitter } from '@angular/core';
-import { FormTabContentDirective } from '@algotech/angular';
+import { FormTabContentDirective } from '@algotech-ce/angular';
 import * as _ from 'lodash';
 
 @Component({

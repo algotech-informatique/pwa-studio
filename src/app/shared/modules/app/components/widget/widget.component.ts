@@ -1,4 +1,4 @@
-import { SnAppDto, SnPageWidgetDto } from '@algotech/core';
+import { SnAppDto, SnPageWidgetDto } from '@algotech-ce/core';
 import {
     Component, Input, OnChanges, ViewContainerRef,
     ComponentRef, ViewChildren, QueryList, ChangeDetectorRef, SimpleChanges, ViewChild

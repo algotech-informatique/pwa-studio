@@ -1,5 +1,5 @@
-import { SmartTasksService } from '@algotech/angular';
-import { SmartTaskDto, SmartTaskLogDto } from '@algotech/core';
+import { SmartTasksService } from '@algotech-ce/angular';
+import { SmartTaskDto, SmartTaskLogDto } from '@algotech-ce/core';
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { AlertMessageDto, OptionsObjectDto } from '../../dtos';
 import * as _ from 'lodash';

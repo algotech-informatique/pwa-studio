@@ -1,4 +1,4 @@
-import { SearchSODto } from '@algotech/core';
+import { SearchSODto } from '@algotech-ce/core';
 import { BreadCrumbLink } from './link.interface';
 import { Model } from './model.interface';
 

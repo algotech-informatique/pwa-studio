@@ -1,4 +1,4 @@
-import { EnvironmentDto } from '@algotech/core';
+import { EnvironmentDto } from '@algotech-ce/core';
 import { expect } from 'chai';
 import { EnvironmentDirectoryDtoBuilder } from '../../../../../test-utils/builders/EnvironmentDirectoryDto.builder';
 import { EnvironmentService } from './environment.service';

@@ -1,5 +1,5 @@
-import { TranslateLangDtoService } from '@algotech/angular';
-import { GenericListDto } from '@algotech/core';
+import { TranslateLangDtoService } from '@algotech-ce/angular';
+import { GenericListDto } from '@algotech-ce/core';
 import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { OptionsObjectDto } from '../../../../dtos';
 import * as _ from 'lodash';

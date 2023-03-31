@@ -1,5 +1,5 @@
 import { ListItem } from './../../dto/list-item.dto';
-import { SnAppDto, SnModelDto, LangDto } from '@algotech/core';
+import { SnAppDto, SnModelDto, LangDto } from '@algotech-ce/core';
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { MessageService } from '../../../../services';
 import * as _ from 'lodash';

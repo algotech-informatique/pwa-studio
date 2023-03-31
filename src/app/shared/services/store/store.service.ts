@@ -7,7 +7,7 @@ import * as _ from 'lodash';
 import moment from 'moment'; 
 import { MessageService } from '../message/message.service';
 import { RessourcesUpsertDto } from '../../dtos/store-ressources-upsert.dto';
-import { SnModelDto } from '@algotech/core';
+import { SnModelDto } from '@algotech-ce/core';
 import { SessionsService } from '../sessions/sessions.service';
 import { RessourcesRefDto } from '../../dtos/ressource-ref.dto';
 import { ConfigService } from '../config/config.service';

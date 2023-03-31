@@ -1,4 +1,4 @@
-import { UserDto, ATGroupUtils } from '@algotech/core';
+import { UserDto, ATGroupUtils } from '@algotech-ce/core';
 import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import * as _ from 'lodash';

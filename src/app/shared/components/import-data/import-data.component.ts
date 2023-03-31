@@ -1,4 +1,4 @@
-import { SmartModelDto } from '@algotech/core';
+import { SmartModelDto } from '@algotech-ce/core';
 import { Component, Input, OnChanges } from '@angular/core';
 import { SessionsService } from '../../services';
 import { ExportDataFileDto } from './dto/export-data-file.dto';

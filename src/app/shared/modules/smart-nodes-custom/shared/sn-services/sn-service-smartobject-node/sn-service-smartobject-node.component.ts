@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { SnATNodeUtilsService } from '../../sn-at-node/sn-at-node-utils.service/sn-at-node-utils.service';
 import { SnActionsService, SnDOMService } from '../../../../smart-nodes/services';
 import { SnParam } from '../../../../smart-nodes/models';
-import { SmartModelDto } from '@algotech/core';
+import { SmartModelDto } from '@algotech-ce/core';
 
 @Component({
     ...SN_BASE_METADATA,

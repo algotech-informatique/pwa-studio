@@ -1,4 +1,4 @@
-import { SnPageWidgetConditionDto, SnPageWidgetDto, SnPageWidgetRuleDto } from '@algotech/core';
+import { SnPageWidgetConditionDto, SnPageWidgetDto, SnPageWidgetRuleDto } from '@algotech-ce/core';
 
 export class RuleWidget {
     element: SnPageWidgetDto;

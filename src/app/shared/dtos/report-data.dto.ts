@@ -1,4 +1,4 @@
-import { SnAppDto, SnPageDto, SnPageWidgetDto } from '@algotech/core';
+import { SnAppDto, SnPageDto, SnPageWidgetDto } from '@algotech-ce/core';
 import { OpenInspectorType } from '../modules/app/dto/app-selection.dto';
 import { SnConnector, SnNode, SnView } from '../modules/smart-nodes';
 

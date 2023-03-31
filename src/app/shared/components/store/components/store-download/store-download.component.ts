@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core
 import { OptionsObjectDto, StoreConnectionDto, StoreArticleDto, RessourcesDto } from '../../../../dtos';
 import * as _ from 'lodash';
 import { MessageService, SessionsService, StoreService, ToastService } from '../../../../services';
-import { AuthService } from '@algotech/angular';
+import { AuthService } from '@algotech-ce/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 

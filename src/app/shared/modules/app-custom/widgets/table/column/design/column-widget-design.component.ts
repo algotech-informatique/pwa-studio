@@ -1,4 +1,4 @@
-import { SnAppDto, SnPageDto, SnPageWidgetDto } from '@algotech/core';
+import { SnAppDto, SnPageDto, SnPageWidgetDto } from '@algotech-ce/core';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { AppSelectionService, PageUtilsService, PageWidgetService } from '../../../../../app/services';
 import { StyleInterface } from '../../../../models/design-style.interface';

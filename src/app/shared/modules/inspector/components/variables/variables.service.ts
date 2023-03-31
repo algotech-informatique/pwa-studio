@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SourcesVariablesDto } from './dto/sources.dto';
-import { SmartModelDto, typesSys, TypeSchema, GenericListDto } from '@algotech/core';
+import { SmartModelDto, typesSys, TypeSchema, GenericListDto } from '@algotech-ce/core';
 import { TypeVariable } from './dto/type-variable.dto';
 import * as _ from 'lodash';
 import { IconsService } from '../../../../services';
@@ -121,7 +121,7 @@ export class VariablesServices {
         }, []);
 
         let types = _.map(smartModels, (model: SmartModelDto) =>
-            this.createElement('so:' + model.key.toLowerCase(), `${this.translate.transform(model.displayName)}`, 'so:', true)
+            this.createElement('so:' + model.key?.toLowerCase(), `${this.translate.transform(model.displayName)}`, 'so:', true)
         );
 
         types = _.sortBy(_.map(types, (type) => {

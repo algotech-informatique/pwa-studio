@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, OnDestroy } from '@angular/core';
 import { SessionsService } from '../../services/sessions/sessions.service';
-import { SnModelDto, WorkflowModelDto, SmartModelDto, SnPageDto, SnPageWidgetDto, SnAppDto } from '@algotech/core';
+import { SnModelDto, WorkflowModelDto, SmartModelDto, SnPageDto, SnPageWidgetDto, SnAppDto } from '@algotech-ce/core';
 import { DatasService, CheckService, SnModelsService, ConfigService, MessageService } from '../../services';
 import * as _ from 'lodash';
 import { ParamEditorDto } from '../../modules/inspector/dto/param-editor.dto';
@@ -9,7 +9,7 @@ import { AppActionsService, AppSelectionService, AppZoomService, PageUtilsServic
 import { AppSelectionEvent, AppSettings } from '../../modules/app/dto';
 import { WidgetBoardService, WidgetListService, WidgetTabsService } from '../../modules/app-custom/widgets';
 import { AppCustomService, AppExportTemplateService } from '../../modules/app-custom/services';
-import { ThemeEngloberService } from '@algotech/business';
+import { ThemeEngloberService } from '@algotech-ce/business';
 import { ValidationReportDto } from '../../dtos';
 
 @Component({

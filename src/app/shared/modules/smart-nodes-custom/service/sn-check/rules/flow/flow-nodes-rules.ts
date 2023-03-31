@@ -1,11 +1,11 @@
-import { SnModelDto, WorkflowProfilModelDto, WorkflowVariableModelDto } from "@algotech/core"
-import { ValidationReportDto } from "src/app/shared/dtos"
+import { SnModelDto, WorkflowProfilModelDto } from "@algotech-ce/core"
 import { SnViewRule } from "../../../../../../models/check-rule.interface"
 import { SnFlow, SnNode, SnParam, SnView } from "../../../../../smart-nodes"
 import { SnCheckUtilsService } from "../../check-utils"
 import * as _ from 'lodash';
+import { ValidationReportDto } from '../../../../../../dtos';
 
-export const SnDataNodeRule: SnViewRule = {
+export const snDataNodeRule: SnViewRule = {
   check: (stackCode: string,
     report: ValidationReportDto,
     snView: SnView, snModelUuid: string, item: SnNode, items: SnNode[], parent, checkUtilsService: SnCheckUtilsService): boolean => {
@@ -213,4 +213,23 @@ export const nodeRProfileRule: SnViewRule = {
     }
     return true;
   }
+};
+
+
+export const snSwitchNodeRule: SnViewRule = {
+    check: (stackCode: string,
+        report: ValidationReportDto,
+        snView: SnView, snModelUuid: string, item: SnNode, items: SnNode[], parent, checkUtilsService: SnCheckUtilsService): boolean => {
+
+        if (item.type === 'SnSwitchNode') {
+            const outputs: SnFlow[] = item.flows.filter((f) => f.direction === 'out' && f.key === 'default');
+            outputs.forEach((f: SnFlow) => {
+                if (!f.toward) {
+                    checkUtilsService.pushError(snView, stackCode, report, 'FLOW_NO_CONNECTED', item, f, f.key, 'node');
+                    return false;
+                }
+            });
+        }
+        return true;
+    }
 };

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { OptionsObjectDto } from '../../../dtos';
 import { TranslateService } from '@ngx-translate/core';
-import { SmartTaskDto, SmartTaskLogDto } from '@algotech/core';
+import { SmartTaskDto, SmartTaskLogDto } from '@algotech-ce/core';
 
 import * as _ from 'lodash';
 import moment from 'moment'; 

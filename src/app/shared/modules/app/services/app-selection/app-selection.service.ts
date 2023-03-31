@@ -1,4 +1,4 @@
-import { SnAppDto, SnPageDto, SnPageWidgetDto } from '@algotech/core';
+import { SnAppDto, SnPageDto, SnPageWidgetDto } from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AppMessageService } from '../app-message/app-message.service';

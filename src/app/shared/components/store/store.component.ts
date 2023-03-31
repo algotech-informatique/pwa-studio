@@ -1,4 +1,4 @@
-import { SnModelDto, SnNodeDto, SnViewDto } from '@algotech/core';
+import { SnModelDto, SnNodeDto, SnViewDto } from '@algotech-ce/core';
 import { ChangeDetectorRef, Component, Input, OnChanges } from '@angular/core';
 import { OptionsObjectDto, RessourcesDto, StoreArticleDto, StoreConnectionDto } from '../../dtos';
 import { MessageService, SessionsService, StorePreferencesService, ToastService } from '../../services';

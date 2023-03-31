@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectorRef, ViewChild, ElementRef, SimpleChanges } from '@angular/core';
-import { PairDto, SnModelDto } from '@algotech/core';
+import { PairDto, SnModelDto } from '@algotech-ce/core';
 import { SnModelsService, SessionsService } from '../../../../services';
 import { SnParam } from '../../../smart-nodes';
-import { KeyFormaterService } from '@algotech/angular';
+import { KeyFormaterService } from '@algotech-ce/angular';
 import { fromEvent, Subscription } from 'rxjs';
 import * as _ from 'lodash';
 import { PopupContainerDto } from '../../dto/popup-container.dto';

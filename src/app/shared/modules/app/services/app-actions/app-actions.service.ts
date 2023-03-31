@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import { LangDto, SnAppDto, SnPageDto, SnPageEventDto, SnPageWidgetDto } from '@algotech/core';
+import { LangDto, SnAppDto, SnPageDto, SnPageEventDto, SnPageWidgetDto } from '@algotech-ce/core';
 import { AppMessageService } from '../app-message/app-message.service';
 import { AppSelectionService } from '../app-selection/app-selection.service';
 import { PageWidgetService } from '../page-widget/page-widget.service';
@@ -384,7 +384,7 @@ export class AppActionsService extends AppMessageService {
         refrences.forEach(ref => {
 
             Object.entries(master)
-                .filter(([key, value]) => key !== 'id' && key !== 'displayState')
+                .filter(([key, value]) => key !== 'id' && key !== 'displayState' && key !== 'name')
                 .forEach(([key, value]) => {
                     if (value != null) {
                         ref[key] = _.cloneDeep(value);

@@ -1,4 +1,4 @@
-import { GroupDto, UserDto } from '@algotech/core';
+import { GroupDto, UserDto } from '@algotech-ce/core';
 
 export class SecurityGroup {
     group: GroupDto;

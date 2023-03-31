@@ -1,7 +1,7 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { SN_TASK_METADATA } from './sn-task-node.metadata';
 import { SnActionsService } from '../../../smart-nodes/services';
-import { PairDto } from '@algotech/core';
+import { PairDto } from '@algotech-ce/core';
 import { SnNodeSchema } from '../../../smart-nodes/dto';
 import { SnATNodeComponent } from '../sn-at-node/sn-at-node.component';
 import { SnATNodeUtilsService } from '../sn-at-node/sn-at-node-utils.service/sn-at-node-utils.service';

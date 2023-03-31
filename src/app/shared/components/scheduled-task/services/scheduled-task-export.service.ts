@@ -1,4 +1,4 @@
-import { SmartTaskLogDto } from '@algotech/core';
+import { SmartTaskLogDto } from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
 import { DialogMessageService } from '../../../services';
 import * as _ from 'lodash';

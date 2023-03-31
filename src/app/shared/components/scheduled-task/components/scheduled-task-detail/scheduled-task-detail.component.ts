@@ -1,4 +1,4 @@
-import { SmartTaskDto } from '@algotech/core';
+import { SmartTaskDto } from '@algotech-ce/core';
 import { Component, Input, Output, EventEmitter, OnChanges, AfterViewInit, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { ScheduledDataDto } from '../../../../dtos';
 import { OptionsElementDto } from '../../../../dtos/options-element.dto';

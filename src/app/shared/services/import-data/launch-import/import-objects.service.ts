@@ -1,10 +1,10 @@
-import { ATSkillsDto, SmartModelDto, SmartObjectDto, SmartPropertyObjectDto } from '@algotech/core';
+import { ATSkillsDto, SmartModelDto, SmartObjectDto, SmartPropertyObjectDto } from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
 import * as _ from 'lodash';
 import { UUID } from 'angular2-uuid';
 import { ImportDataUtilsService } from '../import-data-utils.service';
 import { ImportDataFileDto, ImportDataModel } from '../../../components/import-data/dto/import-data-file.dto';
-import { SmartObjectsService } from '@algotech/angular';
+import { SmartObjectsService } from '@algotech-ce/angular';
 import { ValidateImportDataDto, ValidateImportDataModelDto } from '../../../components/import-data/dto/validate-import-data.dto';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable, of } from 'rxjs';

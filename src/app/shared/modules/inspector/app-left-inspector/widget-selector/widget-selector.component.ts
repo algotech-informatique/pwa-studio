@@ -1,5 +1,5 @@
 import { AppActionsService } from '../../../app/services/app-actions/app-actions.service';
-import { SnAppDto } from '@algotech/core';
+import { SnAppDto } from '@algotech-ce/core';
 import { Component, Input, AfterViewInit, ChangeDetectorRef, OnChanges, SimpleChanges } from '@angular/core';
 import * as _ from 'lodash';
 import { templatesLibrary } from '../../../app-custom/widgets/templates/templates';

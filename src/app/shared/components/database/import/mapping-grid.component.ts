@@ -1,5 +1,5 @@
-import { GridConfigurationDto } from '@algotech/business';
-import { PairDto } from '@algotech/core';
+import { GridConfigurationDto } from '@algotech-ce/business';
+import { PairDto } from '@algotech-ce/core';
 import { ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit } from '@angular/core';
 import { SnContextmenuAction } from '../../../modules/smart-nodes';
 import { Model } from '../interfaces/model.interface';

@@ -1,5 +1,5 @@
-import { AuthService, EnvService } from '@algotech/angular';
-import { SnAppDto, SnModelDto } from '@algotech/core';
+import { AuthService, EnvService } from '@algotech-ce/angular';
+import { SnAppDto, SnModelDto } from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
 import { SessionsService } from '../../../../services';
 import { AppPublishService } from '../app-publish/app-publish.service';

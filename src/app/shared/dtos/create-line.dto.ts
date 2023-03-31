@@ -1,5 +1,5 @@
 import { ObjectTreeLineDto } from './object-tree-line.dto';
-import { SnModelDto } from '@algotech/core';
+import { SnModelDto } from '@algotech-ce/core';
 import { DirectoryClipboardDto } from './directory-clipboard.dto';
 
 export class CreateLineDto {

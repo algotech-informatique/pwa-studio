@@ -1,4 +1,4 @@
-import { LangDto, TagDto } from '@algotech/core';
+import { LangDto, TagDto } from '@algotech-ce/core';
 import { MockBuilder } from './MockBuilder';
 
 export class TagDtoBuilder extends MockBuilder<TagDto> {

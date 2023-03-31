@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PipesModule } from '@algotech/angular';
+import { PipesModule } from '@algotech-ce/angular';
 import { TranslateModule } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
 import { DataInputsComponent } from './data-inputs.component';

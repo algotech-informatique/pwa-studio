@@ -4,12 +4,12 @@ import {
     WorkflowInstanceDto, WorkflowDataDto, SmartModelDto, SmartObjectDto, SmartPropertyObjectDto,
     SmartPropertyModelDto, GenericListDto, WorkflowStackTaskDto, WorkflowOperationDto, WorkflowTaskActionDto,
     CrudDto, TaskModelDto, SnViewDto, SnNodeDto
-} from '@algotech/core';
+} from '@algotech-ce/core';
 import * as _ from 'lodash';
 import { IconsService, SessionsService, SnModelsService, WatcherService } from '../../services';
 import { SnDOMService, SnNode, SnTranslateService, SnView } from '../../modules/smart-nodes';
-import { TranslateLangDtoService } from '@algotech/angular';
-import { InterpretorMetricsKeys, SoUtilsService, WorkflowMetricsService, WorkflowTaskService } from '@algotech/business';
+import { TranslateLangDtoService } from '@algotech-ce/angular';
+import { InterpretorMetricsKeys, SoUtilsService, WorkflowMetricsService, WorkflowTaskService } from '@algotech-ce/business';
 import { TranslateService } from '@ngx-translate/core';
 import { ValidationReportDto } from '../../dtos';
 import { ReportData } from '../../dtos/report-data.dto';

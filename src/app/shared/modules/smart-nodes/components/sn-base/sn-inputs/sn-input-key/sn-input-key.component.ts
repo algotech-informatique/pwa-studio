@@ -1,4 +1,4 @@
-import { KeyFormaterService } from '@algotech/angular';
+import { KeyFormaterService } from '@algotech-ce/angular';
 import {
     Component, Input, Output, AfterViewInit, EventEmitter,
     OnChanges, ChangeDetectorRef, ViewChild, ElementRef, OnDestroy

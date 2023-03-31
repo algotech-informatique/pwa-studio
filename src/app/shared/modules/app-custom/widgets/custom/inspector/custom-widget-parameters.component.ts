@@ -1,4 +1,4 @@
-import { SnPageWidgetDto, SnAppDto, SnPageDto } from '@algotech/core';
+import { SnPageWidgetDto, SnAppDto, SnPageDto } from '@algotech-ce/core';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { WidgetParametersInterface } from '../../../models/widget-parameters.interface';
 

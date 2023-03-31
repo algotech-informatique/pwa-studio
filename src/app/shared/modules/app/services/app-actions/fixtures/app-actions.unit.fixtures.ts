@@ -1,4 +1,4 @@
-import { SnAppDto, SnPageDto, SnPageWidgetDto } from '@algotech/core';
+import { SnAppDto, SnPageDto, SnPageWidgetDto } from '@algotech-ce/core';
 
 export const widget: SnPageWidgetDto = {
   id: '1',
@@ -225,7 +225,7 @@ export const master2: SnPageWidgetDto = {
 export const master2Shared: SnPageWidgetDto = {
   id: 'sharedGroup',
   typeKey: 'button',
-  name: 'master2',
+  name: 'sharedGroup',
   box: {
     x: 0,
     y: 0,
@@ -424,7 +424,7 @@ export const master1: SnPageWidgetDto = {
 export const mixedshared: SnPageWidgetDto = {
   id: 'shared',
   typeKey: 'button',
-  name: 'master1',
+  name: 'shared',
   box: {
     x: 0,
     y: 0,
@@ -485,7 +485,7 @@ export const mixedshared: SnPageWidgetDto = {
 export const master1Shared: SnPageWidgetDto = {
   id: 'shared',
   typeKey: 'button',
-  name: 'master1',
+  name: 'shared',
   box: {
     x: 0,
     y: 0,

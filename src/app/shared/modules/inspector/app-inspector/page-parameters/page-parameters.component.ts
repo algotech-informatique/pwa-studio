@@ -1,4 +1,4 @@
-import { LangDto, SnAppDto, SnPageDto, SnPageEventDto } from '@algotech/core';
+import { LangDto, SnAppDto, SnPageDto, SnPageEventDto } from '@algotech-ce/core';
 import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { AppCustomService } from '../../../app-custom/services';
 import { PageZoom } from '../../dto/page-zoom.dto';

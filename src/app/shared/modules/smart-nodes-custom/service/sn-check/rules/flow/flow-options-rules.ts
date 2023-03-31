@@ -1,8 +1,8 @@
-import { SnViewDto, WorkflowVariableModelDto } from "@algotech/core"
-import { ValidationReportDto } from "src/app/shared/dtos"
-import { SnView } from "src/app/shared/modules/smart-nodes/models"
-import { SnViewRule } from "../../../../../../models/check-rule.interface"
-import { SnCheckUtilsService } from "../../check-utils"
+import { SnViewDto, WorkflowVariableModelDto } from '@algotech-ce/core';
+import { ValidationReportDto } from '../../../../../../dtos';
+import { SnViewRule } from '../../../../../../models/check-rule.interface';
+import { SnView } from '../../../../../smart-nodes/models';
+import { SnCheckUtilsService } from '../../check-utils';
 
 export const flowOptIncorrectVarRule: SnViewRule = {
   check: (stackCode: string,
@@ -63,3 +63,4 @@ export const flowOptIncorrectApiRule: SnViewRule = {
     return true;
   }
 };
+

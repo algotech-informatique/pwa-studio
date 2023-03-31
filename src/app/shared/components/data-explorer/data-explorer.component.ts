@@ -1,10 +1,10 @@
-import { WorkflowModelDto } from '@algotech/core';
+import { WorkflowModelDto } from '@algotech-ce/core';
 import { Component, Input, Output, EventEmitter, ElementRef } from '@angular/core';
 import { WatcherService } from '../../services/watcher/watcher.service';
 import { DataExplorerModel } from '../data-explorer/data-explorer.model';
 import * as _ from 'lodash';
 import { Clipboard } from '@angular/cdk/clipboard';
-import { SoUtilsService } from '@algotech/business';
+import { SoUtilsService } from '@algotech-ce/business';
 import { SessionsService, ToastService } from '../../services';
 import { TranslateService } from '@ngx-translate/core';
 

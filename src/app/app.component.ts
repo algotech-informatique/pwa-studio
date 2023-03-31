@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { AuthService } from '@algotech/angular';
-import { ToastService, WorkflowLaunchService } from '@algotech/business';
+import { AuthService } from '@algotech-ce/angular';
+import { ToastService, WorkflowLaunchService } from '@algotech-ce/business';
 import { SwUpdate } from '@angular/service-worker';
 import { TranslateService } from '@ngx-translate/core';
 import { from } from 'rxjs';

@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { SnNode, SnView } from '../../../../smart-nodes/models';
-import { PairDto } from '@algotech/core';
-import { WorkflowProfilModelDto } from '@algotech/core';
+import { PairDto } from '@algotech-ce/core';
+import { WorkflowProfilModelDto } from '@algotech-ce/core';
 import { SnATNodeUtilsService } from '../../sn-at-node/sn-at-node-utils.service/sn-at-node-utils.service';
 
 @Component({

@@ -1,5 +1,5 @@
 
-import { SnPageWidgetDto } from '@algotech/core';
+import { SnPageWidgetDto } from '@algotech-ce/core';
 export const footerWebSimple: SnPageWidgetDto = {
     id: 'ceeac8a9-7bc8-9346-7465-e5c461289302',
     typeKey: 'footer',

@@ -9,7 +9,7 @@ import { SnNode } from '../../../smart-nodes/models';
 import { NodeHelper } from './node.helper';
 import { FixtureFactory } from 'test-utils/fixtures/FixtureFactory';
 import { AppModuleMock } from '../../../../../../../test-utils/mocks/app.module.mock';
-import { AppModule } from '@algotech/business';
+import { AppModule } from '@algotech-ce/business';
 
 describe(NodesHelper.name, () => {
     let studioHelper: StudioHelper;

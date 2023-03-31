@@ -2,7 +2,7 @@ import { MessageService } from './../../../../../services/message/message.servic
 import { EntryComponentsService } from './../../../service/entry-components/entry-components/entry-components.service';
 import { SnNodeMergeService } from './../../../../smart-nodes/services/view/sn-node-merge/sn-node-merge.service';
 import { SnSection } from './../../../../smart-nodes/models/sn-section';
-import { WorkflowVariableModelDto, WorkflowProfilModelDto, SnModelDto } from '@algotech/core';
+import { WorkflowVariableModelDto, WorkflowProfilModelDto, SnModelDto } from '@algotech-ce/core';
 import { UUID } from 'angular2-uuid';
 import { SnFlow } from './../../../../smart-nodes/models/sn-flow';
 import { SnParam } from './../../../../smart-nodes/models/sn-param';

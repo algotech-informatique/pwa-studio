@@ -51,8 +51,8 @@
 
 <div class="actions" [ngClass]="{'only-delete': use !== 'url-segment' || disableMove}">
     <div class="move-event" *ngIf="use === 'url-segment' && !disableMove">
-        <i class="fa-solid fa-arrow-alt-circle-up button" (click)="arrowMoveEvent('up')"></i>
-        <i class="fa-solid fa-arrow-alt-circle-down button" (click)="arrowMoveEvent('down')"></i>
+        <i class="fa-solid fa-arrow-up button" (click)="arrowMoveEvent('up')"></i>
+        <i class="fa-solid fa-arrow-down button" (click)="arrowMoveEvent('down')"></i>
     </div>
     <div class="delete-event">
         <i class="fa-solid fa-trash button" (click)="deleteVariable()"></i>

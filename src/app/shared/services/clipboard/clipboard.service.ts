@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SnModelDto, SnVersionDto, EnvironmentDirectoryDto } from '@algotech/core';
+import { SnModelDto, SnVersionDto, EnvironmentDirectoryDto } from '@algotech-ce/core';
 import * as _ from 'lodash';
 import { SessionsService } from '../sessions/sessions.service';
 import { SessionDto, ObjectTreeLineDto, ResourceType, DirectoryClipboardDto } from '../../dtos';

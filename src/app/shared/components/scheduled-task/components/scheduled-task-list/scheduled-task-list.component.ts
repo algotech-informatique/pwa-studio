@@ -1,4 +1,4 @@
-import { SmartTaskDto } from '@algotech/core';
+import { SmartTaskDto } from '@algotech-ce/core';
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import * as _ from 'lodash';
 import { OptionsObjectDto } from '../../../../dtos';

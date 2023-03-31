@@ -1,4 +1,4 @@
-import { SnAppDto, SnPageDto, SnPageWidgetDto } from '@algotech/core';
+import { SnAppDto, SnPageDto, SnPageWidgetDto } from '@algotech-ce/core';
 import { Component, ComponentRef, EventEmitter, Output } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
@@ -8,6 +8,7 @@ import { ListItem } from '../../../../inspector/dto/list-item.dto';
 import { WidgetInput } from '../../../dto/widget-input.dto';
 import { WidgetParametersInterface } from '../../../models/widget-parameters.interface';
 import { AppCustomService } from '../../../services';
+import * as _ from 'lodash';
 
 @Component({
     selector: 'list-widget-parameters',
@@ -28,14 +29,25 @@ export class ListWidgetParametersComponent implements WidgetParametersInterface 
     inputResultNumber: InputItem;
     inputCollection: InputItem;
     typesFlex: ListItem[];
-    paginationLimit: ListItem[];
+    paginationLimit: ListItem[] = [];
 
     componentRef: ComponentRef<any>;
 
     constructor(
         private appCustomService: AppCustomService,
         private translateService: TranslateService,
-    ) { }
+    ) {
+        this.paginationLimit = [{
+            key: 'button',
+            value: this.translateService.instant('INSPECTOR.WIDGET.LIST.PAGINATION-BUTTON'),
+            icon: 'fa-solid fa-hand-pointer',
+        }, {
+            key: 'infinite',
+            value: this.translateService.instant('INSPECTOR.WIDGET.LIST.PAGINATION-INFINITE'),
+            icon: 'fa-solid fa-infinity',
+        }];
+
+    }
 
     initialize() {
         this.loadList();
@@ -51,16 +63,6 @@ export class ListWidgetParametersComponent implements WidgetParametersInterface 
             key: 'row',
             value: this.translateService.instant('INSPECTOR.WIDGET.LIST.FLEXDIRECTION-ROW'),
             icon: 'fa-solid fa-angle-double-right',
-        }];
-
-        this.paginationLimit = [{
-            key: 'button',
-            value: this.translateService.instant('INSPECTOR.WIDGET.LIST.PAGINATION-BUTTON'),
-            icon: 'fa-solid fa-hand-pointer',
-        }, {
-            key: 'infinite',
-            value: this.translateService.instant('INSPECTOR.WIDGET.LIST.PAGINATION-INFINITE'),
-            icon: 'fa-solid fa-infinity',
         }];
 
         this.inputResultNumber = {
@@ -107,6 +109,14 @@ export class ListWidgetParametersComponent implements WidgetParametersInterface 
             this.widget.custom.paginate.mode = 'button';
         }
         this.widget.custom.scrollbar = value;
+        this.changed.emit();
+    }
+
+    onPaginationChanged(pagination: boolean) {
+        const custom = _.cloneDeep(this.widget.custom);
+        custom.paginate.limit = pagination ? 20 : 0;
+        this.widget.custom = custom;
+        this.inputResultNumber.value = this.widget.custom.paginate.limit;
         this.changed.emit();
     }
 }

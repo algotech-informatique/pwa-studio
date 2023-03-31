@@ -1,4 +1,4 @@
-import { LangDto, TagDto } from '@algotech/core';
+import { LangDto, TagDto } from '@algotech-ce/core';
 
 export class TagsListFormatedLine {
     key: string;

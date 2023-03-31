@@ -1,4 +1,4 @@
-import { SnAppDto, SnPageDto } from "@algotech/core";
+import { SnAppDto, SnPageDto } from "@algotech-ce/core";
 import { ValidationReportDto } from "../dtos";
 import { AppCheckUtilsService } from "../modules/app-custom/services";
 import { SnView } from "../modules/smart-nodes";

@@ -1,5 +1,5 @@
 
-import { SnPageWidgetDto } from '@algotech/core';
+import { SnPageWidgetDto } from '@algotech-ce/core';
 export const footerMobileTabsIconOnly: SnPageWidgetDto = {
     id: '0a1767d8-ab1e-fdb4-a644-6f52f171cfe8',
     typeKey: 'footer',

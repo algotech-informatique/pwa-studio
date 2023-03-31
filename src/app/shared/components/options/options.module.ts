@@ -1,5 +1,5 @@
-import { DirectivesModule, PipesModule } from '@algotech/angular';
-import { WorkflowDebuggerModule } from '@algotech/business';
+import { DirectivesModule, PipesModule } from '@algotech-ce/angular';
+import { WorkflowDebuggerModule } from '@algotech-ce/business';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';

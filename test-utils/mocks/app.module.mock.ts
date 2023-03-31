@@ -1,6 +1,6 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ATAngularModule, AuthService, EnvService } from '@algotech/angular';
+import { ATAngularModule, AuthService, EnvService } from '@algotech-ce/angular';
 import { TranslateModule } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
 import { AuthServiceMock } from './auth.service.mock';

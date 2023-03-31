@@ -1,4 +1,4 @@
-import { SnAppDto, SnPageDto, SnPageWidgetDto, SnViewDto } from '@algotech/core';
+import { SnAppDto, SnPageDto, SnPageWidgetDto, SnViewDto } from '@algotech-ce/core';
 import { ValidationReportDto } from '../../../../../dtos';
 import { AppRule } from '../../../../../models/check-rule.interface';
 import { AppCheckUtilsService } from '../app-check-utils.service';

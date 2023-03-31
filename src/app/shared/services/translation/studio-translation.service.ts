@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import * as _ from 'lodash';
-import { I18nService, TranslateLangDtoService } from '@algotech/angular';
+import { I18nService, TranslateLangDtoService } from '@algotech-ce/angular';
 import { MessageService } from '../message/message.service';
 import { TranslateService } from '@ngx-translate/core';
 import { SessionsService } from '..';
 import { SnTranslateService } from '../../modules/smart-nodes';
 import { Observable, of } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
-import { LangDto } from '@algotech/core';
+import { LangDto } from '@algotech-ce/core';
 import moment from 'moment';
 
 @Injectable()

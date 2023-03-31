@@ -1,4 +1,4 @@
-import { SnAppDto, SnPageWidgetDto } from '@algotech/core';
+import { SnAppDto, SnPageWidgetDto } from '@algotech-ce/core';
 import { Component, QueryList, ViewChildren } from '@angular/core';
 import { PageUtilsService } from '../../../../app/services';
 import { WidgetComponent } from '../../../../app/components/widget/widget.component';

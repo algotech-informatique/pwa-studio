@@ -89,8 +89,8 @@
         <div class="actions"
             [ngClass]="{'only-delete': event?.pipe?.length === 1}">
             <div class="move-event" *ngIf="event?.pipe?.length > 1">
-                <i class="fa-solid fa-arrow-alt-circle-up button" (click)="arrowMoveEvent('up')"></i>
-                <i class="fa-solid fa-arrow-alt-circle-down button" (click)="arrowMoveEvent('down')"></i>
+                <i class="fa-solid fa-arrow-up button" (click)="arrowMoveEvent('up')"></i>
+                <i class="fa-solid fa-arrow-down button" (click)="arrowMoveEvent('down')"></i>
             </div>
 
             <div class="delete-event">
@@ -106,5 +106,5 @@
 </div>
 
 <div *ngIf="!isLastPipeEvent" class="event-arrow">
-    <i *ngIf="event?.custom?.mode === 'sequence'" class="event-arrow" class="fa-solid fa-arrow-alt-circle-down"></i>
+    <i *ngIf="event?.custom?.mode === 'sequence'" class="event-arrow" class="fa-solid fa-arrow-down icon"></i>
 </div>

@@ -1,4 +1,4 @@
-import { SnModelDto } from '@algotech/core';
+import { SnModelDto } from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
 import { SmartflowHelper, SmartModelsHelper, WorkflowHelper } from './class';
 import { HelperContext } from './helper.context';

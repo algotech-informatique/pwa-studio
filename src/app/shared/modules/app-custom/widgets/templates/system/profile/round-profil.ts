@@ -1,5 +1,5 @@
 
-import { SnPageWidgetDto } from '@algotech/core';
+import { SnPageWidgetDto } from '@algotech-ce/core';
 export const roundProfil: SnPageWidgetDto = {
 	id: '1863e100-8781-3d2a-b8db-a33f7cc0b4ca',
     typeKey: 'profile',

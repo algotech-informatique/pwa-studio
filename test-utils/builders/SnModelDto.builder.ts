@@ -1,4 +1,4 @@
-import { SnModelDto, SnPageDto, SnVersionDto } from '@algotech/core';
+import { SnModelDto, SnPageDto, SnVersionDto } from '@algotech-ce/core';
 import { MockBuilder } from './MockBuilder';
 import { SnAppDtoBuilder } from './SnAppDto.builder';
 import { SnVersionDtoBuilder } from './SnVersionDto.builder';

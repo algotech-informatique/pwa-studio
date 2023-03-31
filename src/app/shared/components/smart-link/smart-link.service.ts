@@ -1,4 +1,4 @@
-import { EMailDto, SmartLinkDto, PairDto, WorkflowModelDto } from '@algotech/core';
+import { EMailDto, SmartLinkDto, PairDto, WorkflowModelDto } from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { SnView } from '../../modules/smart-nodes';
@@ -6,7 +6,7 @@ import { ActiveSmartLinks, ResourceType, SessionDto } from '../../dtos';
 import { SessionsService } from '../../services';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { SmartLinkService, TranslateLangDtoService } from '@algotech/angular';
+import { SmartLinkService, TranslateLangDtoService } from '@algotech-ce/angular';
 import * as _ from 'lodash';
 
 @Injectable()

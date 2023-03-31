@@ -65,8 +65,8 @@
                     [ngClass]="{'only-delete': rules.length === 1 }">
 
                     <div class="move-event" *ngIf="rules.length > 1">
-                        <i class="fa-solid fa-arrow-alt-circle-up button" (click)="arrowMoveEvent('up', rule, i)"></i>
-                        <i class="fa-solid fa-arrow-alt-circle-down button" (click)="arrowMoveEvent('down', rule, i)"></i>
+                        <i class="fa-solid fa-arrow-up button" (click)="arrowMoveEvent('up', rule, i)"></i>
+                        <i class="fa-solid fa-arrow-down button" (click)="arrowMoveEvent('down', rule, i)"></i>
                     </div>
 
                     <div class="delete-event">
@@ -76,7 +76,7 @@
             </inspector-section>
 
             <div class="event-arrow" *ngIf="rules?.length - 1 !== i">
-                <i class="event-arrow" class="fa-solid fa-arrow-alt-circle-down"></i>
+                <i class="event-arrow" class="fa-solid fa-arrow-down icon"></i>
             </div>    
         </div>  
         

@@ -1,4 +1,4 @@
-import { EnvironmentDto } from '@algotech/core';
+import { EnvironmentDto } from '@algotech-ce/core';
 
 export const environmentDtoFixture: EnvironmentDto = {
     uuid : '6ae1f52f-b7f2-401d-bb87-6d16d443d0b6',

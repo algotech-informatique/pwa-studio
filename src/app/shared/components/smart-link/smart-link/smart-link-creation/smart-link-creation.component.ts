@@ -1,4 +1,4 @@
-import { PairDto, SmartLinkDto, WorkflowVariableModelDto } from '@algotech/core';
+import { PairDto, SmartLinkDto, WorkflowVariableModelDto } from '@algotech-ce/core';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ListItem } from '../../../../modules/inspector/dto/list-item.dto';
 import { OptionsElementDto } from '../../../../dtos/options-element.dto';

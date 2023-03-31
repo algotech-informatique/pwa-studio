@@ -9,11 +9,13 @@
             <div class="titles">
                 <div *ngIf="subTitle" class="subtitle" [ngClass]="{'with-icon': subTitleIcon}">
                     <i *ngIf="subTitleIcon" [class]="subTitleIcon + ' icon'"></i>
-                    <p>{{ subTitle }}</p>
+                    <div class="text"
+                        [title]="subTitle">{{ subTitle }}</div>
                 </div>
                 <div class="title" [ngClass]="{'with-icon': titleIcon}">
                     <i *ngIf="titleIcon" [class]="titleIcon + ' icon'"></i>
-                    <p>{{ title }}</p>
+                    <div class="text"
+                        [title]="title">{{ title }}</div>
                 </div>
             </div>
         </div>

@@ -7,7 +7,7 @@ import { ScheduledTaskLogComponent } from './components/scheduled-task-log/sched
 import { OptionsModule } from '../options/options.module';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
-import { PipesModule, SmartTasksService } from '@algotech/angular';
+import { PipesModule, SmartTasksService } from '@algotech-ce/angular';
 import { TranslateModule } from '@ngx-translate/core';
 import { ScheduledTaskService } from './services/scheduled-task.service';
 import { ScheduledTaskExportService } from './services/scheduled-task-export.service';

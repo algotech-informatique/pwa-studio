@@ -1,4 +1,4 @@
-import { PairDto, SnAppDto, SnPageDto, SnPageWidgetConditionDto, SnPageWidgetDto, SnPageWidgetRuleDto } from '@algotech/core';
+import { PairDto, SnAppDto, SnPageDto, SnPageWidgetConditionDto, SnPageWidgetDto, SnPageWidgetRuleDto } from '@algotech-ce/core';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { UUID } from 'angular2-uuid';

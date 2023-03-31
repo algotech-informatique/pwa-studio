@@ -1,0 +1,47 @@
+@import '../../../../../styles.scss';
+@import '../../../modules/inspector/theme/_mixins.scss';
+
+:host {
+    --COUNTER-BACKGROUND-COLOR:#0D1013;
+    --COUNTER-COLOR: #FFF;
+}
+
+.counter {
+    height: 20px;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+
+    .nopage {
+        margin: 0 5px;
+    }
+
+    .select {
+        background: transparent;
+        color: var(--COUNTER-COLOR);
+        margin: 0 5px;
+        outline: 0;
+        transition: border-color 0.2s;
+        height: 18px;
+
+        .option {
+            background: var(--COUNTER-BACKGROUND-COLOR);
+            color: var(--COUNTER-COLOR);
+            padding: 0;
+            font-size: var(--SELECT-OPTION-FONT-SIZE, inherit);
+        }
+
+        &::-webkit-scrollbar {
+            padding-top: 5px;
+            width: 10px;
+        }
+        
+        &::-webkit-scrollbar-track {
+            background-color: var(--COUNTER-BACKGROUND-COLOR);
+        }
+        
+        &::-webkit-scrollbar-thumb {
+            background-color: var(--COUNTER-COLOR);
+        }
+    }
+}

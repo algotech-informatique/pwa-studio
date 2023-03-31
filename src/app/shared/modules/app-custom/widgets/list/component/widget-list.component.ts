@@ -1,4 +1,4 @@
-import { SnAppDto, SnPageWidgetDto } from '@algotech/core';
+import { SnAppDto, SnPageWidgetDto } from '@algotech-ce/core';
 import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { WidgetComponentInterface } from '../../../../app/interfaces';

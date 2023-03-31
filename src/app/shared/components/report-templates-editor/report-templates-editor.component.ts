@@ -1,5 +1,5 @@
 import { Component, Input, ViewChild, ElementRef, OnChanges, OnInit } from '@angular/core';
-import { SnModelDto, WorkflowVariableModelDto, SmartModelDto, SysFile, SnViewDto } from '@algotech/core';
+import { SnModelDto, WorkflowVariableModelDto, SmartModelDto, SysFile, SnViewDto } from '@algotech-ce/core';
 import { DocxTemplaterService } from '../../services/docx-templater/docx-templater.service';
 import * as _ from 'lodash';
 import { SessionsService, DatasService } from '../../services';
@@ -7,7 +7,7 @@ import { flatMap, tap, catchError } from 'rxjs/operators';
 import { UUID } from 'angular2-uuid';
 import { TemplatesService } from '../../services/templates/templates.service';
 import { of, zip } from 'rxjs';
-import { FilesService, FileAssetDto } from '@algotech/business';
+import { FilesService, FileAssetDto } from '@algotech-ce/business';
 import { TypeVariable } from '../../modules/inspector/components/variables/dto/type-variable.dto';
 import { VariablesServices } from '../../modules/inspector/components/variables/variables.service';
 import { SnModelsService } from '../../services';

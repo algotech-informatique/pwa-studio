@@ -103,6 +103,7 @@ export class SnFormulaNodeComponent extends SnATNodeComponent implements OnDestr
         const formulaName = this.computedFormula.split('(')[0];
         const formula: SnFormula = this.formulaService.getFormula(formulaName);
         const type = (formula) ? formula.outputType : this._parseFormula();
+        this.node.params[0].multiple = (formula) ? formula.outputIsArray : false;
 
         this.snActions.editParam(this.snView, this.node, this.node.params[0], this.node.params, 'types', type);
         this.updateSources();

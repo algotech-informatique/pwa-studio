@@ -5,7 +5,7 @@ import * as _ from 'lodash';
 import { CheckEvent, ValidationReportDto } from '../../../../dtos';
 import { smartModelsNodeRules, smartModelsParamsRules, snViewNodeRules, snViewRules, snViewParamsRules } from './rules/rules-stack';
 import { SnCheckUtilsService } from './check-utils';
-import { SnModelDto } from '@algotech/core';
+import { SnModelDto } from '@algotech-ce/core';
 import { SnTranslateService } from '../../../smart-nodes/services';
 
 @Injectable()
@@ -41,6 +41,12 @@ export class SnCheckService {
             elt.param.displayState.error = false;
             elt.param.displayState.info = false;
             elt.param.displayState.warning = false;
+        }
+
+        for (const flw of this.checkUtilsService.snUtils.getFlowsWithNode(snView)) {
+            flw.flow.displayState.error = false;
+            flw.flow.displayState.info = false;
+            flw.flow.displayState.warning = false;
         }
     }
 

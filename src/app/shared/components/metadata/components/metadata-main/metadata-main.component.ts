@@ -1,5 +1,5 @@
-import { TranslateLangDtoService } from '@algotech/angular';
-import { DocumentsMetaDatasSettingsDto } from '@algotech/core';
+import { TranslateLangDtoService } from '@algotech-ce/angular';
+import { DocumentsMetaDatasSettingsDto } from '@algotech-ce/core';
 import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import * as _ from 'lodash';
 import { OptionsObjectDto } from '../../../../dtos';

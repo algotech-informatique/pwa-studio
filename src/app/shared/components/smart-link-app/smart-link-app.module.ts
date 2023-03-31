@@ -1,4 +1,4 @@
-import { DirectivesModule, PipesModule } from '@algotech/angular';
+import { DirectivesModule, PipesModule } from '@algotech-ce/angular';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';

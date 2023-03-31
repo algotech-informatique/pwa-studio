@@ -1,5 +1,5 @@
-import { ThemeEngloberService } from '@algotech/business';
-import { SnAppDto, ThemeDto } from '@algotech/core';
+import { ThemeEngloberService } from '@algotech-ce/business';
+import { SnAppDto, ThemeDto } from '@algotech-ce/core';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ListItem } from '../../../dto/list-item.dto';
 import * as _ from 'lodash';

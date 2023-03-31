@@ -1,4 +1,4 @@
-import { GenericListValueDto, LangDto } from '@algotech/core';
+import { GenericListValueDto, LangDto } from '@algotech-ce/core';
 
 export class GenericFormatedLine {
     key: string;

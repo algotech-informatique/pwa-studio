@@ -1,4 +1,4 @@
-import { SnAppDto, SnPageWidgetDto } from '@algotech/core';
+import { SnAppDto, SnPageWidgetDto } from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
 import { UITreeMoveData } from './models/ui-tree-move-data.interface';
 import * as _ from 'lodash';

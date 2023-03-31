@@ -1,6 +1,6 @@
 import { SnCanvas } from './sn-canvas';
 import { SnDisplayState } from './sn-display-state';
-import { LangDto } from '@algotech/core';
+import { LangDto } from '@algotech-ce/core';
 
 export class SnComment {
     id: string;

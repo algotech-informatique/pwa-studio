@@ -1,4 +1,4 @@
-import { ProcessMonitoringDto } from '@algotech/core';
+import { ProcessMonitoringDto } from '@algotech-ce/core';
 import { Component, Input, OnDestroy } from '@angular/core';
 import { interval, Subject, Subscription } from 'rxjs';
 

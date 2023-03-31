@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UndoRedoDto } from '../../dtos';
-import { PatchPropertyDto, SnModelDto } from '@algotech/core';
+import { PatchPropertyDto, SnModelDto } from '@algotech-ce/core';
 import { PatchesService } from '../datas/patches.service';
 import { Subject } from 'rxjs';
 

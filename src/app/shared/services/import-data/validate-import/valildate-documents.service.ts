@@ -7,8 +7,8 @@ import { ValidateData, ValidateDataFileDto, ValidateDataModel } from '../../../c
 import { ImportDataDocDto, ImportDataOptionsDto } from '../../../components/import-data/dto/import-data-doc.dto';
 import { Observable, of } from 'rxjs';
 import { catchError, flatMap, map, mergeMap } from 'rxjs/operators';
-import { DocumentsService } from '@algotech/angular';
-import { DocumentDto } from '@algotech/core';
+import { DocumentsService } from '@algotech-ce/angular';
+import { DocumentDto } from '@algotech-ce/core';
 
 @Injectable()
 export class ImportDocumentsDataService {

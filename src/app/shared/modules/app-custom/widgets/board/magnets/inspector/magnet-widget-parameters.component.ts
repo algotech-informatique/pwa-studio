@@ -1,5 +1,5 @@
-import { DocumentsService, TranslateLangDtoService } from '@algotech/angular';
-import { GroupDto, PairDto, SmartModelDto, SmartPropertyModelDto, SnAppDto, SnPageWidgetDto } from '@algotech/core';
+import { DocumentsService, TranslateLangDtoService } from '@algotech-ce/angular';
+import { GroupDto, PairDto, SmartModelDto, SmartPropertyModelDto, SnAppDto, SnPageWidgetDto } from '@algotech-ce/core';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { UUID } from 'angular2-uuid';
 import { WidgetParametersInterface } from '../../../../models/widget-parameters.interface';

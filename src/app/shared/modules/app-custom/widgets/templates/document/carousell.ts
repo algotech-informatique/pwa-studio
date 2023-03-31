@@ -1,5 +1,5 @@
 
-import { SnPageWidgetDto } from '@algotech/core';
+import { SnPageWidgetDto } from '@algotech-ce/core';
 export const carousell: SnPageWidgetDto = {
     id: 'bd715dc7-1c38-0eef-1e8f-56f321eae6a3',
     typeKey: 'document',

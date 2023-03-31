@@ -21,7 +21,7 @@ import { SnPublishFlowTransformService } from './service/sn-publish/sn-publish-f
 import { SnPublishFlowSubflowService } from './service/sn-publish/sn-publish-flow/sn-publish-flow-subflow/sn-publish-flow-subflow';
 import { GotoButtonComponent } from './components/goto-button/goto-button.component';
 import { SnToolboxComponent } from './components/sn-toolbox/sn-toolbox.component';
-import { DrawingModule } from '@algotech/business/drawing';
+import { DrawingModule } from '@algotech-ce/business/drawing';
 import { ATAppToolboxModule } from '../app-custom/app-toolbox/app-toolbox.module';
 import { DocUtilsService } from './documentation/doc-utils/doc-utils.service';
 import { DocCsvService } from './documentation/doc-csv/doc-csv.service';

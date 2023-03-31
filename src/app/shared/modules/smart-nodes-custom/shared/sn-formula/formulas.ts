@@ -582,7 +582,7 @@ export const formulaList: Formulas[] = [
         formula: 'SPLIT({{1}}, {{2}})',
         fields: '1:text:string;2:delimiter:string',
         example: 'SPLIT("A,B,C", ",")',
-        expectedResult: 'A,B,C',
+        expectedResult: '["A", "B", "C"]',
         description: 'FORMULA.SPLIT',
         descriptionOpt: 'FORMULA.SPLIT-OPT',
         returnType: 'string',

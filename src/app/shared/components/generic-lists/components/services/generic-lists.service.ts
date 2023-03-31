@@ -1,5 +1,5 @@
-import { GenericListsService, KeyFormaterService } from '@algotech/angular';
-import { GenericListDto, LangDto } from '@algotech/core';
+import { GenericListsService, KeyFormaterService } from '@algotech-ce/angular';
+import { GenericListDto, LangDto } from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
 import * as _ from 'lodash';
 import { DialogMessageService, SessionsService, ToastService } from '../../../../services';

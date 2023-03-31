@@ -1,5 +1,5 @@
-import { AuthService, GroupsService, UsersService } from '@algotech/angular';
-import { GroupDto, UserDto } from '@algotech/core';
+import { AuthService, GroupsService, UsersService } from '@algotech-ce/angular';
+import { GroupDto, UserDto } from '@algotech-ce/core';
 import { Component, Input, OnChanges } from '@angular/core';
 import { UUID } from 'angular2-uuid';
 import { Observable, of, zip } from 'rxjs';

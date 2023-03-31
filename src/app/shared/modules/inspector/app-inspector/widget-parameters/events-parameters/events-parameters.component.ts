@@ -1,4 +1,4 @@
-import { SnPageWidgetDto, SnPageEventDto, SnAppDto, SnPageDto } from '@algotech/core';
+import { SnPageWidgetDto, SnPageEventDto, SnAppDto, SnPageDto } from '@algotech-ce/core';
 import { Component, Input, Output, SimpleChanges, EventEmitter, OnChanges } from '@angular/core';
 import * as _ from 'lodash';
 import { PageUtilsService } from '../../../../app/services';

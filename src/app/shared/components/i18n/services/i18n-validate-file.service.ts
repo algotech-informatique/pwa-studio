@@ -1,4 +1,4 @@
-import { ImportOptionsDto, LangDto, PairDto } from '@algotech/core';
+import { ImportOptionsDto, LangDto, PairDto } from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable, of } from 'rxjs';

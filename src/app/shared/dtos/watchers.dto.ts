@@ -1,4 +1,4 @@
-import { SnNodeDto } from '@algotech/core';
+import { SnNodeDto } from '@algotech-ce/core';
 
 export class WatcherDto {
     nodeId?: string;

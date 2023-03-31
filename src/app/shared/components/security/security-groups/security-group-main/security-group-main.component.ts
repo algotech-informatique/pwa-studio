@@ -3,7 +3,7 @@ import { OptionsObjectDto } from '../../../../dtos';
 import * as _ from 'lodash';
 import { SecurityGroup } from '../../dto/security-group.dto';
 import { SecurityGroupService } from '../../services/security-group.service';
-import { ATGroupUtils } from '@algotech/core';
+import { ATGroupUtils } from '@algotech-ce/core';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({

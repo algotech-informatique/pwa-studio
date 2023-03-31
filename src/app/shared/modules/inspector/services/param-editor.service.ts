@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { SnSelectionEvent, SnParam, SnUtilsService, SnView } from '../../smart-nodes';
-import { PairDto } from '@algotech/core';
+import { PairDto } from '@algotech-ce/core';
 import * as _ from 'lodash';
 import { SessionsService } from '../../../services/sessions/sessions.service';
-import { SmartModelDto, SmartPropertyModelDto } from '@algotech/core';
+import { SmartModelDto, SmartPropertyModelDto } from '@algotech-ce/core';
 import { ParamEditorDto } from '../dto/param-editor.dto';
 import { ParamConditionDto } from '../dto/param-condition.dto';
 

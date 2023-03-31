@@ -3,20 +3,6 @@
     [title]="'INSPECTOR.WIDGET.PARAMETERS' | translate" display="section"
     [section]="'customParams.notif'">
 
-    <div class="property">
-        <display-text-element
-            class="display-element"
-            [ngClass]="{'app-errors': widget?.displayState?.errors | showAppErrors: 'custom.counter': widget}"
-            [title]="'INSPECTOR.WIDGET.TEXT' | translate"
-            [items]="items"
-            [displayText]="widget?.custom?.counter"
-            [displayPreview]="widget?.custom?.preview"
-            (changed)="onChangeText($event)"
-            (preview)="onChangePreview($event)"
-        >
-        </display-text-element>
-    </div>
-
     <div class="property last">
         <select-icon
             [icon]="widget?.custom?.icon"

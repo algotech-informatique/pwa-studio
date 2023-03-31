@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output, OnChanges } from '@angular/core';
 import { SnView } from '../../../modules/smart-nodes';
 import { IconPopUpService } from './icon-pop-up.service';
-import { IconDto } from '@algotech/core';
+import { IconDto } from '@algotech-ce/core';
 import * as _ from 'lodash';
 import { of, Subject, Subscription } from 'rxjs';
 import { catchError, debounceTime, map, tap } from 'rxjs/operators';

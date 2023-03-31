@@ -1,4 +1,4 @@
-import { LangDto, SmartModelDto, TagListDto } from '@algotech/core';
+import { LangDto, SmartModelDto, TagListDto } from '@algotech-ce/core';
 import { ChangeDetectorRef, Component, Input, OnChanges } from '@angular/core';
 import { SessionsService, ToastService } from '../../services';
 import * as _ from 'lodash';

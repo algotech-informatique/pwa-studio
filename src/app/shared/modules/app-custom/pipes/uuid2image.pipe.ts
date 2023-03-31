@@ -1,4 +1,4 @@
-import { FilesService } from '@algotech/business';
+import { FilesService } from '@algotech-ce/business';
 import { Pipe, PipeTransform } from '@angular/core';
 
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LangDto } from '@algotech/core';
+import { LangDto } from '@algotech-ce/core';
 import * as _ from 'lodash';
 import { TranslateService } from '@ngx-translate/core';
 

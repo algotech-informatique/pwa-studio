@@ -1,9 +1,9 @@
-import { LangDto, TagDto } from '@algotech/core';
+import { LangDto, TagDto } from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
 import { TagsListFormatedLine } from '../dto/tags-list-formated.dto';
 import * as _ from 'lodash';
 import { TranslateService } from '@ngx-translate/core';
-import { KeyFormaterService } from '@algotech/angular';
+import { KeyFormaterService } from '@algotech-ce/angular';
 
 @Injectable()
 export class TagsListsDetailService {

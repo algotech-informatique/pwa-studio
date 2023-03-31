@@ -1,4 +1,4 @@
-import { EnvironmentDirectoryDto, SnModelDto } from '@algotech/core';
+import { EnvironmentDirectoryDto, SnModelDto } from '@algotech-ce/core';
 
 export class Folder {
     type: string;

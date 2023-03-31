@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { SnParam } from '../../../smart-nodes/models';
 import * as _ from 'lodash';
 import { SessionsService } from '../../../../services';
-import { SmartModelDto } from '@algotech/core';
+import { SmartModelDto } from '@algotech-ce/core';
 import { SnView } from './../../../smart-nodes/models/sn-view';
 import { SnUtilsService } from '../../../smart-nodes';
 

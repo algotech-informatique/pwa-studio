@@ -3,7 +3,7 @@ import { SnNode, SnParam, SnLang } from '../../smart-nodes';
 import * as _ from 'lodash';
 import { IconsService } from '../../../services';
 import { ListItem } from '../dto/list-item.dto';
-import { TranslateLangDtoService } from '@algotech/angular';
+import { TranslateLangDtoService } from '@algotech-ce/angular';
 import { TranslateService } from '@ngx-translate/core';
 
 @Injectable()

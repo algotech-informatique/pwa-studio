@@ -1,4 +1,4 @@
-import { SnAppDto, SnPageWidgetDto } from '@algotech/core';
+import { SnAppDto, SnPageWidgetDto } from '@algotech-ce/core';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { ListItem } from '../../../../inspector/dto/list-item.dto';
 import { SnTranslateService } from '../../../../smart-nodes';

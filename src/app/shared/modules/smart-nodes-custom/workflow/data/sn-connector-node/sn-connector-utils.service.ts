@@ -3,7 +3,7 @@ import { SnNode, SnSection, SnView, SnParam } from '../../../../smart-nodes/mode
 import { SnNodeMergeService, SnDOMService, SnActionsService } from '../../../../smart-nodes/services';
 import { SessionsService, SnModelsService } from '../../../../../services';
 import { SnATNodeUtilsService } from '../../../shared/sn-at-node/sn-at-node-utils.service/sn-at-node-utils.service';
-import { SnModelDto, WorkflowVariableModelDto } from '@algotech/core';
+import { SnModelDto, WorkflowVariableModelDto } from '@algotech-ce/core';
 import { UUID } from 'angular2-uuid';
 import * as _ from 'lodash';
 

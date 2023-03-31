@@ -1,7 +1,7 @@
 import {
     Component, OnInit
 } from '@angular/core';
-import { AuthService } from '@algotech/angular';
+import { AuthService } from '@algotech-ce/angular';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({

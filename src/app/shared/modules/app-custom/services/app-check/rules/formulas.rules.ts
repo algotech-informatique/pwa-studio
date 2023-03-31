@@ -1,4 +1,4 @@
-import { SnAppDto, SnPageDto } from '@algotech/core';
+import { SnAppDto, SnPageDto } from '@algotech-ce/core';
 import { ValidationReportDto } from '../../../../../dtos';
 import { AppRule } from '../../../../../models/check-rule.interface';
 import { FormulaWidget } from '../../../dto/formula-widget.dto';

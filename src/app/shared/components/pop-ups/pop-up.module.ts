@@ -8,7 +8,7 @@ import { PopUpService } from './pop-up.service';
 import { FormsModule } from '@angular/forms';
 import { ColorPopUpComponent } from './color-pop-up/color-pop-up.component';
 import { ColorPickerModule } from 'ngx-color-picker';
-import { PipesModule } from '@algotech/angular';
+import { PipesModule } from '@algotech-ce/angular';
 import { TranslateModule } from '@ngx-translate/core';
 import { IonicModule } from '@ionic/angular';
 import { StorePublishPopoverComponent } from './store-publish-popover/store-publish-popover.component';

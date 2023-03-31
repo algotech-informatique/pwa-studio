@@ -21,7 +21,7 @@ export class MultiSelectElementComponent implements OnChanges {
 
     selectedItems: ListItem[];
     showList: boolean;
-    search: string;
+    search: string | undefined;
     filteredList: ListItem[];
     multiSelectContainer: PopupContainerDto;
     popupMargin = 3;
@@ -83,7 +83,7 @@ export class MultiSelectElementComponent implements OnChanges {
     }
 
     resetSearch() {
-        this.search = null;
+        this.search = undefined;
         this.filteredList = this.getFilteredList();
     }
 

@@ -1,5 +1,5 @@
-import { I18nService, MonitoringService } from '@algotech/angular';
-import { ProcessMonitoringDto } from '@algotech/core';
+import { I18nService, MonitoringService } from '@algotech-ce/angular';
+import { ProcessMonitoringDto } from '@algotech-ce/core';
 import { Component, Input, OnDestroy } from '@angular/core';
 import { Subject, Subscription } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';

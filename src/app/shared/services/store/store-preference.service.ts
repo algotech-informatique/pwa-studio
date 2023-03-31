@@ -1,4 +1,4 @@
-import { SnModelDto, SnNodeDto } from '@algotech/core';
+import { SnModelDto, SnNodeDto } from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { ConfigDto, ResourceType, StoreConnectionDto } from '../../dtos';

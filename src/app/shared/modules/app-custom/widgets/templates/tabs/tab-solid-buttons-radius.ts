@@ -1,4 +1,4 @@
-import { SnPageWidgetDto } from '@algotech/core';
+import { SnPageWidgetDto } from '@algotech-ce/core';
 export const tabSolidButtonsRadius: SnPageWidgetDto = {
 	id: 'a01bcb2f-7b51-33f9-4c21-6b9dc37681ef',
 	typeKey: 'tabs',

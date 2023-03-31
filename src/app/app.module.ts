@@ -8,14 +8,14 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-import { ATAngularModule, AuthModule, AuthService, EnvService, I18nService, SignInGuard } from '@algotech/angular';
+import { ATAngularModule, AuthModule, AuthService, EnvService, I18nService, SignInGuard } from '@algotech-ce/angular';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ConfigService, ToastService } from './shared/services';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
 import { HomePageModule } from './home/home.module';
-import { AppPreviewModule, EncodeGuard, ThemeEngloberModule, WorkflowDebuggerModule } from '@algotech/business';
+import { AppPreviewModule, EncodeGuard, ThemeEngloberModule, WorkflowDebuggerModule } from '@algotech-ce/business';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { MarkdownModule } from 'ngx-markdown';
 import moment from 'moment'; 
@@ -26,6 +26,8 @@ import { DocPageModule } from './doc/doc.module';
 import { NotAuthorizedPageModule } from './notauthorized/notauthorized.module';
 import { APP_BASE_HREF, PlatformLocation } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DocxTemplaterModulesService } from '@algotech-ce/business';
+import { DocxTemplaterService } from './shared/services/docx-templater/docx-templater.service';
 
 export const appInitialize = (
     env: EnvService,

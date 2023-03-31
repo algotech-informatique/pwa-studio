@@ -1,4 +1,4 @@
-import { PairDto } from '@algotech/core';
+import { PairDto } from '@algotech-ce/core';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({

@@ -1,4 +1,4 @@
-import { SnAppDto, SnPageDto, SnPageWidgetDto } from '@algotech/core';
+import { SnAppDto, SnPageDto, SnPageWidgetDto } from '@algotech-ce/core';
 import { Component, EventEmitter, Output } from '@angular/core';
 import moment from 'moment';
 import { PageUtilsService } from '../../../../../app/services';
@@ -7,7 +7,7 @@ import { WidgetParametersInterface } from '../../../../models/widget-parameters.
 import { AppCustomService } from '../../../../services';
 import { getMockType } from '../../data/table-mock-data';
 import * as _ from 'lodash';
-import { TranslateLangDtoService } from '@algotech/angular';
+import { TranslateLangDtoService } from '@algotech-ce/angular';
 
 @Component({
 selector: 'column-widget-parameters',

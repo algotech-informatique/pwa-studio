@@ -1,5 +1,5 @@
-import { TranslateLangDtoService } from '@algotech/angular';
-import { GroupDto, SnAppDto, SnModelDto } from '@algotech/core';
+import { TranslateLangDtoService } from '@algotech-ce/angular';
+import { GroupDto, SnAppDto, SnModelDto } from '@algotech-ce/core';
 import { Component, EventEmitter, Input, Output, SimpleChanges, OnChanges } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import * as _ from 'lodash';

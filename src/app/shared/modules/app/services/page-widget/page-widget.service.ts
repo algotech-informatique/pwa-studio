@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import {
     LangDto, SnAppDto, SnPageBoxDto, SnPageEventDto, SnPageWidgetDto, SnPageWidgetGroupDto, SnPageWidgetRuleDto,
-} from '@algotech/core';
+} from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
 import { UUID } from 'angular2-uuid';
 import * as _ from 'lodash';

@@ -4,7 +4,7 @@ import { SessionsService } from './../../../services/sessions/sessions.service';
 import {
     SnModelDto, SnVersionDto, SnViewDto, SnPageDto, SnAppDto, SmartModelDto,
     SnPageWidgetDto, SnPageEventDto, WorkflowVariableModelDto
-} from '@algotech/core';
+} from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
 import * as _ from 'lodash';
 import { getAutoInputsEvents } from '../../app-custom/widgets/_data/data';

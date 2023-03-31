@@ -46,7 +46,7 @@
     </div>
 </inspector-section>
 
-<inspector-section [title]="'INSPECTOR.MODEL.FIELD-VALUE' | translate" *ngIf="!isExtendedField">
+<inspector-section [title]="'INSPECTOR.MODEL.FIELD-VALUE' | translate" *ngIf="isDisplayValue">
     <div class="property last" *ngIf="isSmartModel">
         <sn-display-radio
             [radioList]="fieldComposition?.radioList"

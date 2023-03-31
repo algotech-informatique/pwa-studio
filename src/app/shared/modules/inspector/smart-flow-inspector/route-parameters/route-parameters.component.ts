@@ -1,4 +1,4 @@
-import { WorkflowApiModelDto, WorkflowVariableModelDto } from '@algotech/core';
+import { WorkflowApiModelDto, WorkflowVariableModelDto } from '@algotech-ce/core';
 import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { SessionsService } from 'src/app/shared/services';
 import { ListItem } from '../../dto/list-item.dto';

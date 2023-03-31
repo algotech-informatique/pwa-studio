@@ -13,7 +13,7 @@ import { ImportDocumentsService } from './import-documents.service';
 import { ImportLinksService } from './import-links.service';
 import { first, flatMap, map, switchMap } from 'rxjs/operators';
 import { ImportDataUtilsService } from '../import-data-utils.service';
-import { RxExtendService } from '@algotech/angular';
+import { RxExtendService } from '@algotech-ce/angular';
 
 @Injectable()
 export class LaunchImportService {

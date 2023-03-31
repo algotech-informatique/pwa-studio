@@ -1,4 +1,4 @@
-import { EnvironmentDirectoryDto, SmartModelDto, SmartPropertyModelDto } from '@algotech/core';
+import { EnvironmentDirectoryDto, SmartModelDto, SmartPropertyModelDto } from '@algotech-ce/core';
 import { UUID } from 'angular2-uuid';
 
 export default class HelperUtils {
@@ -58,7 +58,7 @@ export default class HelperUtils {
     }
 
     // TODO extract following util methods into a single smart model utils ?
-    // or use those in @algotech/business ? (but how to use them outside interpretor)
+    // or use those in @algotech-ce/business ? (but how to use them outside interpretor)
     static isSO(type: string): boolean {
         return type.startsWith('so:');
     }

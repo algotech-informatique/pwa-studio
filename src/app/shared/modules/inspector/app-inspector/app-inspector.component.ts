@@ -1,4 +1,4 @@
-import { SnPageDto, SnPageWidgetDto, SnAppDto, SnModelDto, PairDto, SnPageWidgetRuleDto } from '@algotech/core';
+import { SnPageDto, SnPageWidgetDto, SnAppDto, SnModelDto, PairDto, SnPageWidgetRuleDto } from '@algotech-ce/core';
 import { AfterViewInit, Component, ElementRef, Input, OnChanges, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import * as _ from 'lodash';
@@ -35,6 +35,7 @@ export class AppInspectorComponent implements OnChanges, AfterViewInit {
 
     selectedTab = 'design';
     widgetStateList: ListItem[];
+
     constructor(
         public appActions: AppActionsService,
         private popupElement: PopupElementService,

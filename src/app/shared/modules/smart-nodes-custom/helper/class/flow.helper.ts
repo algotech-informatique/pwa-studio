@@ -1,4 +1,4 @@
-import { SnModelDto, TagDto, WorkflowVariableModelDto } from '@algotech/core';
+import { SnModelDto, TagDto, WorkflowVariableModelDto } from '@algotech-ce/core';
 import { SnEntryComponents } from '../../../smart-nodes/dto';
 import { SnView } from '../../../smart-nodes/models';
 import { HelperContext } from '../helper.context';

@@ -1,0 +1,21 @@
+<div class="counter">
+    <span>{{'INSPECTOR.DATABASE.SMARTOBJECTS.PAGE' | translate}} : </span>
+
+    <select
+        *ngIf="pages.length !== 1"
+        class="select"
+        name="skip"
+        (change)="onChange($event)"
+    >
+        <option class="option" *ngFor="let page of pages"
+            [ngValue]="page"
+            [selected]="page === skip"
+            >
+                {{ page }}
+        </option>
+    </select>
+    
+    <span class="nopage" *ngIf="pages.length === 1">{{ skip }}</span>
+    <span>/ {{lastPage}} ({{soCount}} {{'INSPECTOR.DATABASE.SMARTOBJECTS' | translate}})</span>
+
+</div> 

@@ -1,10 +1,10 @@
-import { EMailDto, PairDto, SnModelDto } from '@algotech/core';
+import { EMailDto, PairDto, SnModelDto } from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { SessionDto } from '../../dtos';
 import { SessionsService } from '../../services';
 import { Observable } from 'rxjs';
-import { SmartLinkService, TranslateLangDtoService } from '@algotech/angular';
+import { SmartLinkService, TranslateLangDtoService } from '@algotech-ce/angular';
 import * as _ from 'lodash';
 
 @Injectable()

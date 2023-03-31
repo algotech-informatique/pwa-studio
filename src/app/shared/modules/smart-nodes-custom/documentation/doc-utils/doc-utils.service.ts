@@ -1,4 +1,4 @@
-import { SnLang } from '@algotech/business/src/lib/app/models';
+import { SnLang } from '@algotech-ce/business/src/lib/app/models';
 import { Injectable } from '@angular/core';
 import { SnEntryComponent, SnNodeSchema } from '../../../smart-nodes/dto';
 // eslint-disable-next-line max-len

@@ -1,8 +1,8 @@
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { I18nImportService } from '@algotech/angular';
+import { I18nImportService } from '@algotech-ce/angular';
 import { SessionsService, ToastService } from '../../../services';
 import { TranslateService } from '@ngx-translate/core';
-import { LangDto } from '@algotech/core';
+import { LangDto } from '@algotech-ce/core';
 import { I18nValidateFileService } from '../services/i18n-validate-file.service';
 import { StatusFile } from '../interfaces/status-import.enum';
 

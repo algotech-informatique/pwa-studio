@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { SnModelDto, SmartModelDto, SnVersionDto, SnViewDto, SnViewType, SnAppDto, WorkflowModelDto } from '@algotech/core';
+import { SnModelDto, SmartModelDto, SnVersionDto, SnViewDto, SnViewType, SnAppDto, WorkflowModelDto } from '@algotech-ce/core';
 import { UUID } from 'angular2-uuid';
-import { KeyFormaterService } from '@algotech/angular';
+import { KeyFormaterService } from '@algotech-ce/angular';
 import { LangsService } from '../langs/langs.service';
 import { ActiveVersion, DatasDto, ResourceType } from '../../dtos';
 import moment from 'moment'; 

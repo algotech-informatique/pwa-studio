@@ -22,7 +22,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SmartFlowInspectorComponent } from './smart-flow-inspector/smart-flow-inspector.component';
 import { InspectorSectionComponent } from './components/inspector-section/inspector-section.component';
-import { PipesModule, DirectivesModule } from '@algotech/angular';
+import { PipesModule, DirectivesModule } from '@algotech-ce/angular';
 import { DisplayNameElementComponent } from './components/display-name-element/display-name-element.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { VariablesComponent } from './components/variables/variables.component';
@@ -81,7 +81,7 @@ import { DesignPositionParametersComponent } from './app-inspector/design-parame
 import { DesignStyleParametersComponent } from './app-inspector/design-parameters/design-style-parameters/design-style-parameters.component';
 import { DesignStyleBorderParametersComponent } from './app-inspector/design-parameters/design-style-parameters/design-style-border-parameters/design-style-border-parameters.component';
 import { DesignStyleAbsPositionParametersComponent } from './app-inspector/design-parameters/design-style-parameters/design-style-absposition-parameters/design-style-absposition-parameters.component';
-import { DrawingModule } from '@algotech/business/drawing';
+import { DrawingModule } from '@algotech-ce/business/drawing';
 import { DesignStyleRadiusParametersComponent } from './app-inspector/design-parameters/design-style-parameters/design-style-radius-parameters/design-style-radius-parameters.component';
 import { DesignStyleShadowParametersComponent } from './app-inspector/design-parameters/design-style-parameters/design-style-shadow-parameters/design-style-shadow-parameters.component';
 import { DesignStyleStrokeParametersComponent } from './app-inspector/design-parameters/design-style-parameters/design-style-stroke-parameters/design-style-stroke-parameters.component';

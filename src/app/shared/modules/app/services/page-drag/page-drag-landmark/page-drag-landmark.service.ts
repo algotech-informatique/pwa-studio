@@ -1,4 +1,4 @@
-import { SnAppDto, SnPageBoxDto, SnPageDto, SnPageWidgetDto } from '@algotech/core';
+import { SnAppDto, SnPageBoxDto, SnPageDto, SnPageWidgetDto } from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
 import * as d3 from 'd3';
 import { AppSelectionService } from '../../app-selection/app-selection.service';

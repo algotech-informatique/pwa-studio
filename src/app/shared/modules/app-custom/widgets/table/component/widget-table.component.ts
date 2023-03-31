@@ -1,7 +1,7 @@
-import { TranslateLangDtoService } from '@algotech/angular';
-import { GridConfigurationDto } from '@algotech/business';
-import { GridColumnConfigurationDto } from '@algotech/business/src/lib/@components/grid/dto/grid-column-configuration.dto';
-import { PairDto, SmartModelDto, SnAppDto, SnPageWidgetDto } from '@algotech/core';
+import { TranslateLangDtoService } from '@algotech-ce/angular';
+import { GridConfigurationDto } from '@algotech-ce/business';
+import { GridColumnConfigurationDto } from '@algotech-ce/business/src/lib/@components/grid/dto/grid-column-configuration.dto';
+import { PairDto, SmartModelDto, SnAppDto, SnPageWidgetDto } from '@algotech-ce/core';
 import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AppSelectionService, PageUtilsService } from '../../../../app/services';

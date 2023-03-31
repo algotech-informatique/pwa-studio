@@ -13,12 +13,12 @@ import { TranslateService } from '@ngx-translate/core';
 import * as _ from 'lodash';
 import { Subscription } from 'rxjs';
 import { Title } from '@angular/platform-browser';
-import { AuthService, DataService } from '@algotech/angular';
+import { AuthService, DataService } from '@algotech-ce/angular';
 import { mergeMap, tap } from 'rxjs/operators';
 import { SnContextmenu } from '../shared/modules/smart-nodes';
 import { TabContextMenuEvent, tabsContextMenu } from '../shared/components/tabs/tabs-context-menu/tabs-context-menu';
 import { StudioTranslationService } from '../shared/services/translation/studio-translation.service';
-import { SnModelDto } from '@algotech/core';
+import { SnModelDto } from '@algotech-ce/core';
 
 @Component({
     selector: 'app-home',

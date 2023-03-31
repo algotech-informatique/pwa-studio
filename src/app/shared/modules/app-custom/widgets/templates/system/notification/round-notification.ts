@@ -1,5 +1,5 @@
 
-import { SnPageWidgetDto } from '@algotech/core';
+import { SnPageWidgetDto } from '@algotech-ce/core';
 export const roundNotification: SnPageWidgetDto = {
     id: '6a512bb6-0b20-d202-d83a-4b7cb7cb519b',
     typeKey: 'notification',

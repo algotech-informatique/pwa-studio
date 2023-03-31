@@ -1,6 +1,6 @@
-import { TranslateLangDtoService } from '@algotech/angular';
-import { SnPageWidgetDto, SnAppDto, SnPageDto, SmartModelDto } from '@algotech/core';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { TranslateLangDtoService } from '@algotech-ce/angular';
+import { SnPageWidgetDto, SnAppDto, SnPageDto, SmartModelDto } from '@algotech-ce/core';
+import { Component, EventEmitter } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import * as _ from 'lodash';
 import { Observable } from 'rxjs';
@@ -71,25 +71,32 @@ export class TableWidgetParametersComponent implements WidgetParametersInterface
             value: this.widget.custom.paginate.limit,
         };
 
-        this.collectionModel = this.appCustomService.getModel(this.widget.custom.collectionType);
-        this.getListColumns();
+        const model = this.appCustomService.getModel(this.widget.custom.collectionType);
+        if (model !== this.collectionModel) {
+            this.collectionModel = model;
+            this.getListColumns();
+        }
     }
 
     onCollectionChanged(input?: DataSelectorResult) {
         const custom = _.cloneDeep(this.widget.custom);
         if (input) {
             custom.collection = input.path;
+            this.widget.custom = custom;
         }
         const currentPage = this.pageUtils.findPage(this.snApp, this.widget);
-        custom.collectionType = this.appCustomService.getPathTypeAndMultiple(custom.collection, currentPage, this.widget)?.type;
-        this.collectionModel = this.appCustomService.getModel(custom.collectionType);
-        this.widget.custom = custom;
-        if (this.widget.returnData) {
-            this.widget.returnData.forEach((r) => r.type = custom.collectionType);
-        }
+        const collectionType = this.appCustomService.getPathTypeAndMultiple(custom.collection, currentPage, this.widget)?.type;
+        if (collectionType !== custom.collectionType) {
+            custom.collectionType = collectionType;
+            this.widget.custom = custom;
+            this.collectionModel = this.appCustomService.getModel(custom.collectionType);
 
-        this.resetSelectedColumns();
-        this.getListColumns();
+            if (this.widget.returnData) {
+                this.widget.returnData.forEach((r) => r.type = custom.collectionType);
+            }
+            this.resetSelectedColumns();
+            this.getListColumns();
+        }
         this.changed.emit();
     }
 

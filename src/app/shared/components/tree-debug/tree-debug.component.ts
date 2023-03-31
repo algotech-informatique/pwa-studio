@@ -10,9 +10,9 @@ import {
     SimpleChanges
 } from '@angular/core';
 import { DataExplorerModel } from '../data-explorer/data-explorer.model';
-import { WorkflowSubjectService, InterpretorSubjectDto } from '@algotech/business';
+import { WorkflowSubjectService, InterpretorSubjectDto } from '@algotech-ce/business';
 import { Subscription } from 'rxjs';
-import { WorkflowInstanceDto, WorkflowDataDto, WorkflowModelDto } from '@algotech/core';
+import { WorkflowInstanceDto, WorkflowDataDto, WorkflowModelDto } from '@algotech-ce/core';
 import * as _ from 'lodash';
 import { TreeDebugService } from './tree-debug.service';
 import { TranslateService } from '@ngx-translate/core';

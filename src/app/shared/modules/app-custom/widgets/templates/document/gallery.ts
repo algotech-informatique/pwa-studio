@@ -1,5 +1,5 @@
 
-import { SnPageWidgetDto } from '@algotech/core';
+import { SnPageWidgetDto } from '@algotech-ce/core';
 export const gallery: SnPageWidgetDto = {
     id: 'c78efe26-a375-af55-b831-e3d67d9337ab',
     typeKey: 'document',

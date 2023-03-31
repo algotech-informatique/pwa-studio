@@ -6,12 +6,12 @@ import { SnActionsService, SnDOMService, SnNodeMergeService, SnUtilsService } fr
 import { DocUtilsService, InOut } from '../doc-utils/doc-utils.service';
 import * as d3 from 'd3';
 import { concat, from, Observable, of } from 'rxjs';
-import { LangDto } from '@algotech/core';
+import { LangDto } from '@algotech-ce/core';
 import { finalize, map, tap } from 'rxjs/operators';
 import * as _ from 'lodash';
 import { DocCsvService } from '../doc-csv/doc-csv.service';
-import { FilesService } from '@algotech/business';
-import { RxExtendService } from '@algotech/angular';
+import { FilesService } from '@algotech-ce/business';
+import { RxExtendService } from '@algotech-ce/angular';
 
 @Injectable()
 export class DocGenerateService {

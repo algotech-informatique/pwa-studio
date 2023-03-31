@@ -1,4 +1,4 @@
-import { GroupDto } from '@algotech/core';
+import { GroupDto } from '@algotech-ce/core';
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import * as _ from 'lodash';
 import { OptionsObjectDto } from '../../../../dtos';

@@ -1,4 +1,4 @@
-import { SnAppDto } from '@algotech/core';
+import { SnAppDto } from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
 import { Observable, of, Subscription } from 'rxjs';
 import { CheckEvent, ValidationReportDto } from '../../dtos';

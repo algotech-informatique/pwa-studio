@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { DialogMessageService } from '../../../services';
 import { ExportDataFileDto, } from '../dto/export-data-file.dto';
-import { LangDto, SmartModelDto, SmartPropertyModelDto } from '@algotech/core';
+import { LangDto, SmartModelDto, SmartPropertyModelDto } from '@algotech-ce/core';
 import * as _ from 'lodash';
-import { SettingsDataService } from '@algotech/angular';
-import { DocumentsMetaDatasSettingsDto } from '@algotech/core';
+import { SettingsDataService } from '@algotech-ce/angular';
+import { DocumentsMetaDatasSettingsDto } from '@algotech-ce/core';
 import * as ExcelJS from 'exceljs';
 import moment from 'moment'; 
 

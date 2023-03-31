@@ -1,7 +1,7 @@
-import { GridConfigurationDto } from '@algotech/business';
-import { GridComponent } from '@algotech/business';
-import { GridColumnConfigurationDto } from '@algotech/business/src/lib/@components/grid/dto/grid-column-configuration.dto';
-import { SmartObjectDto, SysQueryDto } from '@algotech/core';
+import { GridConfigurationDto } from '@algotech-ce/business';
+import { GridComponent } from '@algotech-ce/business';
+import { GridColumnConfigurationDto } from '@algotech-ce/business/src/lib/@components/grid/dto/grid-column-configuration.dto';
+import { SmartObjectDto, SysQueryDto } from '@algotech-ce/core';
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { SnContextmenuAction } from '../../../modules/smart-nodes';
 import { DataBaseAction } from '../actions/actions';

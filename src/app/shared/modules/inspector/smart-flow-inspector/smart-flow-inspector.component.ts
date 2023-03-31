@@ -1,4 +1,4 @@
-import { LangDto, SnModelDto, WorkflowApiModelDto, WorkflowVariableModelDto } from '@algotech/core';
+import { LangDto, SnModelDto, WorkflowApiModelDto, WorkflowVariableModelDto } from '@algotech-ce/core';
 import { Component, Input, EventEmitter, Output, HostListener, OnChanges, SimpleChanges } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import * as _ from 'lodash';

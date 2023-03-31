@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ManifestSettingsService } from './manifest-settings.service';
 import { ListItem } from './../../modules/inspector/dto/list-item.dto';
-import { PlayerManifestDto } from '@algotech/core';
+import { PlayerManifestDto } from '@algotech-ce/core';
 import * as _ from 'lodash';
 
 @Component({

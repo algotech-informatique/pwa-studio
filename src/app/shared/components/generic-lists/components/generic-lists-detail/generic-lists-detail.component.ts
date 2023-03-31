@@ -1,4 +1,4 @@
-import { GenericListDto, GenericListValueDto, LangDto } from '@algotech/core';
+import { GenericListDto, GenericListValueDto, LangDto } from '@algotech-ce/core';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import * as _ from 'lodash';
 import { GenericFormatedLine } from '../../dto/generic-formated-line.dto';

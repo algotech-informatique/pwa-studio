@@ -5,7 +5,7 @@ import { PatchesService } from './patches.service';
 import { AppModule } from '../../../app.module';
 import { SnPageDtoBuilder, SnPageWidgetDtoBuilder } from '../../../../../test-utils/builders';
 import { SnModelDtoBuilder } from '../../../../../test-utils/builders/SnModelDto.builder';
-import { PatchPropertyDto, SnModelDto } from '@algotech/core';
+import { PatchPropertyDto, SnModelDto } from '@algotech-ce/core';
 
 describe(PatchesService.name, () => {
     let patchesService: PatchesService;

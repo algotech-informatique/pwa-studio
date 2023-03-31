@@ -1,4 +1,4 @@
-import { SnAppDto, SnModelDto, ThemeDto } from '@algotech/core';
+import { SnAppDto, SnModelDto, ThemeDto } from '@algotech-ce/core';
 import { Component, EventEmitter, Input, OnDestroy, Output, OnChanges, ChangeDetectorRef } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import * as _ from 'lodash';

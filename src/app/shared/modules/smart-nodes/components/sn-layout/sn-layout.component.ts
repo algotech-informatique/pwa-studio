@@ -14,7 +14,7 @@ import { Subject, Subscription } from 'rxjs';
 import { SnToolbox, SnSelectionEvent, SnContextmenu, SnClickView } from '../../dto';
 import { SnClipboardService } from '../../services/view/sn-clipboard/sn-clipboard.service';
 import { SnNodeComponent } from '../sn-node/sn-node.component';
-import { DrawingService } from '@algotech/business/drawing';
+import { DrawingService } from '@algotech-ce/business/drawing';
 import { debounceTime } from 'rxjs/operators';
 
 @Component({

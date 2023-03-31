@@ -1,4 +1,4 @@
-import { PairDto, SmartTaskDayofMonthDto, SmartTaskDayofWeekDto, SmartTaskDto } from '@algotech/core';
+import { PairDto, SmartTaskDayofMonthDto, SmartTaskDayofWeekDto, SmartTaskDto } from '@algotech-ce/core';
 import { SnATNodeUtilsService } from '../../../modules/smart-nodes-custom/shared/sn-at-node/sn-at-node-utils.service/sn-at-node-utils.service';
 import { Injectable } from '@angular/core';
 import { ScheduledDataDto } from '../../../dtos';

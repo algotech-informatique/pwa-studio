@@ -1,7 +1,7 @@
 import { Component, Input, EventEmitter, Output, OnChanges, SimpleChanges } from '@angular/core';
 import * as _ from 'lodash';
-import { LangDto, PairDto, SnModelDto } from '@algotech/core';
-import { SmartModelDto } from '@algotech/core';
+import { LangDto, PairDto, SnModelDto } from '@algotech-ce/core';
+import { SmartModelDto } from '@algotech-ce/core';
 import { ParamEditorDto } from '../dto/param-editor.dto';
 import { SnGroup, SnNode, SnParam, SnSelectionEvent, SnSelectionType, SnView } from '../../smart-nodes';
 import { InspectorBarButton } from '../dto/inspector-bar-button.dto';

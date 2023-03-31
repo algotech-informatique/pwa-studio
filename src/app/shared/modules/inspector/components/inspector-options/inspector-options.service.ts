@@ -1,4 +1,4 @@
-import { TranslateLangDtoService } from '@algotech/angular';
+import { TranslateLangDtoService } from '@algotech-ce/angular';
 import { Injectable } from '@angular/core';
 import * as _ from 'lodash';
 import { ListItem } from '../../dto/list-item.dto';

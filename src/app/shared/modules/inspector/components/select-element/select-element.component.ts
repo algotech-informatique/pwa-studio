@@ -17,6 +17,7 @@ export class SelectElementComponent implements OnChanges {
     @Input() list: ListItem[];
     @Input() showSearch = true;
     @Input() placeholder = '';
+    @Input() allowForScroll = true;
     @Input() selectedKey: string;
     @Output() selectNewItem = new EventEmitter<string>();
     @Output() mouseenterItem = new EventEmitter<ListItem>();

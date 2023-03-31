@@ -6,8 +6,8 @@ import { ImportDataUtilsService } from '../import-data-utils.service';
 import * as _ from 'lodash';
 import { first, map, switchMap } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
-import { SmartObjectsService } from '@algotech/angular';
-import { SmartObjectDto, SmartPropertyObjectDto } from '@algotech/core';
+import { SmartObjectsService } from '@algotech-ce/angular';
+import { SmartObjectDto, SmartPropertyObjectDto } from '@algotech-ce/core';
 
 interface ObjectLink {
     propertyKey: string;

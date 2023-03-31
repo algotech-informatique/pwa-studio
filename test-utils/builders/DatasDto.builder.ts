@@ -2,7 +2,7 @@ import { SocketManager } from '../../src/app/shared/services';
 import {
     SettingsDto, TagListDto, GenericListDto, GroupDto,
     SmartModelDto, WorkflowModelDto, UserDto, ApplicationModelDto, EnvironmentDto, SnModelDto
-} from '@algotech/core';
+} from '@algotech-ce/core';
 import { DatasDto } from '../../src/app/shared/dtos';
 import { MockBuilder } from './MockBuilder';
 import { CustomerDtoBuilder, LocalProfilBuilder } from '.';

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ConfigDto, PreferencesDto, StoreConnectionDto, TabDto } from '../../dtos';
 import { TranslateService } from '@ngx-translate/core';
 import * as _ from 'lodash';
-import { DataService } from '@algotech/angular';
+import { DataService } from '@algotech-ce/angular';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 

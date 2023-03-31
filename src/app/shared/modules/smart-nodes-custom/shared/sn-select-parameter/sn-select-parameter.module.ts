@@ -6,7 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { SnSelectKeyValueComponent } from './sn-select-key-value/sn-select-key-value.component';
 import { IonicModule } from '@ionic/angular';
 import { SnSelectPropertiesComponent } from './sn-select-properties/sn-select-properties.component';
-import { PipesModule } from '@algotech/angular';
+import { PipesModule } from '@algotech-ce/angular';
 import { SnSelectModalComponent } from './sn-select-modal/sn-select-modal.component';
 
 @NgModule({

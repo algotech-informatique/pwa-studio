@@ -67,7 +67,7 @@
     .draggable-node {
         position: absolute;
         height: var(--SN-NODE-HEADER-HEIGHT);
-        width: var(--SN-NODE-WIDTH);
+        width: calc(var(--SN-NODE-WIDTH) - 25px);
     }
     
     .draggable-group {

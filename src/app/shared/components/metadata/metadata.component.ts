@@ -1,11 +1,11 @@
-import { KeyFormaterService } from '@algotech/angular';
+import { KeyFormaterService } from '@algotech-ce/angular';
 import { Component, Input, OnChanges } from '@angular/core';
 import { DialogMessageService, SessionsService, ToastService } from '../../services';
 import * as _ from 'lodash';
 import { TranslateService } from '@ngx-translate/core';
 import { AlertMessageDto, OptionsObjectDto } from '../../dtos';
-import {  LangDto } from '@algotech/core';
-import { DocumentsMetaDatasSettingsDto } from '@algotech/core';
+import {  LangDto } from '@algotech-ce/core';
+import { DocumentsMetaDatasSettingsDto } from '@algotech-ce/core';
 import { SettingsUpdateService } from '../../services/settings/settings-update.service';
 
 @Component({

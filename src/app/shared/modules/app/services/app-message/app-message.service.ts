@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import * as _ from 'lodash';
-import { SnAppDto } from '@algotech/core';
+import { SnAppDto } from '@algotech-ce/core';
 
 @Injectable()
 export class AppMessageService {

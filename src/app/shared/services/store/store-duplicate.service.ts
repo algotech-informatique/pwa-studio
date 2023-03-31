@@ -3,7 +3,7 @@ import { ResourceType, RessourcesDto, StoreArticleDto } from '../../dtos';
 import { ClipboardService } from '../clipboard/clipboard.service';
 import { SessionsService } from '../sessions/sessions.service';
 import * as _ from 'lodash';
-import { EnvironmentDirectoryDto, LangDto, SnModelDto } from '@algotech/core';
+import { EnvironmentDirectoryDto, LangDto, SnModelDto } from '@algotech-ce/core';
 import { SnModelsService } from '../smart-nodes/smart-nodes.service';
 import { MessageService } from '../message/message.service';
 import { TranslateService } from '@ngx-translate/core';

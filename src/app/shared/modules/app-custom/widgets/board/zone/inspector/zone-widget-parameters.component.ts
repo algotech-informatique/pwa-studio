@@ -1,5 +1,5 @@
-import { KeyFormaterService } from '@algotech/angular';
-import { SnAppDto, SnPageWidgetDto } from '@algotech/core';
+import { KeyFormaterService } from '@algotech-ce/angular';
+import { SnAppDto, SnPageWidgetDto } from '@algotech-ce/core';
 import { Component, EventEmitter, Output } from '@angular/core';
 import * as _ from 'lodash';
 import { PageUtilsService } from '../../../../../app/services';

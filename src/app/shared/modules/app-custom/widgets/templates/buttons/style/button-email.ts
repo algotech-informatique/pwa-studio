@@ -1,5 +1,5 @@
 
-import { SnPageWidgetDto } from '@algotech/core';
+import { SnPageWidgetDto } from '@algotech-ce/core';
 export const buttonEmail: SnPageWidgetDto = {
     id: '46207f63-09b8-9946-ab34-c8afc05b6377',
     typeKey: 'button',

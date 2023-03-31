@@ -1,4 +1,4 @@
-import { EMailDto } from '@algotech/core';
+import { EMailDto } from '@algotech-ce/core';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import * as _ from 'lodash';
 

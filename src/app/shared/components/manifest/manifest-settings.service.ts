@@ -3,9 +3,9 @@ import { mergeMap, catchError, map, debounceTime } from 'rxjs/operators';
 import { SessionsService } from '../../services';
 import { Observable, Subject, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { BaseService, AuthService, EnvService } from '@algotech/angular';
+import { BaseService, AuthService, EnvService } from '@algotech-ce/angular';
 import { Injectable } from '@angular/core';
-import { PlayerManifestDto } from '@algotech/core';
+import { PlayerManifestDto } from '@algotech-ce/core';
 import * as _ from 'lodash';
 
 

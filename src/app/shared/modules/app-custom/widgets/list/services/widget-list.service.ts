@@ -1,4 +1,4 @@
-import { SnAppDto, SnPageBoxDto, SnPageWidgetDto } from '@algotech/core';
+import { SnAppDto, SnPageBoxDto, SnPageWidgetDto } from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
 import { AppContextmenuActionExtension, AppShortCutExtension } from '../../../../app/dto';
 import { AppActionsService, AppSelectionService, PageUtilsService, PageWidgetService } from '../../../../app/services';

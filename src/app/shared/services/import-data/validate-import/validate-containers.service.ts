@@ -7,7 +7,7 @@ import * as _ from 'lodash';
 import { ImportDataUtilsService } from '../import-data-utils.service';
 import { Observable, of } from 'rxjs';
 import { SessionsService } from '../../sessions/sessions.service';
-import { PlanContainersSettingsDto } from '@algotech/core';
+import { PlanContainersSettingsDto } from '@algotech-ce/core';
 
 @Injectable()
 export class ImportContainersDataService {

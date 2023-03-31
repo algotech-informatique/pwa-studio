@@ -1,5 +1,5 @@
 import { fromEvent, Subscription } from 'rxjs';
-import { LangDto } from '@algotech/core';
+import { LangDto } from '@algotech-ce/core';
 import { Component, Input, Output, EventEmitter, ElementRef, ViewChild, OnChanges, OnDestroy } from '@angular/core';
 import { SnLang, SnView } from '../../../modules/smart-nodes';
 import * as _ from 'lodash';

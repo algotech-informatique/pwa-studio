@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { WorkflowDataDto } from '@algotech/core';
+import { WorkflowDataDto } from '@algotech-ce/core';
 import * as _ from 'lodash';
 import { MessageService } from '../message/message.service';
 import { Subject } from 'rxjs';

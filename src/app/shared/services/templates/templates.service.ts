@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BaseService, EnvService, AuthService } from '@algotech/angular';
-import { Metadata } from '@algotech/core';
+import { BaseService, EnvService, AuthService } from '@algotech-ce/angular';
+import { Metadata } from '@algotech-ce/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { flatMap, catchError } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';

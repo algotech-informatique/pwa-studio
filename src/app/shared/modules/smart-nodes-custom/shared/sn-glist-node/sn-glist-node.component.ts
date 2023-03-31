@@ -6,7 +6,7 @@ import { SnATNodeComponent } from '../sn-at-node/sn-at-node.component';
 import { SnATNodeUtilsService } from '../sn-at-node/sn-at-node-utils.service/sn-at-node-utils.service';
 import { SN_BASE_METADATA } from '../../../smart-nodes/components';
 import { SessionsService } from 'src/app/shared/services';
-import { GenericListDto } from '@algotech/core';
+import { GenericListDto } from '@algotech-ce/core';
 
 @Component({
     template: SN_BASE_METADATA.template,

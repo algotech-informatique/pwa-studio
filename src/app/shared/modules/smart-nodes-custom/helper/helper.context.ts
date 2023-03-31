@@ -1,5 +1,5 @@
-import { KeyFormaterService } from '@algotech/angular';
-import { LangDto, SmartModelDto, SnModelDto } from '@algotech/core';
+import { KeyFormaterService } from '@algotech-ce/angular';
+import { LangDto, SmartModelDto, SnModelDto } from '@algotech-ce/core';
 import { Injectable, Injector, ProviderToken } from '@angular/core';
 import { UUID } from 'angular2-uuid';
 import { ResourceType, SessionDto } from 'src/app/shared/dtos';

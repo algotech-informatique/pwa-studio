@@ -1,4 +1,4 @@
-import { PatchPropertyDto } from '@algotech/core';
+import { PatchPropertyDto } from '@algotech-ce/core';
 
 export class UndoRedoDto {
     uuid: string;

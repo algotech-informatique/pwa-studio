@@ -1,5 +1,5 @@
-import { TranslateLangDtoService } from '@algotech/angular';
-import { SnModelDto, SnNodeDto, SnViewDto } from '@algotech/core';
+import { TranslateLangDtoService } from '@algotech-ce/angular';
+import { SnModelDto, SnNodeDto, SnViewDto } from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
 import * as _ from 'lodash';
 import { OptionsObjectDto, RessourcesDto } from '../../../dtos';

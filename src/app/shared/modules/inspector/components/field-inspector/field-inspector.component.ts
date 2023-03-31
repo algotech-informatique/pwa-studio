@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import * as _ from 'lodash';
 import { SnView, SnUtilsService, SnNode, SnParam } from '../../../smart-nodes';
-import { LangDto, SmartPermissionsDto, SnModelDto } from '@algotech/core';
+import { LangDto, SmartPermissionsDto, SnModelDto } from '@algotech-ce/core';
 import { DataModelInspectorService } from '../../data-model-inspector/data-model-inspector.service';
 import { Params } from '@angular/router';
 import { TypeVariable } from '../variables/dto/type-variable.dto';
@@ -10,7 +10,7 @@ import { IconsService, SessionsService, ToastService } from '../../../../service
 import { SnPublishModelService } from '../../../smart-nodes-custom/service/sn-publish/sn-publish-model/sn-publish-model.service';
 import { ListItem } from '../../dto/list-item.dto';
 import { TranslateService } from '@ngx-translate/core';
-import { SnLang } from '@algotech/business/src/lib/app/models';
+import { SnLang } from '@algotech-ce/business/src/lib/app/models';
 
 @Component({
     selector: 'field-inspector',
@@ -41,6 +41,7 @@ export class FieldInspectorComponent implements OnChanges {
     isDisplayItem = false;
     isExtendedField = false;
     isUniqueKey = false;
+    isDisplayValue = false;
 
     types: TypeVariable[] = [];
     filteredTypes: ListItem[] = [];
@@ -86,6 +87,7 @@ export class FieldInspectorComponent implements OnChanges {
             && (this.fieldOptions.multiple === false)) ? true : false;
         this.isSmartModel = ((this.fieldOptions.types as string).startsWith('so:')) ? true : false;
         this.isDisplayItem = (this.fieldOptions.types === 'string') ? true : false;
+        this.isDisplayValue = !this.isExtendedField && (this.isDisplayItem || this.isPrimitive || this.isSmartModel);
     }
 
 

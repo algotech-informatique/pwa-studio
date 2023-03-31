@@ -2,7 +2,7 @@ import { Component, Input, EventEmitter, Output, OnChanges, SimpleChanges } from
 import * as _ from 'lodash';
 import { SnView, SnNode, SnSelectionEvent, SnParam, SnSelectionType, SnGroup } from '../../smart-nodes';
 import { SessionsService, ToastService } from '../../../services';
-import { LangDto, SmartModelDto, SmartPermissionsDto, SnModelDto } from '@algotech/core';
+import { LangDto, SmartModelDto, SmartPermissionsDto, SnModelDto } from '@algotech-ce/core';
 import { DataModelInspectorService } from './data-model-inspector.service';
 import { ListItem } from '../dto/list-item.dto';
 import { TranslateService } from '@ngx-translate/core';

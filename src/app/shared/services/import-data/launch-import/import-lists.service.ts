@@ -5,8 +5,8 @@ import { ValidateImportDataDto, ValidateImportDataModelDto } from '../../../comp
 import * as _ from 'lodash';
 import { UUID } from 'angular2-uuid';
 import { SessionsService } from '../../sessions/sessions.service';
-import { GenericListDto, GenericListValueDto, LangDto } from '@algotech/core';
-import { GenericListsService } from '@algotech/angular';
+import { GenericListDto, GenericListValueDto, LangDto } from '@algotech-ce/core';
+import { GenericListsService } from '@algotech-ce/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { catchError, flatMap, map } from 'rxjs/operators';
 import { ImportDataUtilsService } from '../import-data-utils.service';

@@ -1,4 +1,4 @@
-import { SnPageWidgetDto } from '@algotech/core';
+import { SnPageWidgetDto } from '@algotech-ce/core';
 export const headerMobileMin: SnPageWidgetDto = {
     id: '3f3ad200-6c7b-45f5-a6d7-fab57757e147',
     typeKey: 'header',

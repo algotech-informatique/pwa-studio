@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as _ from 'lodash';
-import { SmartModelDto, SmartPropertyModelDto } from '@algotech/core';
+import { SmartModelDto, SmartPropertyModelDto } from '@algotech-ce/core';
 import { SnParam } from '../../modules/smart-nodes';
 
 @Injectable()

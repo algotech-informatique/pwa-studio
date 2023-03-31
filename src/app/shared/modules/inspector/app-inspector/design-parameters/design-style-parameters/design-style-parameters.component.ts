@@ -1,4 +1,4 @@
-import { SnAppDto, SnPageWidgetDto, SnPageWidgetRuleDto } from '@algotech/core';
+import { SnAppDto, SnPageWidgetDto, SnPageWidgetRuleDto } from '@algotech-ce/core';
 import { Component, EventEmitter, Input, OnChanges, OnDestroy, Output, SimpleChanges } from '@angular/core';
 import * as _ from 'lodash';
 import { Subscription } from 'rxjs';

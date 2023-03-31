@@ -1,9 +1,9 @@
 import { Component, Input, Output, EventEmitter, ViewChild, ElementRef, OnChanges, AfterViewInit, ChangeDetectorRef } from '@angular/core';
-import { SmartModelDto, SmartPropertyModelDto, typesSys, TypeSchema } from '@algotech/core';
+import { SmartModelDto, SmartPropertyModelDto, typesSys, TypeSchema } from '@algotech-ce/core';
 import { SessionsService, IconsService } from '../../../../../services';
 import * as _ from 'lodash';
 import { SnParam, SnView } from '../../../../smart-nodes/models';
-import { PairDto } from '@algotech/core';
+import { PairDto } from '@algotech-ce/core';
 import { UUID } from 'angular2-uuid';
 
 interface PropertyDisplay {

@@ -1,6 +1,6 @@
 import { IsString, IsDefined, IsNotEmpty, IsArray, IsUUID, IsOptional, IsBoolean, IsNumber } from 'class-validator';
 import { Type } from 'class-transformer';
-import { BaseModel, LangDto } from '@algotech/core';
+import { BaseModel, LangDto } from '@algotech-ce/core';
 import { StoreMetadataDto } from './store-metadatas.dto';
 import { StoreCategoriesKeysDto } from './store-categories.dto';
 export type ArticleType = 'bundle' | 'workflow-model' | 'smartflow-model' | 'smart-model' | 'generic-list' | 'tag-list' | 'app' | 'report';

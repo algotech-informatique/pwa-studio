@@ -1,5 +1,5 @@
 
-import { SnPageWidgetDto } from '@algotech/core';
+import { SnPageWidgetDto } from '@algotech-ce/core';
 export const italicTitle: SnPageWidgetDto = {
     id: '49397307-ac92-98e7-486c-b54ef1839c5b',
     typeKey: 'text',

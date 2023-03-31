@@ -1,4 +1,4 @@
-import { SnModelDto, WorkflowProfilModelDto } from '@algotech/core';
+import { SnModelDto, WorkflowProfilModelDto } from '@algotech-ce/core';
 import { HelperContext } from '../helper.context';
 import { FlowHelper } from './flow.helper';
 

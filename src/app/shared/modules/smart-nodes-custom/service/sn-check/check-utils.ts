@@ -1,5 +1,5 @@
-import { InterpretorSoUtils } from '@algotech/business';
-import { SmartModelDto, WorkflowProfilModelDto, WorkflowVariableModelDto } from '@algotech/core';
+import { InterpretorSoUtils } from '@algotech-ce/business';
+import { SmartModelDto, WorkflowProfilModelDto, WorkflowVariableModelDto } from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
 import { SnConnector, SnNode, SnParam, SnUtilsService, SnView } from '../../../smart-nodes';
 import { SnConnectorUtilsService, SnCustomSmartConnectionsService } from '../..';

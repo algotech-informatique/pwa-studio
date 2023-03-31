@@ -1,9 +1,9 @@
-import { AuditSettingsDto } from '@algotech/core';
+import { AuditSettingsDto } from '@algotech-ce/core';
 import { Component, Input, OnChanges } from '@angular/core';
 import { SessionsService } from '../../../services';
 import * as _ from 'lodash';
 import { SettingsUpdateService } from '../../../services/settings/settings-update.service';
-import { AuditTrailService } from '@algotech/angular';
+import { AuditTrailService } from '@algotech-ce/angular';
 
 @Component({
     selector: 'app-security-audit-trail',

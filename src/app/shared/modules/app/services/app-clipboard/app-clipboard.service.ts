@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as _ from 'lodash';
 import { UUID } from 'angular2-uuid';
-import { SnAppDto, SnPageDto, SnPageWidgetDto } from '@algotech/core';
+import { SnAppDto, SnPageDto, SnPageWidgetDto } from '@algotech-ce/core';
 import { AppSelectionService } from '../app-selection/app-selection.service';
 import { AppClipboardDto, AppSelectionEvent } from '../../dto';
 import { AppActionsService } from '../app-actions/app-actions.service';

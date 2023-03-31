@@ -3,7 +3,7 @@ import { SnLang } from '../../../models';
 import { TranslateService } from '@ngx-translate/core';
 import * as _ from 'lodash';
 import { zip } from 'rxjs';
-import { PairDto } from '@algotech/core';
+import { PairDto } from '@algotech-ce/core';
 import { tap } from 'rxjs/operators';
 import { ValidationReportDto } from 'src/app/shared/dtos';
 

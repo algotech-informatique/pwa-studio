@@ -1,4 +1,4 @@
-import { DirectivesModule, PipesModule } from '@algotech/angular';
+import { DirectivesModule, PipesModule } from '@algotech-ce/angular';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -12,8 +12,6 @@ import { SecurityGroupMainComponent } from './security-groups/security-group-mai
 import { SecurityGroupsComponent } from './security-groups/security-groups.component';
 import { SecurityUserDetailComponent } from './security-users/security-user-detail/security-user-detail.component';
 import { SecurityUserMainComponent } from './security-users/security-user-main/security-user-main.component';
-import { SecurityUserPasswordComponent } from './security-users/security-user-password/security-user-password.component';
-import { SecurityUserPasswordService } from './security-users/security-user-password/security-user-password.service';
 import { SecurityUsersComponent } from './security-users/security-users.component';
 import { SecurityGroupService } from './services/security-group.service';
 import { SecurityUserService } from './services/security-user.service';
@@ -26,7 +24,6 @@ import { SecurityUserService } from './services/security-user.service';
         SecurityGroupMainComponent,
         SecurityUserMainComponent,
         SecurityUserDetailComponent,
-        SecurityUserPasswordComponent,
         SecurityAuditTrailComponent,
     ],
     imports: [
@@ -53,7 +50,6 @@ import { SecurityUserService } from './services/security-user.service';
     providers: [
         SecurityGroupService,
         SecurityUserService,
-        SecurityUserPasswordService,
     ]
 })
 export class SecurityModule { }

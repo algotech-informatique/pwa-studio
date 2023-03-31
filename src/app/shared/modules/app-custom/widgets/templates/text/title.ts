@@ -1,5 +1,5 @@
 
-import { SnPageWidgetDto } from '@algotech/core';
+import { SnPageWidgetDto } from '@algotech-ce/core';
 export const title: SnPageWidgetDto = {
     id: 'de7d52fe-2fb6-1f14-2f9f-70c524edd3f3',
     typeKey: 'text',

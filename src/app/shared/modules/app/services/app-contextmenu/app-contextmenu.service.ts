@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import * as d3 from 'd3';
 import * as _ from 'lodash';
-import { SnAppDto } from '@algotech/core';
+import { SnAppDto } from '@algotech-ce/core';
 import { SnContextmenu, SnContextmenuAction } from '../../../smart-nodes';
 import { AppActionsService } from '../app-actions/app-actions.service';
 import { PageUtilsService } from '../page-utils/page-utils.service';

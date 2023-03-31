@@ -1,4 +1,4 @@
-import { WorkflowVariableModelDto } from '@algotech/core';
+import { WorkflowVariableModelDto } from '@algotech-ce/core';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { UUID } from 'angular2-uuid';
 

@@ -1,4 +1,4 @@
-import { GenericListDto, LangDto } from '@algotech/core';
+import { GenericListDto, LangDto } from '@algotech-ce/core';
 import { ChangeDetectorRef, Component, Input, OnChanges } from '@angular/core';
 import * as _ from 'lodash';
 import { SessionsService } from '../../services';

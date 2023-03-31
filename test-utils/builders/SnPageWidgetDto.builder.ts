@@ -1,7 +1,7 @@
 import {
     SnPageBoxDto, SnPageEventDto, SnPageWidgetDto,
     SnPageWidgetGroupDto, SnPageWidgetRuleDto
-} from '@algotech/core';
+} from '@algotech-ce/core';
 import { MockBuilder } from './MockBuilder';
 
 export class SnPageWidgetDtoBuilder extends MockBuilder<SnPageWidgetDto> {

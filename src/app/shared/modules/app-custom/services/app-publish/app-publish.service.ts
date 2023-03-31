@@ -1,8 +1,8 @@
 import { tap, map } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
-import { SnPageDto, SnModelDto, SnAppDto, SnPageEventDto, SnPageEventPipeDto, SnPageWidgetDto, ApplicationModelDto } from '@algotech/core';
+import { SnPageDto, SnModelDto, SnAppDto, SnPageEventDto, SnPageEventPipeDto, SnPageWidgetDto, ApplicationModelDto } from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
-import { ApplicationModelsService } from '@algotech/angular';
+import { ApplicationModelsService } from '@algotech-ce/angular';
 import * as _ from 'lodash';
 import { DatasService, SessionsService, ToastService } from '../../../../services';
 import { TranslateService } from '@ngx-translate/core';

@@ -1,4 +1,4 @@
-import { SnPageEventDto } from '@algotech/core';
+import { SnPageEventDto } from '@algotech-ce/core';
 import { UUID } from 'angular2-uuid';
 import { SnLang } from '../../../smart-nodes';
 import * as _ from 'lodash';
@@ -592,6 +592,14 @@ export const generateCustom = (type: string, initLangs: (text: string) => string
                 formatted: true,
             };
             break;
+        case 'custom':
+            custom = {
+                iterable: true,
+                hidde: false,
+                locked: false,
+                disabled: false,
+            };
+            break;
         default: {
             custom = {
                 iterable: true,
@@ -880,15 +888,6 @@ export const generateCss = (type: string): WidgetCssSchemaInterface[] => {
                     margin: '0px 6px',
                 }
             }, {
-                style: 'layout',
-                path: 'layout',
-                value: {
-                    'flex-direction': 'row',
-                    'justify-content': 'center',
-                    'align-items': 'center',
-                    gap: '0px',
-                }
-            }, {
                 style: 'radius',
                 path: 'main.border-radius',
                 value: '4px 4px 4px 4px'
@@ -926,15 +925,6 @@ export const generateCss = (type: string): WidgetCssSchemaInterface[] => {
                     'font-size': '11px',
                     padding: '10px',
                     margin: '0px 6px',
-                }
-            }, {
-                style: 'layout',
-                path: 'layout',
-                value: {
-                    'flex-direction': 'row',
-                    'justify-content': 'center',
-                    'align-items': 'center',
-                    gap: '0px',
                 }
             }, {
                 style: 'radius',

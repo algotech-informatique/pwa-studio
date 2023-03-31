@@ -1,5 +1,5 @@
-import { SettingsService } from '@algotech/angular';
-import { PatchPropertyDto, SettingsDto, ThemeDto } from '@algotech/core';
+import { SettingsService } from '@algotech-ce/angular';
+import { PatchPropertyDto, SettingsDto, ThemeDto } from '@algotech-ce/core';
 import { Component, OnInit } from '@angular/core';
 import { SessionsService } from '../../services';
 

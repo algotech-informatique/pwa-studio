@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SessionDto } from '../../dtos';
 import { MessageService } from '../../services';
 import * as _ from 'lodash';
-import { SnModelDto, SnViewDto } from '@algotech/core';
+import { SnModelDto, SnViewDto } from '@algotech-ce/core';
 import { StudioTranslationService } from '../../services/translation/studio-translation.service';
 import { Subscription } from 'rxjs';
 

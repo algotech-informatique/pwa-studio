@@ -1,5 +1,5 @@
-import { SettingsService } from '@algotech/angular';
-import { PatchPropertyDto, PatchService, SettingsDto } from '@algotech/core';
+import { SettingsService } from '@algotech-ce/angular';
+import { PatchPropertyDto, PatchService, SettingsDto } from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
 import * as _ from 'lodash';
 import { Observable, of } from 'rxjs';

@@ -1,6 +1,6 @@
-import { TranslateLangDtoService } from '@algotech/angular';
-import { GridConfigurationDto, SoUtilsService } from '@algotech/business';
-import { PairDto, SmartModelDto } from '@algotech/core';
+import { TranslateLangDtoService } from '@algotech-ce/angular';
+import { GridConfigurationDto, SoUtilsService } from '@algotech-ce/business';
+import { PairDto, SmartModelDto } from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import * as _ from 'lodash';

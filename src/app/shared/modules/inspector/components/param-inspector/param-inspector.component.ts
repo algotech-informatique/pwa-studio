@@ -1,7 +1,7 @@
 import { Component, Input, EventEmitter, Output, OnChanges, SimpleChanges } from '@angular/core';
 import * as _ from 'lodash';
 import { SnView } from '../../../smart-nodes';
-import { PairDto, SmartModelDto } from '@algotech/core';
+import { PairDto, SmartModelDto } from '@algotech-ce/core';
 import { ParamEditorDto } from '../../dto/param-editor.dto';
 import { TranslateService } from '@ngx-translate/core';
 

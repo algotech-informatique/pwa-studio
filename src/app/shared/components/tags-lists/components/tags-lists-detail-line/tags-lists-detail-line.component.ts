@@ -1,4 +1,4 @@
-import { LangDto } from '@algotech/core';
+import { LangDto } from '@algotech-ce/core';
 import { ChangeDetectorRef, Component, EventEmitter, HostListener, Input,
     OnChanges, Output, QueryList, SimpleChanges, ViewChildren } from '@angular/core';
 import { OptionsInputComponent } from '../../../options/components/options-input/options-input.component';

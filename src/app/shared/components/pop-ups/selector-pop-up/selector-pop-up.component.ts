@@ -1,4 +1,4 @@
-import { PairDto, SnPageWidgetDto } from '@algotech/core';
+import { PairDto, SnPageWidgetDto } from '@algotech-ce/core';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SnView } from '../../../modules/smart-nodes';
 

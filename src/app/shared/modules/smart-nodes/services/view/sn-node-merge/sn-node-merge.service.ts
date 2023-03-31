@@ -48,18 +48,20 @@ export class SnNodeMergeService {
         }, []);
 
         // reaffect flows
-        const towards = _.reduce(nodeClone.flows, (results, flow: SnFlow) => {
+        const towards: {toward: string; flowId: string}[] = _.reduce(nodeClone.flows, (results, flow: SnFlow) => {
             if (newFlows.indexOf(flow) === -1 && flow.direction === 'out' && flow.toward) {
-                results.push(flow.toward);
+                results.push({ toward: flow.toward, flowId: flow.id });
             }
             return results;
         }, []);
+
         if (towards.length !== 0) {
-            let i = 0;
             for (const flow of newFlows) {
-                if (flow.direction === 'out' && !flow.toward && i < towards.length) {
-                    flow.toward = towards[i];
-                    i++;
+                if (flow.direction === 'out' && !flow.toward) {
+                    const tow = towards.find((tw) => tw.flowId === flow.id);
+                    if (tow) {
+                        flow.toward = tow.toward;
+                    }
                 }
             }
         }

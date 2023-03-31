@@ -1,5 +1,5 @@
 
-import { SnPageWidgetDto } from '@algotech/core';
+import { SnPageWidgetDto } from '@algotech-ce/core';
 export const notification: SnPageWidgetDto = {
     id: 'cbc85a09-4ac4-9b03-f236-74052d836cec',
     typeKey: 'notification',

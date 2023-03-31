@@ -1,11 +1,11 @@
-import { LangDto, SmartModelDto, TagDto, TagListDto } from '@algotech/core';
+import { LangDto, SmartModelDto, TagDto, TagListDto } from '@algotech-ce/core';
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { GenericFormatedLine } from '../../../generic-lists/dto/generic-formated-line.dto';
 import * as _ from 'lodash';
 import { TagsListFormatedLine } from '../../dto/tags-list-formated.dto';
 import { TagsListsService } from '../../services/tags-lists.service';
 import { OptionsElementDto } from '../../../../dtos/options-element.dto';
-import { TranslateLangDtoService } from '@algotech/angular';
+import { TranslateLangDtoService } from '@algotech-ce/angular';
 import { TagsListsDetailService } from '../../services/tags-lists-detail.service';
 import { ToastService } from '../../../../services';
 import { TranslateService } from '@ngx-translate/core';

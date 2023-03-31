@@ -1,4 +1,4 @@
-import { EnvironmentDirectoryDto, EnvironmentDto } from '@algotech/core';
+import { EnvironmentDirectoryDto, EnvironmentDto } from '@algotech-ce/core';
 import { MockBuilder } from 'test-utils/builders/MockBuilder';
 
 export class EnvironmentDtoBuilder extends MockBuilder<EnvironmentDto> {

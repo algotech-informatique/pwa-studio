@@ -14,7 +14,7 @@ import {
     widget
 } from './fixtures/app-actions.unit.fixtures';
 import { PageUtilsService } from '../page-utils/page-utils.service';
-import { SnPageWidgetDto } from '@algotech/core';
+import { SnPageWidgetDto } from '@algotech-ce/core';
 import * as _ from 'lodash';
 import { PageWidgetService } from '../page-widget/page-widget.service';
 

@@ -1,4 +1,4 @@
-import { PairDto, SmartTaskDayofWeekDto, SmartTaskDto, SmartTaskPeriodicityDto } from '@algotech/core';
+import { PairDto, SmartTaskDayofWeekDto, SmartTaskDto, SmartTaskPeriodicityDto } from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
 import { OptionsObjectDto } from '../../../dtos';
 import { TranslateService } from '@ngx-translate/core';

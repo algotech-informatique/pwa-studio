@@ -1,5 +1,5 @@
-import { AuthService, LocalProfil } from '@algotech/angular';
-import { LangDto } from '@algotech/core';
+import { AuthService, LocalProfil } from '@algotech-ce/angular';
+import { LangDto } from '@algotech-ce/core';
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { SessionDto } from '../../../dtos';

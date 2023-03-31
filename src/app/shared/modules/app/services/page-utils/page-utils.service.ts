@@ -1,4 +1,4 @@
-import { SnAppDto, SnPageBoxDto, SnPageDto, SnPageWidgetDto } from '@algotech/core';
+import { SnAppDto, SnPageBoxDto, SnPageDto, SnPageWidgetDto } from '@algotech-ce/core';
 import { Injectable, ElementRef } from '@angular/core';
 import { SnCanvas } from '../../../smart-nodes/models/sn-canvas';
 import * as _ from 'lodash';

@@ -4,9 +4,9 @@ import { SessionsService, DatasService } from '../../services';
 import { sample } from 'rxjs/operators';
 import { SnZoomService } from '../../modules/smart-nodes';
 import { CursorMoveDto } from '../../dtos';
-import { WsUserDto } from '@algotech/core';
+import { WsUserDto } from '@algotech-ce/core';
 import * as _ from 'lodash';
-import { WS_USERS_COLORS } from '@algotech/angular';
+import { WS_USERS_COLORS } from '@algotech-ce/angular';
 import { AppZoomService } from '../../modules/app/services';
 
 @Component({

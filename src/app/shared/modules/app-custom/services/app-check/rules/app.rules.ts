@@ -1,4 +1,4 @@
-import { SnAppDto, SnPageDto } from "@algotech/core";
+import { SnAppDto, SnPageDto } from "@algotech-ce/core";
 import { ValidationReportDto } from "src/app/shared/dtos";
 import { AppRule } from "src/app/shared/models/check-rule.interface";
 import * as _ from 'lodash';

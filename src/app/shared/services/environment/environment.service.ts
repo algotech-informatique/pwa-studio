@@ -3,10 +3,10 @@ import * as _ from 'lodash';
 import { ObjectTreeLineDto, EnvironmentDisplayDto, ResourceType, DirectoryClipboardDto, ModuleTreeLineDto } from '../../dtos';
 import { UUID } from 'angular2-uuid';
 import { SessionDto } from '../../dtos/session.dto';
-import { EnvironmentDirectoryDto, SnModelDto, EnvironmentDto, SnAppDto } from '@algotech/core';
+import { EnvironmentDirectoryDto, SnModelDto, EnvironmentDto, SnAppDto } from '@algotech-ce/core';
 import { CreateLineDto } from '../../dtos/create-line.dto';
 import { DEFAULT_STUDIO_ENVIRONMENT } from './environment.metadata';
-import { TranslateLangDtoService } from '@algotech/angular';
+import { TranslateLangDtoService } from '@algotech-ce/angular';
 
 @Injectable()
 export class EnvironmentService {

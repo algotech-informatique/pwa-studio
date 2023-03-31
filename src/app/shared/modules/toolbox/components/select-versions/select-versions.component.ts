@@ -1,4 +1,4 @@
-import { SnAppDto, SnModelDto, SnVersionDto, SnViewType } from '@algotech/core';
+import { SnAppDto, SnModelDto, SnVersionDto, SnViewType } from '@algotech-ce/core';
 import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { VersionEventDto } from '../../../../dtos/version-event.dto';

@@ -1,4 +1,4 @@
-import { PairDto } from '@algotech/core';
+import { PairDto } from '@algotech-ce/core';
 import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { OptionsMultipleDto } from '../../../../dtos';
 import { SnView } from '../../../../modules/smart-nodes';

@@ -1,5 +1,5 @@
 
-import { SnPageWidgetDto } from '@algotech/core';
+import { SnPageWidgetDto } from '@algotech-ce/core';
 export const headerWebWideTabsUnderline: SnPageWidgetDto = {
     id: '56bfd83d-97c5-3b22-041a-85e46713340e',
     typeKey: 'header',

@@ -1,5 +1,5 @@
-import { LocalProfil } from '@algotech/angular';
-import { UserDto } from '@algotech/core';
+import { LocalProfil } from '@algotech-ce/angular';
+import { UserDto } from '@algotech-ce/core';
 import { MockBuilder } from './MockBuilder';
 
 export class LocalProfilBuilder extends MockBuilder<LocalProfil> {

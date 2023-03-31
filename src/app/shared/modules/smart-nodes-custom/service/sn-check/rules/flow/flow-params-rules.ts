@@ -1,7 +1,7 @@
-import { ValidationReportDto } from "src/app/shared/dtos"
-import { SnViewRule } from "../../../../../../models/check-rule.interface"
-import { SnNode, SnParam, SnView } from "../../../../../smart-nodes"
-import { SnCheckUtilsService } from "../../check-utils"
+import { ValidationReportDto } from '../../../../../../dtos';
+import { SnViewRule } from '../../../../../../models/check-rule.interface';
+import { SnNode, SnParam, SnView } from '../../../../../smart-nodes';
+import { SnCheckUtilsService } from '../../check-utils';
 
 export const flowRequiredValueRule: SnViewRule = {
     check: (stackCode: string,
@@ -69,7 +69,8 @@ export const emailRecipientRule: SnViewRule = {
         if (parent.type === 'SnEmailNode' && item.key === 'adress') {
             const itemDirect: SnParam = checkUtilsService.snUtils.getParamByKey('direct', parent);
             if (itemDirect.value === true) {
-                if (item.value === '' || item.value === null || item.value === undefined) {
+                const connected: SnParam = checkUtilsService.snUtils.findConnectedParam(snView, item);
+                if (!connected && (item.value === '' || item.value === null || item.value === undefined)) {
                     checkUtilsService.pushError(snView, stackCode, report, 'RECIPIENT_NOT_FOUND', parent, item, item.key);
                     return false;
                 }

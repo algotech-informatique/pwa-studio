@@ -1,9 +1,9 @@
 import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
-import { PairDto, SmartModelDto } from '@algotech/core';
+import { PairDto, SmartModelDto } from '@algotech-ce/core';
 import { ParamConditionsDto } from '../../dto/param-conditions.dto';
 import { IconsService } from '../../../../services';
 import { ListItem } from '../../dto/list-item.dto';
-import { TranslateLangDtoService } from '@algotech/angular';
+import { TranslateLangDtoService } from '@algotech-ce/angular';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({

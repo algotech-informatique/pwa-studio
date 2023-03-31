@@ -1,5 +1,5 @@
-import { TranslateLangDtoService } from '@algotech/angular';
-import { SmartModelDto, SmartPropertyModelDto, SnPageBoxDto, SnPageWidgetDto } from '@algotech/core';
+import { TranslateLangDtoService } from '@algotech-ce/angular';
+import { SmartModelDto, SmartPropertyModelDto, SnPageBoxDto, SnPageWidgetDto } from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
 import { SessionsService } from '../../../../../services';
 import { PageWidgetService } from '../../../../app/services';

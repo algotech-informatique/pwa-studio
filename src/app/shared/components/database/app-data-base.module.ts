@@ -7,8 +7,8 @@ import { AppDataBaseComponent } from './app-data-base.component';
 import { AppDataBaseListComponent } from './smart-objects-list/app-data-base-list.component';
 import { AngularSplitModule } from 'angular-split';
 import { FormsModule } from '@angular/forms';
-import { GridModule, PopoverModule, WorkflowDebuggerModule } from '@algotech/business';
-import { DirectivesModule, PipesModule } from '@algotech/angular';
+import { GridModule, PopoverModule, WorkflowDebuggerModule } from '@algotech-ce/business';
+import { DirectivesModule, PipesModule } from '@algotech-ce/angular';
 import { AppDataBaseContextMenuComponent } from './context-menu/context-menu.component';
 import { AppDataBaseNavigationComponent } from './navigation/navigation.component';
 import { AppDataBaseWarningComponent } from './info-message/warning.component';
@@ -18,6 +18,7 @@ import { AppDataBaseImportMappingComponent } from './import/mapping-grid.compone
 import { AppDataBaseMonitoringComponent } from './monitoring/monitoring.component';
 import { PipeModule } from '../../pipes/pipe.module';
 import { DirectiveModule } from '../../directives/directive.module';
+import { AppDataBasePageCounterComponent } from './page-counter/page-counter.component';
 
 @NgModule({
     declarations: [
@@ -29,6 +30,7 @@ import { DirectiveModule } from '../../directives/directive.module';
         AppDataBaseWarningComponent,
         AppDataBaseImportMappingComponent,
         AppDataBaseMonitoringComponent,
+        AppDataBasePageCounterComponent,
     ],
     imports: [
         CommonModule,

@@ -1,4 +1,4 @@
-import { SnPageWidgetDto } from '@algotech/core';
+import { SnPageWidgetDto } from '@algotech-ce/core';
 export const headerWebWideTabsSolid: SnPageWidgetDto = {
     id: '54d60317-4a7b-1785-95fe-a1006ff0248e',
     typeKey: 'header',

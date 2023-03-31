@@ -1,5 +1,5 @@
 
-import { SnPageWidgetDto } from '@algotech/core';
+import { SnPageWidgetDto } from '@algotech-ce/core';
 export const paragrapheItalic: SnPageWidgetDto = {
     id: '763b8116-c092-d8d1-d19f-ac002a068682',
     typeKey: 'text',

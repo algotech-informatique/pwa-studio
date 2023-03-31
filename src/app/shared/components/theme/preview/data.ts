@@ -1,4 +1,4 @@
-import { SmartModelDto, WorkflowModelDto } from '@algotech/core';
+import { SmartModelDto, WorkflowModelDto } from '@algotech-ce/core';
 
 export const themePreviewWorkflow: WorkflowModelDto = {
     tags: [],

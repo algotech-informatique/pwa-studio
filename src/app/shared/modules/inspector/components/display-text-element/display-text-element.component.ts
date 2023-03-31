@@ -1,5 +1,5 @@
 import { SessionsService } from './../../../../services/sessions/sessions.service';
-import { LangDto } from '@algotech/core';
+import { LangDto } from '@algotech-ce/core';
 import { SnLang } from './../../../smart-nodes/models/sn-lang';
 import { Component, EventEmitter, Input, Output, OnInit, ViewChild, ElementRef, ChangeDetectorRef, OnChanges } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -110,6 +110,7 @@ export class DisplayTextElementComponent implements OnInit, OnChanges {
         const startText: string = this.textShowed.slice(0, startPosition);
         const endText: string = this.textShowed.slice(endPosition);
         this.textShowed = startText + inputText.path + endText;
+
         this.textarea.nativeElement.value = this.textShowed;
         this.textarea.nativeElement.focus();
         this.textarea.nativeElement.selectionStart = startPosition + inputText.path.length;

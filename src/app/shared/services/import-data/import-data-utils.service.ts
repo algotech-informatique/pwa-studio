@@ -1,4 +1,4 @@
-import { GenericListDto, SearchSODto, SmartModelDto, SmartObjectDto, SmartPropertyModelDto } from '@algotech/core';
+import { GenericListDto, SearchSODto, SmartModelDto, SmartObjectDto, SmartPropertyModelDto } from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
 import { SessionsService } from '../sessions/sessions.service';
 import * as _ from 'lodash';
@@ -7,7 +7,7 @@ import { ImportDataFileDto, ImportDataModel } from '../../components/import-data
 import { ValidateData } from '../../components/import-data/dto/validate-data-file.dto';
 import { MessageService } from '../message/message.service';
 import { TranslateService } from '@ngx-translate/core';
-import { RxExtendService, SmartObjectsService } from '@algotech/angular';
+import { RxExtendService, SmartObjectsService } from '@algotech-ce/angular';
 import { Observable, of, throwError, zip  } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { ValidateImportDataDto, ValidateImportDataModelDto } from '../../components/import-data/dto/validate-import-data.dto';

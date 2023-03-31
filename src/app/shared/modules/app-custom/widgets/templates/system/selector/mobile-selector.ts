@@ -1,5 +1,5 @@
 
-import { SnPageWidgetDto } from '@algotech/core';
+import { SnPageWidgetDto } from '@algotech-ce/core';
 export const mobileSelector: SnPageWidgetDto = {
     id: '25ddb14f-9e8b-2303-37b9-42edb0b3e7aa',
     typeKey: 'selector',

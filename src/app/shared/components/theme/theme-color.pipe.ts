@@ -1,5 +1,5 @@
-import { ThemeEngloberService } from '@algotech/business';
-import { PairDto, ThemeDto } from '@algotech/core';
+import { ThemeEngloberService } from '@algotech-ce/business';
+import { PairDto, ThemeDto } from '@algotech-ce/core';
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({ name: 'themeColor' })

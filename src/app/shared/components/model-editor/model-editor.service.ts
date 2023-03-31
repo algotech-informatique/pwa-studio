@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import * as _ from 'lodash';
 import { SnActionsService, SnUtilsService, SnLang, SnView, SnSelectionEvent, SnParam,
     SnNode, SnRemoveSelection, SnContextmenuActionExtension, SnTranslateService, SnSelectionService } from '../../modules/smart-nodes';
-import { SnModelDto, SmartModelDto } from '@algotech/core';
+import { SnModelDto, SmartModelDto } from '@algotech-ce/core';
 import { SnSettings } from '../../modules/smart-nodes/dto/sn-settings';
 import { DialogMessageService, SessionsService, DatasService } from '../../services';
 import { ModelEntryComponentsService } from '../../modules/smart-nodes-custom';

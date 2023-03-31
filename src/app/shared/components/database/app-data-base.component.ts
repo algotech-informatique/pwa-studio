@@ -1,6 +1,6 @@
-import { MonitoringService, SmartObjectsService } from '@algotech/angular';
-import { GridConfigurationDto, SoUtilsService, InputsSearchComponent, CustomResolverParams } from '@algotech/business';
-import { PairDto, ProcessMonitoringDto, SmartModelDto, SmartObjectDto, SmartPropertyModelDto, SysQueryDto } from '@algotech/core';
+import { MonitoringService, SmartObjectsService } from '@algotech-ce/angular';
+import { GridConfigurationDto, SoUtilsService, InputsSearchComponent, CustomResolverParams } from '@algotech-ce/business';
+import { PairDto, ProcessMonitoringDto, SmartModelDto, SmartObjectDto, SmartPropertyModelDto, SysQueryDto } from '@algotech-ce/core';
 import { ChangeDetectorRef, Component, EventEmitter, OnChanges, OnDestroy, Renderer2, ViewChild } from '@angular/core';
 import { DialogMessageService, MessageService, SessionsService, ToastService } from '../../services';
 import { Model } from './interfaces/model.interface';
@@ -9,7 +9,7 @@ import * as _ from 'lodash';
 import { DBType, Tab } from './interfaces/tab.interface';
 import { catchError, debounceTime, delay, map, mergeMap, tap } from 'rxjs/operators';
 import { of, Subject, Subscription, TimeoutError, zip } from 'rxjs';
-import { GridSelectionDto } from '@algotech/business/src/lib/@components/grid/dto/grid-selection.dto';
+import { GridSelectionDto } from '@algotech-ce/business/src/lib/@components/grid/dto/grid-selection.dto';
 import { SnContextmenuAction } from '../../modules/smart-nodes';
 import { DataBaseAction, deleteLink, markAsDeleted, realDelete, realDeleteAllTrashSos, restoreSos } from './actions/actions';
 import { AppDataBaseGridComponent } from './grid/grid.component';
@@ -174,7 +174,9 @@ export class AppDataBaseComponent implements OnChanges, OnDestroy {
                     } else {
                         this.origin = null;
                     }
-                    const $count = (!data.link.root || this.soCount !== 0 ? of(this.soCount) : this.smartObjectsService.countSos(data.query));
+                    const $count = (!data.link.root || this.soCount !== 0
+                        ? of(this.soCount) :
+                        this.smartObjectsService.countSos(data.query));
                     this.subscription.add($count.subscribe({
                         next: (count) => {
                             this.soCount = count;
@@ -741,6 +743,12 @@ export class AppDataBaseComponent implements OnChanges, OnDestroy {
                 }
                 break;
         }
+        this._getSkipState();
+        this.reloadDataBase(this.selectedModel);
+    }
+
+    onReloadDataBasePage(pageNumber: number) {
+        this.sysQuery.skip = pageNumber as number;
         this._getSkipState();
         this.reloadDataBase(this.selectedModel);
     }

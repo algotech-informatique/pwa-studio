@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import * as _ from 'lodash';
 import {
     SnModelDto, EnvironmentDto, PatchPropertyDto, PatchService, SnVersionDto, SnViewDto, SnAppDto, SnPageDto, SnPageWidgetDto,
-} from '@algotech/core';
+} from '@algotech-ce/core';
 import { DatasDto } from '../../dtos';
 import { Observable, of, } from 'rxjs';
 import { Pointer } from 'rfc6902/pointer';

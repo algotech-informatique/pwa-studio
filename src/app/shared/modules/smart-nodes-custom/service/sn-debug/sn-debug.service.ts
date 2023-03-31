@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { SnLinksService, SnZoomService, SnUtilsService } from '../../../smart-nodes/services';
-import { InterpretorSubjectDto, WorkflowUtilsService } from '@algotech/business';
+import { InterpretorSubjectDto, WorkflowUtilsService } from '@algotech-ce/business';
 import { SnView } from '../../../smart-nodes/models';
-import { WorkflowInstanceDto, WorkflowStackTaskDto } from '@algotech/core';
+import { WorkflowInstanceDto, WorkflowStackTaskDto } from '@algotech-ce/core';
 import * as _ from 'lodash';
 
 @Injectable()

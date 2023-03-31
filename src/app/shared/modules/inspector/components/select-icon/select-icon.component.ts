@@ -2,7 +2,7 @@ import { ListItem } from './../../dto/list-item.dto';
 import { ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { of, Subject, Subscription } from 'rxjs';
 import { catchError, debounceTime, map, tap } from 'rxjs/operators';
-import { IconDto } from '@algotech/core';
+import { IconDto } from '@algotech-ce/core';
 import * as _ from 'lodash';
 import { PopupContainerDto } from '../../dto/popup-container.dto';
 import { IconPopUpService } from '../../../../components/pop-ups/icon-pop-up/icon-pop-up.service';
@@ -32,7 +32,7 @@ export class SelectIconComponent {
     obsSearch = new Subject();
     searchValue = '';
     tabIcons: DisplayIcon[] = [];
-    page = 1;
+    page = 0;
     pageSize = 60; // multiple de 12 car affichage 4x4
     displayTabIcons = false;
     moreDataToLoad = false;
@@ -65,7 +65,7 @@ export class SelectIconComponent {
 
     iconPopUp(event: any) {
         event.stopPropagation();
-        this.page = 1;
+        this.page = 0;
         this.showIcons = !this.showIcons;
         this.iconContainer = {
             top: this.container.nativeElement.offsetTop,
@@ -79,13 +79,13 @@ export class SelectIconComponent {
     }
 
     filterElements() {
-        this.page = 1;
+        this.page = 0;
         this.tabIcons = [];
         this.obsSearch.next(null);
     }
 
     clearSearchBar() {
-        this.page = 1;
+        this.page = 0;
         this.tabIcons = [];
         this.searchValue = '';
         this.obsSearch.next(null);
@@ -112,7 +112,7 @@ export class SelectIconComponent {
                         };
                         return icn;
                     }), 'key'));
-                    this.moreDataToLoad = (this.tabIcons.length - (this.page * this.pageSize)) === 0;
+                    this.moreDataToLoad = (this.tabIcons.length - ((this.page + 1) * this.pageSize)) === 0;
                 } else {
                     this.moreDataToLoad = false;
                 }

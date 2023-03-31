@@ -1,4 +1,4 @@
-import { GroupDto, UserDto } from '@algotech/core';
+import { GroupDto, UserDto } from '@algotech-ce/core';
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { OptionsElementDto } from '../../../../dtos/options-element.dto';
 import * as _ from 'lodash';
@@ -17,10 +17,9 @@ export class SecurityUserDetailComponent implements OnChanges {
     @Input() isSuperAdmin: boolean;
     @Input() isNewUser: boolean;
     @Input() isCurrentUser: boolean;
-    
+
     @Output() updateUser = new EventEmitter<{ user: UserDto; userPatch: any}>();
     @Output() removeUser = new EventEmitter<UserDto>();
-    @Output() changePassword = new EventEmitter();
     @Output() addUser = new EventEmitter<UserDto>();
 
     formatedGroups: OptionsElementDto[];
@@ -80,10 +79,6 @@ export class SecurityUserDetailComponent implements OnChanges {
 
     onDeleteUser() {
         this.removeUser.emit(this.user);
-    }
-
-    onChangePassword() {
-        this.changePassword.emit();
     }
 
     onAddUser() {

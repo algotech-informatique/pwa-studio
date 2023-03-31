@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { OptionsModule } from '../options/options.module';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
-import { PipesModule } from '@algotech/angular';
+import { PipesModule } from '@algotech-ce/angular';
 import { TranslateModule } from '@ngx-translate/core';
 import { PopUpModule } from '../pop-ups/pop-up.module';
 import { StoreComponent } from './store.component';

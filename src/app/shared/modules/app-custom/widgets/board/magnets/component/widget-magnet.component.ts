@@ -1,4 +1,4 @@
-import { SmartModelDto, SnAppDto, SnPageWidgetDto } from '@algotech/core';
+import { SmartModelDto, SnAppDto, SnPageWidgetDto } from '@algotech-ce/core';
 import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 import * as _ from 'lodash';
 import { AppActionsService, AppSelectionService, PageAddWidgetService, PageUtilsService } from '../../../../../app/services';

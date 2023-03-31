@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import * as _ from 'lodash';
-import { PairDto, WorkflowVariableModelDto } from '@algotech/core';
+import { PairDto, WorkflowVariableModelDto } from '@algotech-ce/core';
 import { UUID } from 'angular2-uuid';
 import { IconsService, SessionsService } from '../../../../services';
 import { VariablesServices } from './variables.service';

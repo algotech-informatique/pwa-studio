@@ -1,4 +1,4 @@
-import { SnModelDto } from '@algotech/core';
+import { SnModelDto } from '@algotech-ce/core';
 import { HelperContext } from '../helper.context';
 import { FlowHelper } from './flow.helper';
 

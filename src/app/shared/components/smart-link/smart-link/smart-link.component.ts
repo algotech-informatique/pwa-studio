@@ -1,4 +1,4 @@
-import { EMailDto, PairDto, WorkflowModelDto, SmartLinkDto, WorkflowVariableModelDto } from '@algotech/core';
+import { EMailDto, PairDto, WorkflowModelDto, SmartLinkDto, WorkflowVariableModelDto } from '@algotech-ce/core';
 import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SnView } from '../../../modules/smart-nodes';
 import * as _ from 'lodash';

@@ -1,4 +1,4 @@
-import { SnAppDto, SnPageDto } from '@algotech/core';
+import { SnAppDto, SnPageDto } from '@algotech-ce/core';
 import { MockBuilder } from './MockBuilder';
 
 export class SnAppDtoBuilder extends MockBuilder<SnAppDto> {

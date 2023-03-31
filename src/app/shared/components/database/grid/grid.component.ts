@@ -1,7 +1,7 @@
-import { GridConfigurationDto } from '@algotech/business';
-import { GridComponent } from '@algotech/business';
-import { GridColumnConfigurationDto } from '@algotech/business/src/lib/@components/grid/dto/grid-column-configuration.dto';
-import { SmartObjectDto, SysQueryDto } from '@algotech/core';
+import { GridConfigurationDto } from '@algotech-ce/business';
+import { GridComponent } from '@algotech-ce/business';
+import { GridColumnConfigurationDto } from '@algotech-ce/business/src/lib/@components/grid/dto/grid-column-configuration.dto';
+import { SmartObjectDto, SysQueryDto } from '@algotech-ce/core';
 import { Component, EventEmitter, HostListener, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { SnContextmenuAction } from '../../../modules/smart-nodes';
 import { DataBaseAction } from '../actions/actions';
@@ -28,9 +28,12 @@ export class AppDataBaseGridComponent implements OnChanges {
     @Input() skip: number;
     @Input() lastPage: number;
     @Input() actions: SnContextmenuAction[];
+
     @Output() reloadDataBase = new EventEmitter<SysQueryDto>();
     @Output() executeAction = new EventEmitter<DataBaseAction>();
     @Output() navigateTo = new EventEmitter<BreadCrumbLink>();
+    @Output() gotoPage = new EventEmitter<number>();
+
     soCount = 0;
     constructor() { }
 
@@ -85,5 +88,9 @@ export class AppDataBaseGridComponent implements OnChanges {
                 });
             }
         }
+    }
+
+    onSkipChanged(event) {
+        this.gotoPage.emit(event);
     }
 }

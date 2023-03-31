@@ -6,10 +6,10 @@ import {
     SmartModelDto, SmartPropertyModelDto, typesSys, TagListDto, WorkflowProfilModelDto,
     AgendaTypeDto, SnModelDto, EnvironmentDirectoryDto, SnViewDto, PlanContainersSettingsDto,
     PlanLayersSettingsDto, SnAppDto, GenericListDto
-} from '@algotech/core';
+} from '@algotech-ce/core';
 import { SessionsService, SmartModelsService, IconsService, SnModelsService } from '../../../../../services';
-import { TranslateLangDtoService } from '@algotech/angular';
-import { TypeSchema, SnVersionDto } from '@algotech/core';
+import { TranslateLangDtoService } from '@algotech-ce/angular';
+import { TypeSchema, SnVersionDto } from '@algotech-ce/core';
 import { TranslateService } from '@ngx-translate/core';
 import { PageUtilsService } from '../../../../app/services';
 

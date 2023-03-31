@@ -1,4 +1,4 @@
-import { SnPageWidgetDto, SnAppDto, SnPageDto, SnPageEventDto } from '@algotech/core';
+import { SnPageWidgetDto, SnAppDto, SnPageDto, SnPageEventDto } from '@algotech-ce/core';
 import { Component, EventEmitter, Output } from '@angular/core';
 import * as _ from 'lodash';
 import { Observable } from 'rxjs';

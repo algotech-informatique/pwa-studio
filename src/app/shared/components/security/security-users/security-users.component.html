@@ -19,7 +19,6 @@
             [isSuperAdmin]="userSAdmin"
             [isNewUser]="isNewUser"
             [isCurrentUser]="isCurrentUser"
-            (changePassword)="onChangePassword()"
             (addUser)="onAddUser($event)"
             (updateUser)="onUpdateUser($event)"
             (removeUser)="onRemoveUser($event)"
@@ -27,10 +26,3 @@
         </security-user-detail>
     </div>
 </div>
-
-<security-user-password 
-    *ngIf="generatePassword"
-    [user]="selectedUser"
-    (close)="onCloseGeneratePassword($event)"
->
-</security-user-password>

@@ -1,5 +1,5 @@
-import { GroupDto, WorkflowProfilModelDto } from '@algotech/core';
-import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
+import { GroupDto, WorkflowProfilModelDto } from '@algotech-ce/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SessionsService } from '../../../../../../../../services';
 import { ListItem } from '../../../../../../dto/list-item.dto';
 import * as _ from 'lodash';
@@ -10,7 +10,7 @@ import { EventWorkflowPairDto, EventWorkflowPairProfileDto } from '../../../../.
     templateUrl: './event-profiles.component.html',
     styleUrls: ['./event-profiles.component.scss'],
 })
-export class EventProfilesComponent implements OnChanges {
+export class EventProfilesComponent implements OnInit {
 
     @Input() pair: EventWorkflowPairDto[];
     @Input() eventProfiles: WorkflowProfilModelDto[];
@@ -21,7 +21,7 @@ export class EventProfilesComponent implements OnChanges {
         private sessionsService: SessionsService,
     ) { }
 
-    ngOnChanges() {
+    ngOnInit() {
         this.listsGroups = _.map(this.sessionsService.active.datas.read.groups, (group: GroupDto) =>
             ({
                 key: group.key,

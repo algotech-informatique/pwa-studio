@@ -6,7 +6,7 @@ import { DragExplorerSourceDirective, DragExplorerTargetDirective } from '../../
 import { ExplorerComponent } from './explorer.component';
 import { ExpanderComponent } from '../expander/expander.component';
 import { CommonModule } from '@angular/common';
-import { PipesModule, DirectivesModule } from '@algotech/angular';
+import { PipesModule, DirectivesModule } from '@algotech-ce/angular';
 import { TranslateModule } from '@ngx-translate/core';
 import { SmartNodesModule } from '../../modules/smart-nodes/smart-nodes.module';
 import { FormsModule } from '@angular/forms';

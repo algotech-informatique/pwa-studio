@@ -1,4 +1,4 @@
-import { PairDto, SnAppDto, SnModelDto } from '@algotech/core';
+import { PairDto, SnAppDto, SnModelDto } from '@algotech-ce/core';
 import { Component, Input, OnChanges } from '@angular/core';
 import { SessionsService } from 'src/app/shared/services';
 import { AppSettings } from '../../app/dto';
