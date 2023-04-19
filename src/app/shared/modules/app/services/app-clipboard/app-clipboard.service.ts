@@ -410,7 +410,7 @@ export class AppClipboardService {
     private changeWidgetsId(widgets: SnPageWidgetDto[]) {
         // change uuid
         return this.getAllWidgets(widgets).map((widget) => {
-            const oldId = widget.id;
+            const oldId = _.cloneDeep(widget.id);
             widget.id = UUID.UUID();
             for (const ev of widget.events) {
                 const newEventId = UUID.UUID();
@@ -426,6 +426,18 @@ export class AppClipboardService {
                 widget.custom = JSON.parse(stringify);
             }
 
+            for (const rl of widget.rules) {
+                for (const rlEv of rl.events) {
+                    const newRuleEventId  = UUID.UUID();
+                    rlEv.id = newRuleEventId;
+                }
+                const newRuleId = UUID.UUID();
+                let stringify = JSON.stringify(widget.displayState);
+                stringify = stringify.replace(new RegExp(rl.id, 'g'), newRuleId);
+                stringify = stringify.replace(new RegExp(oldId, 'g'), widget.id);
+                widget.displayState = JSON.parse(stringify);
+                rl.id = newRuleId;
+            }
             return { oldId, newId: widget.id };
         });
     }

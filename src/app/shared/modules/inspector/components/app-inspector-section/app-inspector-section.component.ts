@@ -1,5 +1,5 @@
 import { SnAppDto, SnPageWidgetDto } from '@algotech-ce/core';
-import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, Output } from '@angular/core';
 import { environment } from '../../../../../../environments/environment';
 import { AppActionsService } from '../../../app/services/app-actions/app-actions.service';
 import { InspectorSectionButton } from '../../dto/inspector-section-button.dto';
@@ -47,6 +47,7 @@ export class AppInspectorSectionComponent implements AfterViewInit {
     @Input() widgets: SnPageWidgetDto[];
     @Output() closeSection = new EventEmitter();
     @Output() clickButton = new EventEmitter<string>();
+    @Output() lockChanged = new EventEmitter<{ section: string; locked: boolean }>();
 
     constructor(public appActions: AppActionsService) {
 
@@ -70,6 +71,7 @@ export class AppInspectorSectionComponent implements AfterViewInit {
     }
     onLockChange(event: { section: string; locked: boolean }) {
         this.appActions.lockWidgetProperty(this.snApp, event.section, event.locked, this.widgets);
+        this.lockChanged.emit(event);
     }
 
 }

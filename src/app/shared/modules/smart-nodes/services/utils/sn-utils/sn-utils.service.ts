@@ -7,7 +7,6 @@ import * as _ from 'lodash';
 import { SnDOMService } from '../sn-dom/sn-dom.service';
 import { UUID } from 'angular2-uuid';
 import { SnCanvasDto } from '@algotech-ce/core';
-import { map } from 'rxjs/operators';
 
 @Injectable()
 export class SnUtilsService {

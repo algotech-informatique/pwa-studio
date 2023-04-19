@@ -1,8 +1,9 @@
-<app-inspector-section 
+<app-inspector-section
     [snApp]="snApp"
     [title]="'INSPECTOR.WIDGET.DATA' | translate"
     [ngClass]="{'first': widget?.rules?.length === 0}"
-    [section]="'input.table'">
+    [section]="'input.table'"
+    (lockChanged)="onLockChanged($event)">
     <div class="property">
         <input-element
             [ngClass]="{ 'app-errors': widget?.displayState?.errors | showAppErrors: 'custom.table.collection': widget }"

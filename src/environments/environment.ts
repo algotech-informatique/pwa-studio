@@ -19,6 +19,7 @@ export const environment = {
     EXPORT_TEMPLATE: true,
     ENABLE_HELPER: false, // temporary feature toggle during helper development,
     KC_URL: 'http://traefik/auth',
+    DOC_URL: 'https://doc.algotech.vision'
 };
 
 

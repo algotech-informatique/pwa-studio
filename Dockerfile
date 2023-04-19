@@ -1,19 +1,9 @@
-FROM registry.myalgotech.io/algo-node:18.13.0-alpine
+FROM nginx:alpine
 
-WORKDIR /app
+RUN apk update && apk upgrade
 
-RUN npm i -g ionic && \ 
-    npm i -g cordova && \ 
-    apt-get install -y lftp
+COPY www/ /usr/share/nginx/html/
+COPY nginx.conf.template /etc/nginx/templates/default.conf.template
 
-COPY .npmrc ./
-COPY package.json ./
-
-RUN npm i
-
-COPY . .
-RUN npm run translation
-ENV NODE_OPTIONS=--max_old_space_size=8192
-
-EXPOSE 8100
-CMD ["ionic", "serve", "--", "--host=0.0.0.0", "--disable-host-check"]
+EXPOSE 8080
+CMD ["nginx", "-g", "daemon off;"]

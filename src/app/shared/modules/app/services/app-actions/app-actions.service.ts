@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { LangDto, SnAppDto, SnPageDto, SnPageEventDto, SnPageWidgetDto } from '@algotech-ce/core';
 import { AppMessageService } from '../app-message/app-message.service';
 import { AppSelectionService } from '../app-selection/app-selection.service';
@@ -426,6 +426,9 @@ export class AppActionsService extends AppMessageService {
                         this.pageUtils.processWidgetTree(oldRef, (root: SnPageWidgetDto, item: SnPageWidgetDto) => {
                             const sw = sharedWidgets.find((c: SnPageWidgetDto) => item.sharedId && c.sharedId === item.sharedId);
                             if (sw && item.group) {
+                                if (sw.lockedProperties?.includes('input.table')) {
+                                    sw.group?.widgets.splice(0, sw.group.widgets.length);
+                                }
                                 item.group.widgets
                                     .forEach((w, index) => {
                                         if (w.locked &&

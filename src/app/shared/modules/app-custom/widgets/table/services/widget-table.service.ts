@@ -15,7 +15,11 @@ export class WidgetTableService {
 
     setDefaultColumns(table: SnPageWidgetDto, model: SmartModelDto) {
         const properties = model.properties?.slice(0, 5);
-        const columnWidgets = properties.map(property => this.createColumn(table, property));
+        const columnWidgets = properties.map((property) => {
+            const col = this.createColumn(table, property);
+            col.locked = table.locked;
+            return col;
+        });
         table.group = this.pageWidget.buildGroup(columnWidgets);
         table.custom.columns = properties.map(prop => prop.key);
     }

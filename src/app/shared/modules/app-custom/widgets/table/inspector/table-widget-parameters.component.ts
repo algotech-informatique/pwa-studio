@@ -189,11 +189,23 @@ export class TableWidgetParametersComponent implements WidgetParametersInterface
         this.changed.emit();
     }
 
+    onLockChanged(event: { section: string; locked: boolean }) {
+        if (event.section === 'input.table') {
+            this.widget.group?.widgets.map((column: SnPageWidgetDto) => {
+                column.locked = event.locked;
+                return column;
+            });
+        }
+        this.changed.emit();
+    }
+
+
     private addColumn(columns: string[]) {
         const toAdd = columns.find((col: string) => !this.widget.custom.columns.includes(col));
         const property = this.collectionModel?.properties.find(prop => prop.key === toAdd);
         if (property) {
-            const columnToAdd = this.widgetTableService.createColumn(this.widget, property);
+            const columnToAdd: SnPageWidgetDto = this.widgetTableService.createColumn(this.widget, property);
+            columnToAdd.locked = this.widget.lockedProperties?.includes('input.table');
             this.widget.group = this.pageWidget.buildGroup([...this.widget.group?.widgets || [], columnToAdd]);
         }
     }

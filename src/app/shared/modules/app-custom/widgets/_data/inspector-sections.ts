@@ -32,7 +32,7 @@ export const sections = {
         headerBackground: ['$css:header'],
         row: ['$css:row'],
         column: ['$css:column'],
-        cell: ['$css:cell'],
+        cell: ['$css:cell', 'custom.overloadStyle'],
     },
     events: {
         onClick: ['$event:onClick'],
@@ -59,34 +59,34 @@ export const sections = {
     },
     input: {
         document: ['custom.input'],
-        table: ['custom.datasource', 'custom.columns'],
+        table: ['custom.collection', 'custom.datasource', 'custom.collectionType', 'custom.columns'],
     },
     filters: {
         document: ['custom.type', 'custom.search', 'custom.tagFilter'],
-        table: ['custom.multiselection', 'custom.search', 'custom.sort', 'custom.filter', 'custom.paginate.limit'],
+        table: ['custom.multiselection', 'custom.search', 'custom.sort', 'custom.filter', 'custom.paginate.limit', 'custom.paginate.mode'],
         column: ['custom.sort', 'custom.filter'],
     },
     carousel: {
-        document: ['custom.metadatas', 'custom.oldVersions']
+        document: ['custom.metadatas', 'custom.oldVersions', 'custom.oldVersions.active', 'custom.oldVersions.groups']
     },
     pagination: {
-        list: ['custom.paginate.limit', 'custom.search'],
+        list: ['custom.paginate.limit', 'custom.paginate.mode', 'custom.search'],
         document: ['custom.mode', 'custom.pagination']
     },
     customParams: {
-        notif: ['custom.counter', 'custom.preview', 'custom.icon'],
+        notif: ['custom.icon'],
         image: ['custom.typeSrc', 'custom.imageUri', 'custom.imageUuid', 'custom.input', 'custom.tag'],
         button: ['custom.preview', 'custom.title', 'custom.icon'],
         board: ['custom.imageUuid', 'custom.instance'],
-        magnet: ['custom.imageUuid', 'custom.modelKey', 'custom.filter'],
+        magnet: ['custom.imageUuid', 'custom.modelKey', 'custom.filter', 'custom.filter.property', 'custom.filter.value'],
         zone: ['custom.key'],
         text: ['custom.text', 'custom.preview']
     },
     display: {
-        zone: ['custom.overlay', 'custom.grid'],
+        zone: ['custom.overlay', 'custom.grid', 'custom.grid.width', 'custom.grid.height'],
         tab: ['custom.text', 'custom.preview', 'custom.icon'],
-        list: ['custom.paginate.mode', 'custom.scrollbar', 'custom.direction'],
-        column: ['custom.format'],
+        list: ['custom.direction'],
+        column: ['custom.display', 'custom.format', 'custom.format.custom', 'custom.lineBreak', 'custom.icon'],
     },
     permissions: {
         magnet: ['custom.permissions']
