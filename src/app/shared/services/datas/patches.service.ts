@@ -98,9 +98,10 @@ export class PatchesService {
 
                     // for pages (rm|add)
                     results.push(...pagesPatches);
-                    const index = model.versions.indexOf(version);
-                    const recomposedApp: SnAppDto =
-                        JSON.parse(JSON.stringify(patchService.recompose(pagesPatches, modelCompare).versions[index].view));
+                    const recomposedApp: SnAppDto = JSON.parse(JSON.stringify(patchService.recompose(pagesPatches, modelCompare)))
+                        .versions
+                        .find((v) => v.uuid === version.uuid)
+                        .view;
 
                     results.push(...this.generatePatches(version.uuid, app.pages, recomposedApp.pages, 'pages', ['remove', 'add']));
 
