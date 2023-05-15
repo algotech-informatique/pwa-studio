@@ -29,7 +29,7 @@ describe(AppActionsService.name, () => {
             const w2 = _.cloneDeep(shared);
             const w3 = _.cloneDeep(sharedGroup);
             const widgets: SnPageWidgetDto[] = [w1, w2, w3];
-            service._hardUpdateReferences(widgets, master1, () => {
+            service._hardUpdateReferences(app, widgets, master1, () => {
             }, () => {
                 expect(w1).toEqual(widget);
                 expect(w2).toEqual(master1Shared);
@@ -43,7 +43,7 @@ describe(AppActionsService.name, () => {
             const w2 = _.cloneDeep(shared);
             const w3 = _.cloneDeep(sharedGroup);
             const widgets: SnPageWidgetDto[] = [w1, w2, w3];
-            service._hardUpdateReferences(widgets, master2, () => {
+            service._hardUpdateReferences(app, widgets, master2, () => {
 
             }, () => {
                 expect(w1).toEqual(widget);

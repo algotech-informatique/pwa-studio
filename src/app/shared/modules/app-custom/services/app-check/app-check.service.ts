@@ -16,6 +16,7 @@ import { CheckEvent, ValidationReportDto } from '../../../../dtos';
 interface WidgetRule {
     rule: SnPageWidgetRuleDto;
     widget: SnPageWidgetDto;
+    origin: SnPageWidgetDto;
 }
 
 @Injectable()
@@ -111,7 +112,10 @@ export class AppCheckService {
         const formulaWidgets: FormulaWidget[] = [];
 
         for (const widgetRule of widgetRules) {
-            formulaWidgets.push(...this._getFormula(widgetRule.widget, `rule.${widgetRule.rule.id}.`));
+            formulaWidgets.push(...this._getFormula(widgetRule.widget, `rule.${widgetRule.rule.id}.`).map((v) => Object.assign(v, {
+                    element: widgetRule.origin
+                })
+            ));
         }
         return formulaWidgets;
     }
@@ -172,7 +176,9 @@ export class AppCheckService {
 
     _getWidgetRuleEvents(widgetRules: WidgetRule[]): ActionControl[] {
         const pipes: ActionControl[] = _.reduce(widgetRules, (result, widgetRule: WidgetRule) => {
-            result.push(...this._getWidgetEvent(widgetRule.widget, `rule.${widgetRule.rule.id}.`));
+            result.push(...this._getWidgetEvent(widgetRule.widget, `rule.${widgetRule.rule.id}.`).map((v) => Object.assign(v, {
+                element: widgetRule.origin
+            })));
             return result;
         }, []);
         return pipes;
@@ -231,15 +237,19 @@ export class AppCheckService {
     _cloneWidgetRules(widget: SnPageWidgetDto): WidgetRule[] {
         return _.reduce(widget.rules, (result, rule: SnPageWidgetRuleDto) => {
             let widgetApplyingRule: SnPageWidgetDto;
+            let origin: SnPageWidgetDto;
             if (widget.displayState?.rule?.rule?.id === rule.id) {
                 widgetApplyingRule = widget.displayState?.rule?.widget;
+                origin = widgetApplyingRule;
             } else {
                 widgetApplyingRule = _.cloneDeep(widget);
                 this.pageWidgetService.recomposeRule(rule, widgetApplyingRule);
+                origin = widget;
             }
             const wRule: WidgetRule = {
                 rule,
                 widget: widgetApplyingRule,
+                origin,
             };
             result.push(wRule);
             return result;

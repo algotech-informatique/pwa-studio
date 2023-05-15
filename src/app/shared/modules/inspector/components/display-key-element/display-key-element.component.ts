@@ -25,6 +25,7 @@ export class DisplayKeyElementComponent {
     @Input() case: 'uppercase' | 'lowercase' | 'any' = 'any';
     @Input() suggestionsList: PairDto[];
     @Input() showIcon = true;
+    @Input() replaceDash = false;
     @Input() placeholder: string;
     @Input() errorCalculation: (key: string) => boolean = this.hasError;
     @Input() formatKey = true;
@@ -113,11 +114,11 @@ export class DisplayKeyElementComponent {
         if (this.formatKey) {
             switch (this.case) {
                 case 'any':
-                    return this.keyFormaterService.format(key);
+                    return this.keyFormaterService.format(key, this.replaceDash);
                 case 'lowercase':
-                    return this.keyFormaterService.format(key).toLowerCase();
+                    return this.keyFormaterService.format(key, this.replaceDash).toLowerCase();
                 case 'uppercase':
-                    return this.keyFormaterService.format(key).toUpperCase();
+                    return this.keyFormaterService.format(key, this.replaceDash).toUpperCase();
             }
         } else {
             return key;

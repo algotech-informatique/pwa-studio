@@ -62,7 +62,7 @@
         "typescript": "4.9.4"
     },
     "dependencies": {
-        "@algotech-ce/angular": "2.0.0",
+        "@algotech-ce/angular": "2.0.2",
         "@algotech-ce/business": "2.0.0",
         "@algotech-ce/core": "2.0.0",    
         "@angular/animations": "15.1.2",

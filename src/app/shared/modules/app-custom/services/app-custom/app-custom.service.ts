@@ -264,7 +264,7 @@ export class AppCustomService {
         }
         for (const widget of this.pageUtils.getWidgets(app)) {
             // update inputs
-            for (const ev of widget.events) {
+            for (const ev of [..._.flatMap(widget.rules, 'events'), ...widget.events]) {
                 for (const pipeEv of ev.pipe) {
                     this.loadInputs(app, ev, pipeEv);
                     this.mergeWorkflows(pipeEv, false);
