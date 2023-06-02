@@ -25,7 +25,9 @@ angular-tests:
     when: always
     reports:
       junit: test-reports/karma/junit.xml
-      cobertura: coverage/cobertura-coverage.xml
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage/cobertura-coverage.xml
     paths:
       - coverage/lcov.info
   only:

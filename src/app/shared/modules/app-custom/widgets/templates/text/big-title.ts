@@ -38,11 +38,11 @@ export const bigTitle: SnPageWidgetDto = {
             },
             {
                 lang: 'en-US',
-                value: ''
+                value: 'A BIG TITLE'
             },
             {
                 lang: 'es-ES',
-                value: ''
+                value: 'UN GRAN TÍTULO'
             }
         ],
         iterable: true,

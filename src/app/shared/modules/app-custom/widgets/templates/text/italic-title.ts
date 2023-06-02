@@ -38,11 +38,11 @@ export const italicTitle: SnPageWidgetDto = {
             },
             {
                 lang: 'en-US',
-                value: ''
+                value: 'A tile in italics'
             },
             {
                 lang: 'es-ES',
-                value: ''
+                value: 'Un título en cursiva'
             }
         ],
         iterable: true,

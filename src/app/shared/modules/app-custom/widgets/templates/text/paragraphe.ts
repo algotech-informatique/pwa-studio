@@ -39,11 +39,13 @@ export const paragraphe: SnPageWidgetDto = {
             },
             {
                 lang: 'en-US',
-                value: ''
+                // eslint-disable-next-line max-len
+                value: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ultricies at mi quis tristique. Phasellus suscipit dapibus turpis, nec tincidunt ligula interdum eget. Duis a leo finibus, ornare dolor sed, vestibulum lorem. Nulla faucibus, tortor eu tempor mollis, orci nisl posuere sapien, eget ultrices augue arcu vitae augue. Sed tincidunt lacus non dolor scelerisque, vehicula luctus neque faucibus.'
             },
             {
                 lang: 'es-ES',
-                value: ''
+                // eslint-disable-next-line max-len
+                value: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ultricies at mi quis tristique. Phasellus suscipit dapibus turpis, nec tincidunt ligula interdum eget. Duis a leo finibus, ornare dolor sed, vestibulum lorem. Nulla faucibus, tortor eu tempor mollis, orci nisl posuere sapien, eget ultrices augue arcu vitae augue. Sed tincidunt lacus non dolor scelerisque, vehicula luctus neque faucibus.'
             }
         ],
         iterable: true,

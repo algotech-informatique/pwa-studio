@@ -126,11 +126,11 @@ export const headerMobile: SnPageWidgetDto = {
                         },
                         {
                             lang: 'en-US',
-                            value: ''
+                            value: '{{system.page-name}}'
                         },
                         {
                             lang: 'es-ES',
-                            value: ''
+                            value: '{{system.page-name}}'
                         }
                     ],
                     iterable: true,
@@ -144,11 +144,11 @@ export const headerMobile: SnPageWidgetDto = {
                         },
                         {
                             lang: 'en-US',
-                            value: ''
+                            value: 'Page title'
                         },
                         {
                             lang: 'es-ES',
-                            value: ''
+                            value: 'Titulo de la página'
                         }
                     ]
                 },

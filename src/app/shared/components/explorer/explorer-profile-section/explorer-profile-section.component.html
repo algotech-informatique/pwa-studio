@@ -36,11 +36,12 @@
         <div class="button" [ngClass]="{'selected': showLangs}" (click)="toggleLangs()">
             <i class="fa-solid fa-earth-europe"></i>
             <div class="title">
-                {{ 'LANGUAGES.KEY_' + (currentLang.lang | customerCode ) | translate }}
+                <div *ngIf="currentLang">{{ 'LANGUAGES.KEY_' + (currentLang?.lang | customerCode ) | translate }}</div>
+                <div *ngIf="!currentLang">{{ 'LANGUAGES.KEY_NOT_DEFINED' | translate }}</div>
             </div>
         </div>        
         <div class="langs" *ngIf="showLangs">
-            <div class="button lang" *ngFor="let lang of languages" [ngClass]="{'selected': lang.lang === currentLang.lang}" (click)="selectLang(lang)">
+            <div class="button lang" *ngFor="let lang of languages" [ngClass]="{'selected': lang.lang === currentLang?.lang}" (click)="selectLang(lang)">
                 {{ 'LANGUAGES.KEY_' + (lang.lang | customerCode) | translate }}
             </div>
         </div>

@@ -38,11 +38,11 @@ export const simpleTitle: SnPageWidgetDto = {
             },
             {
                 lang: 'en-US',
-                value: ''
+                value: 'A simple title'
             },
             {
                 lang: 'es-ES',
-                value: ''
+                value: 'Un título simple'
             }
         ],
         iterable: true,

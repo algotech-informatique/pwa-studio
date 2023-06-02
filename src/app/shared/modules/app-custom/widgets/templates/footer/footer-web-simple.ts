@@ -83,11 +83,11 @@ export const footerWebSimple: SnPageWidgetDto = {
                         },
                         {
                             lang: 'en-US',
-                            value: ''
+                            value: 'My App | Powered by Vision'
                         },
                         {
                             lang: 'es-ES',
-                            value: ''
+                            value: 'My App | Powered by Vision'
                         }
                     ],
                     iterable: true,

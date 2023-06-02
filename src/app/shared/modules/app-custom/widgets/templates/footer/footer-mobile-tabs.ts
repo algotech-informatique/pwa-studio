@@ -213,11 +213,11 @@ export const footerMobileTabs: SnPageWidgetDto = {
                                     },
                                     {
                                         lang: 'en-US',
-                                        value: ''
+                                        value: 'Home'
                                     },
                                     {
                                         lang: 'es-ES',
-                                        value: ''
+                                        value: 'Home'
                                     }
                                 ],
                                 page: '',
@@ -264,11 +264,11 @@ export const footerMobileTabs: SnPageWidgetDto = {
                                     },
                                     {
                                         lang: 'en-US',
-                                        value: ''
+                                        value: 'Info'
                                     },
                                     {
                                         lang: 'es-ES',
-                                        value: ''
+                                        value: 'Info'
                                     }
                                 ],
                                 page: '',
@@ -315,11 +315,11 @@ export const footerMobileTabs: SnPageWidgetDto = {
                                     },
                                     {
                                         lang: 'en-US',
-                                        value: ''
+                                        value: 'More'
                                     },
                                     {
                                         lang: 'es-ES',
-                                        value: ''
+                                        value: 'More'
                                     }
                                 ],
                                 page: '',
