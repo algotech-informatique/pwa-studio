@@ -11,7 +11,6 @@ export const snDataNodeRule: SnViewRule = {
         snView: SnView, snModelUuid: string, item: SnNode, items: SnNode[], parent, checkUtilsService: SnCheckUtilsService): boolean => {
         if (item.type === 'SnDataNode') {
             const output: SnParam = checkUtilsService.snAtNodeUtils.getOutParam(item).param;
-
             if (!output) {
                 return true;
             }
@@ -35,9 +34,11 @@ export const snDataNodeRule: SnViewRule = {
             let error = false;
             // property key format: KEY_PROPERTY.KEY_SUBPROPERTY..
             for (const param of section.params) {
-                if (!checkUtilsService.verifyProperty(param.key, type, true)) {
-                    error = true;
-                    checkUtilsService.pushError(snView, stackCode, report, 'PROPERTY_NOT_FOUND', item, param, param.key, 'node');
+                if (!['sys:createdDate', 'sys:updateDate'].includes(param.key)) {
+                    if (!checkUtilsService.verifyProperty(param.key, type, true)) {
+                        error = true;
+                        checkUtilsService.pushError(snView, stackCode, report, 'PROPERTY_NOT_FOUND', item, param, param.key, 'node');
+                    }
                 }
             }
 
@@ -89,6 +90,10 @@ export const snLoopNodeRule: SnViewRule = {
         if (item.type === 'SnLoopNode') {
             const flowNext: SnFlow = _.find(item.flows, { key: 'next' });
             const flowIn: SnFlow = _.find(item.flows, { direction: 'in' });
+            const flowDone: SnFlow = _.find(item.flows, { key: 'done' });
+            if (!flowDone.toward) {
+                checkUtilsService.pushWarning(snView, stackCode, report, 'END_LOOP_NOT_CONNECTED', item, flowDone, null, 'node');
+            }
             const nextNode: SnNode = checkUtilsService.snUtils.getNextNode(snView, flowNext);
             const nextFlows: SnFlow[] = nextNode ?
                 checkUtilsService.snUtils.getNextFlows(snView, [flowIn], _.filter(nextNode.flows, { direction: 'out' })) :
@@ -136,6 +141,7 @@ export const snConnectorNodeRule: SnViewRule = {
     check: (stackCode: string,
         report: ValidationReportDto,
         snView: SnView, snModelUuid: string, item: SnNode, items: SnNode[], parent, checkUtilsService: SnCheckUtilsService): boolean => {
+
         if (item.type === 'SnConnectorNode') {
             const snModel: SnModelDto = checkUtilsService.snConnectorUtils.getSmartflowModel(item);
             const view: SnView = checkUtilsService.snModelsService.getPublishedView(snModel) as SnView;
@@ -145,6 +151,43 @@ export const snConnectorNodeRule: SnViewRule = {
             }
 
         }
+        return true;
+    }
+};
+
+export const snConnectorParameterNodeRule: SnViewRule = {
+    check: (stackCode: string,
+        report: ValidationReportDto,
+        snView: SnView, snModelUuid: string, item: SnNode, items: SnNode[], parent, checkUtilsService: SnCheckUtilsService): boolean => {
+
+        if (item.type === 'SnConnectorParameterNode') {
+
+            const output: SnParam = checkUtilsService.snAtNodeUtils.getOutParam(item).param;
+            if (!output) {
+                return true;
+            }
+
+            const refUuid = checkUtilsService.sessionsService.getRootDirectory(
+                checkUtilsService.sessionsService.active.connection.host,
+                checkUtilsService.sessionsService.active.connection.customerKey,
+                'smartflow',
+                checkUtilsService.sessionsService.active.datas.write.
+                    snModels.find((modl) => modl.uuid === snModelUuid)?.dirUuid)?.uuid;
+
+            const customs = checkUtilsService.sessionsService.getConnectorCustom(
+                checkUtilsService.sessionsService.active.connection.host,
+                checkUtilsService.sessionsService.active.connection.customerKey,
+                'smartflow',
+                refUuid,
+            );
+
+            if (customs && customs.length !== 0 && customs.find((c) => c.active && c.key === output.key)) {
+                return true;
+            } else {
+                checkUtilsService.pushError(snView, stackCode, report, 'CONNECTOR_PARAMETER_NOT_FOUND', item, null, null, 'node');
+                return false;
+            }
+        };
         return true;
     }
 };
@@ -261,11 +304,53 @@ export const profilesNodeRule: SnViewRule = {
 
             findFlows.forEach((f) => {
                 if (f.node.custom?.profile !== item.custom?.profile) {
-                    checkUtilsService.pushError(snView, stackCode, report, 'PROFILE_CONSISTENCY_ERROR', item, null, null, 'node');
+                    checkUtilsService.pushError(snView, stackCode,
+                        report, 'PROFILE_CONSISTENCY_ERROR', item, null, null, 'node');
                     return false;
                 }
             });
             return true;
         }
+    }
+};
+
+export const severalEntryPoints: SnViewRule = {
+    check: (stackCode: string,
+        report: ValidationReportDto,
+        snView: SnView, snModelUuid: string, item: SnNode, items: SnNode[], parent, checkUtilsService: SnCheckUtilsService): boolean => {
+
+        if (item.type === 'SnLauncherNode') {
+            if (snView.nodes.filter((n) => n.type === 'SnLauncherNode').length > 1) {
+                checkUtilsService.pushError(snView, stackCode,
+                    report, 'SEVERAL-ENTRY-POINTS', item, null, null, 'node');
+                return false;
+            }
+        }
+        return true;
+    }
+};
+
+export const needsSmartObjectForSave: SnViewRule = {
+    check: (stackCode: string,
+        report: ValidationReportDto,
+        snView: SnView, snModelUuid: string, item: SnNode, items: SnNode[], parent, checkUtilsService: SnCheckUtilsService): boolean => {
+
+        const list = [
+            'SnDocumentConvertNode',
+            'SnDocumentFileCreateNode',
+            'SnxReportNode'
+        ];
+        if (list.includes(item.type)) {
+            const saveSection = item.sections.find((s) => s.key === 'save');
+            const saveParam = saveSection?.params.find((p) => p.key === 'save');
+            const soParam = saveSection?.params.find((p) => p.key === 'object');
+
+            if (!!saveParam?.value && !soParam.toward) {
+                checkUtilsService.pushError(snView, stackCode,
+                    report, 'NEEDS_SMARTOBJECT', item, null, null, 'node');
+                return false;
+            }
+        }
+        return true;
     }
 };

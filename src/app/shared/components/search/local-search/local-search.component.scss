@@ -1,0 +1,61 @@
+@import '../../../../../styles.scss';
+@import '../search-mixins.scss';
+
+:host {
+    position: absolute;
+    right: 0;
+    top: #{$TOP-BAR-HEIGHT};
+    margin: 20px;
+    z-index: 100;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 5px 10px;
+    color: $COLOR-FG;
+    background-color: var(--INSPECTOR-VERT-MENU-BACKGROUND);
+    font-size: 12px;
+    box-shadow: 0 0px 3px 0px var(--INSPECTOR-VERT-MENU-BACKGROUND);
+
+    .preview {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        min-width: 70px;
+        max-height: 20px;
+
+        .no-results {
+            font-style: italic;
+            opacity: 0.7;
+        }
+
+        .spinner {
+            transform: scale(0.5);
+        }
+    }
+
+    .input-area {
+        @include search-area();
+    }
+
+    .button {
+        @include search-button();
+    }
+
+    .search,
+    .actions {
+        display: flex;
+        align-items: center;
+    }
+
+    .search {
+        gap: 5px;
+    }
+
+    .actions {
+        justify-content: flex-end;
+        width: 80px;
+    }
+}

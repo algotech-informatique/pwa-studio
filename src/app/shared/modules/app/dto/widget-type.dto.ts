@@ -18,4 +18,5 @@ export class WidgetTypeDto {
     unstrictGroup?: boolean;
     hidden?: boolean;
     ungroupable?: boolean;
+    unreloadable?: boolean;
 }

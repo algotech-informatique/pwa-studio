@@ -1,0 +1,52 @@
+@mixin search-area {
+    display: flex;
+    background-color: $EXPLORER-BG-ACTIVE;
+    padding: 1px;
+    gap: 2px;
+
+    input {
+        outline: none;
+        background: transparent;
+        border: 0px;
+        padding: 5px;
+        width: 100%;
+    }
+    &:focus-within {
+        border: 1px solid $COLOR-DARK-SELECTED;
+        padding: 0px;
+    }
+
+    img {
+        cursor: pointer;
+
+        &.selected {
+            background-color: $EXPLORER-BG-SELECTED;
+        }
+    }
+}
+
+@mixin search-input {
+    outline: none;
+    background: $EXPLORER-BG-ACTIVE;
+    padding: 5px;
+    border: 0px;
+
+    &:focus {
+        padding: 4px;
+        border: 1px solid $COLOR-DARK-SELECTED;
+    }
+}
+
+@mixin search-button {
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 3px;
+
+    &:hover {
+        background-color: $EXPLORER-BG-ACTIVE;
+    }
+
+    &.active {
+        background-color: $EXPLORER-BG-ACTIVE !important;
+    }
+}

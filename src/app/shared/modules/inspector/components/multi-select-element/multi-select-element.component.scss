@@ -22,7 +22,12 @@
     .chips {
         display: flex;
         flex-direction: row;
-        flex-wrap: wrap;
+        &.wrap {
+            flex-wrap: wrap;
+        }
+        &:not(.wrap) {
+            overflow: hidden;
+        }
         margin: 5px 0;
 
         p {
@@ -35,6 +40,8 @@
             align-items: center;
             border-radius: 10px;
             margin: 3px 0 3px 5px;
+            height: 25px;
+            white-space: nowrap;
 
             p {
                 padding: 3px 8px;

@@ -93,6 +93,17 @@ export const paramConnectedRule: SnViewRule = {
                     return false;
             }
         }
+
+        if (parent.type === 'SnTransformNode' && item.direction === 'in') {
+            const connected = checkUtilsService.snUtils.getParamsWithNode(snView).find(
+                (ele) => ele.param === checkUtilsService.snUtils.findConnectedParam(snView, item));
+            if (connected && connected.node.flows.length === 0 && connected.node.type !== 'SnDataNode' &&
+                connected.node.type !== 'SnTransformNode') {
+                checkUtilsService.pushError(snView, stackCode, report, 'CONNECTED_PARAM_NOT_FLOW', parent, item, item.key);
+                    return false;
+            }
+        }
+
         return true;
     }
 };

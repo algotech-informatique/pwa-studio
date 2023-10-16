@@ -123,7 +123,7 @@ export const formulaList: Formulas[] = [
         code: 'DAYS',
         group: 'FORMULA.GROUP.DATE',
         formula: 'DAYS({{1}}, {{2}})',
-        fields: '1:start_date:date;2:end_date:date',
+        fields: '1:end_date:date;2:start_date:date',
         example: 'DAYS("3/15/11", "2/1/11")',
         expectedResult: '42',
         description: 'FORMULA.DAYS',
@@ -2124,7 +2124,7 @@ export const formulaList: Formulas[] = [
     {
         code: 'ROUND',
         group: 'FORMULA.GROUP.MATH',
-        formula: 'ROUND(({{1}}, {{2}})',
+        formula: 'ROUND({{1}}, {{2}})',
         fields: '1:number:number;2:num_digits:number',
         example: 'ROUND(626.3, -3)',
         expectedResult: '1000',

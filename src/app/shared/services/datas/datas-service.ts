@@ -170,11 +170,6 @@ export class DatasService {
             }
         });
 
-        // Send Message Store
-        this.on(datas, 'store.send.article', (data) => {
-            this.messageService.send('get-store-article', data);
-        });
-
         // focus
         this.initializeFocus(datas, 'event.view');
     }

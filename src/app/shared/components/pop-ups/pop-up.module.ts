@@ -11,7 +11,6 @@ import { ColorPickerModule } from 'ngx-color-picker';
 import { PipesModule } from '@algotech-ce/angular';
 import { TranslateModule } from '@ngx-translate/core';
 import { IonicModule } from '@ionic/angular';
-import { StorePublishPopoverComponent } from './store-publish-popover/store-publish-popover.component';
 import { SnSelectParameterModule } from '../../modules/smart-nodes-custom';
 import { DataInputsModule } from '../../modules/inspector/data-inputs/data-inputs.module';
 import { IconPopUpComponent } from './icon-pop-up/icon-pop-up.component';
@@ -27,7 +26,6 @@ import { LangSelectorPopUpComponent } from './lang-selector-pop-up/lang-selector
         BasePopUpComponent,
         DisplayNamePopUpComponent,
         ColorPopUpComponent,
-        StorePublishPopoverComponent,
         IconPopUpComponent,
         DisplayTextPopUpComponent,
         DisplayInputPopUpComponent,
@@ -51,7 +49,6 @@ import { LangSelectorPopUpComponent } from './lang-selector-pop-up/lang-selector
         BasePopUpComponent,
         DisplayNamePopUpComponent,
         ColorPopUpComponent,
-        StorePublishPopoverComponent,
         IconPopUpComponent,
         DisplayTextPopUpComponent,
         DisplayInputPopUpComponent,

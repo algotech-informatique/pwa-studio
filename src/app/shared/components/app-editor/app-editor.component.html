@@ -20,9 +20,19 @@
                         <app-left-inspector class="inspector" [snApp]="snApp" [settings]="settings" [snModel]="snModel" [forceOpenTab]="openInspector">
                         </app-left-inspector>
 
-                        <app-layout class="app-layout" *ngIf="snApp" [snApp]="snApp" [settings]="settings"
-                            (changed)="changed($event)">
-                        </app-layout>
+                        <div class="app-layout">
+                            <app-layout class="app-layout" *ngIf="snApp" [snApp]="snApp" [settings]="settings"
+                                (changed)="changed($event)" [search]="search">
+                            </app-layout>
+                            <local-search
+                                class="search"
+                                [snModelUuid]="snModel.uuid"
+                                [version]="snVersion"
+                                (closed)="onClose()"
+                                class="local-search"
+                                *ngIf="searchActive">
+                            </local-search>
+                        </div>
 
                         <sn-app-inspector class="inspector" *ngIf="snApp && (selectedPage || selectedWidget)"
                             [settings]="settings" [snApp]="snApp" [page]="selectedPage" [widget]="selectedWidget"

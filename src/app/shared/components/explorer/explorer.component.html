@@ -2,6 +2,21 @@
     (mousedown)="mousedown()">
     
     <div class="header">
+
+        <div class="tabs" *ngIf="_expand">
+            <div class="tab" (click)="onTabChange('module')" [ngClass]="{'selected': search === null}"
+                [title]="'STUDIO-TAB-EXPLORER' | translate">
+                <i class="fa-solid fa-folder-tree"></i>
+            </div>
+            <div class="tab" (click)="onTabChange('search')" [ngClass]="{'selected': search === 'search'}"
+                [title]="'STUDIO-TAB-SEARCH' | translate">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <div *ngIf="ressource" class="tab" (click)="onTabChange('reference')" [ngClass]="{'selected': search === 'reference'}"
+                [title]="'STUDIO-TAB-REFERENCES' | translate">
+                <i class="fa-solid fa-arrows-split-up-and-left"></i>
+            </div>
+        </div>
         <div class="logo-name">
             <img src="./assets/images/logo.png" alt="Studio" />
         </div>
@@ -9,23 +24,9 @@
         <i *ngIf="_expand" (click)="retractorClicked()" class="fa-solid fa-angles-left retractor"></i>
     </div>
 
-    <div class="explorer-sections">
+    <div class="explorer-content" [ngClass]="{ 'hide': search && _expand}">
         <div *ngFor="let session of sessions; index as i" (contextmenu)="showExpanderContextmenu($event, i)">
             <div *ngIf="session.environment" class="session">
-                <div class="customer" (click)="expandCustomer(session.environment)">
-                    <span class="code" [style.background]="session.connection.color">
-                        {{ session.connection.name | customerCode }}
-                    </span>
-                    <span class="name">
-                        {{ session.connection.name }}
-                    </span>
-                    <i class="fa-solid fa-plug connection-icon" *ngIf="session.datas.status !== undefined && _expand"
-                        [ngClass]="{
-                            'status-active': session.datas.status === 1,
-                            'status-inactive': session.datas.status === -1
-                        }">
-                    </i>
-                </div>
                 <div class="modules" [ngClass]="{'reduce': !session.environment.state}">
                     <app-module-tree-line
                         *ngFor="let module of session.environment.modules"
@@ -36,6 +37,16 @@
                 </div>
             </div>
         </div>
+    </div>
+    
+    <div class="explorer-content" [ngClass]="{ 'hide': search !== 'search' || !_expand }">
+        <global-search class="search" [type]="search">
+        </global-search>
+    </div>
+    
+    <div class="explorer-content" [ngClass]="{ 'hide': search !== 'reference' || !_expand || !ressource }">
+        <global-search class="search" [type]="search" [ressource]="ressource" (clear)="onClearReference()">
+        </global-search>
     </div>
 
     <app-explorer-profile-section *ngIf="sessions?.[0].environment"

@@ -39,6 +39,7 @@ export class ReportTemplatesEditorComponent implements OnChanges {
     fileUploaded = false;
     uploadError = false;
     errors = [];
+    fileAsset: File;
     fileName: string;
     fileSize: string;
     tags: Tag[] = [];
@@ -118,6 +119,7 @@ export class ReportTemplatesEditorComponent implements OnChanges {
 
             this.filesService.downloadDocument(sysFile, false).subscribe((doc: FileAssetDto) => {
                 this.fileLoaded = true;
+                this.fileAsset = doc.file;
                 this.fileName = (this.canReadOptions) ?
                     snView.options.fileName : '';
                 this.fileSize = `${_.divide(doc.file.size, 1000)} ko`;
@@ -157,7 +159,7 @@ export class ReportTemplatesEditorComponent implements OnChanges {
                     return of({});
                 }),
                 flatMap(tags => {
-                    const upload$ = (Object.keys(tags).length > 0) ? this.templatesService.upload(update, uuid, file) : of(false);
+                    const upload$ = this.templatesService.upload(update, uuid, file);
                     return zip(upload$, of(tags));
                 }),
                 flatMap(([uploaded, tags]) => {
@@ -220,6 +222,12 @@ export class ReportTemplatesEditorComponent implements OnChanges {
             }));
             this.datasService.notifySNModel(this.template, this.customerKey, this.host);
 
+        }
+    }
+
+    downloadFile() {
+        if (this.fileAsset) {
+            this.filesService.openDocument(this.fileAsset, this.fileName);
         }
     }
 

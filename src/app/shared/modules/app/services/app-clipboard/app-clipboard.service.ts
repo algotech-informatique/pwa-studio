@@ -397,19 +397,9 @@ export class AppClipboardService {
         return this.pageUtils.findEleIntersect(app, { x: position.x, y: position.y, width: 1, height: 1 }, deepPaste);
     }
 
-    private getAllWidgets(widgets: SnPageWidgetDto[]) {
-        const allWidgets: SnPageWidgetDto[] = widgets.reduce((results, widget) => {
-            results.push(widget);
-            results.push(...this.pageUtils.getChilds(widget));
-            return results;
-        }, []);
-
-        return allWidgets;
-    }
-
     private changeWidgetsId(widgets: SnPageWidgetDto[]) {
         // change uuid
-        return this.getAllWidgets(widgets).map((widget) => {
+        return this.pageUtils.getAllWidgets(widgets).map((widget) => {
             const oldId = _.cloneDeep(widget.id);
             widget.id = UUID.UUID();
             for (const ev of widget.events) {
@@ -443,7 +433,7 @@ export class AppClipboardService {
     }
 
     private changeEventsId(widgets: SnPageWidgetDto[], changesIds: { oldId: string; newId: string }[]) {
-        for (const widget of this.getAllWidgets(widgets)) {
+        for (const widget of this.pageUtils.getAllWidgets(widgets)) {
             let stringify = JSON.stringify(widget.events);
             for (const id of changesIds) {
                 stringify = stringify.replace(new RegExp(id.oldId, 'g'), id.newId);

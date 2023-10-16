@@ -5,10 +5,10 @@
     width: 100%;
     height: 100%;
     font-size: 11px;
-    font-family: 'roboto-regular';
+    font-family: 'roboto-regular', sans-serif;
 }
 
-as-split-area {
+.as-split-area {
     @include custom-scrollbar(var(--INSPECTOR-VERT-MENU-LIGHT-COLOR), #ffffff00, 5px);
 
     &.header {
@@ -50,7 +50,7 @@ as-split-area {
             align-items: center;
 
             .title {
-                font-family: 'roboto-bold';
+                font-family: 'roboto-bold', sans-serif;
                 user-select: none;
             }
 

@@ -27,12 +27,6 @@
     }
 }
 
-icon-pop-up {
-    --SNMODAL-MAX-WIDTH: 100%;
-    --SNMODAL-LEFT: 0px;
-    --SNMODAL-BACKGROUND: var(--INSPECTOR-SECTION-TITLE-BACKGROUND);
-}
-
 @-webkit-keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }

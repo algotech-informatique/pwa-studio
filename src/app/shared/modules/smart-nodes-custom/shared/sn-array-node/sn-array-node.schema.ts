@@ -20,6 +20,13 @@ export const SN_ARRAY_NODE_SCHEMA: SnNodeSchema = {
         displayName: 'SN-ARRAY-ITEMS',
         open: true,
         editable: true,
-        params: [],
+        params: [{
+            key: '#1',
+            direction: 'in',
+            types: ['string', 'number', 'date', 'time', 'datetime', 'boolean', 'so:', 'sys:'],
+            multiple: null,
+            pluggable: true,
+            display: 'input',
+        }],
     }],
 };

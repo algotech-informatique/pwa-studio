@@ -31,6 +31,7 @@
     <div class="properties">
         <div class="line">
             <display-definition-values
+                id="display-definition-values"
                 [width]="thicknessSelected"
                 [title]="'SN-TOOLBOX-BORDER.WIDTH' | translate"
                 widthLabel=""
@@ -64,6 +65,7 @@
 
         <div class="line">
             <color-element
+                id="color-element"
                 [showApptheme]="true"
                 [color]="colorSelected"
                 (changed)="selectColor($event)">

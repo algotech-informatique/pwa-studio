@@ -32,7 +32,7 @@ export class SnConnectorUtilsService {
         }
 
         const typeAndMultiple = this.checkTypeAndMultiple(smartflowView);
-        const selectedType = typeAndMultiple.selectedType;
+        const selectedType = typeAndMultiple.type;
         const multiple = typeAndMultiple.multiple;
 
         this.snActions.editParam(snView, node, outParam.param, outParam.params, 'types', selectedType);
@@ -40,7 +40,7 @@ export class SnConnectorUtilsService {
     }
 
     checkTypeAndMultiple(smartflowView: SnView) {
-        let selectedType = '';
+        let type = '';
         let multiple = null;
         let requestNode = smartflowView.nodes.filter((n) => n.type === 'SnRequestResultNode');
 
@@ -58,7 +58,7 @@ export class SnConnectorUtilsService {
         if (requestNode.length !== 0) {
             const rNode: SnNode = requestNode[requestNode.length - 1];
             const param = this.snATNodeUtils.getOutParam(rNode);
-            selectedType = (param.param.types as string);
+            type = (param.param.types as string);
             multiple = (param.param.multiple);
         } else {
             const mappedNode = smartflowView.nodes.filter((n) => n.type === 'SnMappedNode');
@@ -75,9 +75,9 @@ export class SnConnectorUtilsService {
                 }
                 return results;
             }, []);
-            selectedType = (smartModels.length === 1) ? `so:${smartModels[0].key.toLowerCase()}` : 'so:';
+            type = (smartModels.length === 1) ? `so:${smartModels[0].key.toLowerCase()}` : 'so:';
         }
-        return { selectedType, multiple };
+        return { type, multiple };
     }
 
     updateInputs(smartflowView: SnView, snView: SnView, node: SnNode, removeSources = false) {

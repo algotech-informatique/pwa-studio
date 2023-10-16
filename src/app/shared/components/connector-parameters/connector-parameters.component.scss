@@ -5,65 +5,16 @@
     --BORDER: 1px solid #{$COLOR-BG-LIGHT};
     min-width: 500px;
     background: #{$COLOR-BG-DARK};
+    color: #{$COLOR-FG};
 }
 
 .content {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+    max-height: 650px;
+    margin-bottom: 25px;
+}
+
+.title {
     margin: 25px;
-
-    .table {
-        width: 80%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-top: var(--BORDER);
-        
-        .column {
-            width: 50%;
-            border-left: var(--BORDER);
-            height: 30px;
-            display: flex;
-            align-items: center;
-            padding: 10px;
-            color: #{$COLOR-FG};
-            font-size: 14px;
-            font-weight: bold;
-            input {
-                background: transparent;
-                border: 0px;
-                width: 100%;
-                font-weight: lighter !important;
-            }
-            input:focus {
-                outline: none;
-            }
-        }
-
-        .column:last-child {
-            border-right: var(--BORDER);
-        }
-    
-        .checkbox {
-            max-width: 40px;
-            justify-content: center;
-            i {
-                cursor: pointer;
-                font-size: 22px;
-            }
-        }
-
-        .rm {
-            cursor: pointer;
-            width: 15px;
-            text-align: right;
-        }
-    }
-    .table:last-child {
-        border-bottom: var(--BORDER);
-        .rm {
-            display: none;
-        }
-    }
+    font-size: 14px;
+    font-weight: bold;
 }

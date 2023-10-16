@@ -19,6 +19,7 @@
     text-align: right;
     font-weight: bold;
     font-style: italic;
+    padding-right: 1px;
     @include text-ellipsis;
 }
 

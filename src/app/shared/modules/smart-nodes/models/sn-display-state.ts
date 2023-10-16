@@ -10,6 +10,8 @@ export class SnDisplayState {
     dragHover?: boolean;
     droppable?: boolean;
     error?: any;
+    search?: boolean;
+    searchActive?: boolean;
     warning?: boolean;
     info?: boolean;
     selected?: boolean;

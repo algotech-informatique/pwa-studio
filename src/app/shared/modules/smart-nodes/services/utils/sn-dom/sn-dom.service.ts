@@ -102,7 +102,6 @@ export class SnDOMService {
     public getConnectorCanvas(node: SnNode, connector: SnConnector, direction: 'in' | 'out'): SnCanvas {
         const canvasNode = !node.displayState.hidden ? this.getHTMLElementNodeCanvas(node) : null;
         const canvasParam = node.open ? this.getHTMLElementConnectorCanvas(connector) : null;
-
         return this.getSvgCanvas(canvasParam, canvasNode, node, direction);
     }
 

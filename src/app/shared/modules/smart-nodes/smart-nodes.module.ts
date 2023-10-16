@@ -9,6 +9,7 @@ import {
     SnInputTextComponent, SnInputNumberComponent, SnInputDatetimeComponent, SnInputBooleanComponent, SnInputDateComponent,
     SnInputTimeComponent, SnContextmenuComponent, SnContextmenuMenuComponent, SnInputSelectComponent, SnInputSelectMultipleComponent,
     SnInputKeyComponent,
+    SnSearchService,
 } from './index';
 import {
     SnDOMService, SnActionsService, SnDragUtilsService, SnNodeMergeService, SnCalculService, SnSmartConnectionsService,
@@ -23,6 +24,7 @@ import { DrawingModule } from '@algotech-ce/business/drawing';
 import { PipeModule } from '../../pipes/pipe.module';
 import { SnIsWatchablePipe } from './pipes/sn-is-watchable.pipe';
 import { PipesModule } from '@algotech-ce/angular';
+import { SnHasCommentPipe } from './pipes/sn-comment.pipe';
 @NgModule({
     imports: [
         CommonModule,
@@ -35,6 +37,7 @@ import { PipesModule } from '@algotech-ce/angular';
     declarations: [
         SnTranslatePipe,
         SnIsWatchablePipe,
+        SnHasCommentPipe,
         SnDirective,
         SnFlowsComponent,
         SnFlowComponent,
@@ -102,6 +105,7 @@ import { PipesModule } from '@algotech-ce/angular';
         SnEntryComponentsService,
         SnLinksService,
         SnZoomService,
+        SnSearchService,
         SnSelectionService,
         SnDragService,
         SnSelectorService,

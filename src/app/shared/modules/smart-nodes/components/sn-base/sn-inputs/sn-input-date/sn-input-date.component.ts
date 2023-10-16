@@ -11,7 +11,7 @@ export class SnInputDateComponent {
     @Output() updateValue = new EventEmitter<string>();
 
     update(value: Date) {
-        const formatValue = moment(value).isValid() ? moment(value).startOf('day').format() : null;
+        const formatValue = moment(value).isValid() ? moment(value).utc(true).startOf('day').format() : null;
         this.updateValue.emit(formatValue);
     }
 }

@@ -45,7 +45,7 @@ import { MonacoEditorModule } from '@materia-ui/ngx-monaco-editor';
         DrawingModule,
         TranslateModule,
         ToolBoxModule,
-        MonacoEditorModule 
+        MonacoEditorModule
     ],
     declarations: [
         SnToolboxComponent,
@@ -100,6 +100,7 @@ import { MonacoEditorModule } from '@materia-ui/ngx-monaco-editor';
         components.SnSignatureNodeComponent,
         components.SnTransformNodeComponent,
         components.SnUndoNodeComponent,
+        components.SnLockGoBackNodeComponent,
         components.SnProfileNodeComponent,
         components.SnJsonNodeComponent,
         components.SnJsonEditComponent,

@@ -1,4 +1,4 @@
-<app-modal [title]="title" [open]="open" (openChange)="clickClose($event)">
+<app-modal id="app-modal" [title]="title" [open]="open" (openChange)="clickClose($event)">
     <div class="content">
         <div class="subtitle">
             <i *ngIf="type === 'warning'" class="fa-solid fa-triangle-exclamation icon"></i>

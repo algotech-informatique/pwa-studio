@@ -17,6 +17,7 @@ export class MultiSelectElementComponent implements OnChanges {
     @Input() list: ListItem[];
     @Input() selectedKeys: string[];
     @Input() showSearch = true;
+    @Input() wrap = true;
     @Output() selectNewItems = new EventEmitter<string[]>();
 
     selectedItems: ListItem[];

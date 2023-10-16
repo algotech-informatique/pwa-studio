@@ -120,6 +120,7 @@ export class PageDragService {
                     .on('end', (d, i, nodes) => {
                         const widget = self.pageAddWidget.endAddWidget(nodes[i], app, settings.languages);
                         if (widget) {
+                            self.appActions.restoreBrokenLinks(app, widget);
                             self.appActions.notifyUpdate(app, widget);
                         }
                     })

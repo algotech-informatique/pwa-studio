@@ -105,7 +105,7 @@ export class SnModelsService {
         return publishVersion ? publishVersion.view : null;
     }
 
-    getActiveView(snModel: SnModelDto): SnViewType {
+    getActiveVersion(snModel: SnModelDto): SnVersionDto {
         if (!snModel || snModel.versions.length === 0) {
             return null;
         }
@@ -114,11 +114,19 @@ export class SnModelsService {
             const versionId = this._activeVersions[findIndex].activeVersion;
             const vrs: SnVersionDto = _.find(snModel.versions, { uuid: versionId });
             if (vrs) {
-                return vrs.view;
+                return vrs;
             }
         }
         const publishVersion = _.find(snModel.versions, { uuid: snModel.publishedVersion });
-        return publishVersion ? publishVersion.view : snModel.versions[snModel.versions.length - 1].view;
+        return publishVersion ? publishVersion : snModel.versions[snModel.versions.length - 1];
+    }
+
+    getActiveView(snModel: SnModelDto): SnViewType {
+        const version = this.getActiveVersion(snModel);
+        if (!version) {
+            return null;
+        }
+        return version.view;
     }
 
     getViewByWorkflow(workflow: WorkflowModelDto, snModels: SnModelDto[]): SnViewDto {

@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { SnSearchDto } from '../../../../dtos';
 import { SnSettings } from '../../dto/sn-settings';
 import { SnView } from '../../models';
 
@@ -8,6 +9,7 @@ import { SnView } from '../../models';
         <sn-dark-layout *ngIf="settings && (!settings.theme || settings.theme === 'dark')"
             [settings]="settings"
             [snView]="snView"
+            [search]="search"
             (selected)="onSelected($event)"
             (changed)="onChanged($event)">
         </sn-dark-layout>
@@ -15,6 +17,7 @@ import { SnView } from '../../models';
         <sn-light-layout *ngIf="settings && settings.theme === 'light'"
             [settings]="settings"
             [snView]="snView"
+            [search]="search"
             (selected)="onSelected($event)"
             (changed)="onChanged($event)">
         </sn-light-layout>
@@ -27,6 +30,9 @@ export class SnMainLayoutComponent {
 
     @Input()
     snView: SnView;
+
+    @Input()
+    search: SnSearchDto;
 
     @Output()
     changed = new EventEmitter();

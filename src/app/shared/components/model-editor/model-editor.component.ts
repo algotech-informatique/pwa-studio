@@ -1,12 +1,12 @@
 import { Component, Input, OnChanges, OnDestroy } from '@angular/core';
 import { SnSettings } from '../../modules/smart-nodes/dto/sn-settings';
 import { SnView, SnSelectionEvent, SnActionsService, SnZoomService, SnUtilsService } from '../../modules/smart-nodes';
-import { SnModelDto, SnViewDto } from '@algotech-ce/core';
+import { SnModelDto, SnVersionDto, SnViewDto } from '@algotech-ce/core';
 import { CheckService, ConfigService, DatasService, SessionsService, SnModelsService } from '../../services';
 import * as _ from 'lodash';
 import { ModelEditorService } from './model-editor.service';
 import { Subscription } from 'rxjs';
-import { ValidationReportDto } from '../../dtos';
+import { SnSearchDto, ValidationReportDto } from '../../dtos';
 import { OpenInspectorType } from '../../modules/app/dto/app-selection.dto';
 
 @Component({
@@ -20,12 +20,14 @@ export class ModelEditorComponent implements OnChanges, OnDestroy {
 
     @Input() customerKey: string;
     @Input() host: string;
+    @Input() search: SnSearchDto;
 
     openDebug = false;
     treeDebugCLosed = false;
     report: ValidationReportDto;
     settings: SnSettings = null;
     snModel: SnModelDto = null;
+    snVersion: SnVersionDto = null;
     snView: SnView;
     context: {
         type: string;
@@ -36,6 +38,8 @@ export class ModelEditorComponent implements OnChanges, OnDestroy {
     updateView: Subscription;
     treeDebugSize = 300;
     openInspector: OpenInspectorType;
+
+    searchActive = false;
 
     constructor(
         public snZoom: SnZoomService,
@@ -60,9 +64,18 @@ export class ModelEditorComponent implements OnChanges, OnDestroy {
     ngOnChanges() {
         this.openDebug = false;
         this.snModel = this.sessionService.findModel(this.host, this.customerKey, this.snModelUuid);
-        const view = this.snModelsService.getActiveView(this.snModel) as SnView;
+
+        this.snVersion = this.snModelsService.getActiveVersion(this.snModel);
+        if (!this.snVersion) {
+            return ;
+        }
+        const view = this.snVersion.view as SnView;
         if (!view) {
             return;
+        }
+
+        if (this.snView === view) {
+            return ;
         }
 
         this.snView = view;
@@ -103,8 +116,13 @@ export class ModelEditorComponent implements OnChanges, OnDestroy {
 
         if (this.snView) {
             const languages = this.sessionService.active.datas.read.customer.languages;
-            this.settings = this.modelEditorService.buildSettings(this.snView, this.snModel, this.host, this.customerKey, languages);
+            this.settings = this.modelEditorService.buildSettings(this.snView, this.snModel, this.host, this.customerKey, languages,
+                () => { this.searchActive = true; });
         }
+    }
+
+    onClose() {
+        this.searchActive = false;
     }
 
     onSelected(event: SnSelectionEvent) {

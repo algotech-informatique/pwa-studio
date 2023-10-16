@@ -27,7 +27,7 @@
             @include option-title-selected(var(--TITLE-COLOR));
             padding-top: 10px;
         }
-        
+
         .check {
             display: flex;
             flex-direction: row;
@@ -37,7 +37,7 @@
             .label {
                 padding-top: 9px;
                 @include option-title-selected(var(--TITLE-COLOR));
-                text-align: right;    
+                text-align: right;
             }
 
             .toggle {
@@ -53,23 +53,37 @@
         position: relative;
         height: 100%;
         @include scrollbar-hidden();
-        
+
         .elements {
             height: 100%;
             margin: 10px 10px 20px 10px;
 
-            label {    
+            label {
                 @include option-label(var(--LABEL-COLOR));
+            }
+
+            .smartflow {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                width: 100%;
+                gap: 15px;
+
+                .goto {
+                    cursor: pointer;
+                    color: var(--TITLE-COLOR);
+                }
             }
 
             .element {
                 margin-left: 5px;
+                width: 100%;
             }
-    
+
             .element-end {
                 display: flex;
                 flex-direction: row;
-                
+
                 .subElement {
                     --OPTIONS-CHECK-MARGIN: var(--CHECK-MARGIN);
                     padding-top: 10px;
@@ -92,22 +106,22 @@
             flex-direction: row;
             justify-content: space-around;
             padding: 15px;
-    
+
             .delete-task {
                 @include button();
                 background-color: var(--BUTTON-DELETE-COLOR) !important;
-    
+
                 span {
                     padding: 0px 10px 0px 10px;
                     @include option-title-selected(var(--TITLE-COLOR));
                 }
             }
-    
+
             .delete-task:hover {
                 cursor: pointer;
                 opacity: 0.5;
             }
-    
+
         }
-    }   
+    }
 }

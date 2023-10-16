@@ -14,17 +14,6 @@
     @include title;
 }
 
-.input-elements {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-input-element {
-    display: block;
-    width: 100%;
-}
-
 .margin {
     margin-bottom: 10px;
 }

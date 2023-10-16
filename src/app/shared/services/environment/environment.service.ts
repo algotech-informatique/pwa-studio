@@ -420,6 +420,23 @@ export class EnvironmentService {
         return this.getAllObjectsTreeLine(environments).find((e) => e.refUuid === uuid && e.host === host && e.customerKey === customerKey);
     }
 
+    getPath(environments: EnvironmentDisplayDto[], dirUuid: string, current = '') {
+        const all = this.getAllObjectsTreeLine(environments);
+        if (!dirUuid) {
+            return current;
+        }
+        const find = all.find((ele) => ele.refUuid === dirUuid);
+        if (!find) {
+            return current;
+        }
+        current = find.name + '/' + current;
+        const parent = this.findParent(all, find);
+        if (!parent) {
+            return current;
+        }
+        return this.getPath(environments, parent.refUuid, current);
+    }
+
     findParent(objects: ObjectTreeLineDto[], child: ObjectTreeLineDto) {
         return this.getObjectsTreeLine(objects).find((e) => e.children.some((c) => c.refUuid === child.refUuid));
     }

@@ -3,16 +3,18 @@
 @import '../../../../smart-nodes/theme/mixins';
 
 @mixin scrollbar {
-    overflow-y: auto;
     @include custom-scrollbar;
     overflow: none !important;
     overflow-y: auto;
 }
 :host {
     --SN-COLOR-SCROLLBAR: var(--SN-COLOR-PRIMARY);
+    display: block;
+    height: 100%;
 }
 
 .content{
+    height: 100%;
     background: var(--SN-COLOR-SECONDARY);
     padding: 2px;
     color: var(--SN-COLOR-LIGHT);
@@ -49,7 +51,7 @@
     }
 
     .center {
-        height: 220px;
+        height: 100%;
         margin-top: 5px;
         margin-bottom: 5px;
         padding-left: 10px;

@@ -4,6 +4,7 @@
         <input #input
             type="text"
             class="input"
+            [title]="value"
             [(ngModel)]="value"
             [placeholder]="placeholder"
             (keyup)="onSearch(true)"

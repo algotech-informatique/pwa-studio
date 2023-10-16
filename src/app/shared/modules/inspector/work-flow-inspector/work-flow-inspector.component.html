@@ -17,7 +17,7 @@
 
     <div [style.display]="selected !== 'param' && selected !== 'inspector' ? 'block' : 'none'">
         <inspector-section *ngIf="(context && !param) || nodeContextElement"
-            class="first" [title]="'INSPECTOR.SMART_FLOW.PROPERTIES' | translate">
+            class="inspector-section first" [title]="'INSPECTOR.SMART_FLOW.PROPERTIES' | translate">
             <div class="property">
                 <display-translate-element
                     [title]="'INSPECTOR.SMART_FLOW.PROPERTIES_NAME' | translate"

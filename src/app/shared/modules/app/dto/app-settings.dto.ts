@@ -5,6 +5,7 @@ export class AppSettings {
     languages: LangDto[];
     undo: () => void;
     redo: () => void;
+    search: () => void;
     contextmenus: {
         extended: AppContextmenuActionExtension[];
     };

@@ -26,6 +26,7 @@
 
     <div class="property last" [hidden]="widget?.custom?.typeSrc !== 'file'">
         <ngx-dropzone
+            class="dropzone"
             [multiple]="false"
             [accept]="'image/*'"
             (change)="onChangeFile($event)">

@@ -1,0 +1,21 @@
+<div *ngIf="show" class="content">
+    <input class="input" type="text" [(ngModel)]="filter" [placeholder]="'SEARCHBOX.PLACEHOLDER' | translate"
+        (ngModelChange)="search()" #input (keydown)="onKeydown($event)" (focusout)="onFocusOut()">
+
+    <div class="results">
+        <div class="element" *ngFor="let element of results, let i = index"
+            (click)="openResource(element)" [ngClass]="{'selected': i === selectedIndex}">
+            <i [class]="'categoryIcon ' + element.icon" [ngStyle]="{'color': element.color}"></i>
+            <span class="type" [title]="element.type">
+                {{element.type | truncate: 1: false: '' | uppercase}}
+            </span>
+            <span class="text name">
+                {{ element.displayName | snlang }}
+            </span>
+            <span class="text path">
+                {{ element.path }}
+            </span>
+        </div>
+    </div>
+
+</div>

@@ -40,9 +40,10 @@ export class SnSelectPropertiesComponent implements OnChanges, AfterViewInit {
     @Input() direction: 'in' | 'out' = 'out';
     @Input() displayable = true;
     @Input() skillsMode = false;
-    @Input() multiModelMode: string = null;
+    @Input() multiModelMode = null;
     @Input() multiSelection = true;
     @Input() filter;
+    @Input() showSysDate = false;
 
     _top: any = null;
 
@@ -50,19 +51,17 @@ export class SnSelectPropertiesComponent implements OnChanges, AfterViewInit {
     get top() {
         return this._top;
     }
-
-    @Output()
-    topChange = new EventEmitter();
     set top(data) {
         this._top = data;
         this.topChange.emit(data);
     }
+    @Output() topChange = new EventEmitter();
 
     @Output() addProperties = new EventEmitter<SnParam[]>();
     @Output() removeProperties = new EventEmitter<string[]>();
 
     propertiesDisplay: PropertyDisplay[] = [];
-    propertiesShowed: { parent: PropertyDisplay, properties: PropertyDisplay[] };
+    propertiesShowed: { parent: PropertyDisplay; properties: PropertyDisplay[] };
     allSelected: boolean;
     isSys: boolean;
     isSkill: boolean;
@@ -90,8 +89,7 @@ export class SnSelectPropertiesComponent implements OnChanges, AfterViewInit {
     }
 
     _generateDisplay(type: string, parent: PropertyDisplay, children: any): PropertyDisplay[] {
-        let model: TypeSchema | SmartModelDto;
-        model = this.isSys ?
+        const model: TypeSchema | SmartModelDto = this.isSys ?
             _.find(typesSys, { type }) :
             _.find(this.sessionsService.active.datas.read.smartModels, { key: type });
         if (model || children || this.isSkill) {
@@ -101,8 +99,30 @@ export class SnSelectPropertiesComponent implements OnChanges, AfterViewInit {
             } else {
                 props = this._generateSkills(model as SmartModelDto);
             }
+            if (this.showSysDate) {
+                props.push(...this._addSysDate());
+            }
             return this._generatePropertiesDisplay(props, parent);
         }
+    }
+
+    _addSysDate(): Property[] {
+        return [
+            {
+                key: 'sys:createdDate',
+                uuid: 'sys:createdDate',
+                keyType: 'datetime',
+                multiple: false,
+                name: 'sys:createdDate'
+            },
+            {
+                key: 'sys:updateDate',
+                uuid: 'sys:updateDate',
+                keyType: 'datetime',
+                multiple: false,
+                name: 'sys:updateDate'
+            },
+        ];
     }
 
     _getIcon(type: string) {

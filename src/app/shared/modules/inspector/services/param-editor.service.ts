@@ -199,9 +199,13 @@ export class ParamEditorService {
     private constructionParamNumber(eleParam: SnParam): ParamEditorDto {
         let format = this.displayNumber[0].key;
         let defaultValue = null;
+        let minLen = null;
+        let maxLen = null;
 
         if (eleParam.value) {
             format = (eleParam.value.format === undefined) ? this.displayNumber[0].key : eleParam.value.format;
+            minLen = (eleParam.value.minlen !== undefined) ? eleParam.value.minlen : null;
+            maxLen = (eleParam.value.maxlen !== undefined) ? eleParam.value.maxlen : null;
             defaultValue = (eleParam.value.defaultValue !== undefined) ? eleParam.value.defaultValue : 0;
         }
 
@@ -210,6 +214,8 @@ export class ParamEditorService {
             type: 'number',
             value: {
                 format,
+                minlen: minLen,
+                maxlen: maxLen,
                 condition: this.getCondition(eleParam),
                 defaultValue,
             }

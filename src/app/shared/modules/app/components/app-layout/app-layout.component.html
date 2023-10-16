@@ -44,6 +44,8 @@
                     <g id="grid-layout"
                         [ngClass]="{
                             'highlight': page.displayState?.highlight,
+                            'search': page.displayState?.search,
+                            'search-active': page.displayState?.searchActive,
                             'app-errors': page.displayState?.errors | showAppErrors
                         }"
                     >

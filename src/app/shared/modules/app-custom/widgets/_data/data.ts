@@ -14,6 +14,7 @@ export const group: WidgetTypeDto = {
     icon: 'fa-solid fa-object-group',
     strictParents: [],
     display: [],
+    unreloadable: true,
 };
 
 export const text: WidgetTypeDto = {
@@ -86,6 +87,7 @@ export const rectangle: WidgetTypeDto = {
     typeKey: 'rectangle',
     icon: 'fa-solid fa-image',
     display: ['mobile', 'web'],
+    unreloadable: true,
 };
 
 export const circle: WidgetTypeDto = {
@@ -98,6 +100,7 @@ export const circle: WidgetTypeDto = {
     typeKey: 'circle',
     icon: 'fa-solid fa-circle',
     display: ['mobile', 'web'],
+    unreloadable: true,
 };
 
 export const polyline: WidgetTypeDto = {
@@ -110,6 +113,7 @@ export const polyline: WidgetTypeDto = {
     typeKey: 'polyline',
     icon: 'fa-solid fa-minus',
     display: ['mobile', 'web'],
+    unreloadable: true,
 };
 
 export const board: WidgetTypeDto = {
@@ -143,6 +147,7 @@ export const boardZone: WidgetTypeDto = {
     icon: 'fa-solid fa-draw-polygon',
     strictParents: ['board'],
     display: ['mobile', 'web'],
+    unreloadable: true,
 };
 
 export const magnets: WidgetTypeDto = {
@@ -156,6 +161,7 @@ export const magnets: WidgetTypeDto = {
     icon: 'fa-solid fa-note-sticky',
     strictParents: ['board'],
     display: ['mobile', 'web'],
+    unreloadable: true,
 };
 
 export const magnetProperty: WidgetTypeDto = {
@@ -169,6 +175,7 @@ export const magnetProperty: WidgetTypeDto = {
     icon: 'fa-solid fa-font',
     strictParents: ['magnet'],
     display: ['mobile', 'web'],
+    unreloadable: true,
 };
 
 export const list: WidgetTypeDto = {
@@ -193,6 +200,7 @@ export const tabs: WidgetTypeDto = {
     typeKey: 'tabs',
     icon: 'fa-solid fa-columns',
     display: ['mobile', 'web'],
+    unreloadable: true,
 };
 
 export const header: WidgetTypeDto = {
@@ -209,6 +217,7 @@ export const header: WidgetTypeDto = {
     display: ['mobile', 'web'],
     single: true,
     ungroupable: true,
+    unreloadable: true,
 };
 
 export const footer: WidgetTypeDto = {
@@ -225,6 +234,7 @@ export const footer: WidgetTypeDto = {
     display: ['mobile', 'web'],
     single: true,
     ungroupable: true,
+    unreloadable: true,
 };
 
 export const tab: WidgetTypeDto = {
@@ -253,6 +263,7 @@ export const tabModel: WidgetTypeDto = {
     display: ['mobile', 'web'],
     disabledBox: true,
     hidden: true,
+    unreloadable: true,
 };
 
 export const notification: WidgetTypeDto = {
@@ -276,6 +287,7 @@ export const profile: WidgetTypeDto = {
     typeKey: 'profile',
     icon: 'fa-solid fa-user',
     display: ['web'],
+    unreloadable: true,
 };
 
 export const selector: WidgetTypeDto = {
@@ -288,6 +300,7 @@ export const selector: WidgetTypeDto = {
     typeKey: 'selector',
     icon: 'fa-solid fa-th',
     display: ['web', 'mobile'],
+    unreloadable: true,
 };
 
 export const table: WidgetTypeDto = {
@@ -328,6 +341,7 @@ export const column: WidgetTypeDto = {
     strictParents: ['table'],
     disabledBox: true,
     lockAxis: ['x', 'y'],
+    unreloadable: true,
 };
 
 export const allTypes: WidgetTypeDto[] = [

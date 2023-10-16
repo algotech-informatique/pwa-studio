@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { SnView, SnGroup, SnNode, SnLang, SnFlow, SnParam } from '../../../../smart-nodes/models';
 import {
     SnModelDto, WorkflowModelDto, WorkflowStepModelDto, TaskModelDto, TaskTransitionModelDto,
-    PairDto, WorkflowExpressionDto, WorkflowProfilModelDto, ServiceModelDto, EnvironmentDirectoryDto,
+    PairDto, WorkflowExpressionDto, WorkflowProfilModelDto, ServiceModelDto, EnvironmentDirectoryDto, WorkflowVariableModelDto, SnViewDto,
 } from '@algotech-ce/core';
-import { throwError, of, Observable } from 'rxjs';
+import { throwError, of, Observable, zip, defer } from 'rxjs';
 import { UUID } from 'angular2-uuid';
-import { WorkflowModelsService, SmartFlowsService, KeyFormaterService } from '@algotech-ce/angular';
+import { WorkflowModelsService, SmartFlowsService, KeyFormaterService, EnvironmentsService } from '@algotech-ce/angular';
 import { DatasService, CheckService, MessageService, SessionsService, SnModelsService } from '../../../../../services';
-import { tap, map } from 'rxjs/operators';
+import { tap, map, mergeMap } from 'rxjs/operators';
 import { SnUtilsService, SnTranslateService, SnActionsService } from '../../../../smart-nodes/services';
 import * as _ from 'lodash';
 import { TaskTransitionDataModelDto, EnvironmentParameterDto } from '@algotech-ce/core';
@@ -16,6 +16,7 @@ import { ResourceType } from '../../../../../dtos';
 import { SnPublishFlowTransformService } from './sn-publish-flow-transform/sn-publish-flow-transform';
 import { SnPublishFlowSubflowService } from './sn-publish-flow-subflow/sn-publish-flow-subflow';
 import moment from 'moment';
+import { TranslateService } from '@ngx-translate/core';
 
 const defaultProfil: WorkflowProfilModelDto = {
     uuid: '5138126f-4252-46f3-8a1d-03369b671d4f',
@@ -38,6 +39,8 @@ export class SnPublishFlowService {
         private checkService: CheckService,
         private publishSubflow: SnPublishFlowSubflowService,
         private publishTransform: SnPublishFlowTransformService,
+        private translate: TranslateService,
+        private environmentsService: EnvironmentsService,
     ) { }
 
     publish(snView: SnView, snModel: SnModelDto, host: string, customerKey: string, languages: SnLang[]): Observable<any> {
@@ -50,42 +53,39 @@ export class SnPublishFlowService {
 
         snModel.publishedVersion = version.uuid;
 
-        let flow: WorkflowModelDto = null;
-        try {
-            flow = this.getFlow(snView, snModel, index, languages, snModel.type as ResourceType, host, customerKey);
-        } catch (e) {
-            return throwError(e);
-        }
+        return this.getFlow(snView, snModel, index, languages, snModel.type as ResourceType, host, customerKey).pipe(
+            mergeMap((flow: WorkflowModelDto) => {
+                let publish$: Observable<any> = null;
+                switch (snModel.type) {
+                    case 'smartflow':
+                        publish$ = this.smartflowModelsService.put(flow);
+                        break;
+                    case 'workflow':
+                        publish$ = snView.options.subWorkflow ?
+                            of({}) :
+                            this.workflowModelsService.put(flow).pipe(tap(() => {
+                                this.datasService.notifyPublishWorkflow(customerKey, host, flow);
+                            }));
+                        break;
+                    default:
+                        publish$ = of({});
+                        break;
+                }
 
-        let publish$: Observable<any> = null;
-        switch (snModel.type) {
-            case 'smartflow':
-                publish$ = this.smartflowModelsService.put(flow);
-                break;
-            case 'workflow':
-                publish$ = snView.options.subWorkflow ?
-                    of({}) :
-                    this.workflowModelsService.put(flow).pipe(tap(() => {
-                        this.datasService.notifyPublishWorkflow(customerKey, host, flow);
-                    }));
-                break;
-            default:
-                publish$ = of({});
-                break;
-        }
-
-        return publish$.pipe(
-            tap(() => {
-                this.datasService.notifySNModel(snModel, customerKey, host);
-            }),
-            map(() => true),
+                return publish$.pipe(
+                    tap(() => {
+                        this.datasService.notifySNModel(snModel, customerKey, host);
+                    }),
+                    map(() => true),
+                );
+            })
         );
     }
 
     _createDirectory(snModel: SnModelDto) {
         const directory: EnvironmentDirectoryDto = {
             uuid: UUID.UUID(),
-            name: '_generate',
+            name: this.translate.instant('INSPECTOR.WORK_FLOW.SUB_WORKFLOW'),
             subDirectories: [],
         };
         return this.datasService.createStoreDirectory(
@@ -100,7 +100,7 @@ export class SnPublishFlowService {
 
     exportWorkflow(snModel: SnModelDto, snView: SnView, nodes: SnNode[]) {
         const dir = this._createDirectory(snModel);
-        const name = `${this.snTranslate.transform(snModel.displayName)}`;
+        const name = `${this.snTranslate.transform(snModel.displayName)} (${this.translate.instant('INSPECTOR.WORK_FLOW.SUB_WORKFLOW')})`;
         const model: SnModelDto = this.snModelsService.createNewModel(snModel.type as ResourceType, UUID.UUID(), name,
             this.sessionsService.active.datas.read.localProfil.id, dir.uuid, null, this.sessionsService.active.datas);
 
@@ -135,47 +135,77 @@ export class SnPublishFlowService {
     }
 
     getFlow(snView: SnView, snModel: SnModelDto, viewVersion: number, languages: SnLang[], type: ResourceType,
-        host: string, customerKey: string, injectParameters = false): WorkflowModelDto {
+        host: string, customerKey: string, injectParameters = false): Observable<WorkflowModelDto> {
 
-        let profiles: WorkflowProfilModelDto[] = [];
-        if (type === 'workflow') {
-            profiles = snView.options.profiles && snView.options.profiles.length > 0 ?
-                snView.options.profiles : [defaultProfil];
-        }
+        return defer(() => {
+            let profiles: WorkflowProfilModelDto[] = [];
+            if (type === 'workflow') {
+                profiles = snView.options.profiles && snView.options.profiles.length > 0 ?
+                    snView.options.profiles : [defaultProfil];
+            }
+            const recomposeView = this.publishSubflow.recompose(snView);
+            const proceedView = this.publishTransform.proceedView(recomposeView, profiles.length > 0 ? profiles[0] : null);
 
-        const recomposeView = this.publishSubflow.recompose(snView);
-        const proceedView = this.publishTransform.proceedView(recomposeView, profiles.length > 0 ? profiles[0] : null);
-
-        const flow: WorkflowModelDto = {
-            uuid: snModel.uuid,
-            createdDate: snModel.createdDate,
-            updateDate: moment().format(),
-            viewId: proceedView.id,
-            snModelUuid: snModel.uuid,
-            viewVersion,
-            connectorUuid: this.sessionsService.getRootDirectory(host, customerKey, 'smartflow', snModel.dirUuid)?.uuid,
-            key: snModel.key,
-            displayName: snModel.displayName,
-            iconName: proceedView.options.iconName,
-            parameters: injectParameters ? this.getParameters(snModel, host, customerKey) : [],
-            variables: proceedView.options.variables ? proceedView.options.variables : [],
-            profiles,
-            tags: proceedView.options.tags ? proceedView.options.tags : [],
-            steps: this.getSteps(proceedView, languages),
-            api: proceedView.options.api,
-        };
-
-        return flow;
+            return (injectParameters ? this.getParameters(snModel, snView, host, customerKey) : of([]))
+                .pipe(
+                    map((parameters) => {
+                        const flow: WorkflowModelDto = {
+                            uuid: snModel.uuid,
+                            createdDate: snModel.createdDate,
+                            updateDate: moment().format(),
+                            viewId: proceedView.id,
+                            snModelUuid: snModel.uuid,
+                            viewVersion,
+                            connectorUuid: this.sessionsService.getRootDirectory(host, customerKey, 'smartflow', snModel.dirUuid)?.uuid,
+                            key: snModel.key,
+                            displayName: snModel.displayName,
+                            iconName: proceedView.options.iconName,
+                            parameters,
+                            variables: proceedView.options.variables ? proceedView.options.variables : [],
+                            profiles,
+                            tags: proceedView.options.tags ? proceedView.options.tags : [],
+                            steps: this.getSteps(proceedView, languages),
+                            api: proceedView.options.api,
+                        };
+                        return flow;
+                    })
+                );
+        });
     }
 
-    getParameters(snModel: SnModelDto, host: string, customerKey: string) {
+    getParameters(snModel: SnModelDto, snView: SnView, host: string, customerKey: string): Observable<EnvironmentParameterDto[]> {
         const parameters: EnvironmentParameterDto[] =
             this.sessionsService.getConnectorCustom(host, customerKey, 'smartflow', snModel.dirUuid);
         if (!parameters) {
-            return [];
+            return of([]);
         }
 
-        return _.filter(parameters, (p: EnvironmentParameterDto) => p.key && p.active);
+        const parameters$ = parameters
+            .filter((param) =>
+                param.key &&
+                param.active &&
+                snView.nodes.some(
+                    (n) =>
+                        n.type === 'SnConnectorParameterNode' &&
+                        n.params.find((nodeParam) => nodeParam.direction === 'out'
+                        )?.key === param.key
+                )
+            )
+            .map((param) => {
+                if (!param.password) {
+                    return of(param);
+                }
+
+                return this.environmentsService.decryptPassword(param.value).pipe(
+                    map((password: string) => Object.assign(
+                        _.cloneDeep(param),
+                        {
+                            value: password
+                        }
+                    ))
+                );
+            });
+        return parameters$.length === 0 ? of([]) : zip(parameters$);
     }
 
     getSteps(snView: SnView, languages: SnLang[]): WorkflowStepModelDto[] {

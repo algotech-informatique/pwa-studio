@@ -68,6 +68,8 @@ export class VariablesServices {
             this.createElement('sys:magnet', 'Magnet', 'sys:magnet', false),
             this.createElement('sys:glistvalue', 'genericList', 'sys:glistvalue', false),
             this.createElement('sys:query', 'Query', 'sys:query', false),
+            this.createElement('sys:createdDate', 'Date', 'sys:createdDate', false),
+            this.createElement('sys:updateDate', 'Date', 'sys:updateDate', false),
         ];
 
         const objectTypes = this.objectTypesBuilder(smartModels);

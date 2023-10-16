@@ -6,7 +6,7 @@ import { SnTranslateService } from '../../../../smart-nodes/services';
 import { SnView, SnLang } from '../../../../smart-nodes/models';
 import { SnEntryComponents } from '../../../../smart-nodes/dto';
 import { EntryComponentsService } from '../entry-components/entry-components.service';
-import { SnObjectCreationNodeHelper } from '../../../index-helper';
+import { SnArrayFunctionNodeHelper, SnObjectFunctionNodeHelper, SnObjectCreationNodeHelper } from '../../../index-helper';
 
 @Injectable()
 export class SmartflowEntryComponentsService {
@@ -227,10 +227,12 @@ export class SmartflowEntryComponentsService {
                         displayName: 'SN-ARRAY-FUNCTION',
                         component: components.SnArrayFunctionNodeComponent,
                         schema: schema.SN_ARRAY_FUNCTION_NODE_SCHEMA,
+                        helper: SnArrayFunctionNodeHelper,
                     }, {
                         displayName: 'SN-OBJECT-FUNCTION',
                         component: components.SnObjectFunctionNodeComponent,
                         schema: schema.SN_OBJECT_FUNCTION_NODE_SCHEMA,
+                        helper: SnObjectFunctionNodeHelper,
                     }, {
                         displayName: 'SN-GEO-NODE',
                         component: components.SnGeoNodeComponent,

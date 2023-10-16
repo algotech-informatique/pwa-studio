@@ -1,6 +1,6 @@
-import { Component, Input, ChangeDetectorRef, OnDestroy, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, ChangeDetectorRef, OnDestroy, OnChanges } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { CheckOptionsDto, CheckEvent } from '../../dtos';
+import { CheckOptionsDto, CheckEvent, SnSearchDto } from '../../dtos';
 import { ConfigService, MessageService, SessionsService } from '../../services';
 
 @Component({
@@ -21,6 +21,9 @@ export class EditorContentComponent implements OnDestroy, OnChanges {
 
     @Input()
     host: string;
+
+    @Input()
+    search: SnSearchDto;
 
     loaded = true;
     subscription: Subscription;

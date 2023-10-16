@@ -7,7 +7,7 @@
     </div>
 
     <as-split direction="horizontal" unit="percent">
-        <as-split-area size="*">
+        <as-split-area class="split" size="*">
             <div class="container">
                 <div *ngIf="!imports || imports.length === 0" class="empty">{{ 'INSPECTOR.I18N.MONITORING.NO.DATA' | translate}}</div>
                 <options-monitoring class="card"

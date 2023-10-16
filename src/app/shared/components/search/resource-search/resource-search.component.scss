@@ -1,0 +1,62 @@
+@import '../../../../../styles.scss';
+@import '../search-mixins.scss';
+
+:host {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    color: $COLOR-FG;
+    font-size: 12px;
+}
+
+.content {
+    width: 350px;
+}
+
+input {
+    width: 100%;
+    @include search-input();
+    margin-top: 2px;
+    padding: 4px;
+    background-color: $COLOR-BG;
+    border: 2px solid $COLOR-BTN !important;
+}
+
+.results {
+    width: 100%;
+    background-color: $COLOR-BG;
+    max-height: 350px;
+    @include scrollbar(auto);
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+
+    .element {
+        padding: 5px;
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 5px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $EXPLORER-BG-ACTIVE;
+        }
+
+        &.selected {
+            background-color: $COLOR-BTN;
+        }
+
+        .text {
+            white-space: nowrap;
+        }
+
+        .path {
+            opacity: 0.5;
+            font-style: italic;
+        }
+    }
+}

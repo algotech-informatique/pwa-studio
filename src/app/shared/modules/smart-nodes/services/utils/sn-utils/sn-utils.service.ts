@@ -7,6 +7,7 @@ import * as _ from 'lodash';
 import { SnDOMService } from '../sn-dom/sn-dom.service';
 import { UUID } from 'angular2-uuid';
 import { SnCanvasDto } from '@algotech-ce/core';
+import { SnCameraAutoNodeComponent } from '../../../../smart-nodes-custom';
 
 @Injectable()
 export class SnUtilsService {
@@ -324,6 +325,23 @@ export class SnUtilsService {
                 insideCanvas;
         });
         return box ? box : group;
+    }
+
+    getNodeIntersection(snView: SnView, canvas: SnCanvas) {
+        return snView.nodes.find((n: SnNode) => {
+            let insideCanvas = this.intersectNode(n.canvas, canvas, this.snDOM.nodeWith, this.snDOM.nodeMaxHeight);
+            if (insideCanvas) {
+                const nodeCanvas = this.snDOM.getNodeCanvas(n);
+                insideCanvas = this.intersectNode(n.canvas, canvas, this.snDOM.nodeWith, nodeCanvas.height);
+            }
+            return insideCanvas;
+        });
+    }
+
+    intersectNode(canvas: SnCanvas, canvasCompare: SnCanvas, width = 0, height = 0): boolean {
+        const intX = (canvas.x <= canvasCompare.x) && (canvas.x + width >= canvasCompare.x);
+        const intY = (canvas.y <= canvasCompare.y) && (canvas.y + height >= canvasCompare.y);
+        return intX && intY;
     }
 
     intersectCanvas(canvas: SnCanvas, canvasCompare: SnCanvas): boolean {

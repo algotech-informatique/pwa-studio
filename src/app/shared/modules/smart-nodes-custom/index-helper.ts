@@ -1,6 +1,8 @@
 // shared helper
 export { SnFormulaNodeHelper } from './shared/sn-formula/sn-formula-node.helper';
 export { SnDataNodeHelper } from './shared/sn-data-node/sn-data-node.helper';
+export { SnArrayFunctionNodeHelper } from './shared/sn-array-function-node/sn-array-function.helper';
+export { SnObjectFunctionNodeHelper } from './shared/sn-object-function-node/sn-object-function-node.helper';
 
 // workflow
 export { SnLauncherNodeHelper } from './workflow/lifecycle/sn-launcher-node/sn-launcher-node.helper';

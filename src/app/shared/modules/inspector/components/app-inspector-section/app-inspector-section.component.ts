@@ -10,6 +10,7 @@ import { sections } from '../../../app-custom/widgets/_data/inspector-sections';
     selector: 'app-inspector-section',
     template: `
         <inspector-section
+            class="inspector-section"
             [title]="title"
             [titleIcon]="titleIcon"
             [subTitle]="subTitle"

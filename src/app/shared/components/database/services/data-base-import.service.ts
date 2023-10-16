@@ -85,7 +85,9 @@ export class DataBaseImportService {
   }
 
   getData(mappings: PairDto[], smartModel): Row[] {
-    return smartModel.properties.map(prop => {
+    return smartModel.properties
+    .filter((prop) => !prop.keyType.startsWith('so:') && !prop.keyType.startsWith('sys:'))
+    .map(prop => {
       const mapping = mappings.find(m => m.value && m.value.key === prop.key);
       const display = this.translateService.transform(prop.displayName, undefined, false);
 

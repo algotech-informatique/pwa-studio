@@ -76,6 +76,7 @@ export { SnFinisherNodeComponent } from './workflow/lifecycle/sn-finisher-node/s
 export { SnLauncherNodeComponent } from './workflow/lifecycle/sn-launcher-node/sn-launcher-node.component';
 export { SnMultiChoiceNodeComponent } from './workflow/lifecycle/sn-multichoice-node/sn-multichoice-node.component';
 export { SnUndoNodeComponent } from './workflow/lifecycle/sn-undo-node/sn-undo-node.component';
+export { SnLockGoBackNodeComponent } from './workflow/lifecycle/sn-lock-goback/sn-lock-goback.component';
 export { SnLoopNodeComponent } from './workflow/lifecycle/sn-loop-node/sn-loop-node.component';
 export { SnSubWorkflowNodeComponent } from './workflow/lifecycle/sn-sub-workflow-node/sn-sub-workflow-node.component';
 export { SnSwitchNodeComponent } from './workflow/lifecycle/sn-switch-node/sn-switch-node.component';

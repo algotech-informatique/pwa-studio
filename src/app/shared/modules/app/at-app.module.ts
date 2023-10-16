@@ -11,7 +11,7 @@ import {
     PageAddWidgetService, PageDragLandmarkService, PageDragService, PageDragWidgetService,
     PageResizeWidgetService, AppSelectionService, PageUtilsService, PageWidgetService,
     AppZoomService, AppContextmenuService, AppActionsService, AppClipboardService, AppSelectorService,
-    AppDragPageService, AppLinksService, AppResizePageService
+    AppDragPageService, AppLinksService, AppResizePageService, AppSearchService
 } from './services';
 import { ElementSelectedPipe } from './pipes/widget-selected.pipe';
 import { ScaleZoomPipe } from './pipes/scale-zoom.pipe';
@@ -27,6 +27,7 @@ import { WidgetsWithIconPipe } from './pipes/widget-with-icon.pipe';
 import { SharedComponentsPipe } from './pipes/shared-components.pipe';
 import { LockedComponentsPipe } from './pipes/locked-components.pipe';
 import { WidgetTypePipe } from './pipes/widget-type.pipe';
+import { GetTypePipe } from './pipes/get-type.pipe';
 
 @NgModule({
     imports: [
@@ -53,7 +54,8 @@ import { WidgetTypePipe } from './pipes/widget-type.pipe';
         WidgetsWithIconPipe,
         SharedComponentsPipe,
         LockedComponentsPipe,
-        WidgetTypePipe
+        WidgetTypePipe,
+        GetTypePipe,
     ],
     exports: [
         AppLayoutComponent,
@@ -67,7 +69,8 @@ import { WidgetTypePipe } from './pipes/widget-type.pipe';
         WidgetsWithIconPipe,
         SharedComponentsPipe,
         LockedComponentsPipe,
-        WidgetTypePipe
+        WidgetTypePipe,
+        GetTypePipe,
     ],
     providers: [
         AppZoomService,
@@ -78,6 +81,7 @@ import { WidgetTypePipe } from './pipes/widget-type.pipe';
         AppClipboardService,
         AppDragPageService,
         AppLinksService,
+        AppSearchService,
         PageUtilsService,
         PageDragService,
         PageDragWidgetService,

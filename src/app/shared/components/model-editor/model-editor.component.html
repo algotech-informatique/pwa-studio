@@ -12,10 +12,19 @@
                 </toolbox-drawing>
 
                 <div class="work-layout">
-                    <sn-main-layout class="layout" [settings]="settings" [snView]="snView"
-                        (selected)="onSelected($event)" (changed)="onChanged($event)">
-                    </sn-main-layout>
-                    <sn-data-model-inspector *ngIf="snModel && snView" [snModel]="snModel" [snView]="snView"
+                    <div class="work-layout">
+                        <sn-main-layout class="layout" [settings]="settings" [snView]="snView" [search]="search"
+                            (selected)="onSelected($event)" (changed)="onChanged($event)">
+                        </sn-main-layout>
+                        <local-search
+                            [snModelUuid]="snModel.uuid"
+                            [version]="snVersion"
+                            (closed)="onClose()"
+                            class="local-search"
+                            *ngIf="searchActive">
+                        </local-search>
+                    </div>
+                    <sn-data-model-inspector id="sn-data-model-inspector" *ngIf="snModel && snView" [snModel]="snModel" [snView]="snView"
                         [context]="context" [custom]="context?.element?.custom" [options]="snView.options"
                         [fieldOptions]="fieldOptions" [forceOpenTab]="openInspector" (changed)="onChangedInspector()">
                     </sn-data-model-inspector>

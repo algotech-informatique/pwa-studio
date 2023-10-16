@@ -29,6 +29,7 @@
         }
     
         .main-layout {
+            position: relative;
             display: block;
             height: 100%;
             width: 100%;
@@ -42,11 +43,11 @@
     }
 }
 
-at-workflow-debugger-layout {
+#at-workflow-debugger-layout {
     --DESKTOP-SIZE-WIDTH: 500px;
 }
 
-sn-smart-flow-inspector {
+#sn-smart-flow-inspector {
     margin-top: #{$TOP-BAR-HEIGHT};
     z-index: 1;
 }

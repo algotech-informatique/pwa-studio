@@ -47,7 +47,6 @@ export class ObjectTreeLineComponent {
         event.stopPropagation();
         this.line.active = true;
         if (this.line.type !== 'smartmodel') {
-            const excludedTypes = ['smartflow', 'report'];
             const isSAdmin = this.sessionService.active &&
                 _.indexOf(this.sessionService.active.datas.read.localProfil.groups, 'sadmin') !== -1;
             const menu: SnContextmenu = cmTreeLine(() => {
@@ -56,6 +55,8 @@ export class ObjectTreeLineComponent {
                 this.sessionService.removeElement(this.line);
             }, () => {
                 this.line.renaming = true;
+            }, () => {
+                this.messageService.send('find-reference', this.line.refUuid);
             },
                 (isSAdmin && !this.line.selected),
                 this.clipboardService.canCopy(this.line.type),

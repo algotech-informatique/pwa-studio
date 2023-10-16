@@ -1,6 +1,7 @@
 <div *ngFor="let p of pair; index as indexPair;"
     [ngClass]="{'subcard': p?.profiles?.length > 1}">
     <multi-select-element
+        class="multi-select-element"
         [ngStyle]="{'border-left': '3px solid ' + eventProfiles[0]?.color}"
         [title]="eventProfiles[0]?.name"
         [list]="listsGroups"
@@ -9,7 +10,9 @@
     </multi-select-element>
     <div *ngIf="p?.profiles?.length > 1">
         <div *ngFor="let profile of p?.profiles | slice:1; index as indexProfile;" class="subproperty">
-            <select-element *ngIf="listsGroups"
+            <select-element
+                class="select-element"
+                *ngIf="listsGroups"
                 [ngStyle]="{'border-left': '3px solid ' + eventProfiles[indexProfile + 1]?.color}"
                 [title]="eventProfiles[indexProfile + 1]?.name"
                 [list]="listsGroups"

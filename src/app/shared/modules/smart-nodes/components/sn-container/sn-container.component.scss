@@ -9,7 +9,6 @@
         height: var(--SN-CONTAINER-HEADER-HEIGHT);
         font-size: var(--SN-CONTAINER-HEADER-FONT-SIZE);
         color: var(--SN-COLOR-FONT);
-        padding: var(--SN-CONTAINER-HEADER-PADDING);
         width: 100%;
         font-weight: bold;
         display: flex;
@@ -23,6 +22,10 @@
         .comment {
             font-size: 20px;
             padding: 10px;
+
+            &.exists {
+                color: var(--SN-COLOR-SUCCESS);
+            }
         }
     }
 
@@ -38,8 +41,6 @@
         display: flex;
 
         .icon-style {
-            flex-direction: column;
-            align-items: center;
             color: var(--SN-COLOR-FONT);
             display: flex;
             flex-direction: column;
@@ -83,9 +84,11 @@
 
 .box {
     background: var(--SN-BOX-COLOR);
+
     &.header {
         background: var(--SN-CONTAINER-HEADER-COLOR);
     }
+
     &.dragHover {
         background: var(--SN-BOX-DRAGHOVER-COLOR) !important;
     }
@@ -97,4 +100,12 @@
 
 .selected {
     box-shadow: 0 0 0 var(--SN-SELECTION-BORDER) var(--SN-COLOR-SELECTION);
+}
+
+.search {
+    box-shadow: 0 0 0 var(--SN-SELECTION-BORDER) var(--SN-COLOR-SEARCH);
+}
+
+.search-active {
+    box-shadow: 0 0 0 var(--SN-SELECTION-BORDER) var(--SN-COLOR-SEARCH-ACTIVE);
 }

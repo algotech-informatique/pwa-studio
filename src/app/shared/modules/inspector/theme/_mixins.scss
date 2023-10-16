@@ -226,7 +226,7 @@
         .title {
             display: flex;
             flex-direction: row;
-            font-family: 'roboto-bold';
+            font-family: 'roboto-bold', sans-serif;
         }
 
         .subtitle,
@@ -447,7 +447,7 @@
     }
 
     .tab {
-        font-family: 'roboto-medium';
+        font-family: 'roboto-medium', sans-serif;
         cursor: pointer;
         margin: 0 8px;
         user-select: none;
@@ -463,7 +463,7 @@
     }
 
     .selected-tab {
-        font-family: 'roboto-bold';
+        font-family: 'roboto-bold', sans-serif;
     }
 }
 

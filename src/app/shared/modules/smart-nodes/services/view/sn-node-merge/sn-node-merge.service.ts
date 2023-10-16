@@ -56,11 +56,19 @@ export class SnNodeMergeService {
         }, []);
 
         if (towards.length !== 0) {
+            let i = 0;
             for (const flow of newFlows) {
                 if (flow.direction === 'out' && !flow.toward) {
-                    const tow = towards.find((tw) => tw.flowId === flow.id);
-                    if (tow) {
-                        flow.toward = tow.toward;
+                    if (node.flowsEditable) {
+                        const tow = towards.find((tw) => tw.flowId === flow.id);
+                        if (tow) {
+                            flow.toward = tow.toward;
+                        }
+                    } else {
+                        if (i < towards.length) {
+                            flow.toward = towards[i].toward;
+                            i++;
+                        }
                     }
                 }
             }

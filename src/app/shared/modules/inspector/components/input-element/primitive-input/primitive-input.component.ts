@@ -40,7 +40,7 @@ export class PrimitiveInputComponent implements OnInit, OnChanges {
         if (this.inputType === 'number') {
             this.input.value = +value || 0;
         } else if (this.inputType === 'date') {
-            this.input.value = moment(value).isValid() ? moment(value).startOf('day').format() : null;
+            this.input.value = moment(value).isValid() ? moment(value).utc(true).startOf('day').format() : null;
         } else if (this.inputType === 'datetime-local') {
             this.input.value = moment(value).isValid() ? moment(value).format() : null;
         } else if (this.inputType === 'time') {

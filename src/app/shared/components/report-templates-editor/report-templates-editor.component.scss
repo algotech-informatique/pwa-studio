@@ -14,13 +14,13 @@
             text-align: center;
             line-height: 30px;
         }
-    
+
         .content {
             display: flex;
             flex-direction: column;
             min-height: 80px;
             justify-content: space-around;
-    
+
             .name {
                 @include normal-text($EDITOR-COLOR-TXT);
                 border: none;
@@ -28,20 +28,37 @@
                 border-bottom: thin solid $EDITOR-COLOR-INPUTS;
                 outline: none;
             }
-    
+
             .file {
                 border: none;
                 visibility: hidden;
                 outline: none;
                 box-shadow: none;
             }
-    
+
+            .file-info {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+
+                .file-info-content {
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                }
+
+                .file-info-download {
+                    cursor: pointer;
+                    color: $EDITOR-COLOR-INPUTS;
+                }
+            }
+
             span {
                 border-bottom: thin solid $COLOR-BG-LIGHT;
                 display: flex;
                 flex-direction: column;
             }
-    
+
             .grid {
                 height: 400px;
                 @include scrollbar(transparent, 0px);
@@ -57,38 +74,41 @@
                 margin: 5px 0px;
                 @include title($EDITOR-COLOR-INPUTS)
             }
-    
+
             .info {
                 @include normal-sub-text($EDITOR-COLOR-TXT)
             }
-    
+
             .success {
                 @include normal-sub-text($EDITOR-COLOR-INPUTS)
             }
-    
+
             .error {
                 @include normal-sub-text($COLOR-WARN)
             }
-    
+
             .column {
                 @include normal-text($EDITOR-COLOR-TXT);
                 width: fit-content;
                 display: flex;
                 justify-content: center;
                 margin: 3px 0px;
-                .type-container{
+
+                .type-container {
                     width: 85%;
-                .display-element {
-                    width: 100%;
-                    --INSPECTOR-TYPE-PADDING: 0px;
-                    --INSPECTOR-DISPLAY-HEIGHT: 35px;
-                    --INSPECTOR-FONT-SIZE: 16px;
-                    --INSPECTOR-DISPLAY-PADDING: 0px;
-                    // --INSPECTOR-TYPE-POSITION: relative;
-                    --INSPECTOR-SECTION-CONTENT-BACKGROUND:  #1C232D;
-                    --INSPECTOR-TYPE-WIDTH: 150px;
-                }}
-    
+
+                    .display-element {
+                        width: 100%;
+                        --INSPECTOR-TYPE-PADDING: 0px;
+                        --INSPECTOR-DISPLAY-HEIGHT: 35px;
+                        --INSPECTOR-FONT-SIZE: 16px;
+                        --INSPECTOR-DISPLAY-PADDING: 0px;
+                        // --INSPECTOR-TYPE-POSITION: relative;
+                        --INSPECTOR-SECTION-CONTENT-BACKGROUND: #1C232D;
+                        --INSPECTOR-TYPE-WIDTH: 150px;
+                    }
+                }
+
                 .container {
                     display: block;
                     position: relative;
@@ -101,7 +121,7 @@
                     -ms-user-select: none;
                     user-select: none;
                 }
-    
+
                 .container input {
                     position: absolute;
                     opacity: 0;
@@ -109,7 +129,7 @@
                     height: 0;
                     width: 0;
                 }
-    
+
                 .checkmark {
                     position: absolute;
                     top: 0;
@@ -119,26 +139,26 @@
                     border-radius: 3px;
                     background-color: #eee;
                 }
-    
+
                 .container:hover input~.checkmark {
                     background-color: #ccc;
                     border: thin solid $COLOR-BG-LIGHT;
                 }
-    
+
                 .container input:checked~.checkmark {
                     background-color: $EDITOR-COLOR-INPUTS;
                 }
-    
+
                 .checkmark:after {
                     content: "";
                     position: absolute;
                     display: none;
                 }
-    
+
                 .container input:checked~.checkmark:after {
                     display: block;
                 }
-    
+
                 /* Style the checkmark/indicator */
                 .container .checkmark:after {
                     left: 7px;
@@ -164,28 +184,27 @@
             .first {
                 border-bottom: thin solid $COLOR-BG-LIGHT;
             }
-    
+
             .header {
                 @include normal-text($EDITOR-COLOR-TXT);
             }
-    
+
         }
-    
+
         select {
             width: 80px;
             border: none;
             border-bottom: 1px var(--INSPECTOR-SECTION-TITLE-COLOR) solid;
             color: var(--INSPECTOR-SECTION-TITLE-COLOR);
             background: transparent;
-    
+
             option {
                 padding: 5px;
                 background: #1C232D;
                 ;
             }
-    
+
         }
     }
 
 }
-

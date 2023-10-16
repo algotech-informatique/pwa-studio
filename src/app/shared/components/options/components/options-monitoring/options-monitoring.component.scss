@@ -14,25 +14,6 @@
     --ion-color-success: var(--ALGOTECH-SUCCESS);
     --ion-color-warning: var(--ALGOTECH-WARNING);
     --ion-color-danger: var(--ALGOTECH-DANGER);
-
-    as-split-area {
-        @include custom-scrollbar(var(--INSPECTOR-VERT-MENU-LIGHT-COLOR), #ffffff00, 5px);
-    }
-
-    ::ng-deep .as-split-gutter {
-        background-color: var(--DB-BACKGROUD-COLOR) !important;
-        align-items: flex-end !important;
-        pointer-events: none;
-        width: 0% !important;
-        height: 0% !important;
-
-        &>.as-split-gutter-icon {
-            background-color: var(--DB-BACKGROUD-COLOR) !important;
-            pointer-events: all;
-            transition: all 0.3s;
-            opacity: 0;
-        }
-    }
 }
 
 .card {

@@ -119,6 +119,7 @@ import { EventCardTypePageComponent } from './app-inspector/widget-parameters/ev
 import { EventCardTypeCallOnloadComponent } from './app-inspector/widget-parameters/events-parameters/events-cards/event-card/event-card-type/event-card-type-call-onload/event-card-type-call-onload.component';
 import { EventCardTypeUrlComponent } from './app-inspector/widget-parameters/events-parameters/events-cards/event-card/event-card-type/event-card-type-url/event-card-type-url.component';
 import { EventCardTypeSmartobjectsComponent } from './app-inspector/widget-parameters/events-parameters/events-cards/event-card/event-card-type/event-card-type-smartobjects/event-card-type-smartobjects.component';
+import { VariableTypesService } from './services/variable-types.service';
 
 @NgModule({
     declarations: [
@@ -277,6 +278,7 @@ import { EventCardTypeSmartobjectsComponent } from './app-inspector/widget-param
         DataModelInspectorService,
         VariablesServices,
         PageWidgetParametersService,
+        VariableTypesService,
         KeyToDisplayPipe,
         EventTypeIconPipe,
         EventActionPipe,

@@ -15,3 +15,4 @@ export { AppSelectorService } from './page-drag/app-selector/app-selector.servic
 export { AppDragPageService } from './page-drag/app-drag-page/app-drag-page.service';
 export { AppResizePageService } from './page-drag/app-resize-page/app-resize-page.service';
 export { AppLinksService } from './app-links/app-links.service';
+export { AppSearchService } from './app-search/app-search.service';

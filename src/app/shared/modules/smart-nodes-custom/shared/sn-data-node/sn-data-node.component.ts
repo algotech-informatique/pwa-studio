@@ -13,6 +13,7 @@ import { SnATNodeUtilsService } from '../sn-at-node/sn-at-node-utils.service/sn-
         [snView]="snView"
         [(top)]="top"
         [type]="type"
+        showSysDate="true"
         [selectedProperties]="selectedProperties"
         (addProperties)="addProperties($event)"
         (removeProperties)="removeProperties($event)">
@@ -43,7 +44,8 @@ export class SnDataNodeComponent extends SnATNodeComponent {
     }
 
     calculate() {
-        const entryComponent = this.snEntryComponent.findEntryComponent(this.snView, this.settings, this.node);
+        const entryComponent = this.
+        snEntryComponent.findEntryComponent(this.snView, this.settings, this.node);
         if (this.node && entryComponent) {
             this.snActions.mergedNode(this.snView, this.node, entryComponent.schema);
         }

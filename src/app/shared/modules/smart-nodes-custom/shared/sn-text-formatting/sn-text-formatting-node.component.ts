@@ -114,7 +114,6 @@ export class SnTextFormattingNodeComponent extends SnATNodeComponent implements 
                 editText: this.node.params[0].value,
                 activeLangs: this.langs,
             },
-            event: ev,
             cssClass:  'popover_class_text_formatting',
             showBackdrop: true,
             backdropDismiss: true,

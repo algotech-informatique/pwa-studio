@@ -145,7 +145,9 @@ export class SnLinksService {
     }
 
     drawTransition(transition: SnLinkMatrice, snView: SnView, container) {
-        const state = !transition.link.connector ? 'no-clickable' : (transition.link.connector.displayState.selectedLink ? 'selected' : 'clickable');
+        const state = !transition.link.connector ?
+            'no-clickable' :
+            (transition.link.connector.displayState?.selectedLink ? 'selected' : 'clickable');
         this.draw(transition, state, container, () => {
             this.snSelection.select(d3.event, snView, { element: transition.link.connector, type: 'link' });
         }, () => {

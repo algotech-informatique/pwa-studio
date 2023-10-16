@@ -27,7 +27,7 @@
 
     .url {        
         user-select: text;
-        font-family: 'monospace';
+        font-family: 'monospace', sans-serif;
         font-weight: 600;
         overflow-wrap: anywhere;
     }
@@ -35,6 +35,6 @@
 
 }
 
-inspector-section.first {
+.inspector-section.first {
     --BORDER-TOP-WIDTH: 0;
 }

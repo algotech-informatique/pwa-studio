@@ -19,6 +19,7 @@
         </div>
 
         <route-variables
+            class="route-variables"
             use='url-segment'
             [title]="'INSPECTOR.SMART_FLOW.API.PATH_PARAMETERS' | translate"            
             [buttonAdd]="'INSPECTOR.SMART_FLOW.API.PATH_PARAMETERS.ADD' | translate"
@@ -30,7 +31,7 @@
     </inspector-section>
 
     <inspector-section [title]="'INSPECTOR.SMART_FLOW.API.QUERY_PARAMETERS' | translate">
-        <route-variables class="last"
+        <route-variables class="route-variables last"
             use='query-parameter'
             [buttonAdd]="'INSPECTOR.SMART_FLOW.API.QUERY_PARAMETERS.ADD' | translate"
             [emptyString]="'INSPECTOR.SMART_FLOW.API.QUERY_PARAMETERS.EMPTY' | translate"
@@ -50,7 +51,7 @@
     </inspector-section>
 
     <inspector-section [title]="'INSPECTOR.SMART_FLOW.API.HEADERS' | translate">
-        <route-variables class="last"
+        <route-variables class="route-variables last"
             use='header'
             [buttonAdd]="'INSPECTOR.SMART_FLOW.API.HEADERS.ADD' | translate"
             [emptyString]="'INSPECTOR.SMART_FLOW.API.HEADERS.EMPTY' | translate"
@@ -78,7 +79,7 @@
             </display-check-element>
             
             <multi-select-element *ngIf="api.auth.jwt && api.auth.groups"
-                class="inside-section auth"
+                class="multi-select-element inside-section auth"
                 [title]="'INSPECTOR.SMART_FLOW.API.SECURITY.GROUPS' | translate"
                 [list]="securityGroupList"
                 [selectedKeys]="api.auth.groups"

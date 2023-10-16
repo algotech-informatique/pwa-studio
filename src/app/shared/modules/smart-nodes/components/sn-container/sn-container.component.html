@@ -5,15 +5,21 @@
         'box': type === 'box',
         'dragHover': container.displayState?.dragHover,
         'bringToFront': container.displayState?.bringToFront, 
-        'selected': container.displayState?.selected }"
+        'selected': container.displayState?.selected,
+        'search': container?.displayState?.search,
+        'search-active': container?.displayState?.searchActive }"
     >
 
     <div class="header" [ngStyle]="{'background': container.color}">
+
+        <i class="fa-solid fa-comment comment"
+        [ngClass]="{
+            'exists' : snView.comments | snHasComment: container
+        }"
+        (click)="openComment()"></i>
         <span class="name">
             {{container.displayName | snlang}}
         </span>
-
-        <i class="fa-solid fa-comment-medical comment" (click)="openComment()"></i>
     </div>
 
     <div class="content" 

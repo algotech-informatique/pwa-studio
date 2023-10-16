@@ -14,6 +14,7 @@
             (eventChanged)="onEventChanged($event, ev)">
         </inherit-event-cards>
         <events-cards
+            class="events-cards"
             [ngClass]="{'with-inherit-cards': listInheritEvents[i]?.pipe?.length > 0}"
             [event]="ev"
             [page]="page"

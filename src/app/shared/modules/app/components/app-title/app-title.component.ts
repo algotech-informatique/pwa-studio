@@ -1,6 +1,6 @@
 import { SnAppDto, SnPageDto } from '@algotech-ce/core';
 import { Component, Input } from '@angular/core';
-import { AppSelectionService, AppZoomService } from '../../services';
+import { AppActionsService, AppSelectionService, AppZoomService } from '../../services';
 
 @Component({
     selector: 'app-title',
@@ -19,7 +19,9 @@ import { AppSelectionService, AppZoomService } from '../../services';
         <div class="variables" *ngIf="page.variables.length > 0">
             <i class="fa-solid fa-arrow-circle-right"></i>
             <span *ngFor="let variable of page.variables, let i = index">
-                <span class="item" (click)="onSelect('variable.' + variable.key)" [ngClass]="{
+                <span class="item"
+                    [title]="variable.type"
+                    (click)="onSelect('variable.' + variable.key)" [ngClass]="{
                     'active': page.displayState?.activeZone === 'variable.' + variable.key
                 }">{{variable.key }}</span>
                 <span>{{ ((i < page.variables.length - 1) ? ', ' : '') }}</span>
@@ -31,7 +33,9 @@ import { AppSelectionService, AppZoomService } from '../../services';
         <div class="datasources" *ngIf="page.dataSources.length > 0">
             <i class="fa-solid fa-database"></i>
             <span *ngFor="let datasource of page.dataSources, let i = index">
-                <span class="item" (click)="onSelect('datasource.' + datasource.key)"  [ngClass]="{
+                <span class="item"
+                    [title]="appActions.update | getType: datasource"
+                    (click)="onSelect('datasource.' + datasource.key)"  [ngClass]="{
                     'active': page.displayState?.activeZone === 'datasource.' + datasource.key
                 }">{{datasource.key }}</span>
                 <span>{{ ((i < page.dataSources.length - 1) ? ', ' : '') }}</span>
@@ -55,7 +59,7 @@ export class AppTitleComponent {
     @Input()
     error: boolean;
 
-    constructor(public appSelection: AppSelectionService, public appZoom: AppZoomService) { }
+    constructor(public appSelection: AppSelectionService, public appActions: AppActionsService, public appZoom: AppZoomService) { }
 
     onSelect(key: string) {
         this.appSelection.unselect(this.snApp);

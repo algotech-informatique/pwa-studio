@@ -1,11 +1,11 @@
-import { ChangeDetectorRef, Component, Input, OnChanges, OnDestroy, ViewChild } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy } from '@angular/core';
 import {
     SnView, SnSelectionEvent, SnActionsService, SnParam, SnZoomService, SnUtilsService,
-    SnContextmenuActionExtension, SnNode
+    SnContextmenuActionExtension, SnNode, SnGroup, SnBox
 } from '../../modules/smart-nodes';
 import { SnSettings } from '../../modules/smart-nodes/dto/sn-settings';
 import { SessionsService } from '../../services/sessions/sessions.service';
-import { SnModelDto, WorkflowModelDto, SmartModelDto, SnViewDto } from '@algotech-ce/core';
+import { SnModelDto, WorkflowModelDto, SmartModelDto, SnViewDto, SnVersionDto } from '@algotech-ce/core';
 import {
     DatasService,
     SmartModelsService, MessageService, SnModelsService,
@@ -16,7 +16,7 @@ import {
     WorkflowEntryComponentsService, SnCustomSmartConnectionsService,
     SnPublishFlowService, SnDebugService
 } from '../../modules/smart-nodes-custom';
-import { ResourceType, ValidationReportDto } from '../../dtos';
+import { ResourceType, SnSearchDto, ValidationReportDto } from '../../dtos';
 import { ParamEditorDto } from '../../modules/inspector/dto/param-editor.dto';
 import { ParamEditorService } from '../../modules/inspector/services/param-editor.service';
 import { WorkflowSubjectService, InterpretorSubjectDto } from '@algotech-ce/business';
@@ -30,9 +30,7 @@ import {
     SnLauncherNodeHelper
 } from '../../modules/smart-nodes-custom/index-helper';
 import { SnFinisherNodeHelper } from '../../modules/smart-nodes-custom/workflow/lifecycle/sn-finisher-node/sn-finisher-node.helper';
-import HelperUtils from '../../modules/smart-nodes-custom/helper/helper.utils';
 import { OpenInspectorType } from '../../modules/app/dto/app-selection.dto';
-import { TreeDebugComponent } from '../tree-debug/tree-debug.component';
 
 @Component({
     selector: 'app-workflow-editor',
@@ -45,6 +43,7 @@ export class WorkflowEditorComponent implements OnChanges, OnDestroy {
 
     @Input() customerKey: string;
     @Input() host: string;
+    @Input() search: SnSearchDto;
 
     context: {
         type: string;
@@ -54,6 +53,7 @@ export class WorkflowEditorComponent implements OnChanges, OnDestroy {
 
     settings: SnSettings = null;
     snModel: SnModelDto = null;
+    snVersion: SnVersionDto = null;
     snView: SnView;
     smartModel: SmartModelDto | SmartModelDto[];
 
@@ -69,6 +69,8 @@ export class WorkflowEditorComponent implements OnChanges, OnDestroy {
 
     openSmartLink = false;
     workFlow: WorkflowModelDto;
+
+    searchActive = false;
 
     nodesDocumentation = false;
     openInspector: OpenInspectorType;
@@ -129,10 +131,21 @@ export class WorkflowEditorComponent implements OnChanges, OnDestroy {
         }
 
         this.snModel = this.sessionsService.findModel(this.host, this.customerKey, this.snModelUuid);
-        this.snView = this.snModelsService.getActiveView(this.snModel) as SnView;
-        if (!this.snView) {
-            return;
+        if (!this.snModel) {
+            return ;
         }
+        this.snVersion = this.search ? this.snModel.versions.find((v) => v.uuid === this.search.version.uuid) :
+            this.snModelsService.getActiveVersion(this.snModel);
+
+        if (!this.snVersion) {
+            return ;
+        }
+        const snView = this.snVersion.view as SnView;
+
+        if (!snView || snView === this.snView) {
+            return ;
+        }
+        this.snView = snView;
 
         this.subscribeToCheck();
 
@@ -167,7 +180,14 @@ export class WorkflowEditorComponent implements OnChanges, OnDestroy {
             redo: () => {
                 this.datasService.redo(this.snModel, this.customerKey, this.host);
             },
+            search: () => {
+                this.searchActive = true;
+            }
         };
+    }
+
+    onClose() {
+        this.searchActive = false;
     }
 
     createSubscription() {
@@ -193,14 +213,38 @@ export class WorkflowEditorComponent implements OnChanges, OnDestroy {
                 // 1|0 flow in
                 const nodes: SnNode[] = _.map(selections.filter((s) => s.type === 'node'
                     && (s.element as SnNode).flows.length > 0), 'element');
-                return nodes.length > 1 &&
-                    this.snUtils.getStartNodes(this.snView, nodes).length === 1 &&
-                    this.snUtils.getEndNodes(this.snView, nodes).length <= 1;
+
+                const groupsNodes: SnGroup[] = _.flatten(
+                    _.map(selections.filter((s) => s.type === 'group'), 'element').map(
+                        (grp) => this.snUtils.getNodesByContainer(this.snView, grp, true))
+                    );
+                const boxsNodes: SnBox[] = _.flatten(
+                    _.map(selections.filter((s) => s.type === 'box'), 'element').map(
+                        (box) => this.snUtils.getNodesByContainer(this.snView, box, true))
+                    );
+
+                const total = _.union(nodes, groupsNodes, boxsNodes);
+                const hasNodes = total.length > 1 &&
+                    this.snUtils.getStartNodes(this.snView, total).length === 1 &&
+                    this.snUtils.getEndNodes(this.snView, total).length <= 1;
+                return hasNodes;
             },
             icon: 'fa-solid fa-diagram-project',
             title: 'SN-CONTEXTMENU-TRANSFORM-WORKFLOW',
             onClick: (selections: SnSelectionEvent[]) => {
-                const nodes: SnNode[] = _.map(selections.filter((s) => s.type === 'node'), 'element');
+
+                const nodes: SnNode[] = _.union(
+                    _.map(selections.filter((s) => s.type === 'node'
+                    && (s.element as SnNode).flows.length > 0), 'element'),
+                    _.flatten(
+                        _.map(selections.filter((s) => s.type === 'group'), 'element').map(
+                        (grp) => this.snUtils.getNodesByContainer(this.snView, grp, true))
+                    ),
+                    _.flatten(
+                        _.map(selections.filter((s) => s.type === 'box'), 'element').map(
+                        (box) => this.snUtils.getNodesByContainer(this.snView, box, true))
+                    ),
+                );
                 this.snPublish.exportWorkflow(this.snModel, this.snView, nodes);
             },
         }, this.nodesDocumentation ? {
@@ -216,13 +260,16 @@ export class WorkflowEditorComponent implements OnChanges, OnDestroy {
     }
 
     activateSmartLink() {
-        try {
-            this.workFlow = this.snPublish.getFlow(this.snView, this.snModel, 0, this.settings.languages,
-                this.snModel.type as ResourceType, this.host, this.customerKey);
-            this.openSmartLink = true;
-        } catch (e) {
-            this.toastService.addToast('error', this.translate.instant('ERROR-MESSAGE', { error: e.message }), null, 2000);
-        }
+        this.snPublish.getFlow(this.snView, this.snModel, 0, this.settings.languages,
+            this.snModel.type as ResourceType, this.host, this.customerKey).subscribe({
+                next: (workflow) => {
+                    this.workFlow = workflow;
+                    this.openSmartLink = true;
+                },
+                error: (e) => {
+                    this.toastService.addToast('error', this.translate.instant('ERROR-MESSAGE', { error: e.message }), null, 2000);
+                }
+            });
     }
 
     onSelected(event: SnSelectionEvent) {
@@ -270,21 +317,21 @@ export class WorkflowEditorComponent implements OnChanges, OnDestroy {
     }
 
     runDebug() {
-        try {
-            this.treeDebugCLosed = false;
-            this.workflowToDebug = this.snPublish.getFlow(this.snView, this.snModel, 0, this.settings.languages,
-                this.snModel.type as ResourceType, this.host, this.customerKey);
-            this.messageService.send('debugger-change-state', 'start');
-            this.snDebug.resetDebug(this.snView);
+        this.snPublish.getFlow(this.snView, this.snModel, 0, this.settings.languages,
+            this.snModel.type as ResourceType, this.host, this.customerKey).subscribe({
+                next: (workflow) => {
+                    this.treeDebugCLosed = false;
+                    this.workflowToDebug = workflow;
+                    this.messageService.send('debugger-change-state', 'start');
+                    this.snDebug.resetDebug(this.snView);
 
-            this.snView.displayState.debug = true;
-            this.snActions.notifyRefresh(this.snView);
-        } catch (e) {
-            this.toastService.addToast('error', this.translate.instant('ERROR-MESSAGE', { error: e.message }), null, 2000);
-            return false;
-        }
-
-        return true;
+                    this.snView.displayState.debug = true;
+                    this.snActions.notifyRefresh(this.snView);
+                },
+                error: (e) => {
+                    this.toastService.addToast('error', this.translate.instant('ERROR-MESSAGE', { error: e.message }), null, 2000);
+                }
+            });
     }
 
     stopDebug(options: { redraw: boolean }) {

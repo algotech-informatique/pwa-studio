@@ -2,13 +2,12 @@ import { SnNodeSchema } from '../../../../smart-nodes/dto';
 import { SnLang } from '../../../../smart-nodes/models';
 
 export const SN_NOTIFICATION_NODE_SCHEMA: (displayName: SnLang[]) => SnNodeSchema =
-    (displayName: SnLang[]) => {
-        return {
+    (displayName: SnLang[]) => ({
             type: 'SnNotificationNode',
             custom: {
                 taskKey: 'TaskNotification'
             },
-            displayName: displayName,
+            displayName,
             icon: 'fa-solid fa-bell',
             flows: [{
                 direction: 'in',
@@ -36,6 +35,16 @@ export const SN_NOTIFICATION_NODE_SCHEMA: (displayName: SnLang[]) => SnNodeSchem
                 required: true,
                 default: []
             }, {
+                key: 'destination',
+                direction: 'in',
+                types: 'string',
+                multiple: false,
+                displayName: 'SN-NOTIFICATION-DESTINATION',
+                pluggable: false,
+                display: 'select',
+                required: true,
+                default: 'profil'
+            }, {
                 key: 'profiles_viewer',
                 direction: 'in',
                 types: 'string',
@@ -43,6 +52,26 @@ export const SN_NOTIFICATION_NODE_SCHEMA: (displayName: SnLang[]) => SnNodeSchem
                 displayName: 'SN-NOTIFICATION-INFORMATION-PROFILES',
                 pluggable: false,
                 display: 'select',
+                required: true,
+                default: []
+            }, {
+                key: 'groups_viewer',
+                direction: 'in',
+                types: 'string',
+                multiple: true,
+                displayName: 'SN-NOTIFICATION-INFORMATION-PROFILES',
+                pluggable: true,
+                display: 'select',
+                required: true,
+                default: []
+            }, {
+                key: 'users_viewer',
+                direction: 'in',
+                types: 'string',
+                multiple: true,
+                displayName: 'SN-NOTIFICATION-INFORMATION-PROFILES',
+                pluggable: true,
+                display: 'input',
                 required: true,
                 default: []
             }, {
@@ -82,5 +111,5 @@ export const SN_NOTIFICATION_NODE_SCHEMA: (displayName: SnLang[]) => SnNodeSchem
                     default: ''
                 }]
             }],
-        };
-    };
+        });
+

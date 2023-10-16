@@ -24,13 +24,14 @@
     background-color: var(--TABS-BG);
 
     .close {
-        width: 20px;
+        width: 25px;
         height: 25px;
-        border: 1px solid var(--INSPECTOR-TOOLS-BORDER-COLOR);
+        border: 2px solid var(--INSPECTOR-TOOLS-BORDER-COLOR);
         border-radius: 5px;
         font-size: 12px;
         display: flex;
         justify-content: center;
+        align-items: center;
         margin: 6px;
 
         .style-icon {
@@ -40,6 +41,7 @@
         }
 
         &:hover {
+            cursor: pointer;
             background-color: #f04141;
         }
     }

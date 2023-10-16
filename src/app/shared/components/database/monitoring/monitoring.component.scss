@@ -6,7 +6,7 @@
     --DB-BACKGROUD-COLOR: #08090dd6;
     --ion-color-primary: var(--ALGOTECH-PRIMARY);
     
-    as-split-area {
+    .split {
         @include custom-scrollbar(var(--INSPECTOR-VERT-MENU-LIGHT-COLOR), #ffffff00, 5px);
     }
 

@@ -5,6 +5,7 @@
     [section]="'box'">   
     <div class="property size last" *ngIf="!widget">
         <display-definition-values
+            class="display-definition-values"
             [width]="page?.pageWidth"
             [height]="page?.pageHeight"
             [roundValue]="true"
@@ -18,7 +19,7 @@
     </div>
 
     <div class="property" *ngIf="widget && !widget.displayState?.relativeTo">
-        <display-definition-values class="widget"
+        <display-definition-values class="display-definition-values widget"
             [width]="widget.box?.x"
             [height]="widget.box?.y"
             [title]="'INSPECTOR.WIDGET.POSITION' | translate"
@@ -33,7 +34,7 @@
     </div>
 
     <div class="property size" *ngIf="widget && !widget.displayState?.relativeTo">
-        <display-definition-values class="widget"
+        <display-definition-values class="display-definition-values widget"
             [width]="widget.box?.width"
             [height]="widget.box?.height"
             [title]="'INSPECTOR.PAGE.SIZE-DISPLAY' | translate"

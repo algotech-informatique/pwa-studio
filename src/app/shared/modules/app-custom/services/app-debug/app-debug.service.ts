@@ -20,12 +20,14 @@ export class AppDebugService {
     }
 
     run(snModel: SnModelDto, snApp: SnAppDto) {
-        const apps = this.sessionsService.active.datas.read.apps.map(a =>
-            Object.assign(_.clone(a), { environment: 'debug' })
-        );
+        const apps = this.sessionsService.active.datas.read.apps.map(a => _.clone(a));
         const appModel = this.appPublish.getApp(snApp, snModel, 0);
         const appIndex = apps.findIndex(app => app.appId === appModel.appId);
-        apps[appIndex] = appModel;
+        if (appIndex === -1) {
+            apps.push(appModel);
+        } else {
+            apps[appIndex] = appModel;
+        }
 
         const detail = {
             environment: this.environment,
@@ -36,8 +38,8 @@ export class AppDebugService {
             smartmodels: this.sessionsService.active.datas.read.smartModels,
             workflows: this.sessionsService.active.datas.read.workflows,
             tags: this.sessionsService.active.datas.read.tags,
-            appModel: this.appPublish.getApp(snApp, snModel, 0),
-            snApp: this.appPublish.transformApp(snApp),
+            appModel,
+            snApp: appModel.snApp,
             apps,
             typeApp: snModel.type,
         };

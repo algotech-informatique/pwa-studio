@@ -5,6 +5,7 @@ import { SnTranslateService, SnActionsService } from '../../services';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { SnNode, SnView } from '../../models';
+import { KeyFormaterService } from '@algotech-ce/angular';
 
 @Component({
     selector: 'sn-selector',
@@ -29,6 +30,7 @@ export class SnSelectorComponent implements OnInit, OnDestroy {
     constructor(
         private snAction: SnActionsService,
         private snTranslate: SnTranslateService,
+        private keyFormater: KeyFormaterService,
         private translateService: TranslateService,
     ) {
     }
@@ -54,7 +56,8 @@ export class SnSelectorComponent implements OnInit, OnDestroy {
         for (const group of this.snEntryComponentsFiltered.groups) {
             group.components = _.reduce(group.components, (result, component: SnEntryComponent) => {
                 const displayName = this.snTranslate.transform(component.displayName);
-                if (displayName.toLowerCase().indexOf(this.searchValue.toLowerCase()) > -1) {
+                if (this.keyFormater.format(displayName).toLowerCase()
+                    .indexOf(this.keyFormater.format(this.searchValue).toLowerCase()) > -1) {
                     result.push(component);
                 }
                 return result;

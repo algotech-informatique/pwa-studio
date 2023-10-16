@@ -25,4 +25,14 @@
         box-shadow: 0 0 0 var(--SN-SELECTION-BORDER) var(--SN-COLOR-SELECTION);
         border-radius: 3px;
     }
+
+    &.search {
+        box-shadow: 0 0 0 var(--SN-SELECTION-BORDER) var(--SN-COLOR-SEARCH);
+        border-radius: 3px;
+    }
+
+    &.search-active {
+        box-shadow: 0 0 0 var(--SN-SELECTION-BORDER) var(--SN-COLOR-SEARCH-ACTIVE);
+        border-radius: 3px;
+    }
 }

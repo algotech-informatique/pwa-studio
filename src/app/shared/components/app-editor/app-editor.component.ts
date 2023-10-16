@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, OnDestroy } from '@angular/core';
 import { SessionsService } from '../../services/sessions/sessions.service';
-import { SnModelDto, WorkflowModelDto, SmartModelDto, SnPageDto, SnPageWidgetDto, SnAppDto } from '@algotech-ce/core';
+import { SnModelDto, WorkflowModelDto, SmartModelDto, SnPageDto, SnPageWidgetDto, SnAppDto, SnVersionDto } from '@algotech-ce/core';
 import { DatasService, CheckService, SnModelsService, ConfigService, MessageService } from '../../services';
 import * as _ from 'lodash';
 import { ParamEditorDto } from '../../modules/inspector/dto/param-editor.dto';
@@ -10,7 +10,7 @@ import { AppSelectionEvent, AppSettings } from '../../modules/app/dto';
 import { WidgetBoardService, WidgetListService, WidgetTabsService } from '../../modules/app-custom/widgets';
 import { AppCustomService, AppExportTemplateService } from '../../modules/app-custom/services';
 import { ThemeEngloberService } from '@algotech-ce/business';
-import { ValidationReportDto } from '../../dtos';
+import { SnSearchDto, ValidationReportDto } from '../../dtos';
 
 @Component({
     selector: 'app-editor',
@@ -22,6 +22,7 @@ export class AppEditorComponent implements OnChanges, OnDestroy {
     @Input() snModelUuid: string;
     @Input() customerKey: string;
     @Input() host: string;
+    @Input() search: SnSearchDto;
 
     tabSelected = 2;
 
@@ -35,6 +36,7 @@ export class AppEditorComponent implements OnChanges, OnDestroy {
     snModel: SnModelDto = null;
     snApp: SnAppDto;
     smartModel: SmartModelDto | SmartModelDto[];
+    snVersion: SnVersionDto = null;
 
     openDebug = false;
     treeDebugCLosed = false;
@@ -50,6 +52,8 @@ export class AppEditorComponent implements OnChanges, OnDestroy {
     showWidgetsSelector = false;
     openSmartLink = false;
     openInspector = null;
+
+    searchActive = false;
 
     constructor(
         public appZoom: AppZoomService,
@@ -82,10 +86,21 @@ export class AppEditorComponent implements OnChanges, OnDestroy {
         this.openDebug = false;
         this.showWidgetsSelector = false;
         this.snModel = this.sessionsService.findModel(this.host, this.customerKey, this.snModelUuid);
-        this.snApp = this.snModelsService.getActiveView(this.snModel) as SnAppDto;
-        if (!this.snApp) {
-            return;
+        if (!this.snModel) {
+            return ;
         }
+
+        this.snVersion = this.search ? this.snModel.versions.find((v) => v.uuid === this.search.version.uuid) :
+            this.snModelsService.getActiveVersion(this.snModel);
+
+        if (!this.snVersion) {
+            return ;
+        }
+        const snApp = this.snVersion.view as SnAppDto;
+        if (!snApp || snApp === this.snApp) {
+            return ;
+        }
+        this.snApp = snApp;
         this.loadApp();
     }
 
@@ -99,6 +114,9 @@ export class AppEditorComponent implements OnChanges, OnDestroy {
             },
             undo: () => {
                 this.datasService.undo(this.snModel, this.customerKey, this.host);
+            },
+            search: () => {
+                this.searchActive = true;
             },
             languages: this.sessionsService.active.datas.read.customer.languages,
             contextmenus: {
@@ -118,6 +136,10 @@ export class AppEditorComponent implements OnChanges, OnDestroy {
 
         this.themeEnglober.theme.next(this.snApp.theme);
         this.datasService.notifyChangeView(this.customerKey, this.host, this.snApp.id);
+    }
+
+    onClose() {
+        this.searchActive = false;
     }
 
     createSubscription() {

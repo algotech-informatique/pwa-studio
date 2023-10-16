@@ -26,14 +26,25 @@
                         </toolbox-drawing>
                         
                         <div class="work-layout">
-                            <sn-main-layout 
-                                class="main-layout"
-                                [snView]="snView"
-                                [settings]="settings"
-                                (selected)="onSelected($event)"
-                                (changed)="onChanged($event)">
-                            </sn-main-layout>
+                            <div class="main-layout">
+                                <sn-main-layout 
+                                    class="main-layout"
+                                    [snView]="snView"
+                                    [settings]="settings"
+                                    [search]="search"
+                                    (selected)="onSelected($event)"
+                                    (changed)="onChanged($event)">
+                                </sn-main-layout>
+                                <local-search
+                                    [snModelUuid]="snModel.uuid"
+                                    [version]="snVersion"
+                                    (closed)="onClose()"
+                                    class="local-search"
+                                    *ngIf="searchActive">
+                                </local-search>
+                            </div>
                             <sn-work-flow-inspector
+                                id="sn-work-flow-inspector"
                                 *ngIf="snModel && snView"
                                 [snModel]="snModel"
                                 [snView]="snView"
@@ -56,7 +67,7 @@
                         [host]="host"
                         [viewId]="snView.id"
                         >
-                    </cursors>                    
+                    </cursors>          
 
                     <app-smart-link 
                         class="smartLink"

@@ -2,7 +2,7 @@
     'drawingZone': widget.displayState?.drawingZone
 }">
 
-    <img class="svg" *ngIf="widget.custom?.imageUuid" [ngStyle]="widget.css | injectStyle: ['main', 'image']"
+    <img class="svg" alt="board" *ngIf="widget.custom?.imageUuid" [ngStyle]="widget.css | injectStyle: ['main', 'image']"
         [src]="(widget.custom?.imageUuid | uuid2image)"
         onerror="this.src='./assets/images/loading.gif'"
     />

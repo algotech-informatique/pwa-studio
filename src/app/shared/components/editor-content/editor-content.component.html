@@ -8,7 +8,8 @@
         *ngIf="type === 'app'"
         [snModelUuid]="refUuid"
         [customerKey]="customerKey"
-        [host]="host">
+        [host]="host"
+        [search]="search">
     </app-editor>
 
     <report-templates-editor
@@ -23,7 +24,8 @@
         *ngIf="type === 'workflow'"
         [snModelUuid]="refUuid"
         [customerKey]="customerKey"
-        [host]="host">
+        [host]="host"
+        [search]="search">
     </app-workflow-editor>
 
     <app-scheduled-task
@@ -32,13 +34,6 @@
         [host]="host"
     >
     </app-scheduled-task>
-
-    <app-store
-        *ngIf="type === 'store'"
-        [customerKey]="customerKey"
-        [host]="host"
-    >
-    </app-store>
 
     <app-generic-lists
         *ngIf="type === 'listgen'"
@@ -72,7 +67,8 @@
         *ngIf="type === 'smartmodel'"
         [snModelUuid]="refUuid"
         [customerKey]="customerKey"
-        [host]="host">
+        [host]="host"
+        [search]="search">
     </app-model-editor>
 
     <app-flow-editor
@@ -80,7 +76,8 @@
         *ngIf="type === 'smartflow'"
         [snModelUuid]="refUuid"
         [customerKey]="customerKey"
-        [host]="host">
+        [host]="host"
+        [search]="search">
     </app-flow-editor>
 
     <app-security-groups

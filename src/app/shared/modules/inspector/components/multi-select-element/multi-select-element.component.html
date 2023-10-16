@@ -4,7 +4,8 @@
     <div #container class="select"
         [ngClass]="{'no-selected-item': !selectedItems || selectedItems?.length === 0, 'selected': showList}"
         (click)="clickOnSelect($event)">
-        <div *ngIf="selectedItems && selectedItems?.length > 0" class="chips">
+        <div *ngIf="selectedItems && selectedItems?.length > 0" class="chips"
+            [ngClass]="{'wrap': wrap}">
             <div *ngFor="let item of selectedItems | slice:0:5"
                 class="chip-item"
                 [ngStyle]="item?.color &&

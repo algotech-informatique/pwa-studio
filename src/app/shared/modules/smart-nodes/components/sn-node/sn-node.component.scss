@@ -29,6 +29,12 @@
     &.selected {
         box-shadow: 0 0 0 var(--SN-SELECTION-BORDER) var(--SN-COLOR-SELECTION);
     }
+    &.search {    
+        box-shadow: 0 0 0 var(--SN-SELECTION-BORDER) var(--SN-COLOR-SEARCH);
+    }
+    &.search-active {    
+        box-shadow: 0 0 0 var(--SN-SELECTION-BORDER) var(--SN-COLOR-SEARCH-ACTIVE);
+    }
     &.active {
         box-shadow: 0 0 0 var(--SN-ACTIVE-BORDER) var(--SN-COLOR-SUCCESS);
     }

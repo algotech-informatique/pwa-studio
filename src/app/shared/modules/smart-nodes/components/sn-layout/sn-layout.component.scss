@@ -73,11 +73,15 @@
     .draggable-group {
         position: absolute;
         height: var(--SN-CONTAINER-HEADER-HEIGHT);
+        left: 25px;
+        width: calc(100% - 25px) !important;
     }
     
     .draggable-box {
         position: absolute;
         height: var(--SN-CONTAINER-HEADER-HEIGHT);
+        left: 25px;
+        width: calc(100% - 25px) !important;
     }
     
     .draggable-node:hover {

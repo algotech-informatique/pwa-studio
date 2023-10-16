@@ -1,4 +1,4 @@
-import { SnAppDto, SnPageDto } from '@algotech-ce/core';
+import { SnAppDto, SnCanvasDto, SnPageDto, SnPageWidgetDto } from '@algotech-ce/core';
 import { ChangeDetectorRef, ElementRef, Injectable } from '@angular/core';
 import * as d3 from 'd3';
 import { PageUtilsService } from '../page-utils/page-utils.service';
@@ -71,9 +71,9 @@ export class AppZoomService {
         return 1 / this.transform.k;
     }
 
-    center(view: ElementRef, app: SnAppDto, page?: SnPageDto, scale?: number) {
+    center(view: ElementRef, app: SnAppDto, page?: SnPageDto, widget?: SnPageWidgetDto, scale?: number) {
         const k = scale ? scale : this.transform.k;
-        this.zoom(Object.assign(this.getTransformPage(view, app, page), { k: 1 }));
+        this.zoom(Object.assign(this.getTransformPage(view, app, page, widget), { k: 1 }));
         this.buildZoom().scaleTo(d3.select('#svg'), k);
     }
 
@@ -138,7 +138,7 @@ export class AppZoomService {
         return zoom;
     }
 
-    private getTransformPage(view: ElementRef, app: SnAppDto, page?: SnPageDto) {
+    private getTransformPage(view: ElementRef, app: SnAppDto, page?: SnPageDto, widget?: SnPageWidgetDto) {
         const canvas = this.pageUtils.getHTMLContainerCanvas(view);
         if (app.pages.length === 0) {
             return;
@@ -160,11 +160,23 @@ export class AppZoomService {
             k = Math.min((canvas.width / width), (canvas.height / height));
         }
 
+        const widgetAbs = widget ? this.pageUtils.transformAbsolute(app, widget, true) : null;
+        const eleCanvas = widgetAbs ? {
+            x: _page.canvas.x + widgetAbs.box.x,
+            y: _page.canvas.y + widgetAbs.box.y,
+            height: widgetAbs.box.height,
+            width: widgetAbs.box.width,
+        } : {
+                ..._page.canvas,
+                height: app.pageHeight,
+                width: app.pageWidth,
+        };
+
         // TODO should page dimensions be taken in account instead of app dimensions ?
         return {
             k,
-            x: -_page.canvas.x + Math.round((canvas.width - app.pageWidth) / 2),
-            y: -_page.canvas.y + Math.round((canvas.height - app.pageHeight) / 2)
+            x: -eleCanvas.x + Math.round((canvas.width - eleCanvas.width) / 2),
+            y: -eleCanvas.y + Math.round((canvas.height - eleCanvas.height) / 2)
         };
     }
 }

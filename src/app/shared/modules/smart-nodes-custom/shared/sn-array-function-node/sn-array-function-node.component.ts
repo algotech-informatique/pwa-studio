@@ -6,16 +6,7 @@ import { SnActionsService } from '../../../smart-nodes/services';
 import { SnATNodeUtilsService } from '../sn-at-node/sn-at-node-utils.service/sn-at-node-utils.service';
 import { SnNodeSchema } from '../../../smart-nodes/dto';
 import { TranslateService } from '@ngx-translate/core';
-
-interface FunctionSchema {
-    key: string;
-    value: string;
-    parameters: {
-        key: string;
-        optional?: boolean;
-    }[];
-}
-
+import { SnArrayFunctionNodeHelper } from './sn-array-function.helper';
 @Component({
     template: SN_BASE_METADATA.template,
 })
@@ -62,7 +53,7 @@ export class SnArrayFunctionNodeComponent extends SnATNodeComponent {
         // hidden
         parameters.hidden = (!nFunction.value || !nFunction.displayState?.items?.some((i) => i.key === nFunction.value) || !array.toward);
         if (nFunction.value && type) {
-            const findFunction = this._getFunctions(type).find((f) => f.key === nFunction.value);
+            const findFunction = SnArrayFunctionNodeHelper._getFunctions(type).find((f) => f.key === nFunction.value);
             if (findFunction) {
                 for (const param of parameters.params) {
                     const fnctParam = findFunction.parameters.find((p) => p.key === param.key);
@@ -81,6 +72,8 @@ export class SnArrayFunctionNodeComponent extends SnATNodeComponent {
         const propKey = parameters.params.find((p) => p.key === 'propKey');
         if (type === 'object' && propKey) {
             propKey.display = 'input';
+        } else {
+            propKey.display = 'select';
         }
         const arrayType = type ? type : ['string', 'number', 'date', 'time', 'datetime', 'boolean', 'so:', 'object', 'sys:'];
         const inspect = parameters.params.find((p) => p.key === 'inspect');
@@ -104,8 +97,10 @@ export class SnArrayFunctionNodeComponent extends SnATNodeComponent {
                 result.multiple = false;
             }
                 break;
+            case 'find':
             case 'filter':
             case 'every':
+            case 'reject':
             case 'some':
             case 'map': {
                 let propType = null;
@@ -123,13 +118,19 @@ export class SnArrayFunctionNodeComponent extends SnATNodeComponent {
                 if (propType) {
                     const propValue = parameters.params.find((p) => p.key === 'propValue');
                     if (propValue) {
-                        this.snActions.editParam(this.snView, this.node, propValue, parameters.params, 'types', propType);
+                        this.snActions.editParam(this.snView, this.node, propValue, parameters.params, 'types', [propType, 'sys:filter']);
+                        this.snActions.editParam(this.snView, this.node, propValue, parameters.params, 'custom',
+                            { multiple, type: propType }
+                        );
                         this.snActions.editParam(this.snView, this.node, propValue, parameters.params, 'multiple', multiple);
                     }
                 }
                 // update output
                 if (nFunction.value === 'map' && propType) {
                     result.types = propType;
+                }
+                if (nFunction.value === 'find') {
+                    result.multiple = false;
                 }
                 if (nFunction.value === 'every' || nFunction.value === 'some') {
                     result.types = 'boolean';
@@ -144,92 +145,10 @@ export class SnArrayFunctionNodeComponent extends SnATNodeComponent {
     }
 
     loadFunction(type: any) {
-        const functions = this._getFunctions(type);
+        const functions = SnArrayFunctionNodeHelper._getFunctions(type);
         this.load(_.map(_.orderBy(functions, 'key'), (f) => ({
-                key: f.key,
-                value: f.value,
-            })), 'function');
+            key: f.key,
+            value: f.value,
+        })), 'function');
     }
-
-    _getFunctions(type: string): FunctionSchema[] {
-        if (!_.isString(type)) {
-            return [];
-        }
-
-        const items: FunctionSchema[] = [];
-        if (type.startsWith('so:') || type.startsWith('sys:') || type === 'object') {
-            items.push(...[{
-                key: 'uniqBy',
-                value: 'UniqBy',
-                parameters: [{ key: 'propKey' }],
-            }, {
-                key: 'orderBy',
-                value: 'OrderBy',
-                parameters: [{ key: 'propKey' }, {key: 'order'}]
-            }, {
-                key: 'map',
-                value: 'Map',
-                parameters: _.compact([{ key: 'propKey' }, type === 'object' ? {key: 'propType'} : null]),
-            }, {
-                key: 'filter',
-                value: 'Filter',
-                parameters: _.compact([{ key: 'propKey' }, type === 'object' ? {key: 'propType'} : null, {key: 'propValue'}])
-            }, {
-                key: 'every',
-                value: 'Every',
-                parameters: _.compact([{ key: 'propKey' }, type === 'object' ? {key: 'propType'} : null, {key: 'propValue'}])
-            }, {
-                key: 'some',
-                value: 'Some',
-                parameters: _.compact([{ key: 'propKey' }, type === 'object' ? {key: 'propType'} : null, {key: 'propValue'}])
-            }]);
-        } else if (['string', 'number', 'date', 'datetime', 'time', 'boolean'].includes(type)) {
-            items.push(...[{
-                key: 'uniq',
-                value: 'Uniq',
-                parameters: []
-            }, {
-                key: 'sort',
-                value: 'Sort',
-                parameters: []
-            }, {
-                key: 'join',
-                value: 'Join',
-                parameters: [{ key: 'separator', optional: true }]
-            }]);
-        }
-
-        items.push(...[{
-            key: 'left',
-            value: 'Left',
-            parameters: [{ key: 'position' }],
-        }, {
-            key: 'right',
-            value: 'Right',
-            parameters: [{ key: 'position' }]
-        }, {
-            key: 'reverse',
-            value: 'Reverse',
-            parameters: []
-        }, {
-            key: 'difference',
-            value: 'Difference',
-            parameters: [{ key: 'inspect' }]
-        }, {
-            key: 'concat',
-            value: 'Concat',
-            parameters: [{ key: 'inspect' }]
-        }, {
-            key: 'item',
-            value: 'Item',
-            parameters: [{ key: 'position' }]
-        }, {
-            key: 'length',
-            value: 'Length',
-            parameters: []
-        }]);
-
-        return items;
-    }
-
 }

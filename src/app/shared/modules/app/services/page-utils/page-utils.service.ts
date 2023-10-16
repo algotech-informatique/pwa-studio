@@ -102,7 +102,7 @@ export class PageUtilsService {
     findWidget(app: SnAppDto, id: string): { page: SnPageDto; widget: SnPageWidgetDto } {
         const widget: SnPageWidgetDto = _.find(this.getWidgets(app), (w: SnPageWidgetDto) => w.id === id);
         return {
-            page: this.findPage(app, widget),
+            page: widget ? this.findPage(app, widget) : null,
             widget,
         };
     }
@@ -203,6 +203,16 @@ export class PageUtilsService {
         return tree;
     }
 
+    getAllWidgets(widgets: SnPageWidgetDto[]) {
+        const allWidgets: SnPageWidgetDto[] = widgets.reduce((results, widget) => {
+            results.push(widget);
+            results.push(...this.getChilds(widget));
+            return results;
+        }, []);
+
+        return allWidgets;
+    }
+
     getFamilly(app: SnAppDto, widget: SnPageWidgetDto, page?: SnPageDto): SnPageWidgetDto[] {
         const tree: SnPageWidgetDto[] = this.getTree(app, widget, page);
         const res = [];
@@ -284,6 +294,13 @@ export class PageUtilsService {
             }
             return results;
         }, []);
+    }
+
+    getWidgetsAndSharedWidgets(app: SnAppDto): SnPageWidgetDto[] {
+        return [
+            ...this.getWidgets(app),
+            ...this.getAllWidgets(app.shared)
+        ];
     }
 
     getAllElements(snApp: SnAppDto) {

@@ -1,38 +1,50 @@
 <div class="data-inputs">
     <span class="title" *ngIf="title" [title]="subTitle ? subTitle : ''">{{ title }}</span>
     
-    <data-inputs-text *ngIf="typeInput === 'string'"
+    <data-inputs-text
+        class="data-inputs"
+        *ngIf="typeInput === 'string'"
         [value]="value ? value : ''"
         [iconVisible]="iconVisible"
         [placeholder]="placeholder"
         (changed)="onDataChanged($event)">
     </data-inputs-text>
     
-    <data-inputs-number *ngIf="typeInput === 'number'"
+    <data-inputs-number
+        class="data-inputs"
+        *ngIf="typeInput === 'number'"
         [value]="value"
         [iconVisible]="iconVisible"
         [placeholder]="placeholder"
         (changed)="onDataChanged($event)">
     </data-inputs-number>
     
-    <data-inputs-boolean *ngIf="typeInput === 'boolean'"
+    <data-inputs-boolean
+        class="data-inputs"
+        *ngIf="typeInput === 'boolean'"
         [value]="value"
         (changed)="onDataChanged($event)">
     </data-inputs-boolean>
     
-    <data-inputs-date *ngIf="typeInput === 'date'"
+    <data-inputs-date
+        class="data-inputs"
+        *ngIf="typeInput === 'date'"
         [value]="value"
         [iconVisible]="iconVisible"
         (changed)="onDataChanged($event)">
     </data-inputs-date>
     
-    <data-inputs-datetime *ngIf="typeInput === 'datetime'"
+    <data-inputs-datetime
+        class="data-inputs"
+        *ngIf="typeInput === 'datetime'"
         [value]="value"
         [iconVisible]="iconVisible"
         (changed)="onDataChanged($event)">
     </data-inputs-datetime>
     
-    <data-inputs-time *ngIf="typeInput === 'time'"
+    <data-inputs-time
+        class="data-inputs"
+        *ngIf="typeInput === 'time'"
         [value]="value"
         [iconVisible]="iconVisible"
         (changed)="onDataChanged($event)">

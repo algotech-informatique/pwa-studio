@@ -147,7 +147,7 @@ export const actionPageRule: AppRule = {
                 } else if (app.pages[findPage].variables?.length > 0) {
                     const emptyInput = item.pipe.inputs.some((input) => input.value === null);
                     if (emptyInput) {
-                        checkUtilsService.pushError(app, page, stackCode, report, `APP.EVENT_PAGE_NO_INPUT_ERROR`, {
+                        checkUtilsService.pushWarning(app, page, stackCode, report, `APP.EVENT_PAGE_NO_INPUT_ERROR`, {
                             widget: (item.type === 'widget') ? item.element as SnPageWidgetDto : undefined,
                             item, path: item.path, openInspector: 'behavior'
                         });
@@ -203,7 +203,7 @@ export const actionPageNavRule: AppRule = {
                         } else if (appNav.pages[findPage].variables?.length > 0) {
                             const emptyInput = item.pipe.inputs.some((input) => input.value === null);
                             if (emptyInput) {
-                                checkUtilsService.pushError(app, page, stackCode, report, `APP.EVENT_PAGE_NAV_PAGE_NO_INPUT_ERROR`, {
+                                checkUtilsService.pushWarning(app, page, stackCode, report, `APP.EVENT_PAGE_NAV_PAGE_NO_INPUT_ERROR`, {
                                     widget: (item.type === 'widget') ? item.element as SnPageWidgetDto : undefined,
                                     item, path: item.path, openInspector: 'behavior'
                                 });

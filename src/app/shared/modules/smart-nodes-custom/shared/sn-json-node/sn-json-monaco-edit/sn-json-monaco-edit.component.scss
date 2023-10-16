@@ -3,6 +3,8 @@
 @import '../../../../smart-nodes/theme/mixins';
 
 :host {
+    display: block;
+    height: 100%;
     overflow: hidden;
     --SN-NODE-HEADER-BACKGROUND-SNJSONNODE: linear-gradient(to right, #BC7826, #bf360c);
     background: #1E1E1E;
@@ -28,7 +30,6 @@
     background-image: var(--SN-NODE-HEADER-BACKGROUND-SNJSONNODE);
 }
 .editorContainer {
-    height: 500px;
+    height: 100%;
     border-radius: 4px;
-
 }

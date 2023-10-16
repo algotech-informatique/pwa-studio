@@ -2,8 +2,7 @@ import { SnNodeSchema } from '../../../../smart-nodes/dto';
 import { SnLang } from '../../../../smart-nodes/models';
 
 export const SN_OBJECT_ASSIGNMENT_NODE_SCHEMA: (displayName: SnLang[]) => SnNodeSchema =
-    (displayName: SnLang[]) => {
-        return {
+    (displayName: SnLang[]) => ({
             type: 'SnObjectAssignmentNode',
             custom: {
                 taskKey: 'TaskAssignObject'
@@ -62,7 +61,16 @@ export const SN_OBJECT_ASSIGNMENT_NODE_SCHEMA: (displayName: SnLang[]) => SnNode
                     required: true,
                     default: true,
                     display: 'input',
+                }, {
+                    key: 'cumulSkills',
+                    direction: 'in',
+                    types: 'boolean',
+                    multiple: false,
+                    displayName: 'SN-OBJECT-ASSIGNMENT-CUMUL-SKILLS',
+                    pluggable: true,
+                    required: true,
+                    default: true,
+                    display: 'input',
                 }],
             }],
-        };
-    };
+        });

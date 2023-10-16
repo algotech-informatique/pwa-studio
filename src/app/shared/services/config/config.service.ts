@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ConfigDto, PreferencesDto, StoreConnectionDto, TabDto } from '../../dtos';
+import { ConfigDto, PreferencesDto, TabDto } from '../../dtos';
 import { TranslateService } from '@ngx-translate/core';
 import * as _ from 'lodash';
 import { DataService } from '@algotech-ce/angular';
@@ -69,11 +69,6 @@ export class ConfigService {
 
     setPreferences(preferences: PreferencesDto): Observable<ConfigDto> {
         this._config.preferences = preferences;
-        return this.save(this._config);
-    }
-
-    setStoreConfig(store: StoreConnectionDto): Observable<ConfigDto> {
-        this._config.storeConnection = store;
         return this.save(this._config);
     }
 }

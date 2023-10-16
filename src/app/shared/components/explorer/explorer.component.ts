@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, ChangeDetectorRef, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ChangeDetectorRef, OnDestroy, Input, HostListener } from '@angular/core';
 import { MessageService, ContextmenuService } from '../../services';
 import { ObjectTreeLineDto } from '../../dtos/object-tree-line.dto';
 import { SessionsService } from '../../services/sessions/sessions.service';
@@ -37,6 +37,8 @@ export class ExplorerComponent implements OnInit, OnDestroy {
     menu: SnContextmenu;
     subscription: Subscription;
     showContextmenu: boolean;
+    search = null;
+    ressource = null;
 
     public sessions: SessionDto[] = [];
 
@@ -54,7 +56,7 @@ export class ExplorerComponent implements OnInit, OnDestroy {
                 // this is meant to be removed if/once context-menu management has been refactored and un-specialized
                 // see: https://git.myalgotech.io/roadmap/vision/-/issues/1909
                 if (!['tabs-context-menu', 'selection', 'sharedComponents'].includes(this.contextmenuService.menu?.id) && !this.expand) {
-                    return ;
+                    return;
                 }
                 this.menu = this.contextmenuService.menu;
                 this.mouse = this.contextmenuService.mouse;
@@ -66,6 +68,47 @@ export class ExplorerComponent implements OnInit, OnDestroy {
         this.subscription.add(this.messageService.get('moveexplorer.refresh').subscribe(() => {
             this.changeDetectorRef.detectChanges();
         }));
+
+        this.subscription.add(this.messageService.get('find-reference').subscribe((ref: string) => {
+            if (ref.startsWith('so:')) {
+                this.search = 'reference';
+                this.ressource = ref;
+                return ;
+            }
+            const snModel = this.sessionsService.active.datas.write.snModels.find((sn) => sn.uuid === ref);
+            if (snModel) {
+                this.search = 'reference';
+                let type = `${snModel.type}:`;
+                switch (snModel.type) {
+                    case 'workflow':
+                        type = 'wf:';
+                        break;
+                    case 'smartflow':
+                        type = 'sf:';
+                }
+                this.ressource = `${type}${snModel.key}`;
+            }
+        }));
+    }
+
+    @HostListener('document:keyup', ['$event'])
+    handleSearchEvent(e: KeyboardEvent) {
+        // ctrl + shift + f
+        if (e.ctrlKey && e.shiftKey && e.code === 'KeyF') {
+            e.preventDefault();
+            this.onTabChange('search');
+            return;
+        }
+    }
+
+    @HostListener('document:keydown', ['$event'])
+    handleModuledEvent(e: KeyboardEvent) {
+        // ctrl + e
+        if (e.ctrlKey && e.code === 'KeyE') {
+            e.preventDefault();
+            this.onTabChange('module');
+            return;
+        }
     }
 
     ngOnInit(): void {
@@ -97,6 +140,15 @@ export class ExplorerComponent implements OnInit, OnDestroy {
         }
     }
 
+    onTabChange(tabKey: 'module' | 'search' | 'reference') {
+        this.search = tabKey === 'module' ? null : tabKey;
+    }
+
+    onClearReference() {
+        this.search = null;
+        this.ressource = null;
+    }
+
     retractorClicked() {
         this.expand = !this.expand;
     }
@@ -108,7 +160,7 @@ export class ExplorerComponent implements OnInit, OnDestroy {
     expandCustomer(environment: EnvironmentDisplayDto) {
         if (environment.state) {
             environment.state = false;
-            return ;
+            return;
         }
         this.sessionsService.expandEnvironment(environment);
     }

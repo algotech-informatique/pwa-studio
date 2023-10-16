@@ -3,8 +3,8 @@
     
     <div class="parameters">
         <div class="line">
-            <img [ngClass]="{'selected': !showAllMargins}" class="margin-icon" (click)="cornersButtonClicked(true)" src="./assets/images/margin-all.svg" />
-            <img [ngClass]="{'selected': showAllMargins}" class="margin-icon" (click)="cornersButtonClicked(false)" src="./assets/images/margin-side.svg" />
+            <img [ngClass]="{'selected': !showAllMargins}" class="margin-icon" (click)="cornersButtonClicked(true)" src="./assets/images/margin-all.svg" alt="margin-all" />
+            <img [ngClass]="{'selected': showAllMargins}" class="margin-icon" (click)="cornersButtonClicked(false)" src="./assets/images/margin-side.svg" alt="margin-side" />
             <display-definition-values
                 [width]="same ? marginValues?.[0] : null"
                 widthLabel=""

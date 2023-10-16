@@ -34,7 +34,7 @@ export class SnDragConnectorsService {
     }
 
     dragFlow(d3Context, snView: SnView, direction: 'in' | 'out') {
-        this.dragConnector(d3Context, snView, direction);
+        this.dragConnector(d3Context, snView, direction, true);
     }
 
     dragParam(d3Context, snView: SnView, direction: 'in' | 'out') {
@@ -185,7 +185,7 @@ export class SnDragConnectorsService {
         d3Context.dragged = false;
     }
 
-    private dragConnector(d3Context, snView: SnView, direction: 'in' | 'out') {
+    private dragConnector(d3Context, snView: SnView, direction: 'in' | 'out', directConnection = false) {
         if (!d3Context.canvas) {
             return ;
         }
@@ -199,9 +199,24 @@ export class SnDragConnectorsService {
             y: Math.round(d3.event.y / this.snZoom.transform.k) + d3Context.canvas.y - d3Context.canvas.height / 2,
         };
 
+        if (directConnection) {
+            const linkDirection = (direction === 'in') ? 'out' : 'in';
+            const node = this.snUtils.getNodeIntersection(snView, d3Context.canvasOut);
+            if (d3Context.previousConnector) {
+                d3Context.previousConnector.displayState.dragHover = false;
+            }
+            if (node && node !== d3Context.node) {
+                const connectors: SnFlow[] | undefined = node.flows.filter((f: SnFlow) => f.direction ===  linkDirection);
+                if (connectors && connectors.length === 1){
+                    connectors[0].displayState.dragHover = true;
+                    d3Context.previousConnector = connectors[0];
+                    d3Context.canvasOut = this.snDOM.getConnectorCanvas(node, connectors[0], linkDirection);
+                }
+            }
+        }
+
         const linkMatrice = direction === 'in' ? this.snDragUtils.getLinkMatrice(d3Context.canvasOut, d3Context.canvas) :
             this.snDragUtils.getLinkMatrice(d3Context.canvas, d3Context.canvasOut);
-
         this.snDragUtils.dragSearchParent(d3Context, snView, d3Context.canvasOut, 'connector');
         this.snLinks.drawTransition(linkMatrice, snView, d3Context.containerLink);
     }

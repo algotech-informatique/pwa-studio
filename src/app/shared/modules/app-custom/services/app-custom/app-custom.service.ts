@@ -1,5 +1,5 @@
 import {
-    PairDto, SnAppDto, SnModelDto, SnPageDto, SnPageEventDto, SnPageEventPipeDto, SnPageVariableDto,
+    PairDto, SnAppDto, SnModelDto, SnPageDto, SnPageEventDto, SnPageEventPipeDto, SnPageEventPipeSmartflowResultDto, SnPageVariableDto,
     SnPageWidgetDto, SnPageWidgetTypeReturnDto, SnVersionDto, SnViewDto, TaskModelDto, WorkflowModelDto, WorkflowProfilModelDto
 } from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
@@ -76,11 +76,8 @@ export class AppCustomService {
             if (index !== -1) {
                 const actions = [...event.pipe].splice(0, index);
                 local = _.reduce(actions, (res: WidgetInput[], ac: SnPageEventPipeDto) => {
-                    if (ac.type === 'smartflow') {
-                        const typeAndMultiple = this.getSmartFlowTypeAndMultiple(ac.action);
-                        if (typeAndMultiple) {
-                            res.push(this.getInput('smartflow', typeAndMultiple.selectedType, ac.action, typeAndMultiple.multiple));
-                        }
+                    if (ac.type === 'smartflow' && ac.smartflowResult) {
+                        res.push(this.getInput('smartflow', ac.smartflowResult.type, ac.action, ac.smartflowResult.multiple));
                     }
                     return res;
                 }, []);
@@ -99,10 +96,9 @@ export class AppCustomService {
                         input = this.getInput('datasource', `so:${dataSource.action}`, dataSource.key, true);
                         break;
                     case 'smartflow':
-                        const typeAndMultiple = this.getSmartFlowTypeAndMultiple(dataSource.action);
-                        if (typeAndMultiple) {
-                            input = this.getInput('datasource', typeAndMultiple.selectedType, dataSource.key,
-                                typeAndMultiple.multiple);
+                        if (dataSource.smartflowResult) {
+                            input = this.getInput('datasource', dataSource.smartflowResult.type,
+                                dataSource.key, dataSource.smartflowResult.multiple);
                         }
                         break;
                 }
@@ -254,19 +250,22 @@ export class AppCustomService {
                 // update inputs
                 for (const pipeEv of ev.pipe) {
                     this.loadInputs(app, ev, pipeEv);
+                    this.updateOutput(pipeEv);
                     this.mergeWorkflows(pipeEv, false);
                 }
             }
             // update inputs
             for (const ds of page.dataSources) {
                 this.loadInputs(app, this.getDataSourcesEvent(page), ds);
+                this.updateOutput(ds);
             }
         }
-        for (const widget of this.pageUtils.getWidgets(app)) {
+        for (const widget of this.pageUtils.getWidgetsAndSharedWidgets(app)) {
             // update inputs
             for (const ev of [..._.flatMap(widget.rules, 'events'), ...widget.events]) {
                 for (const pipeEv of ev.pipe) {
                     this.loadInputs(app, ev, pipeEv);
+                    this.updateOutput(pipeEv);
                     this.mergeWorkflows(pipeEv, false);
                 }
             }
@@ -335,6 +334,12 @@ export class AppCustomService {
         return eventInputs;
     }
 
+    updateOutput(pipeEv: SnPageEventPipeDto) {
+        if (pipeEv.type === 'smartflow') {
+            pipeEv.smartflowResult = this.getSmartFlowTypeAndMultiple(pipeEv.action);
+        }
+    }
+
     resetInput(type: string) {
         switch (type) {
             case 'string':
@@ -352,6 +357,14 @@ export class AppCustomService {
         const model = this.getSnModel(type, action);
         if (!model) { return; }
         return this.snModelsService.getPublishedView(model);
+    }
+
+    getSmartFlowTypeAndMultiple(eventAction: string): SnPageEventPipeSmartflowResultDto {
+        const view = this.getSnView('smartflow', eventAction);
+        if (!view) {
+            return null;
+        }
+        return this.snConnectorUtilsService.checkTypeAndMultiple(view as SnView);
     }
 
     private getProfiles(eventProfiles: WorkflowProfilModelDto[], pair: EventWorkflowPairDto): EventWorkflowPairProfileDto[] {
@@ -461,14 +474,6 @@ export class AppCustomService {
         return typeValue;
     }
 
-    private getSmartFlowTypeAndMultiple(eventAction: string) {
-        const view = this.getSnView('smartflow', eventAction);
-        if (!view) {
-            return null;
-        }
-        return this.snConnectorUtilsService.checkTypeAndMultiple(view as SnView);
-    }
-
     private getItemType(
         variables: SnPageVariableDto[],
         dataSources: SnPageEventPipeDto[],
@@ -499,14 +504,13 @@ export class AppCustomService {
                 if (datasource.type === 'smartobjects') {
                     return `so:${datasource.action}`;
                 } else if (datasource.type === 'smartflow') {
-                    const findEv = this.getSmartFlowTypeAndMultiple(datasource.action);
-                    if (!findEv) {
+                    if (!datasource.smartflowResult) {
                         return;
                     }
                     if (split.length === 2) {
-                        return findEv.selectedType;
+                        return datasource.smartflowResult.type;
                     }
-                    return this.getModelPropertyTypeAndMultiple(split.slice(2), findEv.selectedType)?.type;
+                    return this.getModelPropertyTypeAndMultiple(split.slice(2), datasource.smartflowResult.type)?.type;
                 }
             }
                 break;
@@ -516,9 +520,9 @@ export class AppCustomService {
                     return;
                 }
                 if (split.length === 2) {
-                    return findEv.selectedType;
+                    return findEv.type;
                 }
-                return this.getModelPropertyTypeAndMultiple(split.slice(2), findEv.selectedType)?.type;
+                return this.getModelPropertyTypeAndMultiple(split.slice(2), findEv.type)?.type;
             }
             case 'current-list': {
                 const mainList = this.pageUtils.findMainListWidget(null, widget, page);

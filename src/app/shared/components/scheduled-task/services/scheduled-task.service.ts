@@ -1,4 +1,4 @@
-import { PairDto, SmartTaskDayofWeekDto, SmartTaskDto, SmartTaskPeriodicityDto } from '@algotech-ce/core';
+import { PairDto, SmartTaskDto, SmartTaskPeriodicityDto } from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
 import { OptionsObjectDto } from '../../../dtos';
 import { TranslateService } from '@ngx-translate/core';
@@ -110,7 +110,7 @@ export class ScheduledTaskService {
         };
     }
 
-    private _getDateDays(days: SmartTaskDayofWeekDto[]) {
+    private _getDateDays(days: number[]) {
         const listDays = this.getListWeek();
         const a = _.reduce(days, (result, d) => {
             const index = _.findIndex(listDays, (day: PairDto) => day.key === d.toString());

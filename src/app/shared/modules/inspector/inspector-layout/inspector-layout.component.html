@@ -5,7 +5,7 @@
             <div class="title">
                 <i *ngIf="selectedButton?.icon" class="icon" [ngStyle]="selectedButton.color && {'color': selectedButton.color}"
                     [class]="selectedButton.icon"></i>
-                <img *ngIf="selectedButton?.img" class="image" [src]="'./assets/images/' + selectedButton.img + '.svg'">
+                <img *ngIf="selectedButton?.img" class="image" [src]="'./assets/images/' + selectedButton.img + '.svg'" [alt]="selectedButton.img">
                 <div class="name" [title]="selectedButton?.title">
                     {{ selectedButton?.title }}
                 </div>
@@ -24,7 +24,7 @@
             (click)="clickButton(button.key)">
             
             <i *ngIf="button.icon" class="icon" [ngStyle]="button.color && {'color': button.color}" [class]="button.icon"></i>
-            <img *ngIf="button.img" class="image" [src]="'./assets/images/' + button.img + '.svg'">
+            <img *ngIf="button.img" class="image" [src]="'./assets/images/' + button.img + '.svg'" [alt]="button.img">
             <div class="title" [title]="button.title">
                 {{ button.title }}
             </div>

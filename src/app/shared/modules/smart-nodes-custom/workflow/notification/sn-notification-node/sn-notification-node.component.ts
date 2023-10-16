@@ -29,12 +29,32 @@ export class SnNotificationNodeComponent extends SnTaskNodeComponent {
             value: this.translate.instant('SN-NOTIFICATION-MOBILE'),
         }], 'channels');
 
+        this.load([{
+            key: 'profil',
+            value: this.translate.instant('SN-NOTIFICATION-PROFIL'),
+        }, {
+            key: 'group',
+            value: this.translate.instant('SN-NOTIFICATION-GROUP'),
+        }, {
+            key: 'user',
+            value: this.translate.instant('SN-NOTIFICATION-USER'),
+        }], 'destination');
+
+        this.loadSecurityGroups('groups_viewer');
+
         super.initialize(schema);
     }
 
     calculate() {
         this.loadProfiles('profiles');
         this.loadProfiles('profiles_viewer');
+
+        const destination = this.node.params.find((p) => p.key === 'destination')?.value;
+
+        this.node.params.find((p) => p.key === 'profiles_viewer').displayState.hidden = destination !== 'profil';
+        this.node.params.find((p) => p.key === 'groups_viewer').displayState.hidden = destination !== 'group';
+        this.node.params.find((p) => p.key === 'users_viewer').displayState.hidden = destination !== 'user';
+
         super.calculate();
     }
 

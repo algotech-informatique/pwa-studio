@@ -7,4 +7,4 @@ export { SnSelectionService } from './sn-selection/sn-selection.service';
 export { SnRemoveService } from './sn-remove/sn-remove.service';
 export { SnClipboardService } from './sn-clipboard/sn-clipboard.service';
 export { SnUpDownService } from './sn-up-down/sn-up-down.service';
-
+export { SnSearchService } from './sn-search/sn-search.service';

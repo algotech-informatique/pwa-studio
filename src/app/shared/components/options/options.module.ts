@@ -20,12 +20,9 @@ import { OptionsObjectDetailComponent } from './components/options-object-detail
 import { OptionsSearchComponent } from './components/options-search/options-search.component';
 import { OptionsLoggerComponent } from './components/options-logger/options-logger.component';
 import { OptionsInputMultilangComponent } from './components/options-input-multilang/options-input-multilang.component';
-import { OptionMultilangPopUpComponent } from './components/options-input-multilang/option-multilang-pop-up/option-multilang-pop-up.component';
 import { SnSelectParameterModule } from '../../modules/smart-nodes-custom';
 import { PipeModule } from '../../pipes/pipe.module';
 import { OptionsTextAreaMultilangComponent } from './components/options-text-area-multilang/options-text-area-multilang.component';
-import { OptionsMarkdownMultilangComponent } from './components/options-markdown-multilang/options-markdown-multilang.component';
-import { MarkdownModule } from 'ngx-markdown';
 import { OptionsChipsListComponent } from './components/options-chips-list/options-chips-list.component';
 import { OptionsPopoverComponent } from './components/options-popover/options-popover.component';
 import { OptionsInputCheckboxComponent } from './components/options-input-checkbox/options-input-checkbox.component';
@@ -52,9 +49,7 @@ import { OptionsToggleComponent } from './components/options-toggle/options-togg
         OptionsSearchComponent,
         OptionsLoggerComponent,
         OptionsInputMultilangComponent,
-        OptionMultilangPopUpComponent,
         OptionsTextAreaMultilangComponent,
-        OptionsMarkdownMultilangComponent,
         OptionsChipsListComponent,
         OptionsPopoverComponent,
         OptionsInputCheckboxComponent,
@@ -74,7 +69,6 @@ import { OptionsToggleComponent } from './components/options-toggle/options-togg
         WorkflowDebuggerModule,
         SnSelectParameterModule,
         PipeModule,
-        MarkdownModule,
         ColorPickerModule,
     ],
     exports: [
@@ -94,7 +88,6 @@ import { OptionsToggleComponent } from './components/options-toggle/options-togg
         OptionsLoggerComponent,
         OptionsInputMultilangComponent,
         OptionsTextAreaMultilangComponent,
-        OptionsMarkdownMultilangComponent,
         OptionsChipsListComponent,
         OptionsPopoverComponent,
         OptionsInputCheckboxComponent,
@@ -103,7 +96,6 @@ import { OptionsToggleComponent } from './components/options-toggle/options-togg
         OptionsToggleComponent,
     ],
     entryComponents: [
-        OptionMultilangPopUpComponent,
         ColorPopoverComponent,
     ],
 })

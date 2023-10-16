@@ -3,8 +3,8 @@
     
     <div class="parameters">
         <div class="line">
-            <img [ngClass]="{'selected': !showRadiusCorners}" class="radius-icon" (click)="cornersButtonClicked(true)" src="./assets/images/radius-all.svg" />
-            <img [ngClass]="{'selected': showRadiusCorners}" class="radius-icon" (click)="cornersButtonClicked(false)" src="./assets/images/radius-corner.svg" />
+            <img [ngClass]="{'selected': !showRadiusCorners}" class="radius-icon" (click)="cornersButtonClicked(true)" src="./assets/images/radius-all.svg" alt="radius-all" />
+            <img [ngClass]="{'selected': showRadiusCorners}" class="radius-icon" (click)="cornersButtonClicked(false)" src="./assets/images/radius-corner.svg" alt="radius-corner" />
             <display-definition-values
                 [width]="same ? radiusValues?.[0] : null"
                 widthLabel=""

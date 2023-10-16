@@ -22,4 +22,5 @@ export class SnSettings {
     filterParams?: SnCustomFilterConnector<SnParam>;
     undo?: () => void;
     redo?: () => void;
+    search?: () => void;
 }

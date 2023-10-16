@@ -1,0 +1,32 @@
+<div class="content">
+    <div class="search">
+        <div class="input-area">
+            <input class="input" type="text" [(ngModel)]="filter" [placeholder]="'SEARCHBOX.PLACEHOLDER' | translate"
+                (ngModelChange)="search()" #input (keydown)="onKeydown($event)">
+    
+                <img class="match-case" [ngClass]="{'selected': matchCase}" [title]="'STUDIO-SEARCH-MATCH-CASE' | translate"
+                    (click)="onMatchCase()"  src="./assets/images/match-case.svg" alt="match-case" />
+                <img class="match-exact-value" [ngClass]="{'selected': matchExactValue}"  [title]="'STUDIO-SEARCH-MATCH-EXACT-VALUE' | translate"
+                    (click)="onMatchExactValue()" src="./assets/images/match-exact-value.svg" alt="match-exact-value" />
+        </div>
+    
+        <div class="preview">
+            <ng-container *ngIf="!loading">
+                <span *ngIf="results.length === 0" class="no-results">
+                    {{'STUDIO-SEARCH-NO-RESULTS' | translate}}
+                </span>
+                <span *ngIf="results.length > 0">
+                    {{current + 1}} / {{results.length}}
+                </span>
+            </ng-container>
+            <div class="spinner">
+                <ion-spinner name="dots" *ngIf="loading"></ion-spinner>
+            </div>
+        </div>
+    </div>
+    <div class="actions">
+        <i class="button fa-solid fa-arrow-up" (click)="previous()" [title]="'STUDIO-SEARCH-PREVIOUS' | translate"></i>
+        <i class="button fa-solid fa-arrow-down" (click)="next()" [title]="'STUDIO-SEARCH-NEXT' | translate"></i>
+        <i class="button fa-solid fa-xmark" (click)="onClose()" [title]="'DIALOGBOX.CLOSE' | translate"></i>
+    </div>
+</div>

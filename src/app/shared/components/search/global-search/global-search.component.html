@@ -1,0 +1,86 @@
+<div class="header">
+    <span *ngIf="type === 'search'">{{'SEARCHBOX.PLACEHOLDER' | translate | uppercase}}</span>
+    <span *ngIf="type === 'reference'">{{'STUDIO-TAB-REFERENCES' | translate | uppercase}}</span>
+    <div class="actions">
+        <i class="button fa-solid fa-rotate" [title]="'STUDIO-SEARCH-REFRESH' | translate" (click)="refresh()"></i>
+        <i class="button fa-solid fa-trash" [title]="'STUDIO-SEARCH-CLEAR' | translate" (click)="onClear()"></i>
+        <i [class]="'button fa-solid fa-square-' + (expand ? 'plus' : 'minus')"
+            [title]="'STUDIO-SEARCH-' + (expand ? 'EXPAND' : 'COLLAPSE') | translate" (click)="expandAll()"></i>
+    </div>
+</div>
+
+<div class="search" *ngIf="type === 'search'">
+    <div class="text-input">
+        <div class="input-area">
+            <input class="input" type="text" [(ngModel)]="filter" [placeholder]="'SEARCHBOX.PLACEHOLDER' | translate"
+            (ngModelChange)="search()" #input>
+    
+            <img class="match-case" [ngClass]="{'selected': matchCase}" [title]="'STUDIO-SEARCH-MATCH-CASE' | translate"
+                (click)="onMatchCase()"  src="./assets/images/match-case.svg" alt="match-case" />
+            <img class="match-exact-value" [ngClass]="{'selected': matchExactValue}"  [title]="'STUDIO-SEARCH-MATCH-EXACT-VALUE' | translate"
+                (click)="onMatchExactValue()" src="./assets/images/match-exact-value.svg" alt="match-exact-value" />
+        </div>
+
+        <i class="button fa-solid fa-filter" [title]="'STUDIO-SEARCH-FILTERS' | translate" [ngClass]="{'active': filterActive}" (click)="onActiveFilter()"></i>
+    </div>
+
+    <display-check-element *ngIf="filterActive"
+        class="versions"
+        [title]="'STUDIO-SEARCH-ALL-VERSIONS' | translate"
+        [value]="allVersions"
+        (changed)="onCheck()">
+    </display-check-element>
+
+    <div class="categories" *ngIf="filterActive">
+        <multi-select-element
+            [list]="categoriesList"
+            [selectedKeys]="categoriesKeys"
+            [wrap]="false"
+            (selectNewItems)="onChangeCategories($event)">
+        </multi-select-element>
+    </div>
+</div>
+
+<div class="tree" [ngClass]="{ 'withFilter': filterActive }">
+    <div *ngIf="tree.length === 0 && !loading && (type === 'reference' || !!filter)" class="no-results">
+        {{'STUDIO-SEARCH-NO-RESULTS' | translate}}
+    </div>
+    <div *ngFor="let item of tree" class="category">
+
+        <div class="section" (click)="onOpenSnModel(item)">
+            <i [class]="'chevron fa-solid fa-chevron-' + (item.open ? 'down' : 'right')"></i>
+            <i [class]="'categoryIcon ' + item.icon" [ngStyle]="{'color': item.color}"></i>
+            <span class="name">
+                {{ item.displayName }}
+            </span>
+        </div>
+
+        <div class="content" *ngIf="item.open">
+            <ng-container *ngFor="let version of item.versions">
+                <div class="version element" *ngIf="allVersions">
+                    <i class="published fa-solid fa-link" *ngIf="item.snModel.publishedVersion === version.version.uuid"></i>
+                    {{ version.version.createdDate | localeDate }}
+                </div>
+                <ng-container *ngFor="let element of version.elements">
+                    <div class="element" (click)="selectResource(element, element.snModelUuid, version.version, version.elements)">
+                        <span class="type" [title]="element.type">
+                            {{element.type | truncate: 1: false: '' | uppercase}}
+                        </span>
+                        <span class="name">
+                            {{ element.displayName | snlang }}
+                        </span>
+                    </div>
+                </ng-container>
+            </ng-container>
+
+        </div>
+    </div>
+
+    <div class="spinner">
+        <ion-spinner name="dots" *ngIf="loading"></ion-spinner>
+    </div>
+
+    <div class="more" *ngIf="moreResult">
+        <button class="button" (click)="loadMore()">{{ 'STUDIO-SEARCH-MORE' | translate }}</button>
+    </div>
+</div>

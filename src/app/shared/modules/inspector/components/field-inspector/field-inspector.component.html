@@ -1,4 +1,4 @@
-<inspector-section [title]="'INSPECTOR.SMART_FLOW.PROPERTIES' | translate" class="first">
+<inspector-section [title]="'INSPECTOR.SMART_FLOW.PROPERTIES' | translate" class="inspector-section first">
     <div class="property" *ngIf="!isExtendedField">
         <display-key-element class="display-element"
             [title]="'INSPECTOR.SMART_FLOW.PROPERTIES_KEY' | translate"
@@ -37,7 +37,7 @@
     </div>
 </inspector-section>
 
-<inspector-section [title]="'INSPECTOR.MODEL.FIELD-PROPERTY' | translate">
+<inspector-section class="inspector-section" [title]="'INSPECTOR.MODEL.FIELD-PROPERTY' | translate">
     <div class="property last">
         <sn-display-radio
             [radioList]="fieldProperties?.radioList"
@@ -47,7 +47,7 @@
     </div>
 </inspector-section>
 
-<inspector-section [title]="'INSPECTOR.MODEL.FIELD-VALUE' | translate" *ngIf="isDisplayValue">
+<inspector-section class="inspector-section" [title]="'INSPECTOR.MODEL.FIELD-VALUE' | translate" *ngIf="isDisplayValue">
     <div class="property last" *ngIf="isSmartModel">
         <sn-display-radio
             [radioList]="fieldComposition?.radioList"
@@ -67,6 +67,7 @@
 
     <div class="property last" *ngIf="isPrimitive && !fieldOptions?.multiple && !isUniqueKey">
         <data-inputs
+            class="data-inputs"
             inputKey="defaultValue"
             [typeInput]="fieldOptions?.types"
             [title]="'SN-DATA-INPUT-DEFAULT-VALUE' | translate"
@@ -77,7 +78,7 @@
     </div>
 </inspector-section>
 
-<inspector-section [title]="'INSPECTOR.MODEL.PERMISSIONS' | translate">
+<inspector-section class="inspector-section" [title]="'INSPECTOR.MODEL.PERMISSIONS' | translate">
     <permissions [custom]="fieldOptions?.value"
         [permissions]="fieldOptions?.value?.permissions"
         (changed)="onPermissionsChanged($event)" (applyAll)="onPermissionsApplyAll($event)">

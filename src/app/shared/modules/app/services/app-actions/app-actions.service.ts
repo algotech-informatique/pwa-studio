@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LangDto, SnAppDto, SnPageDto, SnPageEventDto, SnPageWidgetDto } from '@algotech-ce/core';
+import { LangDto, SnAppDto, SnPageDto, SnPageEventDto, SnPageEventPipeDto, SnPageWidgetDto } from '@algotech-ce/core';
 import { AppMessageService } from '../app-message/app-message.service';
 import { AppSelectionService } from '../app-selection/app-selection.service';
 import { PageWidgetService } from '../page-widget/page-widget.service';
@@ -336,6 +336,8 @@ export class AppActionsService extends AppMessageService {
                     newSW.sharedId = w.sharedId;
                     snApp.shared.splice(sharedIndex, 1, newSW);
                 }
+
+                this.restoreBrokenLinks(snApp, newSW);
                 this.notifyUpdate(snApp);
             });
 
@@ -370,6 +372,7 @@ export class AppActionsService extends AppMessageService {
                         }
                     }, () => {
                         page.widgets.push(newWidget);
+                        this.restoreBrokenLinks(snApp, newWidget);
                         this.notifyUpdate(snApp);
                     });
                 }
@@ -377,7 +380,7 @@ export class AppActionsService extends AppMessageService {
         });
     }
 
-    _hardUpdateReferences(widgets: SnPageWidgetDto[], master: SnPageWidgetDto,
+    _hardUpdateReferences(app: SnAppDto, widgets: SnPageWidgetDto[], master: SnPageWidgetDto,
         process: (root: SnPageWidgetDto, item: SnPageWidgetDto) => void,
         compeleted: () => void) {
         const refrences: SnPageWidgetDto[] = widgets.filter(w => w.sharedId && w.id !== master.id && w.sharedId === master.sharedId);
@@ -393,6 +396,7 @@ export class AppActionsService extends AppMessageService {
             this.pageUtils.processWidgetTree(ref, (root: SnPageWidgetDto, item: SnPageWidgetDto) => {
                 process(root, item);
             }, () => {
+                this.restoreBrokenLinks(app, ref);
                 compeleted();
             });
         });
@@ -409,7 +413,7 @@ export class AppActionsService extends AppMessageService {
                     box: this.pageUtils.transformAbsolute(app, w)?.box
                 }));
                 const sharedWidgets: SnPageWidgetDto[] = [];
-                this._hardUpdateReferences([ref], master,
+                this._hardUpdateReferences(app, [ref], master,
                     (root: SnPageWidgetDto, item: SnPageWidgetDto) => {
                         const index = oldRefwidgets.findIndex((c: SnPageWidgetDto) => item.sharedId && c.sharedId === item.sharedId);
                         //set locked properties of shared widgets between oldRef && the (new) ref && restore ids
@@ -461,7 +465,7 @@ export class AppActionsService extends AppMessageService {
         const selection = this.appSelection.selections.sharedWidgets?.length > 0 ?
             this.appSelection.selections.sharedWidgets : this.appSelection.selections.widgets;
         selection.forEach(master => {
-            this._hardUpdateReferences(widgets, master,
+            this._hardUpdateReferences(snApp, widgets, master,
                 (root: SnPageWidgetDto, item: SnPageWidgetDto) => {
                     if (root.id !== item.id) {
                         item.id = UUID.UUID();
@@ -484,6 +488,30 @@ export class AppActionsService extends AppMessageService {
                 this.notifyUpdate(snApp);
             });
         });
+    }
+
+    restoreBrokenLinks(snApp: SnAppDto, widget: SnPageWidgetDto) {
+        const widgets = this.pageUtils.getWidgetsAndSharedWidgets(snApp);
+        const childs = this.pageUtils.getAllWidgets([widget]);
+
+        for (const action of _.flatMap(_.flatMap(childs, 'events'), 'pipe') as SnPageEventPipeDto[]) {
+            if (action.type !== 'call::onLoad') {
+                continue ;
+            }
+            const findWidget = widgets.find((w) => w.id === action.action);
+            if (!findWidget) {
+                continue;
+            }
+            const findChild = childs.find((w) => w.id === action.action);
+            if (findChild) {
+                continue;
+            }
+            const findAssociated = childs.find((w) => w.sharedId === findWidget.sharedId);
+            if (!findAssociated) {
+                continue;
+            }
+            action.action = findAssociated.id;
+        }
     }
 
     /*

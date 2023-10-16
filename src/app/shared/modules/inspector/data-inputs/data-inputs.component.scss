@@ -10,12 +10,7 @@
     @include title;
 }
 
-data-inputs-text,
-data-inputs-number,
-data-inputs-boolean,
-data-inputs-date,
-data-inputs-datetime,
-data-inputs-time {
+.data-inputs {
     display: block;
     width: 100%;
     min-width: 0;

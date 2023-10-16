@@ -64,6 +64,7 @@ export { SN_FINISHER_NODE_SCHEMA } from './workflow/lifecycle/sn-finisher-node/s
 export { SN_LAUNCHER_NODE_SCHEMA } from './workflow/lifecycle/sn-launcher-node/sn-launcher-node.schema';
 export { SN_MULTICHOICE_NODE_SCHEMA } from './workflow/lifecycle/sn-multichoice-node/sn-multichoice-node.schema';
 export { SN_UNDO_NODE_SCHEMA } from './workflow/lifecycle/sn-undo-node/sn-undo-node.schema';
+export { SN_LOCK_GO_BACK_NODE_SCHEMA } from './workflow/lifecycle/sn-lock-goback/sn-lock-goback.schema';
 export { SN_LOOP_NODE_SCHEMA } from './workflow/lifecycle/sn-loop-node/sn-loop-node.schema';
 export { SN_SUB_WORKFLOW_NODE_SCHEMA } from './workflow/lifecycle/sn-sub-workflow-node/sn-sub-workflow-node.schema';
 export { SN_SWITCH_NODE_SCHEMA } from './workflow/lifecycle/sn-switch-node/sn-switch-node.schema';

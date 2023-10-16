@@ -17,8 +17,7 @@ import { SharedModule } from './shared/shared.module';
 import { HomePageModule } from './home/home.module';
 import { AppPreviewModule, EncodeGuard, ThemeEngloberModule, WorkflowDebuggerModule } from '@algotech-ce/business';
 import { NgxDropzoneModule } from 'ngx-dropzone';
-import { MarkdownModule } from 'ngx-markdown';
-import moment from 'moment'; 
+import moment from 'moment';
 import { KeycloakAngularModule } from 'keycloak-angular';
 import { SnTranslateService } from './shared/modules/smart-nodes';
 import { mergeMap } from 'rxjs/operators';
@@ -70,7 +69,6 @@ export const appInitialize = (
         ATAngularModule.forRoot(),
         AppPreviewModule,
         NgxDropzoneModule,
-        MarkdownModule.forRoot(),
         KeycloakAngularModule,
         ServiceWorkerModule.register('./studio/ngsw-worker.js', {
             enabled: environment.production,

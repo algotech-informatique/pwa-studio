@@ -4,12 +4,9 @@
 
 .sn-contextmenu {
     cursor: default;
-
-    sn-contextmenu-menu {
-        cursor: pointer;
-    }
 }
 
 .cm-menu {
+    cursor: pointer;
     z-index: 100;
 }

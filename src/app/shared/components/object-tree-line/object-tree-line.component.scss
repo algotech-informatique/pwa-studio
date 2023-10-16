@@ -9,7 +9,7 @@
     --INPUT-BORDER: 2px;
 }
 
-app-expander {
+#app-expander {
     --BACKGROUND-TITLE: transparent;
     --BORDER-BOTTOM-SIZE: 0;
     --CONTENT-PADDING-RIGHT: 0;
@@ -55,8 +55,6 @@ app-expander {
             padding: 0px 5px;
         }
     }
-
-    flex-direction: row;
 }
 .tree-line.active {
     background-color: var(--LINE-ACTIVE-COLOR);

@@ -3,7 +3,9 @@
     (changed)="onZoomAutoChanged($event)">
 </display-check-element>
 
-<display-definition-values *ngIf="zoom"
+<display-definition-values
+    class="display-definition-values"
+    *ngIf="zoom"
     [widthLabel]="'INSPECTOR.WIDGET.ZOOM.MIN' | translate"
     [heightLabel]="'INSPECTOR.WIDGET.ZOOM.MAX' | translate"
     [width]="zoom?.min"
@@ -20,7 +22,9 @@
     </display-check-element>
 </div>
 
-<display-definition-values *ngIf="zoom && !zoom.auto"
+<display-definition-values
+    class="display-definition-values"
+    *ngIf="zoom && !zoom.auto"
     [widthLabel]="'INSPECTOR.WIDGET.ZOOM.SCALE' | translate"
     [width]="zoom?.scale"
     [unit]="null"

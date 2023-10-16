@@ -1,7 +1,8 @@
 <div class="event-input">
     <span class="title">{{ 'INSPECTOR.WIDGET.EVENT.INPUTS' | translate }}</span>
     <div class="input-elements">
-        <input-element *ngFor="let input of inputs; index as i"
+        <input-element class="input-element"
+            *ngFor="let input of inputs; index as i"
             [ngClass]="{'margin': i < inputs?.length - 1}"
             [input]="input"
             [dataItems]="data"

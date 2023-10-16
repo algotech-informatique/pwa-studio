@@ -1,4 +1,5 @@
 @import "../../../../styles.scss";
+@import 'node_modules/@algotech-ce/business/src/lib/_mixins.scss';
 
 $PADDING-LEFT : 20px;
 
@@ -7,13 +8,14 @@ $PADDING-LEFT : 20px;
     --SN-COLOR-WARNING: #{$COLOR-BTN};
     --SN-BACKGROUND: var(--INSPECTOR-VERT-MENU-BACKGROUND);
 
+    --SCROLLBAR-BG-TRACK: #{$COLOR-DARK-TINT};
     --SCROLLBAR-COLOR: #{$COLOR-BG-DARK};
-    --SCROLLBAR-SIZE: 3px;
+    --SCROLLBAR-SIZE: 5px;
 
     --EXPLORER-EXPAND-SIZE: #{$EXPLORER-EXPAND-SIZE};
     --EXPLORER-REDUCE-SIZE: #{$EXPLORER-REDUCE-SIZE};
 
-    --HEADER-HEIGHT: 70px;
+    --HEADER-HEIGHT: 50px;
     --CUSTOMER-HEIGHT: 50px;
 
     font-size: 13px;
@@ -36,11 +38,12 @@ $PADDING-LEFT : 20px;
         display: flex;
         justify-content: center;
         align-items: center;
-        height: var(--HEADER-HEIGHT);
         color: $EXPLORER-FG-COLOR;
-        padding: 15px;
+        padding: 0px 15px 0px 0px;
+        margin-bottom: 15px;
         width: 100%;
         flex-shrink: 0;
+        height: var(--HEADER-HEIGHT);
 
         .logo-name {
             display: flex;
@@ -56,85 +59,68 @@ $PADDING-LEFT : 20px;
         .retractor {
             color: $COLOR-FG;
             cursor: pointer;
-            font-size: 24px;
+            font-size: 18px;
+            margin-left: 10px;
         }
-    }
 
-    .explorer-sections {
-        overflow: auto;
-        @include custom-scrollbar(var(--INSPECTOR-VERT-MENU-LIGHT-COLOR), #ffffff00, 5px);
-        height: 100%;
-        width: 100%;
-        overflow-x: hidden;
-
-        .customer {
-            height: var(--CUSTOMER-HEIGHT);
-            width: 100%;
+        .tabs {
+            min-width: 100px;
             display: flex;
             align-items: center;
-            font-weight: 700;
-            font-size: 13px;
             color: $EXPLORER-FG-COLOR;
-            user-select: none;
-            position: relative;
+            font-size: 18px;
+            margin-left: 5px;
 
-            .code {
-                padding: 6px;
-                margin-left: 10px;
-                border-radius: 6px;
+            .tab {
+                cursor: pointer;
+                opacity: 0.5;
+                &:hover,&.selected {
+                    opacity: 1;
+                }
+                &:not(.selected) {
+                    margin-bottom: 2px;
+                }
+                &.selected {
+                    border-bottom: 2px solid $EXPLORER-FG-COLOR;
+                }
+                padding: 5px 10px;
             }
-            .name {
-                margin: 0 20px;  
-                @include text-ellipsis; 
-            }
-
-            .connection-icon {
-                position: absolute;
-                right: 8px;
-                font-size: 14px;
-            }
-
             .status-active {
                 color: $COLOR-VALID;
             }
             .status-inactive {
                 color: $COLOR-WARN;
             }
-
-            &:hover {
-                cursor: pointer;
-                background: $EXPLORER-BG-ACTIVE;
-            }
         }
+    }
+
+    .explorer-content {
+        overflow: auto;
+        @include scrollbar(auto);
+        height: 100%;
+        width: 100%;
+        overflow-x: hidden;
 
         .modules {
             overflow: hidden;
             &.reduce {
-                animation: reduce .3s linear;
                 max-height: 0;
             }
-            animation: expand .3s linear;
-        }
-
-        @keyframes expand {
-            from {  max-height: 0;}
-            to { max-height: 50em; }
-        }
-
-        @keyframes reduce {
-            from { max-height: 30em; }
-            to { max-height: 0; }
         }
 
         .session {
             background: var(--SN-BACKGROUND);
+        }
+
+        &.hide {
+            display: none;
         }
     }
 
     &.reduce {
         width: var(--EXPLORER-REDUCE-SIZE);
 
-        .logo-name, .name {
+        .logo-name, .name, .search {
             display: none !important;
         }
     }

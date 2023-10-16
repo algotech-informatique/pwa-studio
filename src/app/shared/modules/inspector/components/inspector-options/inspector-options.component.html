@@ -1,4 +1,4 @@
-<inspector-section class="first" *ngIf="options" [title]="'INSPECTOR.SMART_FLOW.PROPERTIES' | translate">
+<inspector-section class="inspector-section first" *ngIf="options" [title]="'INSPECTOR.SMART_FLOW.PROPERTIES' | translate">
     <div class="property">
         <display-key-element
             class="display-element"
@@ -41,7 +41,7 @@
     </div>
 </inspector-section>
 
-<inspector-section *ngIf="snModel.type === 'workflow' && options?.variables"
+<inspector-section class="inspector-section" *ngIf="snModel.type === 'workflow' && options?.variables"
     [title]="'INSPECTOR.SMART_FLOW.VARIABLES' | translate">
     <variables
         [sources]="sources"
@@ -51,7 +51,7 @@
     </variables>
 </inspector-section>
 
-<inspector-section *ngIf="options && options.profiles" [title]="'INSPECTOR.SMART_FLOW.PROFILS' | translate">
+<inspector-section class="inspector-section" *ngIf="options && options.profiles" [title]="'INSPECTOR.SMART_FLOW.PROFILS' | translate">
     <profiles
         [profiles]="options?.profiles"
         [snView]="snView"

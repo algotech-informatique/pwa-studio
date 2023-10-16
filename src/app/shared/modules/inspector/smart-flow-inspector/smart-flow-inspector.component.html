@@ -40,7 +40,7 @@
     </div>
 
     <div [style.display]="selected !== 'openapi' && selected !== 'inspector' ? 'block' : 'none'">
-        <inspector-section *ngIf="nodeContextElement || context" class="first"
+        <inspector-section *ngIf="nodeContextElement || context" class="inspector-section first"
             [title]="'INSPECTOR.SMART_FLOW.PROPERTIES' | translate">
             <div class="property">
                 <display-translate-element

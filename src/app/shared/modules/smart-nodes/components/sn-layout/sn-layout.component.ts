@@ -3,10 +3,10 @@ import {
     ElementRef, ViewChildren, QueryList
 } from '@angular/core';
 import * as d3 from 'd3';
-import { SnNode, SnView } from '../../models';
+import { SnElement, SnNode, SnView } from '../../models';
 import {
     SnDragService, SnTranslateService, SnLinksService, SnDOMService,
-    SnActionsService, SnCalculService, SnContextmenuService, SnZoomService, SnSelectionService, SnUpDownService
+    SnActionsService, SnCalculService, SnContextmenuService, SnZoomService, SnSelectionService, SnUpDownService, SnSearchService
 } from '../../services';
 import * as _ from 'lodash';
 import { SnSettings } from '../../dto/sn-settings';
@@ -16,6 +16,7 @@ import { SnClipboardService } from '../../services/view/sn-clipboard/sn-clipboar
 import { SnNodeComponent } from '../sn-node/sn-node.component';
 import { DrawingService } from '@algotech-ce/business/drawing';
 import { debounceTime } from 'rxjs/operators';
+import { SnSearchDto } from '../../../../dtos';
 
 @Component({
     selector: 'sn-layout',
@@ -42,6 +43,9 @@ export class SnLayoutComponent implements OnChanges, OnDestroy {
     @Input()
     snView: SnView;
 
+    @Input()
+    search: SnSearchDto;
+
     @Output()
     changed = new EventEmitter();
 
@@ -66,6 +70,7 @@ export class SnLayoutComponent implements OnChanges, OnDestroy {
         private snAction: SnActionsService,
         private snCalcul: SnCalculService,
         private snZoom: SnZoomService,
+        private snSearch: SnSearchService,
         private snContextmenuService: SnContextmenuService,
         private snClipboardService: SnClipboardService,
         private drawingService: DrawingService,
@@ -84,6 +89,16 @@ export class SnLayoutComponent implements OnChanges, OnDestroy {
 
         if (!this.snView) {
             return;
+        }
+
+        if (!changes.snView?.currentValue) {
+            if (changes?.search?.currentValue) {
+                this.snSearch.applySearch(this.search, this.snView);
+                this.detectorDetectChanges();
+            } else if (changes?.search?.previousValue) {
+                this.snSearch.clear(this.snView);
+                this.detectorDetectChanges();
+            }
         }
 
         if (changes.snView) {
@@ -292,9 +307,14 @@ export class SnLayoutComponent implements OnChanges, OnDestroy {
 
         this.update();
 
-        if (this.snView.nodes.length > 0 && isSnViewFistShow) {
-            const startNode = this.snView.nodes.find((node: SnNode) => node.type === 'SnLauncherNode');
-            this.snZoom.centerNode(startNode ? startNode : this.snView.nodes[0]);
+        if (this.snView.nodes.length > 0) {
+            const beFocused = this.snSearch.applySearch(this.search, this.snView);
+            this.detectorDetectChanges();
+
+            if (!beFocused && isSnViewFistShow) {
+                const startNode = this.snView.nodes.find((node: SnNode) => node.type === 'SnLauncherNode');
+                this.snZoom.centerNode(startNode ? startNode : this.snView.nodes[0]);
+            }
         }
     }
 
@@ -366,8 +386,16 @@ export class SnLayoutComponent implements OnChanges, OnDestroy {
                             }
                         }
 
+                        // SEARCH
+                        if (d3.event.ctrlKey && !d3.event.shiftKey && d3.event.keyCode === 70) {
+                            d3.event.preventDefault();
+                            if (self.settings.search) {
+                                self.settings.search();
+                            }
+                        }
+
                         // EXPAND
-                        if (d3.event.keyCode === 69) {
+                        if (d3.event.keyCode === 77) {
                             d3.event.preventDefault();
                             const containers = self.snSelection.getSelectedContainers(self.snView);
                             if (containers.length > 0) {

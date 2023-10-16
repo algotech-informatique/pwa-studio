@@ -1,7 +1,9 @@
 import { SmartTaskDto } from '@algotech-ce/core';
 import { Component, Input, Output, EventEmitter, OnChanges, AfterViewInit, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
+import moment from 'moment';
 import { ScheduledDataDto } from '../../../../dtos';
 import { OptionsElementDto } from '../../../../dtos/options-element.dto';
+import { MessageService, SessionsService } from '../../../../services';
 import { ScheduledTaskDetailService } from '../../services/scheduled-task-detail.service';
 
 @Component({
@@ -26,6 +28,8 @@ export class ScheduledTaskDetailComponent implements OnChanges, AfterViewInit {
     constructor(
         private scheduleDataService: ScheduledTaskDetailService,
         private changeDetectorRef: ChangeDetectorRef,
+        private sessionsService: SessionsService,
+        private messageService: MessageService,
     ) {
         this.listSmartFlows = this.scheduleDataService.getListSmartFlows();
     }
@@ -55,7 +59,7 @@ export class ScheduledTaskDetailComponent implements OnChanges, AfterViewInit {
     }
 
     onChangeStartDate(value) {
-        this.data.startDate = value;
+        this.data.startDate = this.validateDate(value);
         this._updateTask();
     }
 
@@ -65,6 +69,19 @@ export class ScheduledTaskDetailComponent implements OnChanges, AfterViewInit {
             this.data.endDate = '';
         }
         this._updateTask();
+    }
+
+    validateDate(value) {
+        if (!moment(value).isValid()) {
+            return value;
+        }
+        if (moment(value).hour() >= 22) {
+            return moment(value).set('hour', 22).set('minute', 0).format('YYYY-MM-DDTHH:mm');
+        }
+        if (moment(value).hour() < 2) {
+            return moment(value).set('hour', 2).set('minute', 0).format('YYYY-MM-DDTHH:mm');
+        }
+        return value;
     }
 
     onChangeEndDate(value) {
@@ -94,6 +111,15 @@ export class ScheduledTaskDetailComponent implements OnChanges, AfterViewInit {
 
     onDeleteTask() {
         this.deleteTask.emit(this.smartTask);
+    }
+
+    openSmartflowTab() {
+        const snModel = this.sessionsService.active.datas.write.snModels.find((sn) =>
+            sn.key === this.data.smartFlowKey && sn.type === 'smartflow'
+        );
+        if (snModel) {
+            this.messageService.send('open-tab', snModel);
+        }
     }
 }
 

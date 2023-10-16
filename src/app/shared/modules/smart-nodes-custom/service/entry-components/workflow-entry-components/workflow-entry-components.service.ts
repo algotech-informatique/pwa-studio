@@ -6,7 +6,7 @@ import * as schema from '../../../index-schema';
 import * as _ from 'lodash';
 import { EntryComponentsService } from '../entry-components/entry-components.service';
 import { SnAlertNodeHelper, SnLauncherNodeHelper, SnObjectCreationNodeHelper,
-    SnFinisherNodeHelper, SnFormulaNodeHelper } from '../../../index-helper';
+    SnFinisherNodeHelper, SnFormulaNodeHelper, SnArrayFunctionNodeHelper, SnObjectFunctionNodeHelper } from '../../../index-helper';
 
 @Injectable()
 export class WorkflowEntryComponentsService {
@@ -82,6 +82,10 @@ export class WorkflowEntryComponentsService {
                             this.entryComponents.initializeLangs('SN-SERVICE-DONE', languages),
                             this.entryComponents.initializeLangs('SN-SERVICE-ERROR', languages),
                         )
+                    }, {
+                        displayName: 'SN-LOCK-GOBACK',
+                        component: components.SnLockGoBackNodeComponent,
+                        schema: this.entryComponents.createSchema(schema.SN_LOCK_GO_BACK_NODE_SCHEMA, 'SN-LOCK-GOBACK', languages)
                     }]
                 }, {
                     displayName: 'SN-SERVICE',
@@ -317,10 +321,12 @@ export class WorkflowEntryComponentsService {
                         displayName: 'SN-ARRAY-FUNCTION',
                         component: components.SnArrayFunctionNodeComponent,
                         schema: schema.SN_ARRAY_FUNCTION_NODE_SCHEMA,
+                        helper: SnArrayFunctionNodeHelper,
                     }, {
                         displayName: 'SN-OBJECT-FUNCTION',
                         component: components.SnObjectFunctionNodeComponent,
                         schema: schema.SN_OBJECT_FUNCTION_NODE_SCHEMA,
+                        helper: SnObjectFunctionNodeHelper,
                     }, {
                         displayName: 'SN-GEO-NODE',
                         component: components.SnGeoNodeComponent,

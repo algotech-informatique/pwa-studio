@@ -5,11 +5,12 @@ import { SessionsService } from '../sessions/sessions.service';
 import { SessionDto, ObjectTreeLineDto, ResourceType, DirectoryClipboardDto } from '../../dtos';
 import { UUID } from 'angular2-uuid';
 import { LangsService } from '../langs/langs.service';
-import { SnTranslateService } from '../../modules/smart-nodes';
+import { SnTranslateService, SnView } from '../../modules/smart-nodes';
 import { EnvironmentService } from '../environment/environment.service';
 import { SnModelsService } from '../smart-nodes/smart-nodes.service';
 import { from } from 'rxjs';
 import { Clipboard } from '@angular/cdk/clipboard';
+import { KeyFormaterService } from '@algotech-ce/angular';
 
 @Injectable()
 export class ClipboardService {
@@ -33,6 +34,7 @@ export class ClipboardService {
         private environmentService: EnvironmentService,
         private snModelsService: SnModelsService,
         private clipboardService: Clipboard,
+        private keyFormaterService: KeyFormaterService,
     ) {
 
         window.addEventListener('focus', () => {
@@ -178,6 +180,11 @@ export class ClipboardService {
         formatModel.versions = _.map(_.filter(formatModel.versions, { deleted: false }), (version: SnVersionDto) => {
             version.uuid = UUID.UUID();
             version.view.id = UUID.UUID();
+
+            if (type === 'smartflow' && (version.view as SnView)?.options?.api?.route) {
+                (version.view as SnView).options.api.route = this.keyFormaterService.format(name);
+            }
+
             return version;
         });
 

@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 import { SnAppDto } from '@algotech-ce/core';
 import {
-    AppActionsService, AppClipboardService, AppContextmenuService, AppLinksService, AppSelectionService,
+    AppActionsService, AppClipboardService, AppContextmenuService, AppLinksService, AppSearchService, AppSelectionService,
     AppZoomService, PageDragService, PageUtilsService
 } from '../../services';
 import * as d3 from 'd3';
@@ -17,6 +17,7 @@ import { DrawingService } from '@algotech-ce/business/drawing';
 import { ResizeOrientation } from '../../services/page-utils/resize-orientation.enum';
 import { WidgetComponent } from '../widget/widget.component';
 import * as _ from 'lodash';
+import { SnSearchDto } from '../../../../dtos';
 
 @Component({
     selector: 'app-layout',
@@ -30,6 +31,7 @@ export class AppLayoutComponent implements OnChanges, OnDestroy {
 
     @Input() snApp: SnAppDto;
     @Input() settings: AppSettings;
+    @Input() search: SnSearchDto;
 
     @Output() layoutClicked = new EventEmitter();
     @Output() changed = new EventEmitter();
@@ -65,6 +67,7 @@ export class AppLayoutComponent implements OnChanges, OnDestroy {
         private appClipboard: AppClipboardService,
         private appLinks: AppLinksService,
         private drawingService: DrawingService,
+        private appSearch: AppSearchService,
         public pageUtils: PageUtilsService,
         public appZoom: AppZoomService,
         public appSelection: AppSelectionService) {
@@ -81,7 +84,12 @@ export class AppLayoutComponent implements OnChanges, OnDestroy {
 
     ngOnChanges(changes: SimpleChanges) {
         if (!changes?.snApp?.currentValue) {
-            return ;
+            if (changes?.search?.currentValue) {
+                this.appSearch.applySearch(this.search, this.snApp, this.svgElement);
+            } else if (changes?.search?.previousValue) {
+                this.appSearch.clear(this.snApp);
+            }
+            return;
         }
 
         this.display = false;
@@ -110,7 +118,7 @@ export class AppLayoutComponent implements OnChanges, OnDestroy {
         }));
 
         this.subscription.add(this.appActions.onZoomPage(this.snApp).subscribe((data: any) => {
-            this.appZoom.center(this.svgElement, this.snApp, data.page, data.scale);
+            this.appZoom.center(this.svgElement, this.snApp, data.page, data.widget, data.scale);
         }));
 
         this.subscription.add(this.appSelection.onSelect(this.snApp).subscribe((event: AppSelectionEvent) => {
@@ -128,8 +136,8 @@ export class AppLayoutComponent implements OnChanges, OnDestroy {
             this.showContextmenu = show;
         }));
 
-         /* drawing */
-         this.subscription.add(this.appActions.onDrawing(this.snApp).subscribe((data: { drawing: boolean; showBackdrop: boolean }) => {
+        /* drawing */
+        this.subscription.add(this.appActions.onDrawing(this.snApp).subscribe((data: { drawing: boolean; showBackdrop: boolean }) => {
             this.drawing = data.drawing;
             this.showBackdrop = data.showBackdrop;
             if (!data.drawing) {
@@ -168,6 +176,7 @@ export class AppLayoutComponent implements OnChanges, OnDestroy {
         // load the component
         this.loaded = true;
         this.ref.detectChanges();
+        this.appSearch.applySearch(this.search, this.snApp, this.svgElement);
 
         // display the view
         this.display = true;
@@ -260,7 +269,7 @@ export class AppLayoutComponent implements OnChanges, OnDestroy {
                         }
 
                         // COPY
-                        if (d3.event.ctrlKey && d3.event.keyCode === 67 && !d3.event.shiftKey ) {
+                        if (d3.event.ctrlKey && d3.event.keyCode === 67 && !d3.event.shiftKey) {
                             d3.event.preventDefault();
                             self.appClipboard.copy();
                         }
@@ -293,6 +302,14 @@ export class AppLayoutComponent implements OnChanges, OnDestroy {
                             self.appActions.notifyUpdate(self.snApp);
                         }
 
+                        // SEARCH
+                        if (d3.event.ctrlKey && !d3.event.shiftKey && d3.event.keyCode === 70) {
+                            d3.event.preventDefault();
+                            if (self.settings.search) {
+                                self.settings.search();
+                            }
+                        }
+
                         // LOCK / UNLOCK
                         if (d3.event.ctrlKey && d3.event.shiftKey && d3.event.keyCode === 76) {
                             d3.event.preventDefault();
@@ -317,16 +334,16 @@ export class AppLayoutComponent implements OnChanges, OnDestroy {
                                 // TRANSLATE XY
                                 const step = (d3.event.shiftKey) ? 10 : 1;
                                 switch (d3.event.key) {
-                                    case 'ArrowLeft' :
+                                    case 'ArrowLeft':
                                         self.appActions.translateXY(self.snApp, -step, 0);
                                         break;
-                                    case 'ArrowRight' :
+                                    case 'ArrowRight':
                                         self.appActions.translateXY(self.snApp, step, 0);
                                         break;
-                                    case 'ArrowUp' :
+                                    case 'ArrowUp':
                                         self.appActions.translateXY(self.snApp, 0, -step);
                                         break;
-                                    case 'ArrowDown' :
+                                    case 'ArrowDown':
                                         self.appActions.translateXY(self.snApp, 0, step);
                                         break;
                                 }
@@ -375,7 +392,7 @@ export class AppLayoutComponent implements OnChanges, OnDestroy {
 
     update() {
         if (this.drawing) {
-            return ;
+            return;
         }
         this.ref.detectChanges();
         this.initializeDrag();

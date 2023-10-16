@@ -18,7 +18,10 @@ import { WidgetComponentInterface } from '../../interfaces';
                 'hidden': widget.custom?.hidden,
                 'error': (widget.displayState?.errors | showAppErrors) &&
                     (appSelection.selections.widgets | elementSelected:widget) === 'hidden',
-                'highlight': widget.displayState?.highlight && (appSelection.selections.widgets | elementSelected:widget) === 'hidden'
+                'highlight': widget.displayState?.highlight && (appSelection.selections.widgets | elementSelected:widget) === 'hidden',
+                'search': widget.displayState?.search && (appSelection.selections.widgets | elementSelected:widget) === 'hidden',
+                'search-active': widget.displayState?.searchActive &&
+                    (appSelection.selections.widgets | elementSelected:widget) === 'hidden'
             }"
             [style.--SN-SELECTION-BORDER]="((appZoom.transform.k | scaleZoom: '+/-') * 2) + 'px'"
         >

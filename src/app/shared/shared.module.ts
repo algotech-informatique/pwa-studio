@@ -5,16 +5,16 @@ import {
     PageNotFoundComponent, EnvironmentBarComponent, TabsComponent, ModalComponent,
     WorkflowEditorComponent, FlowEditorComponent, ModelEditorComponent,
     DataExplorerComponent, TabsMaterialComponent, TreeDebugComponent, EditorContentComponent,
-    CursorsComponent, ConnectorParametersComponent,
-    AppEditorComponent, DialogMessageComponent, CheckSettingsComponent, ManifestSettingsComponent,
+    CursorsComponent, ConnectorParametersComponent, ConnectorParametersEditComponent,
+    AppEditorComponent, DialogMessageComponent, CheckSettingsComponent, ManifestSettingsComponent, LocalSearchComponent,
 } from './components/';
 import { SmartNodesModule } from './modules/smart-nodes/smart-nodes.module';
 import { FormsModule } from '@angular/forms';
 import {
     MessageService, EnvironmentService, TabsService, ContextmenuService,
-    SessionsService, SnModelsService, LangsService, DialogMessageService, StoreService,
+    SessionsService, SnModelsService, LangsService, DialogMessageService,
     IconsService, SmartModelsService, PatchesService, ClipboardService, UndoRedoService,
-    PreferencesService, StorePreferencesService, ConfigService, DatasService, CheckService, WatcherService, RulesEngine,
+    PreferencesService, ConfigService, DatasService, CheckService, WatcherService, RulesEngine,
 } from './services';
 import { AngularSplitModule } from 'angular-split';
 import { PopUpModule } from './components/pop-ups/pop-up.module';
@@ -36,10 +36,8 @@ import { OptionsModule } from './components/options/options.module';
 import { ScheduledTaskModule } from './components/scheduled-task/scheduled-task.module';
 import { ATAppCustomModule } from './modules/app-custom/app-custom.module';
 import { ATAppToolboxModule } from './modules/app-custom/app-toolbox/app-toolbox.module';
-import { StoreModule } from './components/store/store.module';
 import { GenericListsModule } from './components/generic-lists/generic-lists.module';
 import { PipeModule } from './pipes/pipe.module';
-import { StoreDuplicateService } from './services/store/store-duplicate.service';
 import { ImportDataModule } from './components/import-data/import-data.module';
 import { ImportMainDataModule } from './services/import-data/import-main-data.module';
 import { DrawingModule } from '@algotech-ce/business/drawing';
@@ -57,6 +55,7 @@ import { ManifestSettingsModule } from './components/manifest/manifest-settings.
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { DirectiveModule } from './directives/directive.module';
 import { I18nEditorModule } from './components/i18n/i18n-editor.module';
+import { ResourceSearchComponent } from './components/search/resource-search/resource-search.component';
 
 @NgModule({
     declarations: [
@@ -64,6 +63,7 @@ import { I18nEditorModule } from './components/i18n/i18n-editor.module';
         ManifestSettingsComponent,
         CursorsComponent,
         ConnectorParametersComponent,
+        ConnectorParametersEditComponent,
         TabsComponent,
         TabsMaterialComponent,
         EnvironmentBarComponent,
@@ -81,6 +81,8 @@ import { I18nEditorModule } from './components/i18n/i18n-editor.module';
         DialogMessageComponent,
         DragTabSourceDirective,
         DragTabTargetDirective,
+        LocalSearchComponent,
+        ResourceSearchComponent
     ],
     imports: [
         PipesModule,
@@ -102,7 +104,6 @@ import { I18nEditorModule } from './components/i18n/i18n-editor.module';
         SmartLinkAppModule,
         OptionsModule,
         ScheduledTaskModule,
-        StoreModule,
         GenericListsModule,
         PipeModule,
         ImportDataModule,
@@ -149,6 +150,7 @@ import { I18nEditorModule } from './components/i18n/i18n-editor.module';
         ThemeEditorModule,
         PipeModule,
         DialogMessageComponent,
+        ResourceSearchComponent
     ],
 })
 export class SharedModule {
@@ -169,7 +171,6 @@ export class SharedModule {
                 SnModelsService,
                 KeyFormaterService,
                 DialogMessageService,
-                StoreService,
                 IconsService,
                 ModelEditorService,
                 SmartModelsService,
@@ -179,8 +180,6 @@ export class SharedModule {
                 UndoRedoService,
                 PreferencesService,
                 StudioTranslationService,
-                StorePreferencesService,
-                StoreDuplicateService,
                 SettingsUpdateService,
                 WatcherService,
                 CheckService,

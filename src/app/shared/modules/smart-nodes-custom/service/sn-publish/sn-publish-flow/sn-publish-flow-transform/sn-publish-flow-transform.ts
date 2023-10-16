@@ -8,7 +8,9 @@ import { KeyFormaterService } from '@algotech-ce/angular';
 import { SnUtilsService, SnTranslateService } from '../../../../../smart-nodes/services';
 import * as _ from 'lodash';
 import { TranslateService } from '@ngx-translate/core';
-import moment from 'moment'; 
+import moment from 'moment';
+import { SnATNodeUtilsService } from '../../../../shared/sn-at-node/sn-at-node-utils.service/sn-at-node-utils.service';
+import { SnArrayFunctionNodeHelper, SnObjectFunctionNodeHelper, } from '../../../../index-helper';
 
 @Injectable()
 export class SnPublishFlowTransformService {
@@ -18,6 +20,7 @@ export class SnPublishFlowTransformService {
         private snTranslate: SnTranslateService,
         private translate: TranslateService,
         private snUtils: SnUtilsService,
+        private snATNodeUtils: SnATNodeUtilsService,
     ) { }
 
     proceedView(snView: SnView, profil: WorkflowProfilModelDto): SnView {
@@ -38,10 +41,10 @@ export class SnPublishFlowTransformService {
         this.proceedViewExpression(proceed);
         this.proceedViewArray(proceed);
         this.proceedViewGenericList(proceed);
+        this.proceedViewFilter(proceed);
         this.proceedViewArrayExpression(proceed);
         this.proceedViewObjectExpression(proceed);
         this.proceedViewJsonNode(proceed);
-        this.proceedViewFilter(proceed);
         this.proceedViewFormDBConnector(proceed);
         this.proceedViewService(proceed);
         this.proceedViewInParameters(proceed);
@@ -131,7 +134,6 @@ export class SnPublishFlowTransformService {
                         case 'SnResetNode':
                         case 'SnArrayNode':
                         case 'SnFilterNode':
-                        case 'SnJsonNode':
                             element.param.value = findParam.param.value;
                             break;
                         default:
@@ -169,6 +171,11 @@ export class SnPublishFlowTransformService {
             }
 
             const parameters = section.params;
+            const type = this.snATNodeUtils.findType(snView, expr, 'array');
+            const nFunction = expr.params.find((p) => p.key === 'function');
+            const associatedParameters = SnArrayFunctionNodeHelper._getFunctions(type, true)
+                ?.find((func) => func.key === nFunction.value)
+                ?.parameters ?? [];
 
             // Array Function
             outParam.value = {
@@ -176,7 +183,7 @@ export class SnPublishFlowTransformService {
                 function: f.value,
                 array: this._getParamValue(array),
                 parameters: _.reduce(parameters, (results, p: SnParam) => {
-                    if (!p.displayState?.hidden && p.key !== 'propType') {
+                    if (associatedParameters.some((param) => p.key === param.key)) {
                         results.push({
                             key: p.key,
                             value: this._getParamValue(p),
@@ -203,13 +210,18 @@ export class SnPublishFlowTransformService {
 
             const parameters = section.params;
 
+            const nFunction = expr.params.find((p) => p.key === 'function');
+            const associatedParameters = SnObjectFunctionNodeHelper._getFunctions()
+                ?.find((func) => func.key === nFunction.value)
+                ?.parameters ?? [];
+
             // Array Function
             outParam.value = {
                 type: 'ObjectFunction',
                 function: f.value,
                 array: this._getParamValue(array),
                 parameters: _.reduce(parameters, (results, p: SnParam) => {
-                    if (!p.displayState?.hidden && p.key !== 'propType') {
+                    if (associatedParameters.includes(p.key)) {
                         results.push({
                             key: p.key,
                             value: this._getParamValue(p),
@@ -431,7 +443,12 @@ export class SnPublishFlowTransformService {
             const outParam = this._getOutParam(node);
             const sources = node.sections.find((s) => s.key === 'sources')?.params;
             if (outParam) {
-                outParam.value = JSON.parse(this._replaceExpression(outParam.value, sources));
+
+                // JSON
+                outParam.value = {
+                    type: 'JSON',
+                    value: JSON.parse(this._replaceExpression(outParam.value, sources))
+                };
             }
         }
     }
@@ -516,8 +533,7 @@ export class SnPublishFlowTransformService {
         if (node.sections.length === 0) {
             return [];
         }
-        return _.compact(
-            _.map(node.sections[0].params, (param: SnParam) => {
+        return _.map(node.sections[0].params, (param: SnParam) => {
                 // recursive array node (not yet calculated)
                 const findLinked = this.snUtils.getParamsWithNode(snView).find((p) => p.param.id === param.toward);
                 if (findLinked && this._isArray(findLinked.node)) {
@@ -528,8 +544,7 @@ export class SnPublishFlowTransformService {
                 }
 
                 return param.value;
-            })
-        );
+            }).filter((v) => v != null);
     }
 
     _getOutParam(node: SnNode) {
@@ -538,7 +553,7 @@ export class SnPublishFlowTransformService {
 
     _getParamValue(param: SnParam) {
         if (param.multiple === true) {
-            return _.isArray(param.value) ? param.value : _.compact([param.value]);
+            return _.isArray(param.value) ? param.value : (param.value == null ? [] : [param.value]);
         } else {
             return param.value;
         }
@@ -570,7 +585,7 @@ export class SnPublishFlowTransformService {
 
     isExpression(node: SnNode) {
         return node.type === 'SnTextFormattingNode' || node.type === 'SnFormulaNode' || node.type === 'SnArrayFunctionNode'
-            || node.type === 'SnObjectFunctionNode' || this._isGenericList(node);
+            || node.type === 'SnObjectFunctionNode' || this._isJsonNode(node) || this._isGenericList(node);
     }
 
     _isArray(node: SnNode) {

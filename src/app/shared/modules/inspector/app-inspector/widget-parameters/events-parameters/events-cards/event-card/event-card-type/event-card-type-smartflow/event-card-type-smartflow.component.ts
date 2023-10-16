@@ -49,6 +49,7 @@ export class EventCardTypeSmartflowComponent implements OnInit {
 
     onInputsChanged(inputs: InputItem[]) {
         this.pipeEvent.inputs = inputs.map((input: InputItem) => ({ key: input.key, value: input.value }));
+        this.appCustomService.updateOutput(this.pipeEvent);
         this.eventPipeChanged.emit(this.pipeEvent);
     }
 

@@ -23,15 +23,26 @@
                         </toolbox-drawing>
 
                         <div class="work-layout">
-                            <sn-main-layout 
-                                class="main-layout"
-                                [settings]="settings"
-                                [snView]="snView"
-                                (selected)="onSelected($event)"
-                                (changed)="onChanged($event)">
-                            </sn-main-layout>
+                            <div class="main-layout">
+                                <sn-main-layout 
+                                    class="main-layout"
+                                    [settings]="settings"
+                                    [snView]="snView"
+                                    [search]="search"
+                                    (selected)="onSelected($event)"
+                                    (changed)="onChanged($event)">
+                                </sn-main-layout>
+                                <local-search
+                                    [snModelUuid]="snModel.uuid"
+                                    [version]="snVersion"
+                                    (closed)="onClose()"
+                                    class="local-search"
+                                    *ngIf="searchActive">
+                                </local-search>
+                            </div>
                             <sn-smart-flow-inspector
                                 *ngIf="snModel && snView"
+                                id="sn-smart-flow-inspector"
                                 [snModel]="snModel"
                                 [snView]="snView"
                                 [context]="context"
@@ -65,6 +76,7 @@
 
     <as-split-area [size]="debuggerSize" class="debugger-area" *ngIf="smartflowToDebug">
         <at-workflow-debugger-layout
+            id="at-workflow-debugger-layout"
             [workflow]="smartflowToDebug"
             [glists]="sessionsService.active.datas.read.glists"
             [groups]="sessionsService.active.datas.read.groups"

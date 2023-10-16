@@ -1,4 +1,4 @@
-import { PairDto, SmartTaskDayofMonthDto, SmartTaskDayofWeekDto, SmartTaskDto } from '@algotech-ce/core';
+import { SmartTaskDto } from '@algotech-ce/core';
 import { SnATNodeUtilsService } from '../../../modules/smart-nodes-custom/shared/sn-at-node/sn-at-node-utils.service/sn-at-node-utils.service';
 import { Injectable } from '@angular/core';
 import { ScheduledDataDto } from '../../../dtos';
@@ -144,14 +144,14 @@ export class ScheduledTaskDetailService {
         }, []);
     }
 
-    private _validateOutputWeek(datas: number[]): SmartTaskDayofWeekDto[] {
+    private _validateOutputWeek(datas: number[]): number[] {
         return _.reduce(datas, (result, data) => {
             result.push(data);
             return result;
         }, []);
     }
 
-    private _validateOutputMonth(datas: number[]): SmartTaskDayofMonthDto[] {
+    private _validateOutputMonth(datas: number[]): number[] {
         return _.reduce(datas, (result, data) => {
             result.push(data);
             return result;

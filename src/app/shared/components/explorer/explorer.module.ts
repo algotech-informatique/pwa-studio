@@ -12,12 +12,15 @@ import { SmartNodesModule } from '../../modules/smart-nodes/smart-nodes.module';
 import { FormsModule } from '@angular/forms';
 import { PipeModule } from '../../pipes/pipe.module';
 import { ExplorerProfileSectionComponent } from './explorer-profile-section/explorer-profile-section.component';
+import { InspectorModule } from '../../modules/inspector/inspector.module';
+import { GlobalSearchComponent } from '../search/global-search/global-search.component';
 
 @NgModule({
     declarations: [
         ObjectTreeLineComponent,
         ObjectTreeInputComponent,
         ModuleTreeLineComponent,
+        GlobalSearchComponent,
         DragExplorerSourceDirective,
         DragExplorerTargetDirective,
         ExplorerComponent,
@@ -32,6 +35,7 @@ import { ExplorerProfileSectionComponent } from './explorer-profile-section/expl
         DirectivesModule,
         SmartNodesModule,
         PipeModule,
+        InspectorModule,
     ],
     exports: [
         ExplorerComponent,

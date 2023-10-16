@@ -128,6 +128,7 @@ export class SnSwitchNodeComponent extends SnTaskNodeComponent {
             if (flow) {
                 prm.key = flow.key;
                 prm.displayName = flow.displayName;
+                prm.value = prm.value ?? '';
                 result.push(prm);
             }
             return result;

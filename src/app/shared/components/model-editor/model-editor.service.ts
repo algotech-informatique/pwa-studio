@@ -4,7 +4,7 @@ import { SnActionsService, SnUtilsService, SnLang, SnView, SnSelectionEvent, SnP
     SnNode, SnRemoveSelection, SnContextmenuActionExtension, SnTranslateService, SnSelectionService } from '../../modules/smart-nodes';
 import { SnModelDto, SmartModelDto } from '@algotech-ce/core';
 import { SnSettings } from '../../modules/smart-nodes/dto/sn-settings';
-import { DialogMessageService, SessionsService, DatasService } from '../../services';
+import { DialogMessageService, SessionsService, DatasService, MessageService } from '../../services';
 import { ModelEntryComponentsService } from '../../modules/smart-nodes-custom';
 import { TranslateService } from '@ngx-translate/core';
 import { UUID } from 'angular2-uuid';
@@ -21,9 +21,11 @@ export class ModelEditorService {
         private snSelection: SnSelectionService,
         private snActions: SnActionsService,
         private datasService: DatasService,
+        private messageService: MessageService,
         private snUtils: SnUtilsService) { }
 
-    buildSettings(snView: SnView, snModel: SnModelDto, host: string, customerKey: string, languages: SnLang[]): SnSettings {
+    buildSettings(snView: SnView, snModel: SnModelDto, host: string, customerKey: string, languages: SnLang[],
+        onSearchActive: () => void): SnSettings {
         const isSAdmin = _.indexOf(this.sessionService.active.datas.read.localProfil.groups, 'sadmin') !== -1;
         const settings: SnSettings = {
             module: 'smartmodel',
@@ -56,6 +58,9 @@ export class ModelEditorService {
             redo: () => {
                 this.datasService.redo(snModel, customerKey, host);
             },
+            search: () => {
+                onSearchActive();
+            }
         };
 
         return settings;
@@ -65,8 +70,27 @@ export class ModelEditorService {
         return _.compact(
             [
                 this.buildExtendProperty(snView, 'comment', languages),
-                this.buildExtendProperty(snView, 'photo', languages)
+                this.buildExtendProperty(snView, 'photo', languages),
+                this.buildExtendReference(),
             ]);
+    }
+
+    buildExtendReference(): SnContextmenuActionExtension {
+        return {
+            title: 'SN-CONTEXTMENU.SCHEMA.REFERENCE',
+            filter: (selections: SnSelectionEvent[]) => {
+                if (!(selections.length === 1 && selections[0].type === 'node')) {
+                    return false;
+                }
+                return true;
+            },
+            onClick: (selections: SnSelectionEvent[]) => {
+                if (selections.length !== 1) {
+                    return;
+                }
+                this.messageService.send('find-reference', `so:${(selections[0].element as SnNode).custom?.key}`);
+            },
+        };
     }
 
     buildExtendProperty(snView: SnView, type: string, languages: SnLang[]): SnContextmenuActionExtension {

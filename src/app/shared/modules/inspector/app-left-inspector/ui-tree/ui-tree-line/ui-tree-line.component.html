@@ -45,14 +45,18 @@
     </div>
     
     <div *ngIf="!sharedItems" [style.display]="item.open ? 'block' : 'none'" class="children" [ngClass]="{'selected': selected}">
-        <ui-tree-widget *ngFor="let child of item.children ? item.children : []; trackBy: trackById"
+        <ui-tree-widget
+            class="ui-tree-widget"
+            *ngFor="let child of item.children ? item.children : []; trackBy: trackById"
             [snApp]="snApp"
             [item]="child"
             [settings]="settings">
         </ui-tree-widget>
     </div>
     <div *ngIf="sharedItems" [style.display]="item.open ? 'block' : 'none'" class="children" [ngClass]="{'selected': selected}">
-        <ui-tree-shared-widget *ngFor="let child of item.children ? item.children : []; trackBy: trackBysharedId"
+        <ui-tree-shared-widget
+            class="ui-tree-shared-widget"
+            *ngFor="let child of item.children ? item.children : []; trackBy: trackBysharedId"
             [snApp]="snApp"
             [item]="child"
             [settings]="settings"

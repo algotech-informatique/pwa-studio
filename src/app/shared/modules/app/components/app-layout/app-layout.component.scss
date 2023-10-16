@@ -104,6 +104,18 @@
         }
     }
 
+    .search {
+        .page {
+            stroke: var(--SN-COLOR-SEARCH);
+        }
+    }
+
+    .search-active {
+        .page {
+            stroke: var(--SN-COLOR-SEARCH-ACTIVE);
+        }
+    }
+
     .selected {
         stroke: var(--SN-COLOR-SELECTION) !important;
     }

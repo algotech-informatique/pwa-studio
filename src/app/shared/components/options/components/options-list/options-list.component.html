@@ -9,7 +9,9 @@
                 <i [class]="showPopover ? 'fa-solid fa-chevron-up' : 'fa-solid fa-chevron-down'"></i>
             </div>
 
-            <options-popover *ngIf="showPopover"
+            <options-popover
+                id="options-popover"
+                *ngIf="showPopover"
                 [inputList]="inputList"
                 [clickPosition]="clickPosition"
                 [containerWidth]="popoverContainerWidth"

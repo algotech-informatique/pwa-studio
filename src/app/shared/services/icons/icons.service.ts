@@ -46,6 +46,8 @@ export class IconsService {
             { key: 'system:time', value: 'fa-solid fa-clock' },
             { key: 'system:page-name', value: 'fa-solid fa-file sk' },
             { key: 'system:app-name', value: 'fa-solid fa-window-maximize sk' },
+            { key: 'sys:createdDate', value: 'fa-solid fa-calendar-days datetime' },
+            { key: 'sys:updateDate', value: 'fa-solid fa-calendar-days datetime' },
         ];
     }
 
@@ -79,8 +81,6 @@ export class IconsService {
                 return 'fa-solid fa-file-lines';
             case 'settings':
                 return 'fa-solid fa-gears';
-            case 'store':
-                return 'fa-solid fa-store';
             case 'SnModelNode':
                 return 'fa-solid fa-cubes';
             case 'appSettings':

@@ -50,6 +50,26 @@ export const SN_ARRAY_FUNCTION_NODE_SCHEMA: SnNodeSchema = {
             required: false,
             default: 0
         }, {
+            key: 'start',
+            direction: 'in',
+            types: 'number',
+            multiple: false,
+            displayName: 'SN-ARRAY-FUNCTION-START',
+            pluggable: true,
+            display: 'input',
+            required: false,
+            default: 0
+        }, {
+            key: 'end',
+            direction: 'in',
+            types: 'number',
+            multiple: false,
+            displayName: 'SN-ARRAY-FUNCTION-END',
+            pluggable: true,
+            display: 'input',
+            required: false,
+            default: 0
+        }, {
             key: 'inspect',
             direction: 'in',
             types: ['string', 'number', 'date', 'time', 'datetime', 'boolean', 'so:', 'object', 'sys:'],

@@ -94,16 +94,21 @@
 
         <div class="elements" *ngIf="smartTask.flowType === 'smartflow'">
             <label> {{ 'SMART-TASKS.TASK-PROPERTY-TYPE' | translate }} </label>
-            <options-list
-                class="element"
-                [inputList]="listSmartFlows"
-                [readOnly]="readOnly"
-                [selected]="selectedSmartFlow"
-                [relativeLeft]="contentLeft"
-                (selectValue)="onSelectFlowType($event)"
-            >
-            </options-list>
-
+            <div class="smartflow">
+                <options-list
+                    class="element"
+                    [inputList]="listSmartFlows"
+                    [readOnly]="readOnly"
+                    [selected]="selectedSmartFlow"
+                    [relativeLeft]="contentLeft"
+                    (selectValue)="onSelectFlowType($event)"
+                >
+                </options-list>
+    
+                <div class="goto" (click)="openSmartflowTab()">
+                    <i class="fa-solid fa-sign-in-alt icon"></i>
+                </div>
+            </div>
         </div>
 
         <div class="footer">

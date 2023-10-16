@@ -1,6 +1,6 @@
 
 <div *ngIf="param?.type === 'string'">
-    <inspector-section class="first" [title]="'INSPECTOR.PARAM.DISPLAY' | translate">
+    <inspector-section class="inspector-section first" [title]="'INSPECTOR.PARAM.DISPLAY' | translate">
         <div class="property last">
             <sn-display-radio
                 mode="radio"
@@ -11,7 +11,7 @@
         </div>
     </inspector-section>
 
-    <inspector-section [title]="'INSPECTOR.PARAM.CHARACTERS' | translate">
+    <inspector-section class="inspector-section" [title]="'INSPECTOR.PARAM.CHARACTERS' | translate">
         <div class="property">
             <data-inputs
                 [title]="'INSPECTOR.PARAM.MIN-LENGTH-DISPLAY' | translate"
@@ -38,7 +38,7 @@
         </div>
     </inspector-section>
 
-    <inspector-section [title]="'INSPECTOR.MODEL.FIELD-VALUE' | translate">
+    <inspector-section class="inspector-section" [title]="'INSPECTOR.MODEL.FIELD-VALUE' | translate">
         <div class="property last">
             <data-inputs
                 [typeInput]="param.type"
@@ -53,7 +53,7 @@
 </div>
 
 <div *ngIf="param?.type === 'boolean'">
-    <inspector-section class="first" [title]="'INSPECTOR.PARAM.DISPLAY' | translate">
+    <inspector-section class="inspector-section first" [title]="'INSPECTOR.PARAM.DISPLAY' | translate">
         <div class="property last">
             <sn-display-radio
                 mode="radio"
@@ -66,7 +66,7 @@
 </div>
 
 <div *ngIf="param?.type === 'number'">
-    <inspector-section class="first" [title]="'INSPECTOR.PARAM.DISPLAY' | translate">
+    <inspector-section class="inspector-section first" [title]="'INSPECTOR.PARAM.DISPLAY' | translate">
         <div class="property last">
             <sn-display-radio
                 mode="radio"
@@ -77,7 +77,34 @@
         </div>
     </inspector-section>
 
-    <inspector-section [title]="'INSPECTOR.MODEL.FIELD-VALUE' | translate">
+    <inspector-section class="inspector-section" [title]="'INSPECTOR.PARAM.RANGE-VALUE' | translate">
+        <div class="property">
+            <data-inputs
+                [title]="'INSPECTOR.PARAM.MIN-LENGTH-DISPLAY' | translate"
+                [subTitle]="'INSPECTOR.PARAM.MIN-LENGTH' | translate"
+                inputKey="minlen"
+                typeInput="number"
+                [placeholder]="'INSPECTOR.PARAM.MIN-VALUE' | translate"
+                [value]="param?.value?.minlen"
+                [iconVisible]="true"
+                (changed)="onChanged($event)">
+            </data-inputs>
+        </div>
+        <div class="property last">
+            <data-inputs
+                [title]="'INSPECTOR.PARAM.MAX-LENGTH-DISPLAY' | translate"
+                [subTitle]="'INSPECTOR.PARAM.MAX-LENGTH' | translate"
+                inputKey="maxlen"
+                typeInput="number"
+                [placeholder]="'INSPECTOR.PARAM.MAX-VALUE' | translate"
+                [value]="param?.value?.maxlen"
+                [iconVisible]="true"
+                (changed)="onChanged($event)">
+            </data-inputs>
+        </div>
+    </inspector-section>
+
+    <inspector-section class="inspector-section" [title]="'INSPECTOR.MODEL.FIELD-VALUE' | translate">
         <div class="property last">
             <data-inputs
                 [typeInput]="param?.type"
@@ -92,7 +119,7 @@
 </div>
 
 <div *ngIf="param?.type === 'list'">
-    <inspector-section class="first" [title]="'INSPECTOR.PARAM.DISPLAY' | translate">
+    <inspector-section class="inspector-section first" [title]="'INSPECTOR.PARAM.DISPLAY' | translate">
         <div class="property last">
             <sn-display-radio
                 mode="radio"
@@ -103,7 +130,7 @@
         </div>
     </inspector-section>
 
-    <inspector-section [title]="'INSPECTOR.PARAM.LIST-TRI' | translate">
+    <inspector-section class="inspector-section" [title]="'INSPECTOR.PARAM.LIST-TRI' | translate">
         <div class="property last">
             <sn-display-radio
                 mode="radio"
@@ -114,7 +141,7 @@
         </div>
     </inspector-section>
 
-    <inspector-section [title]="'INSPECTOR.PARAM.LIST-OPTIONS' | translate">
+    <inspector-section class="inspector-section" [title]="'INSPECTOR.PARAM.LIST-OPTIONS' | translate">
         <div class="property last">
             <display-check-element
                 [title]="param?.plugged?.value | translate"
@@ -125,7 +152,7 @@
     </inspector-section>
 </div>
 
-<inspector-section [title]="'INSPECTOR.PARAM.CONDITIONS' | translate">
+<inspector-section class="inspector-section" [title]="'INSPECTOR.PARAM.CONDITIONS' | translate">
     <param-condition
         [smartmodel]="smartmodel"
         [conditions]="param?.value?.condition"

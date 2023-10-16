@@ -19,7 +19,7 @@ export const SN_SERVICE_NODE_SCHEMA: (displayName: SnLang[], nameDone: SnLang[],
             displayName: nameDone,
             params: [{
                 direction: 'out',
-                types: ['object', 'sys:file'],
+                types: ['object', 'string', 'sys:file'],
                 pluggable: true,
                 display: 'key-edit',
             }, {
@@ -40,7 +40,7 @@ export const SN_SERVICE_NODE_SCHEMA: (displayName: SnLang[], nameDone: SnLang[],
                 display: 'key-edit',
             }, {
                 direction: 'out',
-                types: 'object',
+                types: ['object', 'string'],
                 pluggable: true,
                 display: 'key-edit',
             }]
@@ -66,7 +66,18 @@ export const SN_SERVICE_NODE_SCHEMA: (displayName: SnLang[], nameDone: SnLang[],
             displayName: 'SN-SERVICE-TYPE-RESPONSE',
             pluggable: false,
             display: 'select',
-            default: 'text'
+            default: 'json'
+        }, {
+            key: 'responseError',
+            direction: 'in',
+            types: 'string',
+            master: false,
+            multiple: false,
+            required: true,
+            displayName: 'SN-SERVICE-TYPE-ERROR',
+            pluggable: false,
+            display: 'select',
+            default: 'json'
         }, {
             key: 'url',
             direction: 'in',

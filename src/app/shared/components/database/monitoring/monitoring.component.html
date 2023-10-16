@@ -4,7 +4,7 @@
 </div>
 <div class="content">
     <as-split direction="horizontal" unit="percent">
-        <as-split-area size="50" maxSize="50" minSize="50">
+        <as-split-area class="split" size="50" maxSize="50" minSize="50">
             <div class="container">
                 <div *ngIf="!imports || imports.length === 0" class="empty">{{ 'INSPECTOR.DATABASE.MONITORING.NO.DATA' | translate}}</div>
                 <options-monitoring class="card"
@@ -14,7 +14,7 @@
    
             </div>
         </as-split-area>
-        <as-split-area size="*">
+        <as-split-area class="split" size="*">
             <div class="container">
                 <div *ngIf="!deletions || deletions.length === 0" class="empty">{{ 'INSPECTOR.DATABASE.MONITORING.NO.DATA' | translate}}</div>
                 <options-monitoring class="card"

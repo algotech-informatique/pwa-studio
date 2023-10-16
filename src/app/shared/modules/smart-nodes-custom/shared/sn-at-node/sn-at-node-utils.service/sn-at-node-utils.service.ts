@@ -5,7 +5,7 @@ import * as _ from 'lodash';
 import {
     SmartModelDto, SmartPropertyModelDto, typesSys, TagListDto, WorkflowProfilModelDto,
     AgendaTypeDto, SnModelDto, EnvironmentDirectoryDto, SnViewDto, PlanContainersSettingsDto,
-    PlanLayersSettingsDto, SnAppDto, GenericListDto
+    PlanLayersSettingsDto, SnAppDto, GenericListDto, GroupDto
 } from '@algotech-ce/core';
 import { SessionsService, SmartModelsService, IconsService, SnModelsService } from '../../../../../services';
 import { TranslateLangDtoService } from '@algotech-ce/angular';
@@ -478,6 +478,15 @@ export class SnATNodeUtilsService {
             ({
                 key: glist.key,
                 value: this.translateLangDtoService.transform(glist.displayName),
+            }),
+        );
+    }
+
+    getSecurityGroupList() {
+        return _.map(this.sessionsService.active.datas.read.groups, (group: GroupDto) =>
+            ({
+                key: group.key,
+                value: group.name,
             }),
         );
     }

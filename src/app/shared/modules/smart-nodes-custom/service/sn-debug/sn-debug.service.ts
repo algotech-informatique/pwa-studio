@@ -62,7 +62,7 @@ export class SnDebugService {
 
             if (!flowIn) { continue; }
 
-            const flow = nodeFrom.flows.find((f) => f.toward === flowIn.flow.id);
+            const flow = nodeFrom.flows.find((f) => f.toward === flowIn.flow.id && f.key === instance.stackTasks[i + 1].transitionKey);
             if (!flow) { continue; }
 
             flow.displayState.style = 'animate';

@@ -2,7 +2,6 @@
 
 .json-edit {
     @mixin scrollbar {
-        overflow-y: auto;
         @include custom-scrollbar;
         overflow: none !important;
         overflow-y: auto;
@@ -40,7 +39,7 @@
             white-space: nowrap;
             line-height: 15px;
             font-size: 10px;
-            font-family: "Ubuntu Mono";
+            font-family: "Ubuntu Mono", sans-serif;
         }
     }
 

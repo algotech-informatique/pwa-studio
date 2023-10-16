@@ -8,6 +8,8 @@
             *ngFor="let variable of variables, let i = index"
             [title]="variable?.key || 'INSPECTOR.VARIABLES.NEW' | translate"
             [defaultOpen]="addedIndex === i || page?.displayState?.activeZone === 'variable.' + variable?.key"
+            [subTitle]="variable?.type | keyToDisplay:filteredTypesAndMultiple[i]?.filteredTypes"
+            [subTitleIcon]="variable?.type | keyToDisplay:filteredTypesAndMultiple[i]?.filteredTypes:'icon'"
             [display]="'card'">
 
             <div class="property inside-card">

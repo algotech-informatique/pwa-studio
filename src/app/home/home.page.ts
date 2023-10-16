@@ -7,7 +7,7 @@ import {
     MessageService, TabsService, ContextmenuService, ToastService,
     DatasService, PreferencesService, ConfigService
 } from '../shared/services';
-import { TabDto, ObjectTreeLineDto, GroupConnectionDto } from '../shared/dtos';
+import { TabDto, ObjectTreeLineDto, GroupConnectionDto, SnSearchDto } from '../shared/dtos';
 import { SessionsService } from '../shared/services/sessions/sessions.service';
 import { TranslateService } from '@ngx-translate/core';
 import * as _ from 'lodash';
@@ -18,7 +18,7 @@ import { mergeMap, tap } from 'rxjs/operators';
 import { SnContextmenu } from '../shared/modules/smart-nodes';
 import { TabContextMenuEvent, tabsContextMenu } from '../shared/components/tabs/tabs-context-menu/tabs-context-menu';
 import { StudioTranslationService } from '../shared/services/translation/studio-translation.service';
-import { SnModelDto } from '@algotech-ce/core';
+import { SnModelDto, SnSynoticSearchDto } from '@algotech-ce/core';
 
 @Component({
     selector: 'app-home',
@@ -35,6 +35,7 @@ export class HomePage implements OnInit, AfterViewInit, OnDestroy {
     modalOpen;
     parametersOpen = false;
     selectedTab: TabDto = null;
+    search: SnSearchDto;
     showContextmenu: boolean;
     connectorLine: ObjectTreeLineDto;
     isMac: boolean;
@@ -98,6 +99,20 @@ export class HomePage implements OnInit, AfterViewInit, OnDestroy {
             this.createOrSelectTab(selectedLine))
         );
 
+        this.subscription.add(this.messageService.get('search').subscribe((search: SnSearchDto) => {
+            if (!search) {
+                this.search = null;
+                return;
+            }
+            const snModel = this.sessionsService.active.datas.write.snModels.find((sn) => sn.uuid === search.snModelUuid);
+            if (!snModel) {
+                return;
+            }
+            this.tabs = this.tabsService.createOrSelectSnModel(this.tabs, snModel);
+            this.selectTab(this.tabsService.getSelected(this.tabs));
+            this.search = search;
+        }));
+
         this.subscription.add(this.messageService.get('connections-manager.hide').subscribe(() => {
             this.modalOpen = false;
         }));
@@ -124,7 +139,7 @@ export class HomePage implements OnInit, AfterViewInit, OnDestroy {
         }));
 
         this.subscription.add(this.messageService.get('open-tab').subscribe((snModel: SnModelDto) => {
-            this.tabs = this.tabsService.createOrSelectSubWorkflowTab(this.tabs, snModel);
+            this.tabs = this.tabsService.createOrSelectSnModel(this.tabs, snModel);
             this.selectTab(this.tabsService.getSelected(this.tabs));
         }));
 
@@ -193,11 +208,13 @@ export class HomePage implements OnInit, AfterViewInit, OnDestroy {
 
     createOrSelectTab(selectedLine: ObjectTreeLineDto) {
         this.tabs = this.tabsService.createOrSelectTab(this.tabs, selectedLine);
+        this.search = null;
         this.selectedTab = this.tabsService.getSelected(this.tabs);
         this.messageService.send('save.preferences', {});
     }
 
     selectTab(tab: TabDto) {
+        this.search = null;
         this.selectedTab = tab;
         this.tabs = this.tabsService.select(this.tabs, tab.host, tab.customerKey, tab.refUuid);
         this.sessionsService.selectEnvByUUid(tab.host, tab.customerKey, tab.refUuid);
@@ -209,6 +226,8 @@ export class HomePage implements OnInit, AfterViewInit, OnDestroy {
         tabContextMenuEvent.event.stopPropagation();
         this.contextmenuService.showContextmenu(false);
 
+        const snModel = this.sessionsService.active.datas.write.snModels.find((sn) => sn.uuid === tabContextMenuEvent.tab.refUuid);
+
         const menu: SnContextmenu = tabsContextMenu(() => {
             // close tab
             this.closeTab(tabContextMenuEvent.tab);
@@ -218,7 +237,9 @@ export class HomePage implements OnInit, AfterViewInit, OnDestroy {
         }, () => {
             // close to the right
             this.closeTabsToTheRight(tabContextMenuEvent.tab);
-        });
+        }, snModel && snModel.type !== 'smartmodel' ? () => {
+            this.messageService.send('find-reference', snModel.uuid);
+        } : null);
         const mouse: number[] = [
             tabContextMenuEvent.event.clientX,
             tabContextMenuEvent.event.clientY
@@ -276,6 +297,7 @@ export class HomePage implements OnInit, AfterViewInit, OnDestroy {
             this.selectTab(this.tabs.find((t) => t.selected));
         } else {
             this.sessionsService.selectEnv(null);
+            this.search = null;
             this.selectedTab = null;
             this.messageService.send('save.preferences', {});
         }

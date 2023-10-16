@@ -32,13 +32,14 @@
         }
 
         .work-layout {
+            position: relative;
             display: flex;
             height: 100%;
             width: 100%;
         }
     }
 
-    sn-data-model-inspector {
+    #sn-data-model-inspector {
         margin-top: #{$TOP-BAR-HEIGHT};
         z-index: 1;
     }

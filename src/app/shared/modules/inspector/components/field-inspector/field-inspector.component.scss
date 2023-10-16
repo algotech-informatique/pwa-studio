@@ -5,7 +5,7 @@
     @include property();
 }
 
-data-inputs {
+.data-inputs {
     display: block;
 }
 
@@ -24,6 +24,6 @@ data-inputs {
     cursor: pointer;
 }
 
-inspector-section.first {
+.inspector-section.first {
     --BORDER-TOP-WIDTH: 0;
 }

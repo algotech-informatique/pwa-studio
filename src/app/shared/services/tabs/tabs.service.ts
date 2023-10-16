@@ -1,5 +1,5 @@
 import { TranslateLangDtoService } from '@algotech-ce/angular';
-import { SnModelDto } from '@algotech-ce/core';
+import { SnAppDto, SnModelDto } from '@algotech-ce/core';
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import * as _ from 'lodash';
@@ -77,10 +77,6 @@ export class TabsService {
             case 'task':
                 name = this.sessionsService.findConnection(line.host, line.customerKey).name;
                 icon = 'fa-solid fa-hurricane';
-                break;
-            case 'store':
-                name = this.sessionsService.findConnection(line.host, line.customerKey).name;
-                icon = 'fa-solid fa-store';
                 break;
             case 'tags':
                 name = this.sessionsService.findConnection(line.host, line.customerKey).name;
@@ -171,7 +167,7 @@ export class TabsService {
         });
     }
 
-    createOrSelectSubWorkflowTab(tabs: TabDto[], snModel: SnModelDto): TabDto[] {
+    createOrSelectSnModel(tabs: TabDto[], snModel: SnModelDto): TabDto[] {
         const findTab: TabDto = _.find(tabs, {
             host: this.sessionsService.active.connection.host,
             customerKey: this.sessionsService.active.connection.customerKey,
@@ -202,8 +198,26 @@ export class TabsService {
     }
 
     private createTab(snModel: SnModelDto): TabDto {
+        let icon = null;
+        switch (snModel.type) {
+            case 'app':
+                icon = 'fa-solid fa-window-maximize';
+                break;
+            case 'report':
+                icon = 'fa-solid fa-file-lines';
+                break;
+            case 'workflow':
+                icon = 'fa-solid fa-diagram-project';
+                break;
+            case 'smartmodel':
+                icon = 'fa-solid fa-cubes';
+                break;
+            case 'smartflow':
+                icon = 'fa-solid fa-atom';
+                break;
+        }
         return {
-            icon: snModel.type === 'workflow' ? 'fa-solid fa-diagram-project' : 'fa-solid fa-atom',
+            icon,
             host: this.sessionsService.active.connection.host,
             customerKey: this.sessionsService.active.connection.customerKey,
             refUuid: snModel.uuid,

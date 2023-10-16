@@ -1,6 +1,6 @@
 import { SnAppDto, SnPageDto, SnPageEventPipeDto, SnPageWidgetDto } from '@algotech-ce/core';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { AppActionsService } from '../../../../../../../../app/services';
+import { AppActionsService, PageWidgetService } from '../../../../../../../../app/services';
 import { ListItem } from '../../../../../../../dto/list-item.dto';
 import { PageWidgetParametersService } from '../../../../../../../services/page-widget-parameters.service';
 
@@ -24,7 +24,8 @@ export class EventCardTypeCallOnloadComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.widgets = this.pageWidgetParametersService.getPageWidgets(this.app, this.page);
+        this.widgets = this.pageWidgetParametersService.getPageWidgets(this.app, this.page)
+            .filter((w) => !PageWidgetService.getType(w.element)?.unreloadable);
     }
 
     onSelectWidget(widget: string) {
@@ -40,7 +41,7 @@ export class EventCardTypeCallOnloadComponent implements OnInit {
             return;
         }
         if (value) {
-            this.appActionsService.applyHighlight(this.app, item.element, true);
+            this.appActionsService.applyHighlight(this.app, item.element, false);
 
         } else {
             this.appActionsService.resetHighlight(this.app);

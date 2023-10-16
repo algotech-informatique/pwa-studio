@@ -5,6 +5,7 @@ type GetTreeLineContextmenu = (
     onCopy: click,
     onRemove: click,
     onRename: click,
+    onReference: click,
     disableStore?: boolean,
     showCopy?: boolean,
 ) => SnContextmenu;
@@ -14,6 +15,7 @@ export const cmTreeLine: GetTreeLineContextmenu = (
     onCopy: click,
     onRemove: click,
     onRename: click,
+    onReference: click,
     disableStore?: boolean,
     showCopy?: boolean,
 ) => {
@@ -29,6 +31,10 @@ export const cmTreeLine: GetTreeLineContextmenu = (
                     id: 'remove-line',
                     title: 'SN-CONTEXTMENU.SCHEMA.REMOVE',
                     onClick: onRemove,
+                }, {
+                    id: 'reference',
+                    title: 'SN-CONTEXTMENU.SCHEMA.REFERENCE',
+                    onClick: onReference,
                 }
             ]
         ],

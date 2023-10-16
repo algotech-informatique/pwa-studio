@@ -67,12 +67,24 @@ export class SnServiceNodeComponent extends SnATNodeComponent {
         }], 'type');
 
         this.load([{
+            key: 'json',
+            value: this.translate.instant('SN-SERVICE-TYPE-JSON'),
+        }, {
             key: 'text',
-            value: this.translate.instant('SN-SERVICE-TYPE-TEXT'),
+            value: this.translate.instant('SN-SERVICE-TYPE-TXT'),
         }, {
             key: 'blob',
             value: this.translate.instant('SN-SERVICE-TYPE-BLOB'),
         }], 'responseType');
+
+
+        this.load([{
+            key: 'json',
+            value: this.translate.instant('SN-SERVICE-TYPE-JSON'),
+        }, {
+            key: 'text',
+            value: this.translate.instant('SN-SERVICE-TYPE-TXT'),
+        }], 'responseError');
 
         this.paramListSysFile = this.snATNodeUtils.findParamByKey(this.node, 'listSysFile');
         this.paramListSysFile.displayState.hidden = true;
@@ -124,18 +136,21 @@ export class SnServiceNodeComponent extends SnATNodeComponent {
         const responseType: SnParam = this.node.params.find((p) => p.key === 'responseType');
         const propSection: SnSection = this.node.sections.find((s) => s.key === 'properties');
         const saveSection: SnSection = this.node.sections.find((s) => s.key === 'save');
-        const type = (responseType.value === 'text') ? 'object' : 'sys:file';
+        const type = (responseType.value === 'blob') ? 'sys:file' : responseType.value === 'text' ? 'string' : 'object';
         const flowOut: SnFlow = _.find(this.node.flows, { key: 'done' });
 
-        propSection.hidden = (responseType.value === 'text');
-        saveSection.hidden = (responseType.value === 'text');
+        propSection.hidden = (responseType.value !== 'blob');
+        saveSection.hidden = (responseType.value !== 'blob');
 
-        if (!flowOut || flowOut.params.length === 0) { return; }
-        if (flowOut.params[0].types === type) {
-            return;
+        if (flowOut && flowOut.params.length > 0 && flowOut.params[0].types !== type) {
+            flowOut.params[0].types = type;
         }
-        flowOut.params[0].types = type;
 
+        const typeError = this.node.params.find((p) => p.key === 'responseError')?.value;
+        const flowError: SnFlow = _.find(this.node.flows, { key: 'error' });
+        if (flowError && flowError.params.length > 1 && flowError.params[1].types !== typeError) {
+            flowError.params[1].types = typeError === 'text' ? 'string' : 'object';
+        }
     }
 
     calculate() {

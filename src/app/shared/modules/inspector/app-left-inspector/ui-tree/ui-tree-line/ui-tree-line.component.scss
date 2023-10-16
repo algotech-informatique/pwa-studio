@@ -145,7 +145,7 @@
             background-color: var(--INSPECTOR-BG-COLOR-SELECTED-ITEM-CHILDREN);
         }
 
-        ui-tree-widget, ui-tree-shared-widget {
+        .ui-tree-widget, .ui-tree-shared-widget {
             display: block;
             --PADDING-LEFT-WIDGET: calc(var(--PADDING-LEFT) + var(--OFFSET-LEFT));
         }

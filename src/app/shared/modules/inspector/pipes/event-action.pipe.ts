@@ -4,6 +4,7 @@ import { SnModelDto, SmartModelDto, SnAppDto, SnPageDto, SnPageWidgetDto } from 
 import { Pipe, PipeTransform } from '@angular/core';
 import * as _ from 'lodash';
 import { AppCustomService } from '../../app-custom/services';
+import { PageUtilsService } from '../../app/services';
 
 @Pipe({ name: 'eventAction' })
 export class EventActionPipe implements PipeTransform {
@@ -11,6 +12,7 @@ export class EventActionPipe implements PipeTransform {
     constructor(
        private translateLangDtoService: TranslateLangDtoService,
        private sessionsService: SessionsService,
+       private pageUtils: PageUtilsService,
        private appCustomService: AppCustomService,
     ) { }
 
@@ -21,7 +23,7 @@ export class EventActionPipe implements PipeTransform {
                 const snModel: SnModelDto = this.appCustomService.getSnModel(type, action);
                 return snModel?.displayName ? this.translateLangDtoService.transform(snModel.displayName) : action;
             case 'call::onLoad':
-                const widget: SnPageWidgetDto = _.find(page.widgets, { id: action });
+                const widget: SnPageWidgetDto = this.pageUtils.getWidgets(app, page).find((w) => w.id === action);
                 return widget ? widget.name : action;
             case 'page':
                 const appPage: SnPageDto = _.find(app.pages, { id: action });

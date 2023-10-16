@@ -1,5 +1,5 @@
 <as-split direction="horizontal" unit="pixel" (clickOutside)="onClickOutside()">
-    <as-split-area size="280" maxSize="280" minSize="280">
+    <as-split-area class="split" size="280" maxSize="280" minSize="280">
         <app-data-base-list 
         [smartModels]="smartModels"
         [forceSelect]="breadCrumb.length > 1"
@@ -8,7 +8,7 @@
         (onMonitoring)="handleMonitoring($event)">
         </app-data-base-list>
     </as-split-area>
-    <as-split-area size="*">
+    <as-split-area class="split" size="*">
         <div *ngIf="showMonitoring" class="db-background">
         <app-data-base-monitoring
             [imports]="imports"

@@ -1,9 +1,10 @@
 
 import { RulesStack } from '../../../../../models/check-rule.interface';
 import {
-    crudObjectRule, nodeRProfileRule,
+    crudObjectRule, needsSmartObjectForSave, nodeRProfileRule,
     profilesNodeRule,
-    snConnectorNodeRule, snDataNodeRule,
+    severalEntryPoints,
+    snConnectorNodeRule, snConnectorParameterNodeRule, snDataNodeRule,
     snLoopNodeRule, snMultiChoiceNodeRule, snServiceSmartObjectV2NodeRule, snSubWorkflowNodeRule, snSwitchNodeRule
 } from './flow/flow-nodes-rules';
 import { flowOptIncorrectApiRule, flowOptIncorrectVarRule } from './flow/flow-options-rules';
@@ -51,6 +52,9 @@ export const snViewNodeRules: RulesStack = {
         { code: 'SN.NODE.008', rule: nodeRProfileRule },
         { code: 'SN.NODE.009', rule: snSwitchNodeRule },
         { code: 'SN.NODE.010', rule: profilesNodeRule },
+        { code: 'SN.NODE.011', rule: snConnectorParameterNodeRule },
+        { code: 'SN.NODE.012', rule: severalEntryPoints },
+        { code: 'SN.NODE.013', rule: needsSmartObjectForSave },
     ]
 };
 

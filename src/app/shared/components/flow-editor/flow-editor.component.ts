@@ -2,14 +2,16 @@ import { Component, Input, OnChanges, Output, EventEmitter, OnDestroy, ChangeDet
 import { SnView, SnSelectionEvent, SnActionsService, SnParam, SnZoomService, SnNode } from '../../modules/smart-nodes';
 import * as _ from 'lodash';
 import { SnSettings } from '../../modules/smart-nodes/dto/sn-settings';
-import { SnModelDto, WorkflowModelDto, SnViewDto } from '@algotech-ce/core';
-import { DatasService, SessionsService, MessageService, SnModelsService, ToastService,
-    ConfigService, WatcherService } from '../../services';
+import { SnModelDto, WorkflowModelDto, SnViewDto, SnVersionDto } from '@algotech-ce/core';
+import {
+    DatasService, SessionsService, MessageService, SnModelsService, ToastService,
+    ConfigService, WatcherService
+} from '../../services';
 import {
     SmartflowEntryComponentsService, SnDebugService, SnPublishFlowService,
     SnCustomSmartConnectionsService
 } from '../../modules/smart-nodes-custom';
-import { ResourceType, ValidationReportDto } from '../../dtos';
+import { ResourceType, SnSearchDto, ValidationReportDto } from '../../dtos';
 import { Subscription } from 'rxjs';
 import { WorkflowSubjectService, InterpretorSubjectDto } from '@algotech-ce/business';
 import { TranslateService } from '@ngx-translate/core';
@@ -29,11 +31,13 @@ export class FlowEditorComponent implements OnChanges, OnDestroy {
 
     @Input() customerKey: string;
     @Input() host: string;
+    @Input() search: SnSearchDto;
 
     @Output()
     changeView = new EventEmitter();
 
     snModel: SnModelDto = null;
+    snVersion: SnVersionDto = null;
     snView: SnView = null;
     context: {
         type: string;
@@ -50,6 +54,8 @@ export class FlowEditorComponent implements OnChanges, OnDestroy {
     settings: SnSettings = null;
     subscription: Subscription;
     subscribeCheck: Subscription;
+
+    searchActive = false;
 
     nodesDocumentation = false;
     openInspector: OpenInspectorType;
@@ -101,10 +107,21 @@ export class FlowEditorComponent implements OnChanges, OnDestroy {
         }
 
         this.snModel = this.sessionsService.findModel(this.host, this.customerKey, this.snModelUuid);
-        this.snView = this.snModelsService.getActiveView(this.snModel) as SnView;
-        if (!this.snView) {
+        if (!this.snModel) {
             return;
         }
+        this.snVersion = this.search ? this.snModel.versions.find((v) => v.uuid === this.search.version.uuid) :
+            this.snModelsService.getActiveVersion(this.snModel);
+
+        if (!this.snVersion) {
+            return;
+        }
+        const snView = this.snVersion.view as SnView;
+
+        if (!snView || snView === this.snView) {
+            return;
+        }
+        this.snView = snView;
 
         this.subscribeToCheck();
         this.subscription.add(
@@ -143,7 +160,14 @@ export class FlowEditorComponent implements OnChanges, OnDestroy {
             redo: () => {
                 this.datasService.redo(this.snModel, this.customerKey, this.host);
             },
+            search: () => {
+                this.searchActive = true;
+            }
         };
+    }
+
+    onClose() {
+        this.searchActive = false;
     }
 
     ngOnDestroy() {
@@ -186,21 +210,21 @@ export class FlowEditorComponent implements OnChanges, OnDestroy {
     }
 
     runDebug() {
-        try {
-            this.treeDebugCLosed = false;
-            this.smartflowToDebug = this.snPublish.getFlow(this.snView, this.snModel, 0, this.settings.languages,
-                this.snModel.type as ResourceType, this.host, this.customerKey, true);
-            this.messageService.send('debugger-change-state', 'start');
-            this.snDebug.resetDebug(this.snView);
+        this.snPublish.getFlow(this.snView, this.snModel, 0, this.settings.languages,
+            this.snModel.type as ResourceType, this.host, this.customerKey, true).subscribe({
+                next: (smartflow) => {
+                    this.treeDebugCLosed = false;
+                    this.smartflowToDebug = smartflow;
+                    this.messageService.send('debugger-change-state', 'start');
+                    this.snDebug.resetDebug(this.snView);
 
-            this.snView.displayState.debug = true;
-            this.snActions.notifyRefresh(this.snView);
-        } catch (e) {
-            this.toastService.addToast('error', this.translate.instant('ERROR-MESSAGE', { error: e.message }), null, 2000);
-            return false;
-        }
-
-        return true;
+                    this.snView.displayState.debug = true;
+                    this.snActions.notifyRefresh(this.snView);
+                },
+                error: (e) => {
+                    this.toastService.addToast('error', this.translate.instant('ERROR-MESSAGE', { error: e.message }), null, 2000);
+                }
+            });
     }
 
     stopDebug(options: { redraw: boolean }) {

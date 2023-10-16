@@ -1,0 +1,52 @@
+<div class="content">
+    <div class="table">
+        <div class="column checkbox">
+        </div>
+        <div class="column">
+            {{'SN-CONNECTOR-PARAMETERS-KEY' | translate | uppercase}}
+        </div>
+        <div class="column">
+            {{'SN-CONNECTOR-PARAMETERS-VALUE' | translate | uppercase}}
+        </div>
+    </div>
+    
+    <div class="table" *ngFor="let parameter of parameters, let i = index">
+        <div class="column checkbox">
+            <i class="fa-solid fa-square-check" *ngIf="parameter.active === true"
+                (click)="activeParameter(parameter)"></i>
+            <i class="fa-regular fa-square" *ngIf="parameter.active === false" (click)="activeParameter(parameter)"></i>
+        </div>
+    
+        <div class="column">
+            <input type="text" [placeholder]="'SN-CONNECTOR-PARAMETERS-KEY' | translate" [title]="parameter.key"
+                [(ngModel)]="parameter.key" (keyup)="editParameter(parameter)">
+        </div>
+    
+        <div class="column">
+            <input *ngIf="showData" type="text" [placeholder]="'SN-CONNECTOR-PARAMETERS-VALUE' | translate" [title]="parameter.value"
+                [(ngModel)]="parameter.value" (keyup)="editParameter(parameter)">
+            
+            <ng-container *ngIf="!showData">
+                <span *ngIf="displaySecret?.index !== i" class="secret" (click)="onClickSecret(i)">
+                    <ng-container *ngIf="parameter.value">******</ng-container>
+                    <input *ngIf="!parameter.value" [placeholder]="'SN-CONNECTOR-PARAMETER-PASSWORD' | translate" (focus)="onClickSecret(i)">
+                </span>
+                <ng-container *ngIf="displaySecret?.index === i">
+                    <div class="loading" *ngIf="displaySecret.type === 'loading'">
+                        <ion-spinner></ion-spinner>
+                    </div>
+                    <input
+                        *ngIf="displaySecret.type === 'edit'"
+                        #secret
+                        type="password"
+                        [placeholder]="'SN-CONNECTOR-PARAMETER-PASSWORD' | translate"
+                        (keyup)="onKeyUpSecret(parameter, secret.value, $event)"
+                        (focusout)="onFocusOutSecret(parameter, secret.value)">
+                </ng-container>
+            </ng-container>
+
+            <i class="rm fa-solid fa-xmark" (click)="removeParameter(parameter)"></i>
+        </div>
+    
+    </div>
+</div>

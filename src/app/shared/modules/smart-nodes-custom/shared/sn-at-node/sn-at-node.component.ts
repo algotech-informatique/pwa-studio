@@ -57,6 +57,10 @@ export class SnATNodeComponent extends SnNodeBaseComponent {
         }
     }
 
+    protected loadSecurityGroups(key: string) {
+        this.load(this.snATNodeUtils.getSecurityGroupList(), key);
+    }
+
     protected loadProfiles(profilesKey = 'profiles') {
         this.load(this.snATNodeUtils.getProfiles(this.snView), profilesKey);
     }

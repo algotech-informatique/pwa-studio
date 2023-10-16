@@ -61,7 +61,7 @@
     .caption {
         white-space: nowrap;
         user-select: none;
-        font-family: "Ubuntu Mono";
+        font-family: "Ubuntu Mono", sans-serif;
     }
 
     .value {
@@ -87,13 +87,17 @@
     }
 }
 
-li {
+.element {
     list-style-type: none;
     width: 100%;
 }
 
-ul {
-    list-style-type: none;
+.childs {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
     margin: 0;
-    padding-right: 5;
 }

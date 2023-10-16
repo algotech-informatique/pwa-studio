@@ -6,7 +6,8 @@
             <app-explorer class="explorer" [(expand)]="expand">
             </app-explorer>
 
-            <app-tabs 
+            <app-tabs   
+                id="app-tabs"
                 [ngClass]="{'disabled': modalOpen, 'expanded': expand}" 
                 [tabs]="tabs"
                 (selectTab)="selectTab($event)" 
@@ -20,14 +21,14 @@
 
                 <div class="view-content" *ngIf="selectedTab">
                     <editor-content [type]="selectedTab.type" [refUuid]="selectedTab.refUuid"
-                        [customerKey]="selectedTab.customerKey" [host]="selectedTab.host">
+                        [customerKey]="selectedTab.customerKey" [host]="selectedTab.host" [search]="search">
                     </editor-content>
                 </div>
                 <div class="view-empty" *ngIf="!selectedTab">
                     <!-- <svg class="empty-logo">       
                         <image xlink:href="./assets/logo.svg" src="./assets/logo.png" width="90" height="90"/>    
                     </svg> -->
-                    <img class="empty-logo" src="./assets/logo.svg" />
+                    <img class="empty-logo" src="./assets/logo.svg" alt="logo" />
                 </div>
             </div>
         </div>
@@ -40,6 +41,8 @@
     </app-modal>
 
     <app-dialog-message></app-dialog-message>
+
+    <resource-search></resource-search>
 
     <div class="toasts-container">
         <div #toasts></div>

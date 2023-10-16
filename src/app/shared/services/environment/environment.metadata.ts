@@ -217,18 +217,6 @@ export const DEFAULT_STUDIO_ENVIRONMENT:
         },
         {
             hidden: false,
-            refUuid: 'd89e2ee8-bba9-4073-af08-5fbed9e7a677',
-            class: 'module',
-            type: 'store',
-            customerKey: connection.customerKey,
-            host: connection.host,
-            icon: 'fa-solid fa-store',
-            name: 'EXPLORER-STORE',
-            state: false,
-            childs: [],
-        },
-        {
-            hidden: false,
             refUuid: '7f62fd2a-0c37-4a34-abfc-894f79de62e6',
             class: 'modules',
             customerKey: connection.customerKey,

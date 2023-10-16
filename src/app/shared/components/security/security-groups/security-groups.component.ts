@@ -1,10 +1,10 @@
-import { AuthService, GroupsService, UsersService } from '@algotech-ce/angular';
+import { AuthService, DataService, GroupsService, UsersService } from '@algotech-ce/angular';
 import { GroupDto, UserDto } from '@algotech-ce/core';
 import { Component, Input, OnChanges } from '@angular/core';
 import { UUID } from 'angular2-uuid';
 import { Observable, of, zip } from 'rxjs';
 import * as _ from 'lodash';
-import { flatMap, map } from 'rxjs/operators';
+import { map, mergeMap } from 'rxjs/operators';
 import { SecurityGroup } from '../dto/security-group.dto';
 import { DialogMessageService, SessionsService, ToastService } from '../../../services';
 import { AlertMessageDto, OptionsObjectDto } from '../../../dtos';
@@ -22,7 +22,7 @@ export class SecurityGroupsComponent implements OnChanges {
 
     _securityGroups: SecurityGroup[] = [];
     _securityUsers: UserDto[] = [];
-    selectedUuid = '';
+    selectedUuid: string | undefined = '';
     search = '';
     selectedGroup: SecurityGroup;
     superGroups: string[];
@@ -58,43 +58,49 @@ export class SecurityGroupsComponent implements OnChanges {
         private translateService: TranslateService,
         private toastService: ToastService,
         private sessionService: SessionsService,
+        private dataService: DataService,
     ) {
         this.superGroups = ['viewer', 'process-manager', 'plan-editor', 'admin', 'sadmin'];
     }
 
     ngOnChanges() {
-        this.userSAdmin = this.authService.localProfil.groups.indexOf('sadmin') > -1;
+        if (this.authService.localProfil) {
+            this.userSAdmin = this.authService.localProfil?.groups.indexOf('sadmin') > -1;
+        }
         zip(
             this.userService.list(),
             this.groupService.list(),
-        ).subscribe(([users, groups]: [UserDto[], GroupDto[]]) => {
-            _.map(this.superGroups, (superGroup) => {
-                const indexSuperGroup = _.findIndex(groups, (group) => group.key === superGroup);
-                if (indexSuperGroup > -1) {
-                    const temp = groups[indexSuperGroup];
-                    groups.splice(indexSuperGroup, 1);
-                    groups.unshift(temp);
+        ).subscribe({
+            next: ([users, groups]: [UserDto[], GroupDto[]]) => {
+                _.map(this.superGroups, (superGroup) => {
+                    const indexSuperGroup = _.findIndex(groups, (group) => group.key === superGroup);
+                    if (indexSuperGroup > -1) {
+                        const temp = groups[indexSuperGroup];
+                        groups.splice(indexSuperGroup, 1);
+                        groups.unshift(temp);
+                    }
+                });
+                if (!this.userSAdmin) {
+                    this.sadminGroup = _.find(groups, { key: 'sadmin' });
+                    _.remove(groups, { key: 'sadmin' });
                 }
-            });
-            if (!this.userSAdmin) {
-                this.sadminGroup = _.find(groups, { key: 'sadmin' });
-                _.remove(groups, { key: 'sadmin' });
-            }
 
-            this.securityUsers = users;
-            this.securityGroups = _.reverse(_.map(groups, (grp: GroupDto) => {
-                const gr: SecurityGroup = {
-                    group: grp,
-                    members: _.reduce(users, (result, usr: UserDto) => {
-                        if (usr.groups.find((g) => g === grp.key)) {
-                            result.push(usr);
-                        }
-                        return result;
-                    }, [])
-                };
-                return gr;
-            }));
-        }, (err) => console.error(err));
+                this.securityUsers = users;
+                this.securityGroups = _.reverse(_.map(groups, (grp: GroupDto) => {
+                    const gr: SecurityGroup = {
+                        group: grp,
+                        members: _.reduce(users, (result, usr: UserDto) => {
+                            if (usr.groups.find((g) => g === grp.key)) {
+                                result.push(usr);
+                            }
+                            return result;
+                        }, [])
+                    };
+                    return gr;
+                }));
+            },
+            error: (err) => console.error(err)
+        });
     }
 
     onSelectedGroup(group: SecurityGroup) {
@@ -114,32 +120,34 @@ export class SecurityGroupsComponent implements OnChanges {
         }
     }
 
-    onUpdateGroup(data: {create: boolean, group: SecurityGroup}) {
+    onUpdateGroup(data: {create: boolean; group: SecurityGroup}) {
 
         const obs$: Observable<GroupDto> = (data.create) ?
             this.groupService.post(data.group.group) : this.groupService.put(data.group.group);
 
-        obs$.subscribe((grp: GroupDto) => {
-            const grps: SecurityGroup = {
-                group: grp,
-                members: [],
-            };
+        obs$.subscribe({
+            next: (grp: GroupDto) => {
+                const grps: SecurityGroup = {
+                    group: grp,
+                    members: [],
+                };
 
-            const findIndex = (data.create) ?
-                _.findIndex(this.securityGroups, (gp: SecurityGroup) => gp.group.key === 'new-group') :
-                _.findIndex(this.securityGroups, (gp: SecurityGroup) => gp.group.uuid === grp.uuid );
+                const findIndex = (data.create) ?
+                    _.findIndex(this.securityGroups, (gp: SecurityGroup) => gp.group.key === 'new-group') :
+                    _.findIndex(this.securityGroups, (gp: SecurityGroup) => gp.group.uuid === grp.uuid );
 
-            if (findIndex !== -1) {
-                (grps as any).members = this.securityGroups[findIndex].members;
-                const groups = this.securityGroups;
-                groups[findIndex] =  grps;
-                this.securityGroups = _.cloneDeep(groups);
-                this.selectedGroup = grps;
-                this.selectedUuid = this.selectedGroup.group.uuid;
+                if (findIndex !== -1) {
+                    (grps as any).members = this.securityGroups[findIndex].members;
+                    const groups = this.securityGroups;
+                    groups[findIndex] =  grps;
+                    this.securityGroups = _.cloneDeep(groups);
+                    this.selectedGroup = grps;
+                    this.selectedUuid = this.selectedGroup.group.uuid;
+                }
+            },
+            error: (err) => {
+                this.toastService.addToast('error', this.translateService.instant('SETTINGS.SECURITY.GROUPS.ADD_ERROR_KEY'), null, 2000);
             }
-        }, (err) => {
-            console.error(err);
-            this.toastService.addToast('error', this.translateService.instant('SETTINGS.SECURITY.GROUPS.ADD_ERROR_KEY'), null, 2000);
         });
     }
 
@@ -147,7 +155,7 @@ export class SecurityGroupsComponent implements OnChanges {
         const fIndex = _.findIndex(this.securityUsers, (usr: UserDto) => usr.uuid === user.uuid);
         if (fIndex !== -1) {
             const usr: UserDto = this.securityUsers[fIndex];
-            if (user.statusIcon.status) {
+            if (user?.statusIcon?.status) {
                 this._addMember(usr);
             } else {
                 this._removeMember(usr);
@@ -166,9 +174,9 @@ export class SecurityGroupsComponent implements OnChanges {
             messageButton: true,
         };
         this.dialogMessageService.getMessageConfirm(alertMessage).pipe(
-            flatMap((result: boolean) => {
-                return (result) ? this.groupService.delete(data.group.uuid) : of(null);
-            }),
+            mergeMap((result: boolean) =>
+                (result) ? this.groupService.delete(data.group.uuid) : of(null)
+            ),
             map((isdeleted) => {
                 if (isdeleted) {
                     _.forEach(data.members, (member: UserDto) => {
@@ -180,18 +188,25 @@ export class SecurityGroupsComponent implements OnChanges {
                 }
                 return isdeleted;
             }),
-        ).subscribe((res) => {
-            if (res) {
-                const grIndex: number = _.findIndex(this.securityGroups, (grp: SecurityGroup) => grp.group.uuid === data.group.uuid);
-                if (grIndex !== -1) {
-                    const groups = this.securityGroups;
-                    groups.splice(grIndex, 1);
-                    this.securityGroups = _.cloneDeep(groups);
-                    this.selectedGroup = null;
-                    this.selectedUuid = '';
+            mergeMap((isDeleted) => {
+                if (isDeleted) {
+                    const grIndex: number = _.findIndex(this.securityGroups, (grp: SecurityGroup) => grp.group.uuid === data.group.uuid);
+                    if (grIndex !== -1) {
+                        const groups = this.securityGroups;
+                        groups.splice(grIndex, 1);
+                        this.securityGroups = _.cloneDeep(groups);
+                        this.selectedUuid = '';
+                    }
                 }
-            }
-        }, (err) => console.error(err));
+                return (isDeleted) ? this.dataService.removeItem('grp-' + data.group.key)  : of(null);
+;            }),
+        ).subscribe({
+            next: (res) => {
+                this.toastService.addToast('success', this.translateService.instant('SETTINGS.SECURITY.GROUPS.DELETE_OK'), null, 2000)
+            },
+            error: (err) =>
+                this.toastService.addToast('error', this.translateService.instant('SETTINGS.SECURITY.GROUPS.DELETE_ERROR'), null, 2000)
+        });
     }
 
     _createGroup(): SecurityGroup {

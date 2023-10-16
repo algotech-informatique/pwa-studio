@@ -7,7 +7,8 @@
             (click)="onItemClicked(item?.key)"
             [title]="item?.value | translate">
             <i *ngIf="!withImages" [class]="item?.icon"></i>
-            <img *ngIf="withImages" [style.transform]="'rotate(' + iconRotation + 'deg)'" [src]="'assets/images/' + item?.icon" />
+            <img *ngIf="withImages" [style.transform]="'rotate(' + iconRotation + 'deg)'" [src]="'assets/images/' + item?.icon"
+                [alt]="item?.icon" />
         </div>
     </div>
 </div>

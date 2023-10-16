@@ -1,10 +1,11 @@
-import { SnPageDto, SnPageVariableDto } from '@algotech-ce/core';
+import { SnPageDto, SnPageVariableDto, WorkflowVariableModelDto } from '@algotech-ce/core';
 import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { UUID } from 'angular2-uuid';
 import { SessionsService } from '../../../../../services';
 import { TypeVariable } from '../../../components/variables/dto/type-variable.dto';
 import { VariablesServices } from '../../../components/variables/variables.service';
 import { ListItem } from '../../../dto/list-item.dto';
+import { VariableTypesService } from '../../../services/variable-types.service';
 
 @Component({
   selector: 'page-variables-parameters',
@@ -13,21 +14,34 @@ import { ListItem } from '../../../dto/list-item.dto';
 })
 export class PageVariablesParametersComponent implements OnChanges {
 
+    @Input() disableMultiple = false;
     @Input() variables: SnPageVariableDto[] = [];
     @Input() page: SnPageDto;
     @Output() changed = new EventEmitter();
-
+    @Input() types: TypeVariable[] = [];
     listTypes: ListItem[];
+
     addedIndex;
 
-    constructor(private variablesService: VariablesServices, private sessionsService: SessionsService) { }
+    filteredTypesAndMultiple: { filteredTypes: ListItem[]; disableMultiple: boolean }[];
+
+    constructor(
+        private variablesService: VariablesServices,
+        private sessionsService: SessionsService,
+        private variableTypeService: VariableTypesService,
+    ) { }
 
     ngOnChanges() {
+        this.types = (this.types?.length === 0) ?
+            this.variablesService.typeBuilder(this.sessionsService.active.datas.read.smartModels) :
+            this.types;
         this.listTypes = this.getTypes();
+        this.filteredTypesAndMultiple = this.variables.map((variable) =>
+            this.variableTypeService.formatVariable(variable, {}, this.disableMultiple, this.types));
     }
 
     getTypes(): ListItem[] {
-        return this.variablesService.typeBuilder(this.sessionsService.active.datas.read.smartModels).map((t: TypeVariable) => {
+        return this.types?.map((t: TypeVariable) => {
             const item: ListItem = {
                 key: t.key,
                 icon: t.icon,
@@ -49,23 +63,31 @@ export class PageVariablesParametersComponent implements OnChanges {
 
     onKeyChanged(key: string, index: number) {
         this.variables[index].key = key;
+        this.filteredTypesAndMultiple[index] =
+            this.variableTypeService.formatVariable(this.variables[index], {}, this.disableMultiple, this.types);
         this.changed.emit();
     }
 
     removeVariable(variable: SnPageVariableDto) {
-        this.variables.splice(this.variables.indexOf(variable), 1);
+        const index = this.variables.indexOf(variable);
+        this.filteredTypesAndMultiple.splice(index, 1);
+        this.variables.splice(index, 1);
         this.changed.emit();
 
         this.listTypes =  this.getTypes();
     }
 
     addVariable() {
-        this.variables.push({
+        const newVar: WorkflowVariableModelDto = {
+            uuid: UUID.UUID(),
             key: '',
-            multiple: false,
             type: 'so:*',
-            uuid: UUID.UUID()
-        });
+            multiple: false,
+        };
+        this.variables.push(newVar);
+        this.filteredTypesAndMultiple[this.variables.length - 1] =
+            this.variableTypeService.formatVariable(newVar, {}, this.disableMultiple, this.types);
+
         this.changed.emit();
         this.addedIndex = this.variables.length - 1;
 

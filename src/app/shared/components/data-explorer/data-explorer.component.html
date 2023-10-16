@@ -1,5 +1,5 @@
 <div *ngFor="let node of tree">
-    <li>
+    <div class="element">
         <div class="item" [ngClass]="{'selected': node.select, 'error': node.error}" (click)="clickNode(node)" [ngStyle]="{
                 'font-size': node.style?.fontSize ? node.style.fontSize + 'px' : 'var(--ITEM-FONT-SIZE)',
                 'color': node.style?.color ? node.style.color : 'var(--ITEM-COLOR)'
@@ -34,9 +34,9 @@
 
             <i class="fa-solid fa-circle-check done" *ngIf="node.done"></i>
         </div>
-        <ul>
+        <div class="childs">
             <app-data-explorer [tree]="node.childs" *ngIf="node.open" (selected)="onSelect($event)" [workflow]="workflow"
                 [actions]="actions" (deleted)="onDelete($event)" (clicked)="onClick($event)"></app-data-explorer>
-        </ul>
-    </li>
+        </div>
+    </div>
 </div>

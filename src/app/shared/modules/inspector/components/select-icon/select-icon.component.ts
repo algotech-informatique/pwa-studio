@@ -112,7 +112,7 @@ export class SelectIconComponent {
                         };
                         return icn;
                     }), 'key'));
-                    this.moreDataToLoad = (this.tabIcons.length - ((this.page + 1) * this.pageSize)) === 0;
+                    this.moreDataToLoad = (this.tabIcons.length - (this.page * this.pageSize)) === 0;
                 } else {
                     this.moreDataToLoad = false;
                 }
