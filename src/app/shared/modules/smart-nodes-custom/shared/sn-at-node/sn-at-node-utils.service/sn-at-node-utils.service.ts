@@ -299,12 +299,13 @@ export class SnATNodeUtilsService {
 
     checkHasCircularDependencies(snView: SnView, stack: string[], type: string): boolean {
         const paramKey = type === 'SnSubWorkflowNode' ? 'workFlow' : 'smartFlow';
+        const snType = type === 'SnSubWorkflowNode' ? 'workflow' : 'smartflow';
         for (const subWorkflow of snView.nodes.filter((node) => node.type === type)) {
             // find view
             const params = this.snUtils.getParams(snView, subWorkflow);
             const workflowKey: SnParam = params.find((p) => p.key === paramKey);
             const workflowModel = this.sessionsService.active.datas.write.snModels.find((snModel) =>
-                snModel.key === workflowKey?.value
+                snModel.key === workflowKey?.value && snType === snModel.type
             );
 
             // unknown

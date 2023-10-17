@@ -100,6 +100,7 @@ import { MonacoEditorModule } from '@materia-ui/ngx-monaco-editor';
         components.SnSignatureNodeComponent,
         components.SnTransformNodeComponent,
         components.SnUndoNodeComponent,
+        components.SnSleepNodeComponent,
         components.SnLockGoBackNodeComponent,
         components.SnProfileNodeComponent,
         components.SnJsonNodeComponent,

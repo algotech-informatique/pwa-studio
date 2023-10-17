@@ -73,6 +73,10 @@ export class SmartflowEntryComponentsService {
                             this.entryComponents.initializeLangs('SN-SERVICE-DONE', languages),
                             this.entryComponents.initializeLangs('SN-SERVICE-ERROR', languages),
                         )
+                    }, {
+                        displayName: 'SN-SLEEP',
+                        component: components.SnSleepNodeComponent,
+                        schema: this.entryComponents.createSchema(schema.SN_SLEEP_NODE_SCHEMA, 'SN-SLEEP', languages)
                     }]
                 }, {
                     displayName: 'SN-SERVICE',

@@ -18,6 +18,7 @@ export { SN_MAGNET_NODE_SCHEMA } from './shared/sn-magnet-node/sn-magnet-node.sc
 export { SN_FILTER_NODE_SCHEMA } from './shared/sn-filter-node/sn-filter-node.schema';
 export { SN_RESET_NODE_SCHEMA } from './shared/sn-reset-node/sn-reset-node.schema';
 export { SN_GLIST_NODE_SCHEMA } from './shared/sn-glist-node/sn-glist-node.schema';
+export { SN_SLEEP_NODE_SCHEMA } from './shared/sn-sleep-node/sn-sleep-node.schema';
 
 // SERVICES
 // eslint-disable-next-line max-len

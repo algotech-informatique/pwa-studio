@@ -30,6 +30,7 @@
         "@angular/compiler": "15.1.2",
         "@angular/compiler-cli": "15.1.2",
         "@angular/language-service": "15.1.2",
+        "@babel/traverse": "7.23.2",
         "@ionic/angular-toolkit": "7.0.0",
         "@types/chai": "4.3.4",
         "@types/jasmine": "4.3.1",
@@ -62,11 +63,12 @@
     },
     "overrides": {
         "tough-cookie": "$tough-cookie",
-        "semver": "$semver"
+        "semver": "$semver",
+        "@babel/traverse": "$@babel/traverse"
     },
     "dependencies": {
         "@algotech-ce/angular": "3.1.0",
-        "@algotech-ce/business": "3.1.3",
+        "@algotech-ce/business": "3.1.5",
         "@algotech-ce/core": "3.1.0",
         "@angular/animations": "15.1.2",
         "@angular/cdk": "15.1.2",

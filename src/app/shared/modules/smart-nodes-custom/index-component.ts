@@ -24,6 +24,7 @@ export { SnMagnetNodeComponent } from './shared/sn-magnet-node/sn-magnet-node.co
 export { SnFilterNodeComponent } from './shared/sn-filter-node/sn-filter-node.component';
 export { SnResetNodeComponent } from './shared/sn-reset-node/sn-reset-node.component';
 export { SnGListNodeComponent }  from './shared/sn-glist-node/sn-glist-node.component';
+export { SnSleepNodeComponent } from './shared/sn-sleep-node/sn-sleep-node.component';
 
 // SERVICES
 // eslint-disable-next-line max-len

@@ -83,6 +83,11 @@ export class WorkflowEntryComponentsService {
                             this.entryComponents.initializeLangs('SN-SERVICE-ERROR', languages),
                         )
                     }, {
+                        displayName: 'SN-SLEEP',
+                        component: components.SnSleepNodeComponent,
+                        schema: this.entryComponents.createSchema(schema.SN_SLEEP_NODE_SCHEMA, 'SN-SLEEP', languages)
+                    },
+                    {
                         displayName: 'SN-LOCK-GOBACK',
                         component: components.SnLockGoBackNodeComponent,
                         schema: this.entryComponents.createSchema(schema.SN_LOCK_GO_BACK_NODE_SCHEMA, 'SN-LOCK-GOBACK', languages)
