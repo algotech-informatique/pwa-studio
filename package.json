@@ -67,8 +67,8 @@
         "@babel/traverse": "$@babel/traverse"
     },
     "dependencies": {
-        "@algotech-ce/angular": "3.1.0",
-        "@algotech-ce/business": "3.1.5",
+        "@algotech-ce/angular": "3.1.2",
+        "@algotech-ce/business": "3.1.7",
         "@algotech-ce/core": "3.1.0",
         "@angular/animations": "15.1.2",
         "@angular/cdk": "15.1.2",
