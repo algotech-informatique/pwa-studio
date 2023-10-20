@@ -2,6 +2,7 @@ import { KeyFormaterService, TranslateLangDtoService } from '@algotech-ce/angula
 import { LangDto, SnModelDto } from '@algotech-ce/core';
 import { ChangeDetectorRef, Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import moment from 'moment';
 import { EnvironmentService, MessageService } from '../../../services';
 import { SessionsService } from '../../../services/sessions/sessions.service';
 import { SearchUtils } from '../search.utils';
@@ -57,7 +58,7 @@ export class ResourceSearchComponent {
 
     initialize() {
         this.elements = this.buildResults(this.sessionService.active.datas.write.snModels.sort((a, b) =>
-            b.updateDate.localeCompare(a.updateDate)));
+            (b.updateDate ?? moment().format()).localeCompare(a.updateDate ?? moment().format())));
         this.search();
     }
 

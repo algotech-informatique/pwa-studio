@@ -59,25 +59,27 @@ export const crudObjectRule: SnViewRule = {
             }
 
             // property key format: KEY_MODEL.KEY_PROPERTY
+            let error = false;
             for (const param of section.params) {
-                let error = false;
+                let paramError = true;
                 if (item.type === 'SnObjectCreationNode') {
                     const output: SnParam = checkUtilsService.snAtNodeUtils.getOutParam(item).param;
                     if (output) {
                         const type = output.types as string;
-                        error = !checkUtilsService.verifyProperty(param.key, type);
+                        paramError = !checkUtilsService.verifyProperty(param.key, type);
                     }
                 } else {
                     const split = _.compact(param.key.split(/\.(.*)/));
-                    error = split.length > 1 && !checkUtilsService.verifyProperty(split[1], `so:${split[0]}`);
+                    paramError = split.length > 1 && !checkUtilsService.verifyProperty(split[1], `so:${split[0]}`);
                 }
 
-                if (error) {
+                if (paramError) {
+                    error = true;
                     checkUtilsService.pushError(snView, stackCode, report, 'PROPERTY_NOT_FOUND', item, param, param.key, 'node');
                 }
 
-                return !error;
             }
+            return !error;
         }
         return true;
     }
