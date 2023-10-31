@@ -72,13 +72,16 @@ export class DatasService {
         });
     }
 
-    initialize(datas: DatasDto, socketHost: string, onCalculateEnv: () => void) {
+    initialize(datas: DatasDto, socketHost: string, onCalculateEnv: () => void, afterLoadData: () => void) {
         this.datas.push(datas);
 
         // socket
         datas.socket.start(socketHost, this.authService.localProfil.key, this.authService.localProfil.id);
         datas.socket.onConnect.pipe(
-            flatMap(() => this.loadData(datas, onCalculateEnv))
+            flatMap(() => this.loadData(datas, onCalculateEnv)),
+            tap(() => {
+                afterLoadData();
+            })
         ).subscribe();
 
         datas.socket.onDisconnect.pipe(

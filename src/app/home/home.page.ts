@@ -71,28 +71,30 @@ export class HomePage implements OnInit, AfterViewInit, OnDestroy {
             return;
         }
         this.subscription = this.dataService.Initialize().pipe(
-            mergeMap(() => this.configService.load()),
-            tap(() => this.preferencesService.restoreMandatory()),
             tap(() => this.display = true),
-            mergeMap(() => this.sessionsService.connect()),
+            mergeMap(() => this.sessionsService.connect(() => {
+                this.configService.load().subscribe(() => {
+                    this.preferencesService.restoreMandatory();
+                    this.hasHistory = this.configService.getTabs().length > 0;
+                    if (this.hasHistory) {
+                        if (!document.hidden) {
+                            this.onReloadSession();
+                        } else {
+                            const focus = () => {
+                                window.removeEventListener('focus', focus);
+                                this.onReloadSession();
+                            };
+                            window.addEventListener('focus', focus);
+                        }
+                    }
+                });
+            })),
             mergeMap(() => this.studioTranslate.defineDefaultLang(this.sessionsService.active.datas.read.customer.languages)),
         ).subscribe(() => {
             const splitHost = window.location.host.split('.');
             const env = splitHost.length > 0 ? ` - ${splitHost[0]}` : '';
 
             this.titleService.setTitle(`${this.sessionsService.active.connection.customerKey}${env} Vision Studio`);
-            this.hasHistory = this.configService.getTabs().length > 0;
-            if (this.hasHistory) {
-                if (!document.hidden) {
-                    this.onReloadSession();
-                } else {
-                    const focus = () => {
-                        window.removeEventListener('focus', focus);
-                        this.onReloadSession();
-                    };
-                    window.addEventListener('focus', focus);
-                }
-            }
         });
 
         this.subscription.add(this.messageService.get('explorer-tree-select').subscribe((selectedLine: ObjectTreeLineDto) =>

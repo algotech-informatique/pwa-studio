@@ -68,7 +68,7 @@ export class SessionsService {
         return this._active;
     }
 
-    connect() {
+    connect(afterLoadData: () => void) {
         // already connect
         if (!this.authService.isAuthenticated) {
             return of({});
@@ -142,7 +142,8 @@ export class SessionsService {
             this.datasService.initialize(datas, this.socket, () => {
                 onSocketLoaded();
                 observer.next({});
-            });
+            },
+            afterLoadData);
         });
     }
 

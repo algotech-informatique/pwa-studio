@@ -173,9 +173,10 @@ export class HelperContext {
         this.injector.get(DatasService).initialize(
             this.activeSession.datas,
             this.activeSession.connection.socketHost,
+            () => {},
             () => {}
         );
-        this.injector.get(SessionsService).connect();
+        this.injector.get(SessionsService).connect(() => {});
     }
 
     private _getProvider<T>(providerName: ProviderToken<T>): T {
