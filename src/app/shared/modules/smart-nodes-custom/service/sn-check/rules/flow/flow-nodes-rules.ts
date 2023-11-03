@@ -27,7 +27,7 @@ export const snDataNodeRule: SnViewRule = {
                 return true;
             }
 
-            if (!type.startsWith('so:')) {
+            if (!_.isString(type) || !type.startsWith('so:')) {
                 return true;
             }
 
@@ -52,8 +52,17 @@ export const crudObjectRule: SnViewRule = {
     check: (stackCode: string,
         report: ValidationReportDto,
         snView: SnView, snModelUuid: string, item: SnNode, items: SnNode[], parent, checkUtilsService: SnCheckUtilsService): boolean => {
-        if (['SnFormNode', 'SnObjectCreationNode', 'SnObjectAssignmentNode'].indexOf(item.type) !== -1) {
-            const section = item.sections.find((s) => s.key === (item.type === 'SnFormNode' ? 'options' : 'properties'));
+        if (['SnFormNode', 'SnObjectCreationNode', 'SnObjectAssignmentNode', 'SnCsvMappedNode'].indexOf(item.type) !== -1) {
+            let sectionKey = 'properties';
+            switch (item.type) {
+                case 'SnFormNode':
+                    sectionKey = 'options';
+                    break;
+                case 'SnCsvMappedNode':
+                    sectionKey = 'dateFormat';
+                    break;
+            }
+            const section = item.sections.find((s) => s.key === sectionKey);
             if (!section) {
                 return true;
             }
@@ -62,7 +71,7 @@ export const crudObjectRule: SnViewRule = {
             let error = false;
             for (const param of section.params) {
                 let paramError = true;
-                if (item.type === 'SnObjectCreationNode') {
+                if (['SnCsvMappedNode', 'SnObjectCreationNode'].indexOf(item.type) > -1) {
                     const output: SnParam = checkUtilsService.snAtNodeUtils.getOutParam(item).param;
                     if (output) {
                         const type = output.types as string;

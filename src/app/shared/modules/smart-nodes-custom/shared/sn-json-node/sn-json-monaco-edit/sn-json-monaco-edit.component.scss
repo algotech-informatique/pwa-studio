@@ -30,6 +30,6 @@
     background-image: var(--SN-NODE-HEADER-BACKGROUND-SNJSONNODE);
 }
 .editorContainer {
-    height: 100%;
+    height: calc(100% - var(--SN-NODE-HEADER-HEIGHT));
     border-radius: 4px;
 }

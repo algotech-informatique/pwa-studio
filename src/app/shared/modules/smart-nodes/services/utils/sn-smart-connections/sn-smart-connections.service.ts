@@ -134,7 +134,7 @@ export class SnSmartConnectionsService {
         const typesIn = Array.isArray(paramIn.types) ? paramIn.types : [paramIn.types];
         const typesOut = Array.isArray(paramOut.types) ? paramOut.types : [paramOut.types];
 
-        return _.intersection(typesIn, typesOut).length > 0 && (paramIn.multiple === null || paramOut.multiple === null ||
+        return _.intersection(typesIn, typesOut).length > 0 && (paramIn.multiple == null || paramOut.multiple == null ||
             paramIn.multiple === paramOut.multiple);
     }
 }

@@ -468,7 +468,7 @@ export class SnUtilsService {
             results.push(..._.reduce(n.flows, (params: SnParam[], flow: SnFlow) => {
                 if (flow.direction === 'out') {
                     for (const param of flow.params) {
-                        if (param.direction === 'out' && param.display === 'key-edit' && param.key && _.isString(param.types)) {
+                        if (param.direction === 'out' && param.display === 'key-edit' && param.key) {
                             params.push(param);
                         }
                     }

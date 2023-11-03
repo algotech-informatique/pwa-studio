@@ -74,7 +74,7 @@ export class SnCustomSmartConnectionsService {
     }
 
     public filterParam(paramIn: SnParam, paramOut: SnParam, view: SnView) {
-        return this.checkType(paramIn, paramOut, view) && (paramIn.multiple === null || paramOut.multiple === null ||
+        return this.checkType(paramIn, paramOut, view) && (paramIn.multiple == null || paramOut.multiple == null ||
             paramIn.multiple === true || paramIn.multiple === paramOut.multiple);
     }
 
