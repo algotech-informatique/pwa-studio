@@ -162,7 +162,7 @@ export class PageDragLandmarkService {
     drawPosition(rect: SnPageBoxDto, page: SnPageDto, resizing: boolean = false, master?: SnPageWidgetDto) {
         const width = 60;
         const height = 30;
-        const offset = 10 * this.pageZoom.scaleZoom;
+        const offset = 10;
 
         const _rect = this.absBox(rect, master);
 
@@ -181,11 +181,12 @@ export class PageDragLandmarkService {
             .attr('height', height)
             .style('overflow', 'visible')
             .html(() =>
-                `<b' style='display: block; background-color: #FFF; text-align: center; font-size: 12px; padding: 5px;
-                    transform: scale(${this.pageZoom.scaleZoom}); width: 60px;
+                `<span style='display: block; background-color: #FFF; color: #000; text-align: center; font-size: 12px; padding: 5px;
+                    transform: scale(${this.pageZoom.transform.k >= 1 ? 1 : (1 / this.pageZoom.transform.k)});
+                    transform-origin: top; width: 60px;
                     box-shadow: inset 0 0 3px #000; border-radius: 4px'>
                     ${varA}, ${varB}
-                </b>`
+                </span>`
             );
     }
 
