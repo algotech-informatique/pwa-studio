@@ -118,11 +118,12 @@ export class SnArrayFunctionNodeComponent extends SnATNodeComponent {
                 if (propType) {
                     const propValue = parameters.params.find((p) => p.key === 'propValue');
                     if (propValue) {
-                        this.snActions.editParam(this.snView, this.node, propValue, parameters.params, 'types', [propType, 'sys:filter']);
+                        this.snActions.editParam(this.snView, this.node, propValue, parameters.params, 'types',
+                            _.flatten([propType, 'sys:filter']));
                         this.snActions.editParam(this.snView, this.node, propValue, parameters.params, 'custom',
                             { multiple, type: propType }
                         );
-                        this.snActions.editParam(this.snView, this.node, propValue, parameters.params, 'multiple', multiple);
+                        this.snActions.editParam(this.snView, this.node, propValue, parameters.params, 'multiple', null);
                     }
                 }
                 // update output
