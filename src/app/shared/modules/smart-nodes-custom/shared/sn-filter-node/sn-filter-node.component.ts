@@ -132,7 +132,7 @@ export class SnFilterNodeComponent extends SnATNodeComponent {
                 criterias = [...this.stringCriterias, ...this.genericCriterias];
         };
 
-        if (type?.startsWith('so:') && multiple) {
+        if (_.isString(type) && type?.startsWith('so:') && multiple) {
             criterias = _.reject(criterias, (item: PairDto) => item.key === 'notStartsWith' || item.key === 'different');
         }
 
