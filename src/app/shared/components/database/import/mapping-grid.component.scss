@@ -61,6 +61,8 @@
 
 .seperators{
   @include toolbox();
+  height: 70px;
+  gap: 5px;
   background-color: var(--HEADER-FOOTER);
   margin-right: 12px;
   width: 100%;
@@ -75,9 +77,13 @@
       margin-left: 20px;
     }
 
-    input {
+    input, select {
       margin-left: 5px;
       width: 30px;
+
+      &#encoding {
+          width: 120px;
+      }
       border-radius: 5px;
       color: #FFF;
       background-color: var(--HEADER-FOOTER);

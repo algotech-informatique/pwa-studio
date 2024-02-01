@@ -129,9 +129,9 @@ export class DataBaseImportService {
     });
   }
 
-  getPopertyMapping(file: File, model: Model): Observable<{ configueration: GridConfigurationDto; data: Row[] }> {
+  getPopertyMapping(file: File, model: Model, delimiter = ',', encoding = 'utf8'): Observable<{ configueration: GridConfigurationDto; data: Row[] }> {
     if (file && model?.sm) {
-      return this.soUtils.csvColumns(file, model.sm).pipe(
+      return this.soUtils.csvColumns(file, model.sm, { delimiter, encoding }).pipe(
         mergeMap((mappings: PairDto[]) => of({
           configueration: this.setConfigueration(mappings, model.sm),
           data: this.getData(mappings, model.sm),

@@ -22,6 +22,7 @@ export class AppDataBaseImportMappingComponent implements OnInit, OnDestroy {
     data: Row[] = [];
     replaceExisting = false;
     columnBreaker = ',';
+    encoding = 'utf8';
     moreDataToLoad: boolean;
     loading: boolean;
     configuration: GridConfigurationDto;
@@ -37,6 +38,7 @@ export class AppDataBaseImportMappingComponent implements OnInit, OnDestroy {
         propertiesFormat: PairDto[];
         replaceExisting: boolean;
         columnBreaker: string;
+        encoding: string;
     }>();
 
     constructor(
@@ -64,7 +66,7 @@ export class AppDataBaseImportMappingComponent implements OnInit, OnDestroy {
                 this.processState = state;
 
             });
-            this.importService.getPopertyMapping(this.file, this.model).pipe(
+            this.importService.getPopertyMapping(this.file, this.model, this.columnBreaker, this.encoding).pipe(
                 mergeMap((mapping) => {
                     this.processState = 'succeeded';
                     this.ref.detectChanges();
@@ -127,7 +129,12 @@ export class AppDataBaseImportMappingComponent implements OnInit, OnDestroy {
             propertiesFormat: data.formats,
             replaceExisting: this.replaceExisting,
             columnBreaker: this.columnBreaker,
+            encoding: this.encoding
         });
+    }
+
+    changeFormat() {
+        this.ngOnInit();
     }
 }
 

@@ -46,6 +46,17 @@ export const SN_CSV_MAPPED_NODE_SCHEMA: (displayName: SnLang[]) => SnNodeSchema 
             pluggable: true,
             default: ','
         }, {
+            key: 'encoding',
+            direction: 'in',
+            types: 'string',
+            multiple: false,
+            master: false,
+            required: true,
+            displayName: 'SN-CSV-MAPPED-ENCODING',
+            display: 'select',
+            pluggable: true,
+            default: 'utf8'
+        }, {
             key: 'smartModel',
             direction: 'in',
             types: 'string',
@@ -67,6 +78,12 @@ export const SN_CSV_MAPPED_NODE_SCHEMA: (displayName: SnLang[]) => SnNodeSchema 
             default: true,
         }],
         sections: [{
+            key: 'columns',
+            displayName: 'SN-CSV-MAPPED-COLUMNS',
+            editable: true,
+            open: true,
+            params: [],
+        }, {
             key: 'dateFormat',
             displayName: 'SN-CSV-MAPPED-DATE-FORMAT',
             editable: true,

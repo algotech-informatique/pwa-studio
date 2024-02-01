@@ -567,6 +567,7 @@ export class AppDataBaseComponent implements OnChanges, OnDestroy {
                                 propertiesFormat: PairDto[];
                                 replaceExisting: boolean;
                                 columnBreaker: string;
+                                encoding: string;
                             }) => {
                                 if (data.canImport) {
                                     importState.next('inProgress');
@@ -577,6 +578,7 @@ export class AppDataBaseComponent implements OnChanges, OnDestroy {
                                             columns: data.columns,
                                             propertiesFormat: data.propertiesFormat,
                                             delimiter: data.columnBreaker,
+                                            encoding: data.encoding
                                         },
                                         replaceExisting: data.replaceExisting,
                                     }).pipe(

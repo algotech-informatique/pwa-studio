@@ -17,9 +17,9 @@ import { SnParam } from '../../../smart-nodes/models';
         [(top)]="top"
         [type]="type"
         [direction]="'in'"
-        [filter]="['date', 'datetime', 'time']"
+        [filter]="filter"
         [selectedProperties]="selectedProperties"
-        (addProperties)="addProperties($event)"
+        (addProperties)="addProperties($event, clickedSection)"
         (removeProperties)="removeProperties($event, clickedSection)">
     </sn-select-properties>
     `
@@ -29,6 +29,7 @@ export class SnCsvMappedNodeComponent extends SnTaskNodeComponent {
     top: number;
     selectedProperties: string[];
     clickedSection: string;
+    filter: string[];
 
     constructor(
         protected snActions: SnActionsService,
@@ -40,6 +41,19 @@ export class SnCsvMappedNodeComponent extends SnTaskNodeComponent {
 
     initialize(schema: SnNodeSchema) {
         this.loadModels();
+        this.load([
+            { key: 'ascii', value: 'ascii' },
+            { key: 'utf8', value: 'utf8' },
+            { key: 'utf-8', value: 'utf-8' },
+            { key: 'utf16le', value: 'utf16le' },
+            { key: 'ucs2', value: 'ucs2' },
+            { key: 'ucs-2', value: 'ucs-2' },
+            { key: 'base64', value: 'base64' },
+            { key: 'base64url', value: 'base64url' },
+            { key: 'latin1', value: 'latin1' },
+            { key: 'binary', value: 'binary' },
+            { key: 'hex', value: 'hex' },
+        ], 'encoding');
         super.initialize(schema);
     }
 
@@ -55,6 +69,10 @@ export class SnCsvMappedNodeComponent extends SnTaskNodeComponent {
     }
 
     onSectionClicked(ev: SnSectionClickEvent) {
+        this.filter = ev.section.key === 'dateFormat' ?
+            ['date', 'datetime', 'time'] :
+            ['string', 'number', 'date', 'datetime', 'time', 'boolean'];
+
         this.clickedSection = ev.section.key;
         this.selectedProperties = this.updateSelectedProperties(ev.section.key);
         this.top = this.snDOMService.getRelativeTop(ev.event.toElement || ev.event.target, this.node) + 35;
@@ -65,6 +83,10 @@ export class SnCsvMappedNodeComponent extends SnTaskNodeComponent {
         params.forEach((p) => {
             p.types = 'string';
         });
+
+        if (sectionKey === 'columns') {
+            params.forEach((p) => p.value = p.value || p.key);
+        }
 
         return super.addProperties(params, sectionKey);
     }

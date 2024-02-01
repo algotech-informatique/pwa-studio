@@ -1,8 +1,24 @@
 <div class="mapping-title"> {{ 'INSPECTOR.DATABASE.PROPERTIES.MAPPING' | translate }}</div>
 <div class="seperators">
   <div class="section">
-    <label for="replaceExisting"> {{ 'INSPECTOR.DATABASE.IMPORT.COLBREAKER' | translate }}</label>
-    <input id="replaceExisting" type="text" [(ngModel)]="columnBreaker">
+    <label for="columnBreaker"> {{ 'INSPECTOR.DATABASE.IMPORT.COLBREAKER' | translate }}</label>
+    <input id="columnBreaker" type="text" [(ngModel)]="columnBreaker" (change)="changeFormat()">
+  </div>
+  <div class="section">
+    <label for="encoding"> {{ 'INSPECTOR.DATABASE.IMPORT.ENCODING' | translate }}</label>
+    <select id="encoding" [(ngModel)]="encoding" (change)="changeFormat()">
+        <option value="ascii">ascii</option>
+        <option value="utf8">utf8</option>
+        <option value="utf-8">utf-8</option>
+        <option value="utf16le">utf16le</option>
+        <option value="ucs2">ucs2</option>
+        <option value="ucs-2">ucs-2</option>
+        <option value="base64">base64</option>
+        <option value="base64url">base64url</option>
+        <option value="latin1">latin1</option>
+        <option value="binary">binary</option>
+        <option value="hex">hex</option>
+      </select>
   </div>
 </div>
 <at-grid *ngIf="configuration" [configuration]="configuration" class="grid" [empty]="empty" [paginate]="paginate"

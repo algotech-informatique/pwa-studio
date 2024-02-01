@@ -1,4 +1,5 @@
 @import "../../../../styles.scss";
+@import 'node_modules/@algotech-ce/business/src/lib/_mixins.scss';
 
 :host {
     --TAB-BACKGROUND-COLOR: #{$COLOR-BG-LIGHT};
@@ -7,23 +8,16 @@
     --TAB-COLOR-SCROLLLBAR:  #90979e;
     font-size: 13px;
     color: $COLOR-FG;
+    --SCROLLBAR-BG-TRACK: #{$COLOR-DARK-TINT};
+    --SCROLLBAR-COLOR: #{$COLOR-BG-DARK};
+    --SCROLLBAR-SIZE: 5px;
 }
 
 .tabs {
     display: flex;
     flex-direction: row;
     height: $TABS-HEIGHT;
-    overflow-x: scroll;
-    @include scrollbar();
-
-    scrollbar-width: thin;
-    &::-webkit-scrollbar {
-        width: 2px;
-        height: 3px;
-    }
-    &::-webkit-scrollbar-thumb {
-        background: var(--TAB-COLOR-SCROLLLBAR);
-    }
+    @include scrollbar(auto);
 
     .tab {
         background-color: var(--TAB-BACKGROUND-COLOR);
